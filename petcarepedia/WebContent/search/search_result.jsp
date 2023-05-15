@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/WebCarePedia/image/foot_blue.png" rel="shortcut icon" type="image/x-icon">
+<link href="http://localhost:9000/petcarepedia/admin/images/foot_blue.png" rel="shortcut icon" type="images/x-icon">
 <title>result</title>
-<link rel="stylesheet" href="http://localhost:9000/WebCarePedia/css/search_result.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
 
-<script src="http://localhost:9000/WebCarePedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/WebCarePedia/js/search_result.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 	
 </head>
 
@@ -22,27 +22,27 @@
 	<div class="result_main">
 		<section class="info">
 			<div class="info_d">
-				<div class="image_d">
-					<img src="http://localhost:9000/WebCarePedia/image/API.png">
-					<img src="http://localhost:9000/WebCarePedia/image/API.png">
-					<img src="http://localhost:9000/WebCarePedia/image/hospital 1.png">
-					<img src="http://localhost:9000/WebCarePedia/image/hospital 2.png">
-					<img src="http://localhost:9000/WebCarePedia/image/hospital 3.png">
-					<img src="http://localhost:9000/WebCarePedia/image/foot_blue.png">
-					<img src="http://localhost:9000/WebCarePedia/image/foot_blue.png">
+				<div class="images_d">
+					<img src="http://localhost:9000/petcarepedia/admin/images/API.png">
+					<img src="http://localhost:9000/petcarepedia/admin/images/API.png">
+					<img src="http://localhost:9000/petcarepedia/admin/images/hospital 1.png">
+					<img src="http://localhost:9000/petcarepedia/admin/images/hospital 2.png">
+					<img src="http://localhost:9000/petcarepedia/admin/images/hospital 3.png">
+					<img src="http://localhost:9000/petcarepedia/admin/images/foot_blue.png">
+					<img src="http://localhost:9000/petcarepedia/admin/images/foot_blue.png">
 				</div>
 				
 				<div class="name_d">
 					<div class="area_d">
-						<a href="http://localhost:9000/WebCarePedia/search/search_main.jsp">서울</a>
+						<a href="http://localhost:9000/petcarepedia/search/search_main.jsp">서울</a>
 						<span>></span>
-						<a href="http://localhost:9000/WebCarePedia/search/search_main.jsp">강남구</a>
+						<a href="http://localhost:9000/petcarepedia/search/search_main.jsp">강남구</a>
 					</div>
 					
 					<span class="name">더조은동물병원</span>
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
-					<button type="button" id="reservation"><img src="http://localhost:9000/WebCarePedia/image/cal.png">간편 예약하기
+					<button type="button" id="reservation"><img src="http://localhost:9000/petcarepedia/admin/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -50,25 +50,25 @@
 					<div id="hmodal" class="modal">
 					  <div class="modal-content">
 					    <span class="close">&times;</span>
-					    <iframe src="http://localhost:9000/WebCarePedia/search/search_reservation.jsp" 
+					    <iframe src="http://localhost:9000/petcarepedia/search/search_reservation.jsp" 
 					     width="500px" height="500px" frameborder=0></iframe>
 					  </div>
 				  	</div>
 					
 					
 					<div class="buttons">
-						<button type="button" id="review"><img src="http://localhost:9000/WebCarePedia/image/review.png">리뷰하기</button>
-						<!-- <button type="button" id="share"><img src="http://localhost:9000/WebCarePedia/image/share.png">공유하기</button> -->
-						<button type="button" id="like"><img src="http://localhost:9000/WebCarePedia/image/like.png">찜하기</button>
+						<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/admin/images/review.png">리뷰하기</button>
+						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
+						<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/admin/images/like.png">찜하기</button>
 					</div>
 				</div>
 				
 				<hr>
 				
 				<div class="link">
-					<span><img src="http://localhost:9000/WebCarePedia/image/loc.png">서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
-					<span><img src="http://localhost:9000/WebCarePedia/image/home.png"><a href="http://www.naver.com">병원 홈페이지 가기</a></span>
-					<span><img src="http://localhost:9000/WebCarePedia/image/call.png">010-1234-1234</span>
+					<span><img src="http://localhost:9000/petcarepedia/admin/images/loc.png">서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
+					<span><img src="http://localhost:9000/petcarepedia/admin/images/home.png"><a href="http://www.naver.com">병원 홈페이지 가기</a></span>
+					<span><img src="http://localhost:9000/petcarepedia/admin/images/call.png">010-1234-1234</span>
 				</div>
 				
 				<hr>
@@ -85,7 +85,7 @@
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
 						<!-- <div class="map"> -->
-							<iframe class="map" src="http://localhost:9000/WebCarePedia/search/search_map.jsp"
+							<iframe class="map" src="http://localhost:9000/petcarepedia/search/search_map.jsp"
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
 						<!-- </div> -->
 						<span>서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
@@ -154,7 +154,7 @@
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
-							<img src="http://localhost:9000/WebCarePedia/image/cat.png">
+							<img src="http://localhost:9000/petcarepedia/admin/images/cat.png">
 							<span>과테말라 냥이</span>
 						</div>
 						

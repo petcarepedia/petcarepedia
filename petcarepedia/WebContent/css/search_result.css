@@ -5,6 +5,7 @@
 	margin: 0px;
 	padding: 0px;
 	color: #3d3d3d;
+	
 }
 
 div.result_main {
@@ -18,7 +19,7 @@ div.result_main {
 /***************************************
 	section_info_info
 ***************************************/
-div.image_d {
+div.images_d {
 	/* border: 1px solid gray; */
 	height: 220px;
 	white-space: nowrap;
@@ -27,7 +28,7 @@ div.image_d {
 	
 }
 
-div.image_d img {
+div.images_d img {
 	/* border: 1px solid red; */
 	width: auto;
 	height: 100%;
