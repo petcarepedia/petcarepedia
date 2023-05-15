@@ -1,0 +1,461 @@
+/***************************************
+	°øÅë
+***************************************/
+* {
+	margin: 0px;
+	padding: 0px;
+	color: #3d3d3d;
+}
+
+div.result_main {
+	/* border: 1px solid gray; */
+	width: 1000px;
+	margin: auto;
+	/* text-align: center; */
+}
+
+
+/***************************************
+	section_info_info
+***************************************/
+div.image_d {
+	/* border: 1px solid gray; */
+	height: 220px;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	
+}
+
+div.image_d img {
+	/* border: 1px solid red; */
+	width: auto;
+	height: 100%;
+	display: inline-block;
+	margin: 0px -3px;
+}
+
+div.name_d {
+	/* border: 1px solid red; */
+	margin-left: 5px;
+	padding-bottom: 20px;
+	
+}
+
+div.area_d {
+	/* border: 1px solid red; */
+	padding-top: 20px;
+	font-size: 14px;
+}
+
+span.name {
+	/* border: 1px solid red; */
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: 10px;
+	display: block;
+}
+
+span.grade {
+	/* border: 1px solid red; */
+	font-size: 14px;
+	margin-top: 10px;
+	display: block;
+}
+
+div.name_d button#reservation {
+	background: #98DFFF;
+	color: white;
+	border-style: none;
+	border-radius: 5px;
+	font-size: 15px;
+	font-weight: bold;
+	/* padding: 15px 20px 15px 50px; */
+	margin-top: 10px;
+	width: 400px;
+	height: 45px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+		
+}
+
+div.name_d button#reservation: hover {
+	cursor: pointer;
+}
+
+div.name_d button#reservation img {
+	/* border: 1px solid red; */
+	width: 30px;
+	margin: 0px 10px;
+}
+
+div.buttons {
+	/* border: 1px solid red; */
+	display: flex;
+	align-items: center;
+	
+}
+
+div.name_d button#review {
+	background: #FFB3BD;
+	border-style: none;
+	border-radius: 5px;
+	font-size: 15px;
+	margin-top: 10px;
+	width: 120px;
+	height: 40px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	margin-right: 45px;
+}
+
+div.name_d button#share, div.name_d button#like  {
+	background: #FFFFFF;
+	border: 1px solid #8A8A8A;
+	border-radius: 5px;
+	font-size: 15px;
+	margin-top: 10px;
+	width: 120px;
+	height: 40px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	margin-right: 45px;
+}
+
+
+div.buttons img {
+	/* border: 1px solid red; */
+	width: 30px;
+	margin: 0px 10px;
+}
+
+div.name_d button:hover {
+	cursor: pointer;
+}
+
+hr {
+	border: 1px solid #828282;
+}
+
+
+/***************************************
+	section_info_link
+***************************************/
+div.link {
+	/* border: 1px solid red; */
+	margin-left: 5px;
+	padding-bottom: 20px;
+}
+
+div.link span {
+	display: block;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+}
+
+div.link span:first-child {
+	/* border: 1px solid red; */
+	margin-top: 20px;
+}
+
+div.link span:nth-child(2), div.link span:nth-child(3) {
+	/* border: 1px solid red; */
+	margin-top: 15px;
+}
+
+div.link img {
+	width: 25px;
+	padding-right: 10px;
+}
+
+/***************************************
+	section_info_nav
+***************************************/
+div.nav {
+	/* border: 1px solid red; */
+	padding: 20px 0px 20px 5px;
+}
+
+div.nav:hover {
+	cursor: pointer;
+}
+
+div.nav span {
+	margin-right: 50px;
+	font-size: 18px;
+}
+
+
+/***************************************
+	section_info_api_info
+***************************************/
+div.api_info {
+	/* border: 1px solid red; */
+	margin-left: 5px;
+	padding-bottom: 20px;
+	display: flex;
+	
+}
+
+div.api {
+	/* border: 1px solid red; */
+	width: 400px;
+}
+
+div.api span:first-child {
+	font-size: 20px;
+	font-weight: bold;
+	display: block;
+	padding-top: 20px;
+}
+
+div.api span:nth-child(2) {
+	font-size: 16px;
+	display: block;
+	padding-top: 15px;
+}
+
+div.api span:last-child {
+	/* border: 2px solid red; */
+	font-size: 14px;
+	/* display: block; */
+	background: #828282;
+	width: 350px;
+	height: 65px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top:-4px;
+}
+
+div.api iframe.map {
+	width: 350px;
+	height: 285px;
+	padding:0px;
+	margin:0px;
+}
+
+
+/***************************************
+	section_info_api_time
+***************************************/
+div.time {
+	/* border: 2px solid green; */
+	display: flex;
+}
+
+div.time ul {
+	list-style-type: none;
+	font-size: 14px;
+	margin-top: 90px;
+}
+
+div.time ul:first-child {
+	margin-left: 100px;
+}
+
+div.time ul li:nth-child(6), div.time ul li:nth-child(7), div.time ul li:nth-child(8) {
+	color: red;
+}
+
+div.time ul li {
+	margin-bottom: 10px;
+	margin-right: 50px;
+}
+
+
+/***************************************
+	section_review
+***************************************/
+div.list {
+	/* border: 2px solid red; */
+	margin-left: 20px;
+	padding-bottom: 15px;
+}
+
+div.grade {
+	/* border: 2px solid green; */
+	width: 150px;
+	float:left;
+	margin-bottom: 15px;
+}
+
+div.grade > span{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 20px 0px;
+	display: inline-block;
+}
+
+div.total {
+	border: 1px solid #8A8A8A;
+	border-radius:5px;
+	text-align: center;
+	padding: 20px 0px;
+	
+}
+
+div.total span:first-child {
+	font-size: 18px;
+	display:block;
+}
+
+div.total span:last-child {
+	font-size: 14px;
+}
+
+div.filter {
+	/* border: 1px solid green; */
+	width: 400px;
+	float: right;
+}
+
+
+div.review_card {
+	border: 1px solid #98DFFF;
+	border-radius: 5px;
+	clear: both;
+	width: 900px;
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 10px;
+}
+
+div.review_card div.member {
+	/* border: 1px solid #888888; */
+	width: 222px;
+	font-size: 14px;
+	text-align: center;
+	padding-top:30px;
+}
+
+div.review_card div.member img {
+	width: 35px;
+	padding-right: 5px;
+}
+
+div.member div.name {
+	/* border: 1px solid #888888; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* padding-bottom: 5px; */
+}
+
+hr.member_hr {
+	border: 1px solid #828282;
+	width: 150px;
+	margin: 10px auto 10px auto;
+}
+
+div.member span.stext {
+	/* border: 1px solid red; */
+	font-size: 14px;
+	
+}
+
+div.member span.stot {
+	/* border: 1px solid red; */
+	font-size: 12px;
+	display:inline-block;
+	margin-bottom: 20px;
+	
+}
+
+div.review_card div.write {
+	/* border: 1px solid red; */
+	width: 290px;
+	margin-left: 20px;
+	flex: 1;
+}
+
+div.review_card div.write > h3 {
+	font-size: 14px;
+	padding: 30px 0px 10px 0px;
+}
+
+div.review_card div.write >p {
+	font-size: 12px;
+}
+
+div.review_card div.date {
+	/* border: 1px solid red; */
+	width: 185px;
+	margin:30px 45px 0px 0px;
+	text-align: right;
+	
+}
+
+div.review_card div.date span {
+	font-size: 12px;
+	display:inline-block;
+}
+
+div.review_card div.date button#like {
+	border: 1px solid #98DFFF;
+	border-radius: 5px;
+	background: white;
+	font-size: 14px;
+	width: 165px;
+	height: 35px;
+	margin-top: 15px; 
+	
+}
+
+div.review_card div.date span:last-child {
+	margin-top: 7px;
+	/* border: 1px solid #98DFFF;	 */
+}
+
+div.review_card div.date a {
+	/* border: 1px solid #98DFFF; */
+	color: red;
+}
+
+div.review_card div.date button#like:hover {
+	cursor: pointer;
+}
+
+
+/***************************************
+	modal
+***************************************/
+div.name_d div.modal {
+	display: none;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+div.name_d div.modal-content {
+	border: 1px solid red;
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px;
+  weight:  500px;
+}
+
+div.name_d div.modal-content span.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+div.name_d div.modal-content span.close:hover
+{
+	cursor: pointer;
+}
