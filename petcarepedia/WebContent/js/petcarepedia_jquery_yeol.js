@@ -5,7 +5,7 @@ $(document).ready(function(){
 		mypage - 회원정보페이지(수정하기)버튼
 ********************************************/
 	$("#btn_style1").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/revise.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/revise.jsp";
 	});
 	
 /*******************************************************************************
@@ -30,7 +30,7 @@ $(document).ready(function(){
 		var result = confirm('수정을 완료하시겠습니까?');
 		
 		if(result) {
-			location.href = "http://localhost:9000/team_project2/mypage/information.jsp";
+			location.href = "http://localhost:9000/petcarepedia/mypage/information.jsp";
 		}
 	})
 
@@ -41,16 +41,16 @@ $(document).ready(function(){
 		mypage - 예약내역페이지
 ********************************************/
 	$("#btn1").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/reservation.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/reservation.jsp";
 	});
 	$("#btn2").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
 	});
 	$("#btn3").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/reservation.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/reservation.jsp";
 	});
 	$("#btn4").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
 	});
 	
 	$("#btn_cancle1").click(function(){
@@ -70,7 +70,7 @@ $(document).ready(function(){
 	});
 	
 	$("#btn_write_review").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/review_write.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/review_write.jsp";
 	})
 
 
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		예약내역페이지 - 리뷰쓰기
 ******************************************************************************/
 	$("#cancle").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
 	})
 	
 
@@ -86,7 +86,7 @@ $(document).ready(function(){
 	내가쓴리뷰 - 리뷰수정
 ******************************************************************************/
 	$("#btnReview_revise").click(function(){
-		location.href = "http://localhost:9000/team_project2/mypage/review_revise.jsp";
+		location.href = "http://localhost:9000/petcarepedia/mypage/review_revise.jsp";
 	})
 
 

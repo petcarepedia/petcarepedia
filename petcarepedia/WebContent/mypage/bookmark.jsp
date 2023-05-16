@@ -6,13 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 </head>
 <body>
 	<!-- header -->
-	 <iframe src="http://localhost:9000/petcarepedia/header.jsp"
-			width="100%" height="100px" frameborder=0></iframe> 
+	<jsp:include page="../header.jsp"></jsp:include>
+	
 	<div id = "content2">
 		<section id = "bookmark">
 			<h1 id = "title">즐겨찾기</h1>
