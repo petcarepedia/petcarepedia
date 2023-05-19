@@ -1,5 +1,5 @@
 /***************************************
-	공통 사항
+	common
 ***************************************/
 * {
 	margin: 0px;
@@ -11,6 +11,7 @@ div.search_main {
 	/* border: 1px solid gray; */
 	width: 1000px;
 	margin: auto;
+	margin-top: 100px;
 	/* text-align: center; */
 	
 }
@@ -247,7 +248,7 @@ div.check_animal ul li span {
 }
 
 /***************************************
-	하단
+	�븯�떒
 ***************************************/
 div.s2 {
 	/* border: 1px solid green; */
@@ -264,7 +265,7 @@ div.hlist {
 	margin-right: 20px;
 }
 
-div.list1{
+div.list1 {
 	/* border: 1px solid red; */
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
@@ -406,15 +407,17 @@ div.hapi {
 	margin-bottom: 10px;
 	/* clear: both; */
 	position: sticky;
-	top: 00px;
+	top: 100px;
+	
 
 }
 
 
 div.hapi iframe {
-	/* border: 1px solid red; */
+	border: 2px solid red;
 	width: 576px;
 	height: 100%;
+	
 }
 
 

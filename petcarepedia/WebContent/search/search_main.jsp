@@ -15,7 +15,8 @@
 
 <body>
 	<!-- header -->
-	<iframe width="100%" height="100px"></iframe>
+	<!-- <iframe width="100%" height="100px"></iframe> -->
+	<jsp:include page="../header.jsp"></jsp:include>		
 	
 	
 	<!-- content -->
@@ -98,7 +99,7 @@
 		<!-- 검색리스트 -->
 			<section class="list">
 				<div class="hlist">
-					<% for(int i =0;i < 2; i++) { %>
+					<% for(int i =0;i <10; i++) { %>
 						<div class="list1">
 							<div class="hinfo">
 								<a href="http://localhost:9000/petcarepedia/search/search_result.jsp">
@@ -107,7 +108,7 @@
 									<span>02-1234-1234</span>
 								</a>
 							
-								<span id="harea">강남구 역삼동</span>
+								<span id="harea">강남구</span>
 								<span id="htime">진료 중</span>
 								<button type="button" id="hservation">예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -143,6 +144,7 @@
 	</div> 
 
 	<!-- footer -->
-	<iframe width="100%" height="100px"></iframe>
+	<!-- <iframe width="100%" height="100px"></iframe> -->
+	<jsp:include page="../footer.jsp"></jsp:include>	
 </body>
 </html>
