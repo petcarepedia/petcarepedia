@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ReviewReportMapper {
-    int reviewReport(ReviewReportDto reviewReportDto);
-    int reviewReportCheck(ReviewReportDto reviewReportDto);
+    int report(ReviewReportDto reviewReportDto);
+    int check(ReviewReportDto reviewReportDto);
 }

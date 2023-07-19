@@ -11,10 +11,10 @@ public class ReviewReportService {
     private ReviewReportMapper reviewReportMapper;
 
     public int reviewReport(ReviewReportDto reviewReportDto) {
-        return reviewReportMapper.reviewReport(reviewReportDto);
+        return reviewReportMapper.report(reviewReportDto);
     }
 
     public int reviewReportCheck(ReviewReportDto reviewReportDto) {
-        return reviewReportMapper.reviewReportCheck(reviewReportDto);
+        return reviewReportMapper.check(reviewReportDto);
     }
 }

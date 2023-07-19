@@ -135,7 +135,7 @@ $(document).ready(function(){
 			});
 		} else { // 로그인시
 			$.ajax({
-				url: 'likeProc',
+				url: 'http://localhost:9000/like',
 				method: 'GET',
 				data: {
 					hid: $('input[name="hid"]').val(),
@@ -207,7 +207,7 @@ $(document).ready(function(){
 	          });
 	        } else {
 	          $.ajax({
-	            url: "rstateProc",
+	            url: "http://localhost:9000/rstate/",
 	            type: "GET",
 	            data: {
 	              mid: mid,
