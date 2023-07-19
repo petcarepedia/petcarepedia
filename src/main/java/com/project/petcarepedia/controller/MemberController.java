@@ -23,7 +23,7 @@ public class MemberController {
      * 로그인
      */
     @GetMapping("login")
-    public String login(){ return "/login/login"; }
+    public String login(){ return "login/login"; }
 
     @PostMapping("login")
     public String login_proc(MemberDto memberDto, String rememberId, Model model, HttpSession session, HttpServletResponse response){
