@@ -55,10 +55,8 @@ $(document).ready(function(){
 	
 	function initGlocMap(gloc) {
 		$.ajax({
-			url : "main_map_data/?gloc="+gloc,
+			url : "main_map_data/"+gloc,
 			success : function(result){
-					let jdata = JSON.parse(result);
-					
 					let markers = new Array();
 					let infoWindows = new Array();
 					
@@ -74,7 +72,7 @@ $(document).ready(function(){
 					}
 					
 					/*db-병원데이터 연결해서 marker 표시하기*/
-					for(obj of jdata.jlist){
+					for(obj of result.list){
 						var marker = new naver.maps.Marker({
 							map: map,
 							title: obj.hname,
@@ -85,7 +83,7 @@ $(document).ready(function(){
 					        '<div class="iw_inner" style="padding:10px;">',
 					        '   <div style="clear:both;margin-bottom:5px;">',
 					        '	<img src="http://localhost:9000/images/foot_98DFFF.png" width="20px" height="20px">',
-					        '	<a href="http://localhost:9000/search_result/?hid='+obj.hid+'&mid='+mid,
+					        '	<a href="http://localhost:9000/search_result/'+obj.hid+'/basic',
 					        '" style="font-size:18px;text-decoration:none;color:#3d3d3d;font-weight:bold;">'+obj.hname+'</a></div>',
 					        '   <p style="font-size:12px;color:darkgray;margin-bottom:5px">Time | '+obj.htime+'<br>Tel | '+obj.tel+'</h3>',
 					        '   <p style="font-size:13px;color:#636363">'+obj.loc+'</p>',
