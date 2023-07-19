@@ -73,7 +73,7 @@
 					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
 						<a href="http://localhost:9000/join">회원가입</a>
-						<a href="http://localhost:9000/login_idfind">아이디 / 비밀번호 찾기</a>
+						<a href="http://localhost:9000/find_id">아이디 / 비밀번호 찾기</a>
 					</li>
 				</ul>
 			</form>

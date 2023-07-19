@@ -26,17 +26,16 @@ public class MemberController {
     public String login(){ return "login/login"; }
 
     @PostMapping("login")
-    public String login_proc(MemberDto memberDto, String rememberId, Model model, HttpSession session, HttpServletResponse response){
-        String viewName = "index";
+    public String login_proc(MemberDto memberDto, String rememberMid, Model model, HttpSession session, HttpServletResponse response){
+        String viewName = "";
 
         SessionDto sessionDto = memberService.login(memberDto);
         if(sessionDto != null) {
-
             if(sessionDto.getLoginResult() == 1){
                 session.setAttribute("svo", sessionDto);
 
                 Cookie cookie = new Cookie("user_check", sessionDto.getMid());
-                if(rememberId.equals("true")){
+                if(rememberMid.equals("true")){
                     response.addCookie(cookie);
                 } else {
                     cookie.setMaxAge(0);
@@ -44,7 +43,7 @@ public class MemberController {
                 }
 
                 model.addAttribute("login_result", "success");
-                viewName = "/login/login";
+                viewName = "redirect:/";
             }
         } else {
             model.addAttribute("login_result", "fail");

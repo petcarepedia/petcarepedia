@@ -14,6 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 	$(document).ready(function (){
+		console.log("index")
 
 		$(".inner > img").css("width",documentcumentElement.clientWidth);
 		$(".main-door").css("width",documentcumentElement.clientWidth).css("height",$(".inner > img").height());
