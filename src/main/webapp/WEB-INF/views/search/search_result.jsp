@@ -58,7 +58,7 @@
 
 					<div class="buttons">
 						<!-- 북마크 -->
-						<form name="bookmarkForm" action="/bookmark" method="post">
+						<form name="bookmarkForm" action="/bookmark" method="get">
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<input type="hidden" name="mid" value="${sessionScope.svo.mid}"> 
 							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
