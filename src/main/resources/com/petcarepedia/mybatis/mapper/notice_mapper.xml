@@ -44,6 +44,6 @@
 		select rno, nid, title, ndate, nhits, ncontent
 		from(select rownum rno, nid, title, to_char(ndate, 'yyyy-mm-dd hh24:mi') ndate, nhits, ncontent 
 		from(select nid, title, ndate, nhits, ncontent from pcp_notice order by ndate desc))
-		where rno between #{start} and #{end}
+		where rno between #{startCount} and #{endCount}
 	</select>
 </mapper>

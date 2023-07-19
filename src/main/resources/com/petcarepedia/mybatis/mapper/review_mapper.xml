@@ -66,7 +66,7 @@
 		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
 		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{gloc}) 
-		where rno between #{start} and #{end}
+		where rno between #{startCount} and #{endCount}
 	</select>
 	
 	<select id="searchCount" parameterType="String" resultType="int">
@@ -116,7 +116,7 @@
 		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid  
 		order by rlike desc))
-		where rno between #{start} and #{end}
+		where rno between #{startCount} and #{endCount}
 	</select>
 	
 	<select id="count" resultType="int">
@@ -142,7 +142,7 @@
 		from (select rownum rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2
 			  from (select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2  from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b
 					where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid} order by r.rid desc))
-		where rno between #{start} AND #{end}
+		where rno between #{startCount} AND #{endCount}
 
 	</select>
 
@@ -151,6 +151,6 @@
 		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname
 			  from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m
 					where r.hid=h.hid and r.mid = m.mid and rstate='O' order by r.rdate desc))
-		where rno between #{start} AND #{end}
+		where rno between #{startCount} AND #{endCount}
 	</select>
 </mapper>
