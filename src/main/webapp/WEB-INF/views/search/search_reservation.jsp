@@ -53,7 +53,7 @@
 	    <input type="hidden" id="endTime" name="endTime" value="${time.end}">
 	    <input type="hidden" id="rholiday" value="${hospital.holiday}">
 
-	    <form name="reservationForm" action="/reservation" method="post">
+	    <form name="reservationForm" action="/reservation" method="get">
 			<input type="hidden" name="hid" value="${hospital.hid}">
 			<input type="hidden" name="mid" value="${sessionScope.svo.mid}"> 
 		    <input type="hidden" id="vdate" name="vdate" value="">

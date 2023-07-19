@@ -58,7 +58,7 @@
 
 					<div class="buttons">
 						<!-- 북마크 -->
-						<form name="bookmarkForm" action="/bookmark" method="post">
+						<form name="bookmarkForm" action="/bookmark" method="get">
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<input type="hidden" name="mid" value="${sessionScope.svo.mid}"> 
 							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
@@ -301,7 +301,7 @@
 									<span> </span>
 									
 									<!-- 좋아요 -->
-									<form name="likeForm" action="/like" method="post">
+									<form name="likeForm" action="/like" method="get">
 										<input type="hidden" name="hid" value="${hospital.hid}">
 										<input type=hidden name="rid" value="${RM_select.rid}">
 										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
@@ -386,7 +386,7 @@
 								</a> --%>
 								
 								<!-- 신고하기 -->
-								<form name="rstateForm" action="/rstate" method="post">
+								<form name="rstateForm" action="/rstate" method="get">
 									<c:choose>
 									<c:when test="${sessionScope.svo.mid != RM_select.mid}">
 										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">

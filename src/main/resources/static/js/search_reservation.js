@@ -394,7 +394,7 @@ $(document).ready(function() {
 		var vtime = $("input[name='vtime']").val();
 		
 		$.ajax({
-			url: "reservationProc",
+			url: "http://localhost:9000/reservation/"+hid,
 			type: "GET",
 			data: {
 				hid: hid,
@@ -426,6 +426,5 @@ $(document).ready(function() {
 			}
 		});
 	});
-
 
 }); 

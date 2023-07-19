@@ -21,8 +21,6 @@ public class SearchController {
     @Autowired
     private ReviewLikeService reviewLikeService;
     @Autowired
-    private ReviewReportService reviewReportService;
-    @Autowired
     private ReviewService reviewService;
 
 
@@ -36,8 +34,9 @@ public class SearchController {
 
 
     /** search_result - 병원 상세정보 **/
-    @GetMapping("search_result/{hid}/{filter}")
-    public String search_result(@PathVariable String hid, String rid, String filter, HttpSession session, Model model) {
+    @GetMapping("/search_result/{hid}/{filter}")
+    /*public String search_result(@PathVariable String hid, String rid, String filter, HttpSession session, Model model) {*/
+    public String search_result(@PathVariable String hid, @PathVariable String filter, HttpSession session, Model model) {
 
         //session
         SessionDto svo = (SessionDto) session.getAttribute("svo");
@@ -49,7 +48,8 @@ public class SearchController {
             mid = svo.getMid();
         }
 
-        model.addAttribute("hospitcal", hospitalService.content(hid)); //병원 정보 출력
+
+        model.addAttribute("hospital", hospitalService.content(hid)); //병원 정보 출력
         model.addAttribute("star", hospitalService.selectStar(hid)); //병원 별점 출력
         model.addAttribute("time", bookingService.selectTime2(hid)); //영업시간 출력
 
