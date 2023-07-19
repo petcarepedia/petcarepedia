@@ -2,6 +2,7 @@ package com.project.petcarepedia.controller;
 
 import com.project.petcarepedia.dto.MemberDto;
 import com.project.petcarepedia.dto.SessionDto;
+import com.project.petcarepedia.service.MailService;
 import com.project.petcarepedia.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    MailService mailService;
 
     /**
      * 로그인
@@ -118,6 +122,7 @@ public class MemberController {
 
         String mid = memberService.find(memberDto);
         if(!mid.equals("") && mid != null) {
+            mailService.idFindEmail(memberDto, mid);
             viewName = "login/login_idfind_success";
         } else viewName = "login/login_idfind_fail";
 
