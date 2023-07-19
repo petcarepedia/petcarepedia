@@ -91,7 +91,7 @@
 		</form>
 		
 		<div id="brbox">
-			<jsp:include page="/best_review_list"></jsp:include>
+			<jsp:include page="/best_review_list/1"></jsp:include>
 		</div>
 		
 		
