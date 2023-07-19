@@ -121,7 +121,7 @@ public class MemberController {
         String viewName = "";
 
         String mid = memberService.find(memberDto);
-        if(!mid.equals("") && mid != null) {
+        if(mid != "" && mid != null) {
             mailService.idFindEmail(memberDto, mid);
             viewName = "login/login_idfind_success";
         } else viewName = "login/login_idfind_fail";
@@ -140,11 +140,12 @@ public class MemberController {
     @GetMapping("find_pw")
     public String find_pw(){ return "login/login_pwfind"; }
     @PostMapping("find_pw")
-    public String find_pw_proc(MemberDto memberDto){
+    public String find_pw_proc(MemberDto memberDto, Model model){
         String viewName = "";
 
         String mid = memberService.find(memberDto);
-        if(!mid.equals("") && mid != null) {
+        if(mid != "" && mid != null) {
+            model.addAttribute("mid", mid);
             viewName = "login/login_pwupdate";
         } else viewName = "login/login_pwfind_fail";
 
