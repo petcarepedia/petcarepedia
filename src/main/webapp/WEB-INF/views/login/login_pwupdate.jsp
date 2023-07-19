@@ -22,7 +22,7 @@
 				<img src="http://localhost:9000/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="pwUpdateForm" action="login_pwupdate_proc" method="post">
+			<form name="pwUpdateForm" action="/update_pw" method="post">
 				<div class="find-box">
 					<div class="find-pw">
 						<c:choose>

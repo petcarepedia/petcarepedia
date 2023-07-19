@@ -490,17 +490,17 @@ $(document).ready(function(){
 	 * 로그인 - 아이디, 비밀번호 찾기
 	 */
 	$('#btnBackLogin').click(function(){
-		location.href = "login.do";
+		location.href = "/login";
 	})
 	$('#btnBackJoin').click(function(){
-		location.href = "http://localhost:9000/join.do";
+		location.href = "/join_step1";
 	})
 	
 	$('#btnMenuIdFind').click(function(){
-		location.href = "login_idfind.do";
+		location.href = "/find_id";
 	})
 	$('#btnMenuPwFind').click(function(){
-		location.href = "login_pwfind.do";
+		location.href = "/find_pw";
 	})
 	
 	//검색바 alert
@@ -611,7 +611,7 @@ $(document).ready(function(){
 	*회원가입 step2
 	*/
 	$("#btn1step").click(function(){
-		location.href = "join.do";
+		location.href = "/join_step1";
 	})
 	$("#btn3step").click(function(){
 		if($("#term1").is(':checked') && $("#term2").is(':checked')){
