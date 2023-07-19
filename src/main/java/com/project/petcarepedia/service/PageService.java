@@ -26,15 +26,15 @@ public class PageService {
             dbCount = pageMapper.Myscount(pageDto);
             pageSize = 5;
         } else if(pageDto.getServiceName().equals("review")) {
-            pageCount = 7;
+            pageSize = 7;
             dbCount = reviewService.count();
         }
         else if(pageDto.getServiceName().equals("reviewSearch")) {
-            pageCount = 7;
+            pageSize = 7;
             dbCount = reviewService.searchCount(pageDto.getGloc());
         }
         else if(pageDto.getServiceName().equals("notice")) {
-            pageCount = 10;
+            pageSize = 10;
             dbCount = noticeService.count();
         }
         else if(pageDto.getServiceName().equals("best_review")) {
