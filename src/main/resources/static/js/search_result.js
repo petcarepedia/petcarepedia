@@ -19,7 +19,7 @@ $(document).ready(function(){
 			 });
 		 } else { // 로그인시
 			$.ajax({
-				url: "bookmarkProc",
+				url: "http://localhost:9000/bookmark",
 				type: "GET",
 				data: {
 					hid: hid,
