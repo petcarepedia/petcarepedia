@@ -260,8 +260,8 @@ $(document).ready(function(){
 		$.ajax({
 					url : "/join_term_data/"+val,
 					success : function(result){
-							let name = JSON.parse(result).name;
-							let content = JSON.parse(result).content;
+							let name = result.name;
+							let content = result.content;
 							
 							$(".title").html("<p id='tname'>"+name+"</p><input type='hidden' id='termNum' value='"+val+"'>");
 							$(".title").after("<div class='termcont' id='tcontent'>"+content+"</div>");

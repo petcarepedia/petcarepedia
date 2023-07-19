@@ -72,7 +72,7 @@
 					<li><input type="checkbox" name="remember_mid" id="remember_mid" ${checked}><span>아이디 저장</span></li>
 					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
-						<a href="http://localhost:9000/join">회원가입</a>
+						<a href="http://localhost:9000/join_step1">회원가입</a>
 						<a href="http://localhost:9000/find_id">아이디 / 비밀번호 찾기</a>
 					</li>
 				</ul>
