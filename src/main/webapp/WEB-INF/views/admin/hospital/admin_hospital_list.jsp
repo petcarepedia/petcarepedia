@@ -40,7 +40,7 @@
 			   if(hname!=null && hname!="" ){
 				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/"+hname+"/");
 			   }else if(gloc!=null && gloc!=""){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/"+gloc+"/");
+				   $(location).attr('href', "http://localhost:9000/admin/hospital_gsearch/"+e.page+"/"+gloc+"/");
 			   }else {
 				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/");
 			   }

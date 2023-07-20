@@ -25,22 +25,28 @@ public class PageService {
         if(pageDto.getServiceName().equals("My_review")) {
             dbCount = pageMapper.Myscount(pageDto);
             pageSize = 5;
-        } else if(pageDto.getServiceName().equals("review")) {
+        }else if(pageDto.getServiceName().equals("review")) {
             pageSize = 7;
             dbCount = reviewService.count();
-        }
-        else if(pageDto.getServiceName().equals("reviewSearch")) {
+        }else if(pageDto.getServiceName().equals("reviewSearch")) {
             pageSize = 7;
             dbCount = reviewService.searchCount(pageDto.getGloc());
-        }
-        else if(pageDto.getServiceName().equals("notice")) {
+        }else if(pageDto.getServiceName().equals("notice")) {
             pageSize = 10;
             dbCount = noticeService.count();
-        }
-        else if(pageDto.getServiceName().equals("best_review")) {
+        }else if(pageDto.getServiceName().equals("best_review")) {
             pageSize = 3;
             dbCount = pageMapper.Rcount();
             if(dbCount>9) dbCount=9;
+        }else if(pageDto.getServiceName().equals("hospital")) {
+            pageSize = 10;
+            dbCount = pageMapper.Hcount();
+        }else if(pageDto.getHname() != null && pageDto.getHname() != "") {
+            pageSize = 10;
+            dbCount = pageMapper.Hscount(pageDto);
+        }else if(pageDto.getGloc() != null && pageDto.getGloc() != "") {
+            pageSize = 10;
+            dbCount = pageMapper.Hscount2(pageDto);
         }
 
         //총 페이지 수 계산

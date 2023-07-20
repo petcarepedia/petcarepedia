@@ -169,29 +169,33 @@ public class AdminController {
         return "admin/hospital/admin_hospital_content";
     }
 
+    /* 지역구 검색 페이지 */
+    @GetMapping("hospital_gsearch/{page}/{gloc}")
+    public String hospital_list_gloc(@PathVariable String page, @PathVariable String gloc, Model model){
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, gloc));
+        pageDto.setGloc(gloc);
+        model.addAttribute("list", hospitalService.Hslist2(pageDto));
+        model.addAttribute("page", pageDto);
+        return "admin/hospital/admin_hospital_gsearch";
+    }
+
+
+    /* 병원명 검색 페이지 */
     @GetMapping("hospital_hsearch/{page}/{hname}")
     public String hospital_list_hname(@PathVariable String page, @PathVariable String hname, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, hname));
-                pageDto.setHname(hname);
+        pageDto.setHname(hname);
         model.addAttribute("list", hospitalService.Hslist(pageDto));
         model.addAttribute("page", pageDto);
         return "admin/hospital/admin_hospital_hsearch";
     }
+
     /* 병원 메인 페이지 */
     @GetMapping("hospital_list/{page}/")
     public String hospital_list(@PathVariable String page, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital"));
         model.addAttribute("list", hospitalService.Hlist(pageDto));
         model.addAttribute("page", pageDto);
-        /*if(pageDto.getHname() != null && pageDto.getHname() != ""){
-            model.addAttribute("list", hospitalService.Hslist(pageDto));
-            model.addAttribute("page", pageDto);
-        }else if(pageDto.getGloc() != null && pageDto.getGloc() != ""){
-            model.addAttribute("list", hospitalService.Hslist2(pageDto,pageDto.getGloc()));
-            model.addAttribute("page", pageDto);
-        }else {
-
-        }*/
 
         return "/admin/hospital/admin_hospital_list";
     }
