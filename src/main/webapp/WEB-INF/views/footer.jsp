@@ -65,7 +65,7 @@
 						</li>
 						<c:if test="${sessionScope.svo.grade == 'admin'}">
 							<li>
-								<a href="http://localhost:9000/admin/hospital_list/1"
+								<a href="http://localhost:9000/admin/hospital_list/1/"
 								style="color:#7AB2CC; font-weight:bold">관리자</a>
 							</li>
 						</c:if>
