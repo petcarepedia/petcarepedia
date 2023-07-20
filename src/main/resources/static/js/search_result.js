@@ -286,12 +286,12 @@ $(document).ready(function(){
 	
 	
 	/** 정렬 스크롤 **/
-    if ($("#filterCheck").val() != "") {
+    /*if ($("#filterCheck").val() != "") {
 	  offsetTop = $(".list").offset().top - 100;
 	  $('html, body').animate({
 	    scrollTop: offsetTop
 	  }, 500);
-	}
+	}*/
 	
 	
 	/** 공유 링크 클릭시 **/
@@ -322,7 +322,7 @@ $(document).ready(function(){
 	      		{
 		        title: '사이트 이동',
 		        link: {
-		          webUrl: 'http://localhost:9000/search_result/' + $("input[name='hid']").val(),
+		          webUrl: 'http://localhost:9000/search_result/' + $("input[name='hid']").val() + "/basic/",
 		        },
 	      },
 	    ],

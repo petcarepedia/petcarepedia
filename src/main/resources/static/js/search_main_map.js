@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	/** 지역구 배열 **/
 	var areaArr = new Array();
 	areaArr.push(
@@ -9,7 +9,7 @@ $(document).ready(function(){
 		{location:'강서구', lat:'37.551111918342', lng:'126.84930138784'},
 		{location:'관악구', lat:'37.4631968', lng:'126.9358124'},
 		{location:'광진구', lat:'37.5407625', lng:'127.0793428'},
-		{location:'구로구', lat:'	37.4962331', lng:'126.87091'},
+		{location:'구로구', lat:'37.4962331', lng:'126.87091'},
 		{location:'금천구', lat:'37.463867', lng:'126.8978067'},
 		{location:'노원구', lat:'37.648541766142', lng:'127.06075433614'},
 		{location:'도봉구', lat:'37.6579694', lng:'127.04359'},
@@ -38,26 +38,25 @@ $(document).ready(function(){
 	/** 지역구 선택시 이동 **/
 	function initGlocMap(gloc) {
 		$.ajax({
-			url : "main_map_data/"+gloc,
+			url: "http://localhost:9000/search_main_map/" + gloc + "/",
 			success : function(result){
-					let jdata = JSON.parse(result);
-					
+					/*let jdata = JSON.parse(result);*/
 					let markers = new Array();
 					let infoWindows = new Array();
-					
+
 					for(var i=0; i<areaArr.length; i++){
 						if(gloc==areaArr[i].location){
 							var map = new naver.maps.Map('map', {
 								center: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng),
 								zoom: 14
 							});
-							
+
 							i=areaArr.length;
 						}
 					}
-					
+
 					/*db-병원데이터 연결해서 marker 표시하기*/
-					for(obj of jdata.jlist){
+					for(obj of result.list){
 						var marker = new naver.maps.Marker({
 							map: map,
 							title: obj.hname,
@@ -68,8 +67,8 @@ $(document).ready(function(){
 						var contentString = [
 					        '<div class="iw_inner" style="padding:10px;">',
 					        '   <div style="clear:both;margin-bottom:5px;">',
-					        '	<img src="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" width="20px" height="20px">',
-					        '	<a href="http://localhost:9000/petcarepedia/search_result.do?hid='+obj.hid,
+					        '	<img src="http://localhost:9000/images/foot_98DFFF.png" width="20px" height="20px">',
+					        '	<a href="http://localhost:9000/search_result/'+obj.hid + "/basic/",
 					        '" style="font-size:18px;text-decoration:none;color:#3d3d3d;font-weight:bold;">'+obj.hname+'</a></div>',
 					        '   <p style="font-size:12px;color:darkgray;margin-bottom:5px">Time | '+obj.htime+'<br>Tel | '+obj.tel+'</h3>',
 					        '   <p style="font-size:13px;color:#636363">'+obj.loc+'</p>',
@@ -108,7 +107,7 @@ $(document).ready(function(){
 				}
 		});
 	}
-	
+
 	$(document).on("click", ".gloc", function() {
 		initGlocMap($(this).val());
 	});
