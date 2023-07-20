@@ -45,6 +45,7 @@ public class MypageController {
         String viewName = "";
         String oldFileName = memberDto.getMsfile();
         int result = memberService.update((MemberDto) fileService.mfileCheck(memberDto));
+        System.out.println(result);
         if(result == 1) {
             if(!memberDto.getFile1().isEmpty()) {
                 fileService.mfileSave(memberDto);
