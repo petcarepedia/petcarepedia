@@ -63,7 +63,7 @@
 	
 	<div class="content main">
 		
-		<form name="indexSearchForm" action="/main_search" method="get">
+		<form name="indexSearchForm" action="/main_search" method="post">
 			<div class="main-search">
 				<input type="text" placeholder="찾고싶은 동물병원의 이름을 검색해보세요!" name="hname" id="hname-index">
 				<button type="button" id="btnMainSearch-index"><img src="http://localhost:9000/images/foot_white.png" width="30px" height="30px"></button>

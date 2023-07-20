@@ -22,7 +22,7 @@
                     </div>
                 </a>
                 
-                <form name="headerSearchForm" action="/main_search" method="get">
+                <form name="headerSearchForm" action="/main_search" method="post">
                     <div class="header-search">
                         <div>
                             <input type="text" placeholder="동물병원명 검색" name="hname" id="hname-header">

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MainController {
     @Autowired
     PageService pageService;
 
-    @GetMapping("main_search")
+    @PostMapping("main_search")
     public String main_search_proc(String hname, Model model){
         spWordService.insert(hname);
         List<Object> list = hospitalService.search(hname);
