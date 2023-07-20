@@ -13,12 +13,12 @@
 	/* border:1px solid black;  */
 	margin-bottom:170px;
 	display: flex;
-    /* align-items:center; */
-    flex-direction: column;
+	/* align-items:center; */
+	flex-direction: column;
 }
 .table{
 	width:750px;
-	margin:auto; 
+	margin:auto;
 	height:420px;
 	border-collapse:collapse;
 	border-radius:5px;
@@ -28,19 +28,20 @@ div.d2 .search_bar{
 	width: 400px;
 	height: 40px;
 	margin-top:0px;
-	border:1px solid #3D3D3D;	
+	border:1px solid #3D3D3D;
 	border-radius:5px;
 	text-indent:10px;
 	font-size:12pt;
 	margin:auto;
+
 }
 
 
 .d2 {
 	display:inline-flex;
 	flex-direction: row;
-    margin-left:185px;
-    margin-top:30px;
+	margin-left:185px;
+	margin-top:30px;
 }
 .d3 {
 	display:inline-flex;
@@ -59,33 +60,33 @@ div.d2 .search_bar{
 	height:35px;
 	margin-top:1px;
 	margin-left:-3px;
-} 
+}
 #update_file {
-		border:1px solid white;
-		position:relative;
-		right:110px;
-		top:-50px;
-		padding:2px;
-		/* backgruond:white;/* ±ÛÀÚ°¡ °ãÄ¡±â ¶§¹®/ ÆÄÀÏ ¼±ÅÃ ¹öÆ° ¿·¿¡ »ý¼º */
-		background:white;
-		display:inline-block;
-		width:100px; height:20px;
-		font-size:10pt;
-	}
+	border:1px solid white;
+	position:relative;
+	right:110px;
+	top:-50px;
+	padding:2px;
+	/* backgruond:white;/* ê¸€ìžê°€ ê²¹ì¹˜ê¸° ë•Œë¬¸/ íŒŒì¼ ì„ íƒ ë²„íŠ¼ ì˜†ì— ìƒì„± */
+	background:white;
+	display:inline-block;
+	width:100px; height:20px;
+	font-size:10pt;
+}
 button{
 	background:#D9D9D9;
 	color:#3D3D3D;
-	border:1px solid #3D3D3D;	
+	border:1px solid #3D3D3D;
 	font-size: 11pt;
 	padding:1px 7px;
 	font-weight:700;
 	cursor:pointer;
-	margin-top:30px; 
+	margin-top:30px;
 	text-decoration:none;
 	border-radius:5px;
 }
 button >a {
-	color:#3D3D3D;	
+	color:#3D3D3D;
 	text-decoration:none;
 }
 .table, th, td{
@@ -123,13 +124,15 @@ button.button5{
 }
 
 
+
+
 section.reserve tr td:nth-child(5),section.hospital_detail tr td:nth-child(4),
 section.hospital_detail tr td:nth-child(5){
 	width:90px;
 }
 section.reserve tr:last-child td,section.review tr:nth-child(12) td,
 section.member tr:last-child td, section.hospital tr:last-child td,
-section#hospital_update tr:last-child td, section#hospital_content tr:last-child td, 
+section#hospital_update tr:last-child td, section#hospital_content tr:last-child td,
 section#hospital_delete tr:last-child td, section#hospital_data tr:last-child td,
 section.review tr:last-child td, section#review_delete2 tr:last-child td{
 	border:1px solid white;
@@ -151,7 +154,7 @@ section.review #section1 div nav ul li:nth-child(5) a
 /************************
 	header style
 *************************/
-	
+
 .header-menu1 {
 	height:100px; width:100%;
 	background:#7AB2CC;
@@ -201,7 +204,7 @@ section.review #section1 div nav ul li:nth-child(5) a
 	font-weight:bold;
 }
 /****************************
-section1 style sheet - Ä«Å×°í¸®
+section1 style sheet - ì¹´í…Œê³ ë¦¬
 *****************************/
 #section1 {
 	width: 148px;
@@ -242,12 +245,12 @@ section1 style sheet - Ä«Å×°í¸®
 /****************************
 hospital_list style sheet
 *****************************/
- section.hospital tr:first-child td, section.hospital_detail tr:first-child td,
- section.review_detail tr:first-child td{
+section.hospital tr:first-child td, section.hospital_detail tr:first-child td,
+section.review_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
- 	padding:0 0 20px 600px; 
-}  
+	padding:0 0 20px 600px;
+}
 
 section.hospital tr td:nth-child(2), section.hospital_detail tr td:nth-child(2) {
 	width:260px;
@@ -267,14 +270,29 @@ section.hospital tr td:nth-child(5){
 	width:130px;
 }
 
+section.hospital div#d5 {
+	display:inline-flex;
+	flex-direction: row-reverse;
+	margin-left:-40px;
+}
+section.hospital div#d5 #search{
+	margin:58px 0 0 20px;
+	width:75px;
+	height:40px;
+	border:1px solid #3D3D3D;
+	font-size:10pt;
+	border-radius:5px;
+}
+
+
 /****************************
 member_list style sheet
 *****************************/
 section.member tr:first-child td, section.member_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
- 	padding:0 0 20px 600px; 
-} 
+	padding:0 0 20px 600px;
+}
 section.member tr td:first-child{
 	width:60px;
 }
@@ -285,7 +303,7 @@ section.member tr td:nth-child(2){
 section.member .table{
 	width:750px;
 	height:10px;
-	margin:auto; 
+	margin:auto;
 	border-collapse:collapse;
 	border-radius:5px;
 	margin-top:80px;
@@ -293,14 +311,14 @@ section.member .table{
 section.reserve .table{
 	width:750px;
 	height:10px;
-	margin:auto; 
+	margin:auto;
 	border-collapse:collapse;
 	border-radius:5px;
 }
 section.review .table{
 	width:750px;
 	height:10px;
-	margin:auto; 
+	margin:auto;
 	border-collapse:collapse;
 	border-radius:5px;
 }
@@ -319,7 +337,7 @@ section.reserve tr td:nth-child(2) {
 }
 
 .d1 section.reserve div.d2{
-	margin-bottom:80px; 
+	margin-bottom:80px;
 }
 section.reserve tr:last-child td {
 	border-top:1px solid #3d3d3d;
@@ -340,8 +358,8 @@ section.review tr th:nth-child(3){
 }
 section.review tr th:nth-child(5){
 	width:100px;
-} 
- 
+}
+
 section.review section#section2 .table {
 	margin-top:180px;
 }
@@ -367,9 +385,15 @@ section.hospital_detail section.section2 div.d3 .table tr:nth-child(4) td,
 section.member_detail section#section2 div.d3 .table tr:nth-child(4) td{
 	height:300px;
 	background:#D9D9D9;
-} 
+}
 section.hospital .button4 {
 	margin-left:40px;
+}
+
+section#hospital_data table.table tr td input[id="x"],
+section#hospital_data table.table tr td input[id="y"]{
+	width:255px;
+	height:50px;
 }
 /*************************************
 	hospital_update style sheet
@@ -404,7 +428,7 @@ section#hospital_delete table.table tr td input{
 section#hospital_update table.table tr,
 section#hospital_data table.table tr,
 section#hospital_content table.table tr{
-	height:55px;	
+	height:55px;
 }
 
 
@@ -440,21 +464,43 @@ section.review_detail div#d3 {
 	margin-left:200px;
 	display:inline-block;
 }
+div#dButton{
+	border:1px solid red;
+	display:inline-flex;
+	margin-top: 120px;
+	/* padding:20px 50px; */
+	margin-left:-320px;
+}
+
+div#dButton button{
+	margin:25px 15px;
+	background:#D9D9D9;
+	color:#3D3D3D;
+	border:1px solid #3D3D3D;
+	font-size: 11pt;
+	padding:20px 55px;
+	font-weight:700;
+	cursor:pointer;
+	text-decoration:none;
+	border-radius:5px;
+
+}
+
 /*************************************
 	member-detail style sheet
 **************************************/
- section.member_detail section#section2 ul {
- 	float:left;
- 	width:700px;
- 	margin-top:150px;
- 	margin-left:50px;
- }
+section.member_detail section#section2 ul {
+	float:left;
+	width:700px;
+	margin-top:150px;
+	margin-left:50px;
+}
 
 section.member_detail section#section2 #btn_save{
 	margin:100px 0 0 500px;
 }
 section.member_detail section#section2 ul li{
-	list-style-type:none;	
+	list-style-type:none;
 }
 section.member_detail section#section2 ul li label{
 	display:inline;
@@ -474,14 +520,14 @@ section.member_detail section#section2 ul li label{
 }
 
 section.member_detail section#section2 ul li input{
-	border-bottom: 1px solid #8A8A8A; 
+	border-bottom: 1px solid #8A8A8A;
 }
 section.member_detail section#section2 ul li input[type="text"]{
 	box-sizing: border-box;
 	width: 535px;
 	height: 53px;
 	border:1px solid white;
-	border-bottom: 1px solid #8A8A8A; 
+	border-bottom: 1px solid #8A8A8A;
 	margin-top:10px;
 	text-indent:10px;
 	font-size: 10pt;
@@ -494,7 +540,7 @@ section.member_detail section#section2 ul li input[type="text"]{
 section.review_content section#section2 button.button4{
 	float:right;
 	margin-top:-55px;
-} 
+}
 section.review_content section#section2 div.review_detail{
 	width:750px;
 	height:350px;
@@ -502,8 +548,8 @@ section.review_content section#section2 div.review_detail{
 	border-radius:5px;
 	padding-top:20px;
 	float:right;
-	
-	
+
+
 }
 section.review_content div#table table.rv_detail_menu {
 	width:450px;
@@ -517,11 +563,11 @@ section.review_content div#table table.rv_detail_menu {
 	border-bottom:1px solid #3d3d3d;
 }
 section.review_content div#table table.rv_detail_menu tr:nth-child(2) td{
-	border:1px solid white; 
-	border-right:1px solid #3D3D3D; 
-	border-bottom:1px solid #3D3D3D; 
+	border:1px solid white;
+	border-right:1px solid #3D3D3D;
+	border-bottom:1px solid #3D3D3D;
 	padding-right:150px;
-	
+
 }
 
 section.review_content table.rv_detail_menu tr:nth-child(2) td img{
@@ -529,13 +575,13 @@ section.review_content table.rv_detail_menu tr:nth-child(2) td img{
 }
 section.review_content table.rv_detail_menu tr:nth-child(2) td p{
 	font-size:10pt;
-	
+
 }
 
 section.review_content button.button4{
 	margin-top : -100px;
 	margin-left: -40px;
-} 
+}
 
 
 section.review_content div.review_detail div.table_right button:disabled {
@@ -545,10 +591,10 @@ section.review_content div.review_detail div.table_right div#right_top {
 	text-align:right;
 	margin-top:10px;
 	padding-right:5px;
-	
+
 }
 section.review_content div.review_detail div.table_right div#right_top button img {
-		height:35px;
+	height:35px;
 }
 section.review_content div.review_detail div.table_right div#star {
 	margin-top:50px;
@@ -576,7 +622,7 @@ div#star {
 	font-size:12px;
 }
 section.review_content div.table_right{
-	display:inliene-flex;
+	/*display:inliene-flex;*/
 	margin-left:-30px;
 }
 section.review_content div.table_right table tr td:first-child{

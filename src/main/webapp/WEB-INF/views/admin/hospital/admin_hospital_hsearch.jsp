@@ -5,57 +5,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="http://localhost:9000/js/mycgv_jsp_jquery.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+		<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-	
 	<script>
-	$(document).ready(function(){
-		var hname = "${hname}";
-		var gloc = "${gloc}";
-		var pager = jQuery('#ampaginationsm').pagination({
+		$(document).ready(function(){
+			var hname = "${hname}";
+			var pager = jQuery('#ampaginationsm').pagination({
 
-			maxSize: '${page.pageCount}',	    		// max page size
-			totals: '${page.dbCount}',	// total pages
-			page: '${page.reqPage}',		// initial page
-			pageSize: '${page.pageSize}',			// max number items per page
-		
-		    // custom labels		
-		    lastText: '&raquo;&raquo;', 		
-		    firstText: '&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
-				     
-		    btnSize:'sm'	// 'sm'  or 'lg'		
+				maxSize: '${page.pageCount}',	    		// max page size
+				totals: '${page.dbCount}',	// total pages
+				page: '${page.reqPage}',		// initial page
+				pageSize: '${page.pageSize}',			// max number items per page
+
+				// custom labels
+				lastText: '&raquo;&raquo;',
+				firstText: '&laquo;&laquo;',
+				prevText: '&laquo;',
+				nextText: '&raquo;',
+
+				btnSize:'sm'	// 'sm'  or 'lg'
+			});
+
+			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+				jQuery('.showlabelsm').text('The selected page no: '+e.page);
+				if(hname!=null && hname!="" ){
+					$(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/"+hname+"/");
+				}else {
+					$(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/");
+				}
+
+			});
+
 		});
-		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-			   if(hname!=null && hname!="" ){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/"+hname+"/");
-			   }else if(gloc!=null && gloc!=""){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/"+gloc+"/");
-			   }else {
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/");
-			   }
-	                    
-	    });
-		
- 	});
-	</script> 
-	
+	</script>
+
 
 </head>
-<body>
-<!-- header -->
+	<body>
+	<!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
-	
+
 	<div class="d1">
 		<section class="hospital">
 			<section id = "section1">
@@ -103,7 +98,7 @@
 						<td colspan="5" >
 							<select>
 								<option name="table" id="new"> 최신 순</option>
-								<option name="table"  id="old"> 오래된 순</option>		
+								<option name="table"  id="old"> 오래된 순</option>
 							</select>
 						</td>
 					</tr> -->
@@ -115,14 +110,14 @@
 						<th>공휴일 진료 여부</th>
 					</tr>
 					<c:forEach var="hospital" items="${list}">
-					<tr>
-						<td>${hospital.rno}</td>
-						<td><a href="admin/hospital_content/${hospital.hid}/${page.reqPage}/">${hospital.hname}</a></td>
-						<td>${hospital.animal}</td>
-						<td>${hospital.ntime}</td>
-						<td>${hospital.holiday}</td>
-						
-					</tr>
+						<tr>
+							<td>${hospital.rno}</td>
+							<td><a href="admin/hospital_content/${hospital.hid}/${page.reqPage}/">${hospital.hname}</a></td>
+							<td>${hospital.animal}</td>
+							<td>${hospital.ntime}</td>
+							<td>${hospital.holiday}</td>
+
+						</tr>
 					</c:forEach>
 					<tr>
 						<td colspan="5"><div id="ampaginationsm"></div></td>
@@ -132,7 +127,7 @@
 		</section>
 	</div>
 	<!-- footer -->
-		<jsp:include page="../../footer.jsp"></jsp:include>
+	<jsp:include page="../../footer.jsp"></jsp:include>
 
 </body>
 </html>
