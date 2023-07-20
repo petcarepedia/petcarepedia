@@ -4,6 +4,7 @@ import com.project.petcarepedia.dto.HospitalDto;
 import com.project.petcarepedia.dto.MemberDto;
 import com.project.petcarepedia.dto.ReviewDto;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
@@ -42,7 +43,7 @@ public class FileUploadService {
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 
         int count = 0;
-        for(CommonsMultipartFile file : reviewDto.getFiles()) {
+        for(MultipartFile file : reviewDto.getFiles()) {
             if(!file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
                 File deleteFile = new File(root_path +  oldFileName[count]);
                 System.out.println(root_path + oldFileName[count]);
@@ -62,7 +63,7 @@ public class FileUploadService {
         //占쎈솁占쎌뵬占쎌벥 占쏙옙占쎌삢占쎌맄燁삼옙
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
         int count = 0;
-        for(CommonsMultipartFile file : reviewDto.getFiles()) {
+        for(MultipartFile file : reviewDto.getFiles()) {
             //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
             if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
                 File saveFile = new File(root_path +  reviewDto.getRsfiles().get(count));
@@ -78,7 +79,7 @@ public class FileUploadService {
         String[] nfile = {reviewDto.getRfile1(), reviewDto.getRfile2()};
         String[] nsfile = {reviewDto.getRsfile1(), reviewDto.getRsfile2()};
         int count = 0;
-        for(CommonsMultipartFile file : reviewDto.getFiles()) {
+        for(MultipartFile file : reviewDto.getFiles()) {
             if(!file.getOriginalFilename().equals("")) {
                 //占쎈솁占쎌뵬占쎌뵠 占쎌뿳占쎌벉
                 UUID uuid = UUID.randomUUID();

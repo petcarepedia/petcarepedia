@@ -25,7 +25,7 @@
 		<section id = "reservation">
 			<h1 id = "title">내가 쓴 리뷰</h1>
 			<hr>
-			<form name="deleteForm" action="my_review_delete" method="post">
+			<form name="deleteForm" action="/my_review_delete" method="post">
 			<input type = "hidden" name = "rid" value = "${review.rid}">
 			<input type = "hidden" name = "rsfile1" value = "${review.rsfile1}">
 			<input type = "hidden" name = "rsfile2" value = "${review.rsfile2}">

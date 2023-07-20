@@ -107,12 +107,12 @@ public class MypageController {
     
     // 리뷰 쓰기 처리
     @PostMapping("review_write")
-    public String review_write(ReviewDto reviewDto) throws Exception{
+    public String review_write(ReviewDto reviewDto) throws Exception {
+        System.out.println(reviewDto.getHid());
         String viewName = "";
-        System.out.println(reviewDto);
         int result = reviewService.insert(fileService.multiFileCheck(reviewDto));
         if(result == 1) {
-            if(!reviewDto.getFiles()[0].getOriginalFilename().equals("")) {
+            if(reviewDto.getFiles()[0].getOriginalFilename() != null) {
                 fileService.multiFileSave(reviewDto);
             }
             viewName = "redirect:/mypage_my_review/1/";
@@ -181,6 +181,7 @@ public class MypageController {
         //ReviewDao reviewDao = new ReviewDao();
         int result = reviewService.delete(reviewDto.getRid());
         String[] oldFileName = {reviewDto.getRsfile1(),reviewDto.getRsfile2()};
+        System.out.println(result);
         if(result == 1) {
             fileService.multiFileDelete(oldFileName);
             viewName = "redirect:/mypage_my_review/1/";

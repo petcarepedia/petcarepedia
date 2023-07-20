@@ -1,6 +1,7 @@
 package com.project.petcarepedia.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class ReviewDto {
     private String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc, rfile1, rsfile1, rfile2, rsfile2;
     private int rlike, rno, likeresult;
     private float rstar;
-    private CommonsMultipartFile[] files;
+    private MultipartFile[] files;
     private ArrayList<String> rfiles = new ArrayList<String>();
     private ArrayList<String> rsfiles = new ArrayList<String>();
 
