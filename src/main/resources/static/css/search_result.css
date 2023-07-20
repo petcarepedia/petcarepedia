@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /***************************************
-	°øÅë
+	ê³µí†µ
 ***************************************/
 * {
 	margin: 0px;
@@ -10,17 +10,17 @@
 }
 
 div.header-wrapper {
-  /* position: fixed; */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 0;
+	/* position: fixed; */
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 0;
 }
 
 div.footer-wrapper {
-  /* position: fixed; */
-  width: 100%;
-  z-index: 0;
+	/* position: fixed; */
+	width: 100%;
+	z-index: 0;
 }
 
 div.result_main {
@@ -29,7 +29,7 @@ div.result_main {
 	/* height: auto; */
 	margin: auto;
 	margin-top: 100px;
-	margin-bottom: 100px; 
+	margin-bottom: 100px;
 	/* text-align: center; */
 }
 
@@ -38,18 +38,18 @@ div.result_main hr {
 }
 
 .swal2-icon.swal2-warning .swal2-icon-content {
-  color: #F9C89D;
+	color: #F9C89D;
 }
 
 .swal2-icon.swal2-info .swal2-icon-content {
-   color: #45C5EE;
+	color: #45C5EE;
 }
 
 
 /***************************************
 	section_info
 ***************************************/
-/* º´¿ø »çÁø */
+/* ë³‘ì› ì‚¬ì§„ */
 div.result_main div.images_d {
 	/* border: 1px solid gray; */
 	height: 220px;
@@ -57,8 +57,8 @@ div.result_main div.images_d {
 	overflow-x: auto;
 	overflow-y: hidden;
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 div.result_main div.images_d img {
@@ -70,7 +70,7 @@ div.result_main div.images_d img {
 	object-fit: contain;
 }
 
-/* º´¿ø Á¤º¸ */
+/* ë³‘ì› ì •ë³´ */
 div.result_main div.name_d {
 	/* border: 1px solid red; */
 	/* background: red; */
@@ -94,13 +94,13 @@ div.result_main span.name {
 	float:left;
 }
 
-/* ¹öÆ° °øÅë */
+/* ë²„íŠ¼ ê³µí†µ */
 div.result_main div.buttons {
 	/*  */
 	display: flex;
 	align-items: center;
 	clean: both;
-	padding-left: 10px;	
+	padding-left: 10px;
 }
 
 div.result_main div.name_d button:hover {
@@ -113,7 +113,7 @@ div.name_d div.buttons img {
 	/* margin: 0px 10px; */
 }
 
-/* ºÏ¸¶Å©¹öÆ° */
+/* ë¶ë§ˆí¬ë²„íŠ¼ */
 div.name_d button#bookmark  {
 	background: #FFFFFF;
 	/* border: 1px solid #8A8A8A; */
@@ -129,7 +129,7 @@ div.name_d button#bookmark  {
 	/* margin-right: 30px; */
 }
 
-/* º°Á¡ */
+/* ë³„ì  */
 div.result_main span.grade {
 	/* border: 1px solid red; */
 	font-size: 14px;
@@ -137,7 +137,7 @@ div.result_main span.grade {
 	display: block;
 }
 
-/* ¿¹¾à ¹öÆ° */
+/* ì˜ˆì•½ ë²„íŠ¼ */
 div.result_main div.name_d button#reservation {
 	background: #98DFFF;
 	color: white;
@@ -166,7 +166,7 @@ div.result_main div.name_d button#reservation img {
 	margin: 0px 10px;
 }
 
-/* °øÀ¯ÇÏ±â */
+/* ê³µìœ í•˜ê¸° */
 div.result_main button#share {
 	background: #ffffff;
 	color: white;
@@ -177,8 +177,8 @@ div.result_main button#share {
 }
 
 div#shareLink {
-	display:none; 
-	
+	display:none;
+
 }
 
 div#shareLink button {
@@ -372,7 +372,7 @@ div.list {
 	padding-bottom: 15px;
 }
 
-/* ¸®ºä Á¤º¸ */
+/* ë¦¬ë·° ì •ë³´ */
 div.grade {
 	/* border: 2px solid green; */
 	width: 150px;
@@ -387,7 +387,7 @@ div.grade > span {
 	display: inline-block;
 }
 
-/* Á¡¼ö */
+/* ì ìˆ˜ */
 div.total {
 	border: 1px solid #8A8A8A;
 	border-radius:5px;
@@ -425,7 +425,7 @@ select.filter option {
 	padding-left: 5px;
 }
 
-/* ¸®ºä ¸®½ºÆ® */
+/* ë¦¬ë·° ë¦¬ìŠ¤íŠ¸ */
 div.review_card_no {
 	/* border: 1px solid #98DFFF; */
 	background: #F7FCFE;
@@ -491,7 +491,7 @@ hr.member_hr {
 div.member span.stext {
 	/* border: 1px solid red; */
 	font-size: 14px;
-	
+
 }
 
 div.member span.stot {
@@ -499,12 +499,13 @@ div.member span.stot {
 	font-size: 12px;
 	display:inline-block;
 	margin-bottom: 20px;
-	
+
 }
 
 div.review_card div.write {
 	/* border: 1px solid red; */
 	width: 290px;
+	height: auto;
 	margin-left: 20px;
 	margin-top: 40px;
 	flex: 1;
@@ -516,12 +517,27 @@ div.review_card div.write > p {
 	word-break: break-all;
 }
 
+div.review_card div.write a.pop {
+	text-decoration: none;
+}
+
+div.review_card div.write div.rm_img {
+	/*border: 1px solid brown;*/
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+div.review_card div.write img.rsfile {
+	/*border: 1px solid brown;*/
+	height: 100px;
+}
+
 div.review_card div.date {
 	/* border: 1px solid red; */
 	width: 185px;
 	margin:30px 45px 0px 0px;
 	text-align: right;
-	
+
 }
 
 div.review_card div.date span {
@@ -530,26 +546,26 @@ div.review_card div.date span {
 	display:inline-block;
 }
 
-/* ÁÁ¾Æ¿ä */
-/* °øÅë */
+/* ì¢‹ì•„ìš” */
+/* ê³µí†µ */
 a.icon {
-  text-decoration:none; color:inherit; cursor: pointer;
+	text-decoration:none; color:inherit; cursor: pointer;
 }
 
 .icon img{
 	padding-bottom: 1px;
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 }
 
 .icon.heart img{
 	padding-bottom: 1px;
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 }
 
 .icon {
-    transform-origin: center;
+	transform-origin: center;
 }
 
 button#like {
@@ -559,7 +575,7 @@ button#like {
 	font-size: 14px;
 	width: 165px;
 	height: 35px;
-	margin-top: 15px; 
+	margin-top: 15px;
 	margin-left: 20px;
 	/* padding-bottom: 7px; */
 	display: flex;
@@ -569,7 +585,7 @@ button#like {
 
 div.review_card div.date button#like span.like-count {
 	font-size: 14px;
-	margin-bottom: 7px; 
+	margin-bottom: 7px;
 	padding-left: 5px;
 }
 
@@ -579,32 +595,32 @@ div.review_card div.date button#like span.heart {
 }
 
 .icon.fas{
-  color:red
+	color:red
 }
 
 .heart.active img{
-    animation: animateHeart .3s linear forwards;
+	animation: animateHeart .3s linear forwards;
 }
 
 @keyframes animateHeart{
-    0%{transform:scale(.2);}
-    40%{transform:scale(1.2);}
-    100%{transform:scale(1);}
-  }
-  
-/* Á¶ÀÛO */
+	0%{transform:scale(.2);}
+	40%{transform:scale(1.2);}
+	100%{transform:scale(1);}
+}
+
+/* ì¡°ì‘O */
 button.check, button.active {
 	cursor:pointer;
 }
-  
-/* Á¶ÀÛX */
+
+/* ì¡°ì‘X */
 button.disabled, button.non {
-	cursor:not-allowed; // Ä¿¼­±İÁö
+	cursor:not-allowed; // ì»¤ì„œê¸ˆì§€
 }
 
 div.review_card div.date span:last-child {
 	margin-top: 7px;
-	/* border: 1px solid #98DFFF; */	
+	/* border: 1px solid #98DFFF; */
 }
 
 div.review_card div.date a {
@@ -612,7 +628,7 @@ div.review_card div.date a {
 	color: red;
 }
 
-/* ½Å°í¹öÆ° */
+/* ì‹ ê³ ë²„íŠ¼ */
 div.review_card div.date a#rstateBtn {
 	/* border: 1px solid #98DFFF; */
 }
@@ -630,7 +646,7 @@ div.review_card div.date button.rstate:hover {
 }
 
 span.reson {
-  letter-spacing: 2px;
-  margin-top: 5px;
-  /* ´Ù¸¥ ¿øÇÏ´Â ½ºÅ¸ÀÏÀ» Ãß°¡ÇÏ¼¼¿ä */
+	letter-spacing: 2px;
+	margin-top: 5px;
+	/* ë‹¤ë¥¸ ì›í•˜ëŠ” ìŠ¤íƒ€ì¼ì„ ì¶”ê°€í•˜ì„¸ìš” */
 }
