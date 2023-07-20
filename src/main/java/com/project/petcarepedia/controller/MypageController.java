@@ -45,7 +45,6 @@ public class MypageController {
         String viewName = "";
         String oldFileName = memberDto.getMsfile();
         int result = memberService.update((MemberDto) fileService.mfileCheck(memberDto));
-        System.out.println(result);
         if(result == 1) {
             if(!memberDto.getFile1().isEmpty()) {
                 fileService.mfileSave(memberDto);
@@ -68,8 +67,8 @@ public class MypageController {
     }
     
     // 예약내역 삭제하기 폼
-    @GetMapping("mypage_reservation_delete/{bid}")
-    public String mypage_reservation_delete(@PathVariable String bid, Model model) {
+    @GetMapping("mypage_reservation_delete/{bid}/{page}")
+    public String mypage_reservation_delete(@PathVariable String bid, @PathVariable String page, Model model) {
         model.addAttribute("booking", bookingService.select2(bid));
         return "/mypage/mypage_reservation_delete";
     }
@@ -110,6 +109,7 @@ public class MypageController {
     @PostMapping("review_write")
     public String review_write(ReviewDto reviewDto) throws Exception{
         String viewName = "";
+        System.out.println(reviewDto);
         int result = reviewService.insert(fileService.multiFileCheck(reviewDto));
         if(result == 1) {
             if(!reviewDto.getFiles()[0].getOriginalFilename().equals("")) {
@@ -123,7 +123,6 @@ public class MypageController {
     // 내가 쓴 리뷰 폼
     @GetMapping("mypage_my_review/{page}")
     public String mypage_my_review(@PathVariable String page, HttpSession session, Model model) {
-        System.out.println(page);
         SessionDto svo = (SessionDto) session.getAttribute("svo");
         PageDto pageDto = new PageDto(page,"My_review");
         pageDto.setMid(svo.getMid());
@@ -171,6 +170,7 @@ public class MypageController {
     @GetMapping("mypage_review_delete/{rid}/{page}")
     public String mypage_review_delete(@PathVariable String rid, @PathVariable String page, Model model){
         model.addAttribute("review", reviewService.content(rid));
+        model.addAttribute("page", page);
         return "/mypage/mypage_review_delete";
     }
 
@@ -195,6 +195,17 @@ public class MypageController {
         ArrayList<BookmarkDto> list = bookmarkService.select(svo.getMid());
         model.addAttribute("list", list);
         return "/mypage/mypage_bookmark";
+    }
+
+    //즐겨찾기 삭제
+    @GetMapping("bookmark_delete/{bmid}")
+    public String bookmark_delete(@PathVariable String bmid) {
+        String viewName = "";
+        int result = bookmarkService.delete(bmid);
+        if(result == 1) {
+            viewName = "redirect:/mypage_bookmark";
+        }
+        return viewName;
     }
 
     //회원탈퇴 폼

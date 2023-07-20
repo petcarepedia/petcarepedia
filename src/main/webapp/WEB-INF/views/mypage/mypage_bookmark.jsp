@@ -30,7 +30,7 @@ function bookmark(bmid) {
   			  confirmButtonColor:'#98dfff',
   			  confirmButtonText:'확인'
   			}).then(() => {
-                location.href = "bookmark_delete_proc.do?bmid=" + bmid;
+                location.href = "/bookmark_delete/" + bmid + "/";
             });
         }
     });

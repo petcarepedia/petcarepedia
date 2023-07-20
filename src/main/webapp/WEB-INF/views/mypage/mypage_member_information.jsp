@@ -146,6 +146,9 @@ const autoHyphen = (target) => {
 								</li>
 							</ul>
 					</section>
+					<ul id = "pass_revise">
+						<li><a href="http://localhost:9000/find_pw" target="_parent">비밀번호 재설정</a></li>
+					</ul>
 					<section id = "section3">
 						<!-- <a href = "mypage_member_revise.do"> -->
 							<button type = "button" id = "btn_style1">수정완료</button>

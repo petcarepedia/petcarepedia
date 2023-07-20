@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 예약내역</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
-<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/js/petcarepedia_jquery_song.js"></script>
+<script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -25,7 +25,7 @@
 		<section id = "reservation">
 			<h1 id = "title">예약 내역</h1>
 			<hr>
-			<form name="deleteForm" action="reservation_delete" method="post">
+			<form name="deleteForm" action="/reservation_delete" method="post">
 				<input type = "hidden" name = "bid" value = "${booking.bid}">
 				<table id = "table">
 					<tr>
