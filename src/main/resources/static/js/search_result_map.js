@@ -4,7 +4,7 @@ $(document).ready(function() {
     
     function initGlocMap(hid) {
         $.ajax({
-            url: "http://localhost:9000/search_result_map/" + hid +"/",
+            url: "http://localhost:9000/search_result_map/" + hid,
             success: function(result) {
                 var position = new naver.maps.LatLng(result.list.x, result.list.y);
                 
