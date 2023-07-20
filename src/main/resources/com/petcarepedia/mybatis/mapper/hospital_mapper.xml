@@ -12,7 +12,7 @@
 			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL
 					where hname like '%'||#{hname}||'%'
 					ORDER BY HID))
-		WHERE RNO BETWEEN #{start} AND #{end}
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
 	<select id = "Hslist2" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
@@ -21,14 +21,14 @@
 			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL
 					where gloc like '%'||#{gloc}||'%'
 					ORDER BY HID))
-		WHERE RNO BETWEEN #{start} AND #{end}
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
 	<select id = "Hlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
 		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
 			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID desc))
-		WHERE RNO BETWEEN #{start} AND #{end}
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
 	

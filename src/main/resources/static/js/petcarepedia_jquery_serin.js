@@ -293,7 +293,7 @@ $(document).ready(function(){
 			Swal.fire({
 		        icon: 'warning',                         // Alert 타입
 		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
-		        title: '병원명을 입력해주세요',  		// Alert 내용
+		        title: '지역구를 입력해주세요',  		// Alert 내용
 		        
 		        confirmButtonColor:'#7ab2cc',
 		  	  	confirmButtonText:'확인'
@@ -301,8 +301,8 @@ $(document).ready(function(){
 			$("#search_gloc").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&gloc="+$("#search_gloc").val();
-			
+			location.href = "http://localhost:9000/admin/hospital_list/1/"+$("#search_gloc").val()+"/";
+
 		}//else
   	});//function
   	
@@ -313,16 +313,15 @@ $(document).ready(function(){
 		if($("#search_hname").val() ==""){
 			Swal.fire({
 		        icon: 'warning',                         // Alert 타입
-		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
 		        title: '병원명을 입력해주세요',  		// Alert 내용
 		        
 		        confirmButtonColor:'#7ab2cc',
 		  	  	confirmButtonText:'확인'
 			});
-			$("#search_bar").focus();
+			$("#search_hname").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&hname="+$("#search_hname").val();
+			location.href = "http://localhost:9000/admin/hospital_hsearch/1/"+$("#search_hname").val()+"/";
 		}//else
   	});//function
   	

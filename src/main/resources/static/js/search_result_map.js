@@ -4,10 +4,9 @@ $(document).ready(function() {
     
     function initGlocMap(hid) {
         $.ajax({
-            url: "search_result_map/" + hid,
+            url: "http://localhost:9000/search_result_map/" + hid +"/",
             success: function(result) {
-                let jobj = JSON.parse(result);
-                var position = new naver.maps.LatLng(jobj.x, jobj.y);
+                var position = new naver.maps.LatLng(result.list.x, result.list.y);
                 
                 var map = new naver.maps.Map('map', {
                     center: position,
@@ -16,7 +15,7 @@ $(document).ready(function() {
                 
                 var marker = new naver.maps.Marker({
                     map: map,
-                    title: jobj.hname,
+                    title: result.hname,
                     position: position
                 });
             }

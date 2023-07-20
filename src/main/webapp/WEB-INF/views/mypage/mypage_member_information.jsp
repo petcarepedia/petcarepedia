@@ -71,7 +71,7 @@ const autoHyphen = (target) => {
 				</div>
 			</section>
 			<div id = "aside">
-				<form name="updateForm" id = "updateForm" action="member_update" method="post" enctype = "multipart/form-data">
+				<form name="updateForm" id = "updateForm" action="/member_update" method="post" enctype = "multipart/form-data">
 					<section id = "section2">
 						<div id = "update_info">
 							<label>프로필</label>

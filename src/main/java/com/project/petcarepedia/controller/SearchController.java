@@ -34,7 +34,7 @@ public class SearchController {
 
 
     /** search_result - 병원 상세정보 **/
-    @GetMapping("/search_result/{hid}/{filter}")
+    @GetMapping("/search_result/{hid}/{filter}/")
     /*public String search_result(@PathVariable String hid, String rid, String filter, HttpSession session, Model model) {*/
     public String search_result(@PathVariable String hid, @PathVariable String filter, HttpSession session, Model model) {
 
@@ -102,13 +102,6 @@ public class SearchController {
         model.addAttribute("time", bookingService.selectTime2(hid));
 
         return "/search/search_reservation";
-    }
-
-
-    /** search_main_map **/
-    @GetMapping("search_main_map")
-    public String search_main_map() {
-        return  "/search/search_main_map";
     }
 
 
