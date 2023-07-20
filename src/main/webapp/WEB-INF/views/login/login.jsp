@@ -13,19 +13,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 	$().ready(function (){
-		let login_result = "${login_result}";
 		let join_result = "${join_result}";
 		let pwupdate_result = "${pwupdate_result}";
-		
-		if(login_result=="fail"){
-			Swal.fire({
-	            icon: 'error',                         
-	            title: '로그인 실패',         
-	            text: '아이디와 비밀번호를 다시 확인해주세요.',  
-	            confirmButtonColor:'#98dfff',
-	            confirmButtonText:'확인'
-	        });
-		}
 		
 		if(join_result=="success"){
 			Swal.fire({
@@ -70,7 +59,7 @@
 					<li><input type="text" name="mid" id="id" placeholder="아이디" value="${cookie.user_check.value}"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
 					<li><input type="checkbox" name="remember_mid" id="remember_mid" ${checked}><span>아이디 저장</span></li>
-					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
+					<li><button type="button" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
 						<a href="http://localhost:9000/join_step1">회원가입</a>
 						<a href="http://localhost:9000/find_id">아이디 / 비밀번호 찾기</a>
@@ -83,11 +72,5 @@
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
 	
-	<script>
-		$("#rememberMid").val($("#remember_mid").is(':checked'));
-		$("#remember_mid").click(function(){
-			$("#rememberMid").val($("#remember_mid").is(':checked'));
-		});
-	</script>
 </body>
 </html>

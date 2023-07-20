@@ -93,7 +93,7 @@
 		});
 	    
 	    $(".header-menu").css("width",window.innerWidth).css("left","0").css("right","0");
-	    
+
 	    $("#logout").click(function(){
 	    	Swal.fire({
                 title: '로그아웃하시겠습니까?',
@@ -105,7 +105,24 @@
                 cancelButtonText: '취소'
             }).then((result) => {
                 if (result.isConfirmed) {
-                	location.href="http://localhost:9000/logout/";
+					$.ajax({
+						url : "/logout",
+						success : function(result){
+							if(result=="success"){
+								Swal.fire({
+									icon: 'success',
+									title: '로그아웃 성공',
+									text: '다음에 다시 만나요!',
+									confirmButtonColor:'#98dfff',
+									confirmButtonText:'확인'
+								}).then((result) => {
+									if (result.isConfirmed) {
+										location.href = "/";
+									}//if
+								});//swal
+							}
+						}//success
+					});//ajax
                 }
             })
 	    })

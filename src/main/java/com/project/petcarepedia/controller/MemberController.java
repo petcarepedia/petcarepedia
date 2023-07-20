@@ -29,48 +29,6 @@ public class MemberController {
     @GetMapping("login")
     public String login(){ return "login/login"; }
 
-    @PostMapping("login")
-    public String login_proc(MemberDto memberDto, String rememberMid, Model model, HttpSession session, HttpServletResponse response){
-        String viewName = "";
-
-        SessionDto sessionDto = memberService.login(memberDto);
-        if(sessionDto != null) {
-            if(sessionDto.getLoginResult() == 1){
-                session.setAttribute("svo", sessionDto);
-
-                Cookie cookie = new Cookie("user_check", sessionDto.getMid());
-                if(rememberMid.equals("true")){
-                    response.addCookie(cookie);
-                } else {
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                }
-
-                model.addAttribute("login_result", "success");
-                viewName = "redirect:/";
-            }
-        } else {
-            model.addAttribute("login_result", "fail");
-            viewName = "/login/login";
-        }
-
-        return viewName;
-    }
-
-    /**
-     * 로그아웃
-     */
-    @GetMapping("logout")
-    public String logout(HttpSession session, Model model) {
-        SessionDto sessionDto = (SessionDto)session.getAttribute("svo");
-        if(sessionDto != null) {
-            session.invalidate();
-            model.addAttribute("logout_result","success");
-        }
-
-        return "redirect:/";
-    }
-
     /**
      * 회원가입
      */

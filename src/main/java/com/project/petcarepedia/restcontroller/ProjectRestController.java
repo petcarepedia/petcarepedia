@@ -3,8 +3,12 @@ package com.project.petcarepedia.restcontroller;
 import com.project.petcarepedia.dto.*;
 import com.project.petcarepedia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -205,5 +209,48 @@ public class ProjectRestController {
         map.put("content", termList[Integer.parseInt(term)-1]);
 
         return map;
+    }
+
+    /**
+     * 로그인
+     */
+    @GetMapping("login/{mid}/{pass}/{rememberMid}")
+    public Map login_proc(@PathVariable String mid, @PathVariable String pass, @PathVariable String rememberMid, HttpSession session, HttpServletResponse response){
+        MemberDto memberDto = new MemberDto();
+        memberDto.setMid(mid);
+        memberDto.setPass(pass);
+
+        Map map = new HashMap();
+        SessionDto sessionDto = memberService.login(memberDto);
+        if(sessionDto != null) {
+            if(sessionDto.getLoginResult() == 1){
+                session.setAttribute("svo", sessionDto);
+
+                Cookie cookie = new Cookie("user_check", sessionDto.getMid());
+                if(rememberMid.equals("true")){
+                    response.addCookie(cookie);
+                } else {
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
+
+                map.put("name", sessionDto.getName());
+                map.put("result", "1");
+            }
+        } else map.put("result", "0");
+
+        return map;
+    }
+
+    /**
+     * 로그아웃
+     */
+    @GetMapping("logout")
+    public String logout(HttpSession session) {
+        SessionDto sessionDto = (SessionDto)session.getAttribute("svo");
+        if(sessionDto != null) {
+            session.invalidate();
+        }
+        return "success";
     }
 }

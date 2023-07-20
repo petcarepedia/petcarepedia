@@ -652,8 +652,46 @@ $(document).ready(function(){
 	$("#btnPstep").click(function(){
 		location.href = "/join_step3/"+$("#grade").val();
 	})
-	
-	
+
+
+	/**
+	 * 로그인
+	 */
+	$("#rememberMid").val($("#remember_mid").is(':checked'));
+	$("#remember_mid").click(function(){
+		$("#rememberMid").val($("#remember_mid").is(':checked'));
+	});
+
+	$("#btnLogin").click(function (){
+		$.ajax({
+			url : "/login/"+$("#id").val()+"/"+$("#pass").val()+"/"+$("#rememberMid").val(),
+			success : function(result){
+				if(result.result=="1"){
+					Swal.fire({
+						icon: 'success',
+						title: '로그인 성공',
+						text: result.name + '님, 환영합니다!',
+						confirmButtonColor:'#98dfff',
+						confirmButtonText:'확인'
+					}).then((result) => {
+						if (result.isConfirmed) {
+							location.href = "/";
+						}//if
+					});//swal
+				}else{
+					Swal.fire({
+						icon: 'error',
+						title: '로그인 실패',
+						text: '아이디와 비밀번호를 다시 확인해주세요.',
+						confirmButtonColor:'#98dfff',
+						confirmButtonText:'확인'
+					});
+				}//if
+			}//success
+		});//ajax
+	});//click
+
+
 }); //ready
 
 
