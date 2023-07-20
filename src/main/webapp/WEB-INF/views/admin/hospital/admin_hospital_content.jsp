@@ -5,11 +5,12 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
-	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
@@ -22,18 +23,18 @@
 						<nav>
 							<ul>
 								<li>병원관리</li>
-								<li><a href = "http://localhost:9000/admin_hospital_list/1/">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_member_list/1/">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_reserve_list/1/">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_review_list/1/">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_notice/1/">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="updateForm" action="hospital_update_proc" method="post">
+						<form name="updateForm" action="hospital_update" method="post">
 						<input type = "hidden" name = "hid" value = "${hospital.hid}">
 						<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
 							<table class="table">
@@ -97,10 +98,10 @@
 								</tr>
 								<tr>
 									<td colspan="2"> 
-										<a href="admin_hospital_update/${hospital.hid}/${hospital.hsfile}/">
+										<a href="/hospital_update/${hospital.hid}/${hospital.hsfile}/">
 											<button type="button" class="button5" id="btn_content">수정하기</button>
 										</a>
-										<a href="admin_hospital_delete/${hospital.hid}/${hospital.hsfile}">
+										<a href="/hospital_delete/${hospital.hid}/${hospital.hsfile}">
 											<button type="button" class="button5" id="btn_delete">삭제하기</button>
 										</a>
 									</td>

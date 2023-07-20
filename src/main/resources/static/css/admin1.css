@@ -395,6 +395,19 @@ section#hospital_data table.table tr td input[id="y"]{
 	width:255px;
 	height:50px;
 }
+
+section#hospital_data table.table tr td input[id="loc"]{
+	width:430px;
+	display:inline-flex;
+}
+
+section#hospital_data table.table tr td button#search_loc{
+	display:inline-flex;
+	width:80px;
+	height:45px;
+	margin-top:-5px;
+	padding-top:13px;
+}
 /*************************************
 	hospital_update style sheet
 **************************************/

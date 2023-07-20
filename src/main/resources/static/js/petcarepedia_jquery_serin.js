@@ -321,7 +321,7 @@ $(document).ready(function(){
 			$("#search_hname").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/admin/hospital_list/1/"+$("#search_hname").val()+"/";
+			location.href = "http://localhost:9000/admin/hospital_hsearch/1/"+$("#search_hname").val()+"/";
 		}//else
   	});//function
   	

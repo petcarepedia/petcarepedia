@@ -133,11 +133,8 @@ public class FileUploadService {
 
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 
-        //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
         if(!hospitalDto.getFile1().getOriginalFilename().equals("")) {
             File deleteFile = new File(root_path + oldFileName);
-            //boardVo.getFile1().transferTo(deleteFile);
-            //System.out.println(root_path +oldFileName);
             if(deleteFile.exists()) {
                 deleteFile.delete();
             }
@@ -165,7 +162,7 @@ public class FileUploadService {
      */
     public HospitalDto fileCheck(HospitalDto hospitalDto) {
         if(hospitalDto.getFile1().getOriginalFilename() != null
-                && !hospitalDto.getFile1().getOriginalFilename().contentEquals("")) {  //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙
+                && !hospitalDto.getFile1().getOriginalFilename().contentEquals("")) {
 
             //BSFILE 占쎈솁占쎌뵬 餓λ쵎�궗 筌ｌ꼶�봺
             UUID uuid = UUID.randomUUID();

@@ -47,7 +47,7 @@ public class PageService {
         }else if(pageDto.getHname() != null && pageDto.getHname() != ""){
             pageSize = 10;
             dbCount = pageMapper.Hscount(pageDto);
-        }else if(pageDto.getGloc() != null && pageDto.getGloc() != ""){
+        }else if(pageDto.getGloc() != null && pageDto.getGloc()  != ""){
             pageSize = 10;
             dbCount = pageMapper.Hscount2(pageDto);
         }

@@ -9,9 +9,10 @@
 	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
-		<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
 		$(document).ready(function(){

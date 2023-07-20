@@ -143,14 +143,14 @@ public class AdminController {
     }
 
     /* 병원 등록 처리 */
-    @PostMapping("hospital_wirte")
+    @PostMapping("hospital_write")
     public String hospital_write_proc(HospitalDto hospitalDto) throws Exception{
         hospitalDto = (HospitalDto) fileUploadService.fileCheck(hospitalDto);
         int result = hospitalService.insert(hospitalDto);
         if(result == 1){
             fileUploadService.fileSave(hospitalDto);
         }
-        return "redirect:/admin_hospital_list/1/";
+        return "redirect:/hospital_list/1/";
     }
 
 
@@ -170,7 +170,7 @@ public class AdminController {
     }
 
     /* 지역구 검색 페이지 */
-    @GetMapping("hospital_gsearch/{page}/{gloc}")
+    @GetMapping("hospital_gsearch/{page}/{gloc}/")
     public String hospital_gsearch(@PathVariable String page, @PathVariable String gloc, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, gloc));
         pageDto.setGloc(gloc);
@@ -180,10 +180,10 @@ public class AdminController {
     }
 
     /* 병원명 검색 페이지 */
-    @GetMapping("hospital_hsearch/{page}/{hname}")
+    @GetMapping("hospital_hsearch/{page}/{hname}/")
     public String hospital_hsearch(@PathVariable String page, @PathVariable String hname, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, hname));
-                pageDto.setHname(hname);
+        pageDto.setHname(hname);
         model.addAttribute("list", hospitalService.Hslist(pageDto));
         model.addAttribute("page", pageDto);
         return "admin/hospital/admin_hospital_hsearch";
@@ -192,19 +192,8 @@ public class AdminController {
     @GetMapping("hospital_list/{page}/")
     public String hospital_list(@PathVariable String page, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital"));
-       /* model.addAttribute("list", hospitalService.Hlist(pageDto));
-        model.addAttribute("page", pageDto);*/
-
-        if(pageDto.getHname() != null && pageDto.getHname() != ""){
-            model.addAttribute("list", hospitalService.Hslist(pageDto));
-            model.addAttribute("page", pageDto);
-        }else if(pageDto.getGloc() != null && pageDto.getGloc() != ""){
-            model.addAttribute("list", hospitalService.Hslist2(pageDto));
-            model.addAttribute("page", pageDto);
-        }else if(pageDto.getHname() == null && pageDto.getHname() == ""&& pageDto.getGloc() == null && pageDto.getGloc() == ""){
-            model.addAttribute("list", hospitalService.Hlist(pageDto));
-            model.addAttribute("page", pageDto);
-        }
+        model.addAttribute("list", hospitalService.Hlist(pageDto));
+        model.addAttribute("page", pageDto);
 
         return "/admin/hospital/admin_hospital_list";
     }
