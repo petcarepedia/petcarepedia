@@ -41,17 +41,28 @@ public class ProjectRestController {
 
 
     /** search_main_map **/
-    @GetMapping("search_main_map/{gloc}")
+/*    @GetMapping("search_main_map/{gloc}")
     public Map search_main_map(@PathVariable String gloc) {
         Map map = new HashMap();
         map.put("list", hospitalService.searchGloc(gloc));
+
+        return  map;
+    }*/
+    @GetMapping("search_main_map/{gloc}")
+    public Map search_main_map(@PathVariable String gloc) {
+        Map map = new HashMap();
+        if(gloc.equals("*")) {
+            map.put("list", hospitalService.select());
+        } else {
+            map.put("list", hospitalService.searchGloc(gloc));
+        }
 
         return  map;
     }
 
 
     /** search_result_map - 병원 상세 지도 정보 **/
-    @GetMapping("search_result_map/{hid}/")
+    @GetMapping("search_result_map/{hid}")
     public Map search_result_map(@PathVariable String hid) {
         Map map = new HashMap();
         map.put("list", hospitalService.content(hid));
