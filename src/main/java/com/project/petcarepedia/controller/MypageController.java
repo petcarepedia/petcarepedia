@@ -43,8 +43,8 @@ public class MypageController {
     @PostMapping("member_update")
     public String member_update(MemberDto memberDto) throws Exception{
         String viewName = "";
-        int result = memberService.update(fileService.mfileCheck(memberDto));
         String oldFileName = memberDto.getMsfile();
+        int result = memberService.update((MemberDto) fileService.mfileCheck(memberDto));
         if(result == 1) {
             if(!memberDto.getFile1().isEmpty()) {
                 fileService.mfileSave(memberDto);
@@ -54,7 +54,7 @@ public class MypageController {
         }
         return viewName;
     }
-    
+
     // 예약내역 폼
     @GetMapping("mypage_reservation")
     public String mypage_reservation(HttpSession session, Model model) {
@@ -113,9 +113,8 @@ public class MypageController {
         if(result == 1) {
             if(!reviewDto.getFiles()[0].getOriginalFilename().equals("")) {
                 fileService.multiFileSave(reviewDto);
-
             }
-            viewName = "redirect:/mypage_my_review";
+            viewName = "redirect:/mypage_my_review/1/";
         }
         return viewName;
     }
@@ -123,26 +122,31 @@ public class MypageController {
     // 내가 쓴 리뷰 폼
     @GetMapping("mypage_my_review/{page}")
     public String mypage_my_review(@PathVariable String page, HttpSession session, Model model) {
+        System.out.println(page);
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "My_review"));
+        PageDto pageDto = new PageDto(page,"My_review");
         pageDto.setMid(svo.getMid());
+        pageDto = pageService.getPageResult(pageDto);
+//        PageDto pageDto = pageService.getPageResult(new PageDto(page, "My_review"));
         List<ReviewDto> list = reviewService.my_select(svo.getMid());
         model.addAttribute("page", pageDto);
         model.addAttribute("list", list);
-        return "/mypage/mypage_my_review";
+        return "mypage/mypage_my_review";
     }
 
     // 리뷰 상세보기 폼
-    @GetMapping("mypage_review_content/{rid}")
-    public String mypage_review_content(@PathVariable String rid, Model model){
+    @GetMapping("mypage_review_content/{rid}/{page}")
+    public String mypage_review_content(@PathVariable String rid, @PathVariable String page, Model model){
         model.addAttribute("review", reviewService.enter_content(rid));
+        model.addAttribute("page", page);
         return "/mypage/mypage_review_content";
     }
 
     // 리뷰 수정하기 폼
-    @GetMapping("mypage_review_revise/{rid}")
-    public String mypage_review_revise(@PathVariable String rid, Model model) {
+    @GetMapping("mypage_review_revise/{rid}/{page}")
+    public String mypage_review_revise(@PathVariable String rid, @PathVariable String page, Model model) {
         model.addAttribute("review", reviewService.content(rid));
+        model.addAttribute("page", page);
         return "/mypage/mypage_review_revise";
     }
 
@@ -155,7 +159,7 @@ public class MypageController {
         if(result == 1) {
             fileService.multiFileSave(reviewDto);
             fileService.multiFileDelete(reviewDto, oldFileName);
-            viewName = "redirect:/mypage_review_content/" + reviewDto.getRid() + "/";
+            viewName = "redirect:/mypage_review_content/" + reviewDto.getRid() + "/" + reviewDto.getPage() + "/";
         } else {
             //오류페이지 호출
         }
@@ -163,8 +167,8 @@ public class MypageController {
     }
 
     // 리뷰 삭제하기 폼
-    @GetMapping("mypage_review_delete/{rid}")
-    public String mypage_review_delete(@PathVariable String rid, Model model){
+    @GetMapping("mypage_review_delete/{rid}/{page}")
+    public String mypage_review_delete(@PathVariable String rid, @PathVariable String page, Model model){
         model.addAttribute("review", reviewService.content(rid));
         return "/mypage/mypage_review_delete";
     }
@@ -178,7 +182,7 @@ public class MypageController {
         String[] oldFileName = {reviewDto.getRsfile1(),reviewDto.getRsfile2()};
         if(result == 1) {
             fileService.multiFileDelete(oldFileName);
-            viewName = "redirect:/mypage_my_review";
+            viewName = "redirect:/mypage_my_review/1/";
         }
         return viewName;
     }

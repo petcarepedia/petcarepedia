@@ -38,7 +38,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-				   $(location).attr('href', "http://localhost:9000/mypage_my_review/"+e.page + "/");
+				   $(location).attr('href', "http://localhost:9000/mypage_my_review/"+e.page);
 	    });
 		
  	});
@@ -104,7 +104,7 @@
 									<span><!-- 진료 일자 : 2023-04-26 --></span>
 								</div>
 								<div id = "aside4">
-									<a href = "mypage_review_content/${review.rid}">
+									<a href = "/mypage_review_content/${review.rid}/${page.reqPage}">
 										<button type = "button" id = "btnReview_content">상세보기</button>
 									</a>
 								</div>

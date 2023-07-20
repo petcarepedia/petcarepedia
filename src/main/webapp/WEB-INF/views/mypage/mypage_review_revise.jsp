@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 리뷰수정</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_review_write.css">
-<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/kang_review_write.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/css/kang_review_write.css">
+<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
+<script src="http://localhost:9000/js/kang_review_write.js"></script>
 <script>
 	window.onload = function(){
 		var ele = document.getElementsByName('rstar');
@@ -33,6 +33,7 @@
 			<hr>
 			<form name="updateForm" action="review_update" method="post" enctype="multipart/form-data">
 			<input type = "hidden" name = "rid" value = "${review.rid}">
+			<input type = "hidden" name = "page" value = "${page}">
 				<section id = "section1">
 					<div>
 						<nav>
@@ -49,7 +50,7 @@
 				</section>
 				<div id = "aside">
 					<section>
-						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
+						<img src = "http://localhost:9000/images/cat.png">
 						<span>${review.nickname}</span>
 						<span>의사의 진료는 어떠셨나요?</span>
 						<span>별점을 다시 선택해주세요</span>
@@ -106,7 +107,7 @@
 							</div>
 						</c:otherwise>							
 					</c:choose>
-					<a href = "mypage_review_content/${review.rid} ">
+					<a href = "/mypage_review_content/${review.rid}/${page} ">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
 					<button type = "button" id = "btnReviewUpdate">수정완료</button>
