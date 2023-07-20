@@ -301,7 +301,7 @@ $(document).ready(function(){
 			$("#search_gloc").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/admin/hospital_list/1/"+$("#search_gloc").val()+"/";
+			location.href = "http://localhost:9000/admin/hospital_gsearch/1/"+$("#search_gloc").val()+"/";
 
 		}//else
   	});//function
@@ -321,7 +321,7 @@ $(document).ready(function(){
 			$("#search_hname").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/admin/hospital_hsearch/1/"+$("#search_hname").val()+"/";
+			location.href = "http://localhost:9000/admin/hospital_list/1/"+$("#search_hname").val()+"/";
 		}//else
   	});//function
   	

@@ -12,16 +12,16 @@
 	<header>
 		<div class="header-menu1">
 			<div class="header-content">
-				<a href="http://localhost:9000/petcarepedia/index.do">
+				<a href="http://localhost:9000/">
 					<div class="header-logo">
-						<img src="http://localhost:9000/petcarepedia/images/logo_white.png" width="60px" height="60px">
+						<img src="http://localhost:9000/images/logo_white.png" width="60px" height="60px">
 						<span>PetCare Pedia</span>
 					</div>
 				</a>
 				<div class="header-nav">
 					<ul>
 						<li>
-							<a href="http://localhost:9000/petcarepedia/logout.do">로그아웃</a>
+							<a href="http://localhost:9000/logout">로그아웃</a>
 						</li>
 					</ul>
 				</div>

@@ -12,7 +12,7 @@
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	
 	<script>
@@ -38,7 +38,7 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 			   if(hname!=null && hname!="" ){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/"+hname+"/");
+				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/"+hname+"/");
 			   }else if(gloc!=null && gloc!=""){
 				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/"+gloc+"/");
 			   }else {

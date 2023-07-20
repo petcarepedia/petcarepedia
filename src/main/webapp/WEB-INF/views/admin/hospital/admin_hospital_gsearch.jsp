@@ -15,7 +15,7 @@
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
 		$(document).ready(function(){
-			var hname = "${hname}";
+			var gloc = "${gloc}";
 			var pager = jQuery('#ampaginationsm').pagination({
 
 				maxSize: '${page.pageCount}',	    		// max page size
@@ -34,8 +34,8 @@
 
 			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 				jQuery('.showlabelsm').text('The selected page no: '+e.page);
-				if(hname!=null && hname!="" ){
-					$(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/"+hname+"/");
+				if(gloc!=null && gloc!="" ){
+					$(location).attr('href', "http://localhost:9000/admin/hospital_gsearch/"+e.page+"/"+gloc+"/");
 				}else {
 					$(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/");
 				}
