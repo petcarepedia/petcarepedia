@@ -90,11 +90,11 @@
 								<div id = "aside2">
 									<c:choose>
 										<c:when test="${review.rsfile1 != null || review.rsfile2 != null }">
-											<a href="http://localhost:9000/upload/${review.rsfile1}" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${review.rsfile1 }" alt=""></a>
-											<a style="display:none;" href="http://localhost:9000/upload/${review.rsfile2}" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${review.rsfile2 }" alt=""></a>
+											<a href="http://localhost:9000/upload/${review.rsfile1}/" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${review.rsfile1}/" alt=""></a>
+											<a style="display:none;" href="http://localhost:9000/upload/${review.rsfile2}/" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${review.rsfile2}/" alt=""></a>
 										</c:when>
 										<c:otherwise>
-											<img src = "http://localhost:9000/images/${review.hsfile}">
+											<img src = "http://localhost:9000/images/${review.hsfile}/">
 										</c:otherwise>
 									</c:choose>
 								</div>

@@ -124,7 +124,7 @@
 	</select>
 	
 	<select id="my_select" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
-		select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile
+		select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2
 		from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid}
 	</select>
 	

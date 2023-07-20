@@ -31,7 +31,7 @@
 		<section id = "review_revise">
 			<h1 id = "title">리뷰수정</h1>
 			<hr>
-			<form name="updateForm" action="review_update" method="post" enctype="multipart/form-data">
+			<form name="updateForm" action="/review_update" method="post" enctype="multipart/form-data">
 			<input type = "hidden" name = "rid" value = "${review.rid}">
 			<input type = "hidden" name = "page" value = "${page}">
 				<section id = "section1">
