@@ -184,7 +184,7 @@ $("form[name='updateForm'] input").on({
 		const email = $('#confirm_email').val(); // 이메일 주소값 얻어오기!
 		$.ajax({
 			type : 'get',
-			url : "mail_check.do?email="+email,
+			url : "/mail_check/"+email + "/",
 			success : function (data) {
 				$('#cemail').show();
 				$('#btnCheckEmail').show();

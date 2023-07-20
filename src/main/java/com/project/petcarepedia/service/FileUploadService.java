@@ -207,7 +207,7 @@ public class FileUploadService {
     public void mfileSave(MemberDto memberDto) throws Exception{
 
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
-        if(memberDto.getMfile() != null && !memberDto.getMfile().equals("")) {
+        if(memberDto.getFile1().getOriginalFilename() != null && !memberDto.getFile1().getOriginalFilename().equals("")) {
             //System.out.println("save file--->" + hospitalVo.getHfile());
             File saveFile = new File(root_path + memberDto.getMsfile());
 
