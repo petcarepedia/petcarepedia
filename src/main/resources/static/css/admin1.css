@@ -282,6 +282,7 @@ section.hospital div#d5 #search{
 	border:1px solid #3D3D3D;
 	font-size:10pt;
 	border-radius:5px;
+	padding: 0 0 1px 8px;
 }
 
 
@@ -394,6 +395,17 @@ section#hospital_data table.table tr td input[id="x"],
 section#hospital_data table.table tr td input[id="y"]{
 	width:255px;
 	height:50px;
+}
+section#hospital_data table.table tr td input[id="loc"]{
+	width: 400px;
+}
+
+section#hospital_data table.table tr td button#search_loc{
+	display: inline-flex;
+	width: 92px;
+	height: 45px;
+	margin-top: -5px;
+	padding-top: 13px;
 }
 /*************************************
 	hospital_update style sheet

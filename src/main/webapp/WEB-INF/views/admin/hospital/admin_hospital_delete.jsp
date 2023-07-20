@@ -4,10 +4,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
-	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
+	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
@@ -53,11 +53,11 @@
 						<nav>
 							<ul>
 								<li>병원관리</li>
-								<li><a href = "http://localhost:9000/admin_hospital_list/1/">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_member_list/1/">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_reserve_list/1/">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_review_list/1/">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_notice/1/">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>

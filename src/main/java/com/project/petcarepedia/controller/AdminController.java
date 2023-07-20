@@ -134,25 +134,24 @@ public class AdminController {
     }
 
     /* 병원 수정 페이지 */
-    @GetMapping("hospital_update/{hid}/{page}/")
-    public String hospital_update(@PathVariable String page, HospitalDto hospitalDto, Model model){
-        model.addAttribute("hospital", hospitalService.update(hospitalDto));
+    @GetMapping("hospital_update/{page}/{hid}/{hsfile}")
+    public String hospital_update(@PathVariable String page, @PathVariable String hid, @PathVariable String hsfile,  Model model){
+        model.addAttribute("hospital", hospitalService.content2(hid, hsfile));
         model.addAttribute("page", page);
 
         return "admin/hospital/admin_hospital_update";
     }
 
     /* 병원 등록 처리 */
-    @PostMapping("hospital_wirte")
+    @PostMapping("hospital_write")
     public String hospital_write_proc(HospitalDto hospitalDto) throws Exception{
         hospitalDto = (HospitalDto) fileUploadService.fileCheck(hospitalDto);
         int result = hospitalService.insert(hospitalDto);
         if(result == 1){
             fileUploadService.fileSave(hospitalDto);
         }
-        return "redirect:/admin_hospital_list/1/";
+        return "redirect:/hospital_list/1/";
     }
-
 
     /* 병원 등록 페이지 */
     @GetMapping("hospital_write")
