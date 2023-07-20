@@ -3,7 +3,6 @@ package com.project.petcarepedia.restcontroller;
 import com.project.petcarepedia.dto.*;
 import com.project.petcarepedia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -41,19 +40,23 @@ public class ProjectRestController {
     }
 
 
-    /** search_result_map - 병원 상세 지도 정보 **/
-    @GetMapping("search_reseult_map/{hid}")
-    public String search_result_map(@PathVariable String hid) {
-        HospitalDto list = hospitalService.content(hid);
-/*
-        JsonObject jobj = new JsonObject();
-        jobj.addProperty("hid", list.getHid());
-        jobj.addProperty("hname", list.getHname());
-        jobj.addProperty("x", list.getX());
-        jobj.addProperty("y", list.getY());
+    /** search_main_map **/
+    @GetMapping("search_main_map/{gloc}")
+    public Map search_main_map(@PathVariable String gloc) {
+        Map map = new HashMap();
+        map.put("list", hospitalService.searchGloc(gloc));
 
-        return new Gson().toJson(jobj);*/
-        return "search_reseult_map";
+        return  map;
+    }
+
+
+    /** search_result_map - 병원 상세 지도 정보 **/
+    @GetMapping("search_result_map/{hid}/")
+    public Map search_result_map(@PathVariable String hid) {
+        Map map = new HashMap();
+        map.put("list", hospitalService.content(hid));
+
+        return map;
     }
 
 
