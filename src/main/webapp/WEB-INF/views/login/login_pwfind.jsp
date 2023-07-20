@@ -22,7 +22,7 @@
 				<img src="http://localhost:9000/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="pwFindForm" action="login_pwfind_proc" method="post">
+			<form name="pwFindForm" action="/find_pw" method="post">
 				<div class="find-box">
 					<div class="find-pw">
 						<c:choose>

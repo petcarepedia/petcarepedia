@@ -31,7 +31,7 @@ $(document).ready(function(){
 				<img src="http://localhost:9000/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="idFindForm" action="login_idfind_proc" method="post">
+			<form name="idFindForm" action="/find_id" method="post">
 				<div class="find-box">
 					<div>
 						<div id="btnMenuIdFind">아이디 찾기</div>

@@ -88,7 +88,7 @@ const autoHyphen = (target) => {
 			</div>
 			
 			<div class="join-content">
-				<form name="joinForm" action="join_proc/" method="post">
+				<form name="joinForm" action="/join" method="post">
 					<input type="hidden" name="grade" value="${grade}" id="grade">
 					<input type="hidden" name="email" value="${email}" id="email">
 					<input type="hidden" name="msfile" value="c1b63a5c-c728-4dd4-bee0-5a08232fd775_cat.png" id="msfile">
@@ -133,14 +133,6 @@ const autoHyphen = (target) => {
 					<li>
 						<label>연락처 <span class="ess">*</span></label>
 						<input type="text" name = "phone" id = "phone" oninput="autoHyphen(this)" maxlength="13" placeholder="연락처를 입력하세요">
-						<!-- <select name="phone1" id="phone1">
-							<option value="default">선택</option>
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="017">017</option>
-						</select>
-						<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
-						<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2"> -->
 					</li>
 					<span id="phonecheck_msg"></span>
 					
