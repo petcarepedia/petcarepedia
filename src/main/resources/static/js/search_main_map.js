@@ -3,6 +3,7 @@ $(document).ready(function(){
 	/** 지역구 배열 **/
 	var areaArr = new Array();
 	areaArr.push(
+		{location:'*', lat:'37.507323', lng:'127.033903'},
 		{location:'강남구', lat:'37.507323', lng:'127.033903'},
 		{location:'강동구', lat:'37.5461969', lng:'127.1300393'},
 		{location:'강북구', lat:'37.6319166', lng:'127.0273517'},
@@ -32,13 +33,13 @@ $(document).ready(function(){
 	
 	/** default **/
 	$(function() {
-		initGlocMap('강남구');
+		initGlocMap('*');
 	});
 	
 	/** 지역구 선택시 이동 **/
 	function initGlocMap(gloc) {
 		$.ajax({
-			url: "http://localhost:9000/search_main_map/" + gloc + "/",
+			url: "http://localhost:9000/search_main_map/"+gloc+"/",
 			success : function(result){
 					/*let jdata = JSON.parse(result);*/
 					let markers = new Array();
@@ -108,8 +109,14 @@ $(document).ready(function(){
 		});
 	}
 
-	$(document).on("click", ".gloc", function() {
-		initGlocMap($(this).val());
+	$('input[name="gloc"]').click(function() {
+		var gloc = "*"; // 기본설정
+
+		if ($(this).prop('checked')) {
+			var gloc = $(this).val(); // 체크된 경우 실제 체크된 값으로 업데이트
+		}
+
+		initGlocMap(gloc);
 	});
 
 });

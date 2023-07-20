@@ -28,13 +28,16 @@ $(document).ready(function() {
 	checkboxes.forEach(function(checkbox) {
 		checkbox.addEventListener('change', applyFilters);
 	});
-	
-	
+
+
 	/** 지역 하나만 선택 **/
-	$('input[type="checkbox"][name="gloc"]').click(function(){
-		if($(this).prop('checked')){
-			$('input[type="checkbox"][name="gloc"]').prop('checked',false);
-			$(this).prop('checked',true);
+	$('input[type="checkbox"][name="gloc"]').click(function() {
+		if ($(this).prop('checked')) {
+			$('input[type="checkbox"][name="gloc"]').prop('checked', false);
+			$(this).prop('checked', true);
+		} else {
+			// 지역이 선택되지 않으면 "서울 전체" 항목을 체크하도록 함
+			$('input[type="checkbox"][name="gloc"][value="*"]').prop('checked', true);
 		}
 	});
 	
