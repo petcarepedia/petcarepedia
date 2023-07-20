@@ -5,10 +5,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
-	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
+	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
@@ -33,11 +33,11 @@
 						<nav>
 							<ul>
 								<li>병원관리</li>
-								<li><a href = "http://localhost:9000/admin_hospital_list/1/">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_member_list/1/">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_reserve_list/1/">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_review_list/1/">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/admin_notice/1/">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -55,6 +55,13 @@
 								<tr>
 									<th>주소</th>
 									<td><input type="text" name="loc" id="loc" value="${hospital.loc}"></td>
+								</tr>
+								<tr>
+									<th>좌표</th>
+									<td>
+										<input type="text" name="x" id="x" value="${hospital.x}" placeholder="위도">
+										<input type="text" name="y" id="y" value="${hospital.y}" placeholder="경도">
+									</td>
 								</tr>
 								<tr>
 									<th>지역 구</th>
@@ -109,7 +116,7 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="button" class="button5" id="btn_update">수정완료</button>
-										<a href="admin_hospital_content/=${hospitalVo.hid}/${hospitalVo.hsfile}">
+										<a href="/admin/hospital_content/=${hospitalVo.hid}/${hospitalVo.hsfile}">
 											<button type="button" class="button5" id="btn_before">이전으로</button>
 										</a>
 									</td>

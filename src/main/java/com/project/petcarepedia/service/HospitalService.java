@@ -28,6 +28,7 @@ public class HospitalService {
     public List<Object> search(String hname) {return hospitalMapper.search(hname);}
     public int delete(String hid){return hospitalMapper.delete(hid);}
     public int update(HospitalDto hospitalDto){return hospitalMapper.update(hospitalDto);}
+    public HospitalDto content2(String hid, String hsfile){return  hospitalMapper.content2(hid, hsfile);}
     public HospitalDto content(String hid){return hospitalMapper.content(hid);}
     public ArrayList<HospitalDto> select(){return hospitalMapper.list2();}
     public HospitalDto selectTime(String hid){return hospitalMapper.selectTime(hid);}
