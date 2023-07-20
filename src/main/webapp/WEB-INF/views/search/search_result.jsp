@@ -19,6 +19,8 @@
 	<script src="http://localhost:9000/js/search_result.js"></script>
 	<script src="http://localhost:9000/js/search_result_map.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 	
 	<script>
 		Kakao.init('8e977bf42a12bf9762111f31b4017078');
@@ -258,7 +260,14 @@
 								<div class="member">
 									<div class="name">
 										<!-- if문으로 등록된 이미지 없을 시 해당 이미지로 출력되게 하기 -->
-										<img src="http://localhost:9000/images/cat.png">
+										<c:choose>
+											<c:when test="${RM_select.msfile !=null}">
+												<img src="http://localhost:9000/upload/${RM_select.msfile}">
+											</c:when>
+											<c:otherwise>
+												<img src="http://localhost:9000/images/cat.png">
+											</c:otherwise>
+										</c:choose>
 										<span>${RM_select.nickname}</span>
 									</div>
 
@@ -294,6 +303,20 @@
 
 								<div class="write">
 									<p>${RM_select.rcontent}</p>
+									<%--리뷰 이미지--%>
+										<div class="rm_img">
+											<c:if test="${RM_select.rsfile1 != null && RM_select.rsfile1 != ''}">
+												<a href="http://localhost:9000/upload/${RM_select.rsfile1}" data-title="img" data-lightbox="example-set" class="pop">
+													<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile1}" alt="">
+												</a>
+											</c:if>
+
+											<c:if test="${RM_select.rsfile2 != null && RM_select.rsfile2 != ''}">
+												<a href="http://localhost:9000/upload/${RM_select.rsfile1}" data-title="img" data-lightbox="example-set" class="pop">
+													<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile2}" alt="">
+												</a>
+											</c:if>
+										</div>
 								</div>
 
 								<div class="date">
