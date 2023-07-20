@@ -51,10 +51,14 @@ $("#update_birth").click(function(){
 $("#update_email").click(function(){
     $("#emailModal").show();
     $("#pageOverlay").show();
-    $("#btnConfirm").css("background", "#D9D9D9").css("cursor", "not-allowed");
+	if($("#btnAuthEmail").css("disabled") == true) {
+		$("#btnConfirm").css("background", "#98dfff").css("cursor", "pointer");
+	} else if($("#btnAuthEmail").css("disabled") == false){
+		$("#btnConfirm").css("background", "#D9D9D9").css("cursor", "not-allowed");
+	}
 });
-$("#btnConfirm").click(function(){
-	$("#email").attr("disabled",false);
+	$("#btnConfirm").click(function(){
+		$("#email").attr("disabled",false);
 	$("#email").val($(".email").val());
 	$("#emailModal").hide();
 	$("#pageOverlay").hide();
@@ -63,8 +67,12 @@ $("#btnConfirm").click(function(){
 $("#btnModalClose").click(function(){
 	$("#emailModal").hide();
 	$("#pageOverlay").hide();
-});   
-   
+});
+
+
+
+
+
 //휴대폰
 $("#update_phone").click(function(){
 	if(count4 % 2 == 1) {

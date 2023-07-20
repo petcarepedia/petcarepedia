@@ -21,7 +21,7 @@
 		<section id = "review_write">
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
-			<form name="writeForm" action="review_write" method="post" enctype="multipart/form-data">
+			<form name="writeForm" action="/review_write" method="post" enctype="multipart/form-data">
 			<input type = "hidden" name = "mid" value = "${sessionScope.svo.mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
 			<input type = "hidden" name = "bid" value = "${bid}">

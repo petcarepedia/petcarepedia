@@ -1533,7 +1533,7 @@ div.review_card_no span {
 }
 
 /******************************************
-			ÀÌ¸ÞÀÏ ÀÎÁõ ¸ð´Þ
+			ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 ******************************************/
 #pageOverlay {
   display: none;
@@ -1664,4 +1664,8 @@ div.review_card_no span {
 
 #verifyButton {
   margin-top: 10px;
+}
+#btnConfirm{
+	background : #D9D9D9;
+	cursor : not-allowed;
 }
