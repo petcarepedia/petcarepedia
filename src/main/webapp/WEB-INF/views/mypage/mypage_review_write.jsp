@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 리뷰쓰기</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_review_write.css">
-<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/kang_review_write.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/css/kang_review_write.css">
+<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
+<script src="http://localhost:9000/js/kang_review_write.js"></script>
 
 </head>
 <body>
@@ -41,15 +41,15 @@
 				</section>
 				<div id = "aside">
 					<section>
-						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
+						<img src = "http://localhost:9000/images/cat.png">
 						<span>${member.nickname}</span>
 						<span>의사의 진료는 어떠셨나요?</span>
 						<span>별점을 선택해주세요</span>
-						<!-- <img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
+						<!-- <img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png"> -->
 						<div id = "star">
 							<fieldset>
 								<input type="radio" name="rstar" value="5.0" id="rate1"><label class="slabel"
@@ -65,11 +65,11 @@
 							</fieldset>
 						</div>
 						<!-- <span>치료에 대한 자세한 설명</span> -->
-						<!-- <img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
+						<!-- <img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png">
+						<img src = "http://localhost:9000//images/star.png"> -->
 					</section>
 					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~200자내)" maxlength="200"></textarea>
 						<div id="test_cnt">(0 / 200)</div>
