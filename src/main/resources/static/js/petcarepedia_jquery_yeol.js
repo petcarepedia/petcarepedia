@@ -225,7 +225,7 @@ $("form[name='updateForm'] input").on({
 	        }).then((result) => {
 				$('#cemail').hide();
 				$('#btnCheckEmail').hide();
-				$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC")
+				$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC").css("margin-left", "10px")
 				.css("font-size","12px").css("display","block").css("clear","both")
 				.css("padding-top","5px")
 				.prepend("<img src='http://localhost:9000/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
@@ -333,6 +333,7 @@ $("#btnReservationDelete").click(function(){
         	});
 		}
 	})
+
 
 /*******************************************************************************
 	내가쓴리뷰 - 리뷰수정
