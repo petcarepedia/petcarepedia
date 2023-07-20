@@ -50,9 +50,12 @@ public class PageService {
         }else if(pageDto.getGloc() != null && pageDto.getGloc()  != ""){
             pageSize = 10;
             dbCount = pageMapper.Hscount2(pageDto);
+        }else if(pageDto.getServiceName().equals("member")) {
+            pageSize = 10;
+            dbCount = pageMapper.Hcount();
         }
 
-        //총 페이지 수 계산
+            //총 페이지 수 계산
         if(dbCount % pageSize == 0){
             pageCount = dbCount/pageSize;
         }else{
