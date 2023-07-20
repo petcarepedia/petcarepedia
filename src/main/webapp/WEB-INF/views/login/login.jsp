@@ -71,6 +71,14 @@
 	
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
+
+	<script>
+		$("#rememberMid").val($("#remember_mid").is(':checked'));
+		$("#remember_mid").click(function(){
+			console.log($("#rememberMid").val());
+			$("#rememberMid").val($("#remember_mid").is(':checked'));
+		});
+	</script>
 	
 </body>
 </html>

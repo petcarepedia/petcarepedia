@@ -214,8 +214,8 @@ public class ProjectRestController {
     /**
      * 로그인
      */
-    @GetMapping("login/{mid}/{pass}/{rememberMid}")
-    public Map login_proc(@PathVariable String mid, @PathVariable String pass, @PathVariable String rememberMid, HttpSession session, HttpServletResponse response){
+    @PostMapping("login")
+    public Map login_proc(@RequestParam("mid") String mid, @RequestParam("pass") String pass, @RequestParam("rememberMid") String rememberMid, HttpSession session, HttpServletResponse response){
         MemberDto memberDto = new MemberDto();
         memberDto.setMid(mid);
         memberDto.setPass(pass);
@@ -228,6 +228,7 @@ public class ProjectRestController {
 
                 Cookie cookie = new Cookie("user_check", sessionDto.getMid());
                 if(rememberMid.equals("true")){
+                    response.addHeader("result", "true");
                     response.addCookie(cookie);
                 } else {
                     cookie.setMaxAge(0);

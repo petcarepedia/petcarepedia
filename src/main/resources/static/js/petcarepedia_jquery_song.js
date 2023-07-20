@@ -657,14 +657,12 @@ $(document).ready(function(){
 	/**
 	 * 로그인
 	 */
-	$("#rememberMid").val($("#remember_mid").is(':checked'));
-	$("#remember_mid").click(function(){
-		$("#rememberMid").val($("#remember_mid").is(':checked'));
-	});
-
 	$("#btnLogin").click(function (){
 		$.ajax({
-			url : "/login/"+$("#id").val()+"/"+$("#pass").val()+"/"+$("#rememberMid").val(),
+			type: "POST",
+			url : "/login",
+			data: {mid: $("#id").val(), pass: $("#pass").val(), rememberMid: $("#rememberMid").val()},
+			dataType: "json",
 			success : function(result){
 				if(result.result=="1"){
 					Swal.fire({
