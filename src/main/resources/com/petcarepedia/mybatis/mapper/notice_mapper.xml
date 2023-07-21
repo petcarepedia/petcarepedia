@@ -15,7 +15,7 @@
 		select nid, title, ndate, nhits, ncontent from pcp_notice where nid = #{nid}
 	</select>
 	
-	<select id="enterContent" parameterType="String" resultType="com.project.petcarepedia.dto.NoticeDto">
+	<select id="enter_content" parameterType="String" resultType="com.project.petcarepedia.dto.NoticeDto">
 		select nid, title, to_char(ndate, 'yyyy-mm-dd hh24:mi') ndate, nhits, ncontent from pcp_notice where nid = #{nid}
 	</select>
 	

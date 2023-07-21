@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 리뷰사전</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
-<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/kang_review.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/css/kang_style.css">
+<link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/js/petcarepedia_jsp_jquery_kang.js"></script>
+<script src="http://localhost:9000/js/kang_review.js"></script>
+<script src="http://localhost:9000/js/am-pagination.js"></script>
 <script>
 	$(document).ready(function(){
 		var gloc = '${page.gloc}';
@@ -35,7 +35,7 @@
 		$('input:checkbox[name=filter_location][value= "${page.gloc}"]').attr("checked", true).parent().addClass('on');
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main_search/"+e.page+"/"+filter_location+"/");
+           $(location).attr('href', "http://localhost:9000/review_main_search/"+e.page+"/"+gloc+"/");
    		 });
  	});
 </script> 
@@ -49,40 +49,41 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
-			<form name="ReviewSearchForm" action="review_main_search" method="get">
+			<form name="ReviewSearchForm" action="/review_main_search/" method="get">
+				<input
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
-						<td><input type="checkbox" name="filter_location"> 서울전체</td>
-						<td><input type="checkbox" name="filter_location" value="강남구"> 강남구</td>
-						<td><input type="checkbox" name="filter_location" value="강동구"> 강동구</td>
-						<td><input type="checkbox" name="filter_location" value="강북구"> 강북구</td>
-						<td><input type="checkbox" name="filter_location" value="강서구"> 강서구</td>
-						<td><input type="checkbox" name="filter_location" value="관악구"> 관악구</td>
-						<td><input type="checkbox" name="filter_location" value="광진구"> 광진구</td>
-						<td><input type="checkbox" name="filter_location" value="구로구"> 구로구</td>
-						<td><input type="checkbox" name="filter_location" value="금천구"> 금천구</td>
-						<td><input type="checkbox" name="filter_location" value="노원구"> 노원구</td>
+						<td><input type="checkbox" name="gloc"> 서울전체</td>
+						<td><input type="checkbox" name="gloc" value="강남구"> 강남구</td>
+						<td><input type="checkbox" name="gloc" value="강동구"> 강동구</td>
+						<td><input type="checkbox" name="gloc" value="강북구"> 강북구</td>
+						<td><input type="checkbox" name="gloc" value="강서구"> 강서구</td>
+						<td><input type="checkbox" name="gloc" value="관악구"> 관악구</td>
+						<td><input type="checkbox" name="gloc" value="광진구"> 광진구</td>
+						<td><input type="checkbox" name="gloc" value="구로구"> 구로구</td>
+						<td><input type="checkbox" name="gloc" value="금천구"> 금천구</td>
+						<td><input type="checkbox" name="gloc" value="노원구"> 노원구</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="filter_location" value="도봉구"> 도봉구</td>
-						<td><input type="checkbox" name="filter_location" value="동대문구"> 동대문구</td>
-						<td><input type="checkbox" name="filter_location" value="동작구"> 동작구</td>
-						<td><input type="checkbox" name="filter_location" value="마포구"> 마포구</td>
-						<td><input type="checkbox" name="filter_location" value="서대문구"> 서대문구</td>
-						<td><input type="checkbox" name="filter_location" value="서초구"> 서초구</td>
-						<td><input type="checkbox" name="filter_location" value="성동구"> 성동구</td>
-						<td><input type="checkbox" name="filter_location" value="성북구"> 성북구</td>
-						<td><input type="checkbox" name="filter_location" value="송파구"> 송파구</td>
-						<td><input type="checkbox" name="filter_location" value="양천구"> 양천구</td>
+						<td><input type="checkbox" name="gloc" value="도봉구"> 도봉구</td>
+						<td><input type="checkbox" name="gloc" value="동대문구"> 동대문구</td>
+						<td><input type="checkbox" name="gloc" value="동작구"> 동작구</td>
+						<td><input type="checkbox" name="gloc" value="마포구"> 마포구</td>
+						<td><input type="checkbox" name="gloc" value="서대문구"> 서대문구</td>
+						<td><input type="checkbox" name="gloc" value="서초구"> 서초구</td>
+						<td><input type="checkbox" name="gloc" value="성동구"> 성동구</td>
+						<td><input type="checkbox" name="gloc" value="성북구"> 성북구</td>
+						<td><input type="checkbox" name="gloc" value="송파구"> 송파구</td>
+						<td><input type="checkbox" name="gloc" value="양천구"> 양천구</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="filter_location" value="영등포구"> 영등포구</td>
-						<td><input type="checkbox" name="filter_location" value="용산구"> 용산구</td>
-						<td><input type="checkbox" name="filter_location" value="은평구"> 은평구</td>
-						<td><input type="checkbox" name="filter_location" value="종로구"> 종로구</td>
-						<td><input type="checkbox" name="filter_location" value="중구"> 중구</td>
-						<td><input type="checkbox" name="filter_location" value="중랑구"> 중랑구</td>
+						<td><input type="checkbox" name="gloc" value="영등포구"> 영등포구</td>
+						<td><input type="checkbox" name="gloc" value="용산구"> 용산구</td>
+						<td><input type="checkbox" name="gloc" value="은평구"> 은평구</td>
+						<td><input type="checkbox" name="gloc" value="종로구"> 종로구</td>
+						<td><input type="checkbox" name="gloc" value="중구"> 중구</td>
+						<td><input type="checkbox" name="gloc" value="중랑구"> 중랑구</td>
 						<td> </td>
 						<td> </td>
 						<td> </td>
@@ -110,7 +111,7 @@
 					<li class="review_list">
 						<ul>
 							<li id="list_left" class="list">
-								<p><img src="http://localhost:9000/petcarepedia/images/cat.png"><span>${list.nickname }</span></p>
+								<p><img src="http://localhost:9000/images/cat.png"><span>${list.nickname }</span></p>
 								<div id="star">
 									<div id="avg">
 										⭐ ${list.rstar } / 5.0

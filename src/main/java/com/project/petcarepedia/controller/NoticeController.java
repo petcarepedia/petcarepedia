@@ -69,22 +69,21 @@ public class NoticeController {
     @PostMapping("admin_notice_update")
     public String admin_notice_update_proc(NoticeDto noticeDto) throws Exception {
         int result = noticeService.update(noticeDto);
-        String view = "";
         if(result == 1) {
-            view = "redirect:/admin_notice/"+noticeDto.getPage()+"/";
+
         }
-        return view;
+        return "redirect:/admin_notice_content/"+noticeDto.getNid()+"/"+noticeDto.getPage()+"/";
     }
 
     // admin_notice_delete_proc.do 관리자 공지사항 삭제 처리
-    @PostMapping("admin_notice_delete")
+    @PostMapping("/admin_notice_delete")
     public String admin_notice_delete_proc(NoticeDto noticeDto) {
-        String view = "";
         int result = noticeService.delete(noticeDto.getNid());
         if(result == 1) {
-            view = "redirect:/admin_notice/"+noticeDto.getPage()+"/";
+            //삭제처리
+
         }
-        return view;
+        return "redirect:/admin_notice/1/";
     }
 
     //notice.do 사용자 공지사항 리스트 페이징
