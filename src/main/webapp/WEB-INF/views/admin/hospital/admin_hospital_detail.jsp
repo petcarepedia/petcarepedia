@@ -36,7 +36,7 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="writeForm" action="/hospital_write" method="post" enctype="multipart/form-data">
+						<form name="writeForm" action="/admin/hospital_detail" method="post" enctype="multipart/form-data">
 							<table class="table">
 								<tr>
 									<th>병원명</th>
@@ -100,7 +100,7 @@
 									<td colspan="5"> 
 										<button type="button" class="button5" id="btn_save">저장하기</button>
 										<button type="reset" class="button5">다시쓰기</button>
-										<a href="http://localhost:9000/admin/hospital_list/${page.reqPage}/">
+										<a href="http://localhost:9000/admin/hospital_list/1/">
 											<button type="button" class="button5"> 이전으로</button>
 										</a>
 									</td>

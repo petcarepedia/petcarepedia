@@ -40,7 +40,6 @@ public interface HospitalMapper {
     int update(HospitalDto hospitalDto);
 
     /* 병원 수정 및 삭제 시 상세 조회 */
-    HospitalDto content2(String hid, String hsfile);
 
     /* 병원 상세 조회 */
     HospitalDto content(String hid);

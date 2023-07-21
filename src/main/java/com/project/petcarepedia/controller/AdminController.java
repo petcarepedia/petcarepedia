@@ -82,19 +82,16 @@ public class AdminController {
         model.addAttribute("page", page);
         return "admin/member/admin_member_detail";
     }
-    
+
+    /* 회원 검색 결과 페이지 */
+
+
     /* 회원 메인 페이지 */
     @GetMapping("member_list/{page}/")
-    public String member_list(@PathVariable String page, MemberDto memberDto, Model model){
+    public String member_list(@PathVariable String page, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "member"));
-
-        if(memberDto.getMid() != null && memberDto.getMid() != ""){
-            model.addAttribute("list", memberService.mslist(pageDto));
-            model.addAttribute("page", pageDto);
-        }else{
-            model.addAttribute("list", memberService.mlist(pageDto));
-            model.addAttribute("page", pageDto);
-        }
+        model.addAttribute("list", memberService.mlist(pageDto));
+        model.addAttribute("page", pageDto);
 
         return "admin/member/admin_member_list";
     }
@@ -103,64 +100,64 @@ public class AdminController {
     @PostMapping("hospital_delete")
     public String hospital_delete_proc(HospitalDto hospitalDto) throws Exception{
         String oldFileName = hospitalDto.getHsfile();
-        hospitalDto = (HospitalDto)fileUploadService.fileCheck(hospitalDto);
         int result = hospitalService.delete(hospitalDto.getHid());
         if(result == 1){
             fileUploadService.fileDelete(oldFileName);
         }
-        return "redirect:/admin_hospital_list/1/";
+        return "redirect:/admin/hospital_list/1/";
     }
 
     /* 병원 삭제 페이지 */
-    @GetMapping("hospital_delete/{hid}/")
-    public String hospital_delete(@PathVariable String hid, Model model){
-        model.addAttribute("hospital", hospitalService.delete(hid));
+    @GetMapping("hospital_delete/{page}/{hid}/")
+    public String hospital_delete(@PathVariable String hid, @PathVariable String page, Model model){
+        model.addAttribute("hospital", hospitalService.content(hid));
+        model.addAttribute("page", page);
+
         return "admin/hospital/admin_hospital_delete";
     }
 
     /* 병원 수정 처리 */
     @PostMapping("hospital_update")
     public String hospital_update_proc(HospitalDto hospitalDto) throws Exception{
-        String oldFileName =hospitalDto.getHsfile();
-        hospitalDto = (HospitalDto)fileUploadService.fileCheck(hospitalDto);
+        String oldFileName = hospitalDto.getHsfile();
+        hospitalDto = fileUploadService.fileCheck(hospitalDto);
         int result = hospitalService.update(hospitalDto);
         if(result == 1){
             fileUploadService.fileDelete2(hospitalDto, oldFileName);
             fileUploadService.fileSave(hospitalDto);
         }
-
-        return "redirect:/admin_hospital_list/"+hospitalDto.getPage()+"/";
+        return "redirect:/admin/hospital_list/1/";
 
     }
 
     /* 병원 수정 페이지 */
-    @GetMapping("hospital_update/{page}/{hid}/{hsfile}")
-    public String hospital_update(@PathVariable String page, @PathVariable String hid, @PathVariable String hsfile,  Model model){
-        model.addAttribute("hospital", hospitalService.content2(hid, hsfile));
+    @GetMapping("hospital_update/{page}/{hid}/")
+    public String hospital_update(@PathVariable String hid, @PathVariable String page, Model model){
+        model.addAttribute("hospital", hospitalService.content(hid));
         model.addAttribute("page", page);
 
         return "admin/hospital/admin_hospital_update";
     }
 
     /* 병원 등록 처리 */
-    @PostMapping("hospital_write")
+    @PostMapping("/hospital_detail")
     public String hospital_write_proc(HospitalDto hospitalDto) throws Exception{
-        hospitalDto = (HospitalDto) fileUploadService.fileCheck(hospitalDto);
+        hospitalDto = fileUploadService.fileCheck(hospitalDto);
         int result = hospitalService.insert(hospitalDto);
         if(result == 1){
             fileUploadService.fileSave(hospitalDto);
         }
-        return "redirect:/hospital_list/1/";
+        return "redirect:/admin/hospital_list/1/";
     }
 
     /* 병원 등록 페이지 */
-    @GetMapping("hospital_write")
+    @GetMapping("hospital_detail")
     public String hospital_write(){
         return "admin/hospital/admin_hospital_detail";
     }
 
     /* 병원 상세 페이지 */
-    @GetMapping("hospital_content/{hid}/{page}/")
+    @GetMapping("hospital_content/{page}/{hid}")
     public String hospital_content(@PathVariable String hid, @PathVariable String page, Model model){
         model.addAttribute("hospital", hospitalService.content(hid));
         model.addAttribute("page", page);

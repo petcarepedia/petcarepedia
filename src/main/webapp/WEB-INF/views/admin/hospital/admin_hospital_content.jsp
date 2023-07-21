@@ -104,10 +104,10 @@
 								</tr>
 								<tr>
 									<td colspan="2"> 
-										<a href="/admin/hospital_update/${hospital.hid}/${hospital.hsfile}/">
+										<a href="/admin/hospital_update/1/${hospital.hid}/">
 											<button type="button" class="button5" id="btn_content">수정하기</button>
 										</a>
-										<a href="/admin/hospital_delete/${hospital.hid}/${hospital.hsfile}">
+										<a href="/admin/hospital_delete/1/${hospital.hid}/">
 											<button type="button" class="button5" id="btn_delete">삭제하기</button>
 										</a>
 									</td>

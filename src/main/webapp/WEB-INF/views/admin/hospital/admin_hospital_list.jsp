@@ -12,7 +12,7 @@
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	
 	<script>
@@ -94,7 +94,7 @@
 				<table class="table">
 					<tr>
 						<td colspan="5" >
-							<a href="http://localhost:9000/admin/hospital_write">
+							<a href="http://localhost:9000/admin/hospital_detail">
 								<button type="button" class="button4">등록하기</button>
 							</a>
 						</td>
@@ -117,7 +117,7 @@
 					<c:forEach var="hospital" items="${list}">
 					<tr>
 						<td>${hospital.rno}</td>
-						<td><a href="/admin/hospital_content/${hospital.hid}/${page.reqPage}/">${hospital.hname}</a></td>
+						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/">${hospital.hname}</a></td>
 						<td>${hospital.animal}</td>
 						<td>${hospital.ntime}</td>
 						<td>${hospital.holiday}</td>
