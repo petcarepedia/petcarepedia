@@ -116,7 +116,6 @@ public class FileUploadService {
 
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 
-        //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
         if(oldFileName != null && !oldFileName.equals("")) {
             File deleteFile = new File(root_path + oldFileName);
 
@@ -137,8 +136,6 @@ public class FileUploadService {
         //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
         if(!hospitalDto.getFile1().getOriginalFilename().equals("")) {
             File deleteFile = new File(root_path + oldFileName);
-            //boardVo.getFile1().transferTo(deleteFile);
-            //System.out.println(root_path +oldFileName);
             if(deleteFile.exists()) {
                 deleteFile.delete();
             }
@@ -153,7 +150,8 @@ public class FileUploadService {
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 
         //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
-        if(hospitalDto.getHfile() != null && !hospitalDto.getHfile().equals("")) {
+        if(hospitalDto.getFile1().getOriginalFilename() != null
+                && !hospitalDto.getFile1().getOriginalFilename().equals("")) {
             //System.out.println("save file--->" + hospitalVo.getHfile());
             File saveFile = new File(root_path+ hospitalDto.getHsfile());
 
@@ -166,12 +164,13 @@ public class FileUploadService {
      */
     public HospitalDto fileCheck(HospitalDto hospitalDto) {
         if(hospitalDto.getFile1().getOriginalFilename() != null
-                && !hospitalDto.getFile1().getOriginalFilename().contentEquals("")) {  //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙
+                && !hospitalDto.getFile1().getOriginalFilename().contentEquals("")) {  //파일이 존재하면
 
-            //BSFILE 占쎈솁占쎌뵬 餓λ쵎�궗 筌ｌ꼶�봺
+            //파일명 중복 처리
             UUID uuid = UUID.randomUUID();
             String hfile = hospitalDto.getFile1().getOriginalFilename();
             String hsfile = uuid + "_" + hfile;
+
             hospitalDto.setHfile(hfile);
             hospitalDto.setHsfile(hsfile);
         }else {

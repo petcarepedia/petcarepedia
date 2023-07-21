@@ -68,7 +68,7 @@
 					  INTRO=#{intro} ,HRINK= #{hrink} , hfile=#{hfile} , hsfile=#{hsfile}
 					   WHERE HID = #{hid}
 	</update>
-	
+
 	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
 		SELECT  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hfile, hsfile
 				 FROM PCP_HOSPITAL WHERE HID = #{hid}
