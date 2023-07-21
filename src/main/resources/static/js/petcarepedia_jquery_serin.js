@@ -192,7 +192,7 @@ $(document).ready(function(){
 			$("#reserve_bar").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/petcarepedia/admin_reserve_list.do?page=1&mid="+$("#reserve_bar").val();
+			location.href = "http://localhost:9000/admin/reserve_msearch/"+$("#reserve_bar").val();
 				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?mid="+$("#reserve_bar").val(), 
 					success:function(result){
@@ -238,7 +238,7 @@ $(document).ready(function(){
 			$("#member_search_bar").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/petcarepedia/admin_member_list.do?page=1&mid="+$("#member_search_bar").val();
+			location.href = "http://localhost:9000/admin/member_msearch/1/"+$("#member_search_bar").val();
 				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/member_list_data.do?mid="+$("#member_search_bar").val(), 
 					success:function(result){

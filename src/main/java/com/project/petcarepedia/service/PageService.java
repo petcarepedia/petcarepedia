@@ -47,6 +47,21 @@ public class PageService {
         }else if(pageDto.getGloc() != null && pageDto.getGloc() != "") {
             pageSize = 10;
             dbCount = pageMapper.Hscount2(pageDto);
+        }else if(pageDto.getServiceName().equals("member")) {
+            pageSize = 10;
+            dbCount = pageMapper.Mcount();
+        }else if(pageDto.getMid() != null && pageDto.getMid() != "") {
+            pageSize = 10;
+            dbCount = pageMapper.Mscount(pageDto);
+        }else if(pageDto.getServiceName().equals("reserve")){
+            pageSize = 10;
+            dbCount = pageMapper.Bcount();
+        } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
+            pageSize = 10;
+            dbCount = pageMapper.Bscount(pageDto);
+        }else if(pageDto.getServiceName().equals("review2")){
+            pageSize=10;
+            dbCount= pageMapper.Rcount();
         }
 
         //총 페이지 수 계산

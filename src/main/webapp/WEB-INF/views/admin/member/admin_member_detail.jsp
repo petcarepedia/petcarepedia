@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
-	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="http://localhost:9000/js/am-pagination.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
@@ -23,55 +25,55 @@
 	      <div>
 	        <nav>
 	          <ul>
-				<li>회원관리</li>
-				<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
-				<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
-				<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
-				<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
-				<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
+				  <li>회원관리</li>
+				  <li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
+				  <li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
+				  <li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
+				  <li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
+				  <li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
 			</ul>
 	        </nav>
 	      </div>
 	    </section>
 	    <section id="section2">
 	      <div>
-	     	 <form name="MemberDetailForm" action="member_detail_proc.do" method="post">
+	     	 <form name="MemberDetailForm" action="/admin/member_detail" method="post">
 		        <ul>
 		          <li>
 		            <label>아이디</label>
-		            <input type="text" name="mid" id="mid" value="${memberVo.mid}" disabled>
+		            <input type="text" name="mid" id="mid" value="${member.mid}" disabled>
 		          </li>
 		          <li>
 		            <label>성명</label>
-		            <input type="text" name="name" id="name" value="${memberVo.name}" disabled>
+		            <input type="text" name="name" id="name" value="${member.name}" disabled>
 		          </li>
 		          <li>
 		            <label>별명</label>
-		            <input type="text" name="nickname" id="nickname" value="${memberVo.nickname}" disabled>
+		            <input type="text" name="nickname" id="nickname" value="${member.nickname}" disabled>
 		          </li>
 		          <li>
 		            <label>생년월일</label>
-		            <input type="text" name="birth" id="birth" value="${memberVo.birth}" disabled>
+		            <input type="text" name="birth" id="birth" value="${member.birth}" disabled>
 		          </li>
 		          <li>
 		            <label>이메일</label>
-		            <input type="text" name="email" id="email" value="${memberVo.email}" disabled>
+		            <input type="text" name="email" id="email" value="${member.email}" disabled>
 		          </li>
 		          <li>
 		            <label>휴대폰</label>
-		            <input type="text" name="phone" id="phone" value="${memberVo.phone}" disabled>
+		            <input type="text" name="phone" id="phone" value="${member.phone}" disabled>
 		          </li>
 		          <li>
 		            <label>주소</label>
-		            <input type="text" name="addr" id="addr" value="${memberVo.addr}" disabled >
+		            <input type="text" name="addr" id="addr" value="${member.addr}" disabled >
 		          </li>
 		          <li>
 		            <label>가입일</label>
-		            <input type="text" name="mdate" id="mdate" value="${memberVo.mdate}" disabled>
+		            <input type="text" name="mdate" id="mdate" value="${member.mdate}" disabled>
 		          </li>
 		        </ul>
 		        <div id="d4">
-		       	 <a href="http://localhost:9000/petcarepedia/admin_member_list.do">
+		       	 <a href="http://localhost:9000/admin/member_list/1">
 	       	 	 	<button type="button" class="button5">이전으로</button>
 	       	 	 </a>
 		        </div>

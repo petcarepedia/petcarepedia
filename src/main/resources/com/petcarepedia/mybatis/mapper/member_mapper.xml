@@ -31,7 +31,7 @@
 			  from (select mid,pass,name,nickname,phone,birth,email,addr,mdate
 					from pcp_member where mid like '%'||#{mid}||'%'
 					order by mdate))
-		where rno between #{start} and #{end}
+		where rno between #{startCount} and #{endCount}
 	</select>
 
 	<select id = "mlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.MemberDto">
@@ -42,7 +42,7 @@
 			  from (select mid,pass,name,nickname,phone,birth,email,addr,mdate
 					from pcp_member
 					order by mdate))
-		where rno between #{start} and #{end}
+		where rno between #{startCount} and #{endCount}
 	</select>
 	
 	<select id="content" parameterType="string" resultType="com.project.petcarepedia.dto.MemberDto">
