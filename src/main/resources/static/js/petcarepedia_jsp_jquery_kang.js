@@ -132,18 +132,18 @@ $(document).ready(function(){
 	/*******************************************
 		리뷰 필터 클릭
 	********************************************/	
-	$('input[name="filter_location"]').click(function(){
+	$('input[name="gloc"]').click(function(){
 		if($(this).prop('checked')){
-			$('input[name="filter_location"]').prop('checked',false);
+			$('input[name="gloc"]').prop('checked',false);
 			$(this).prop('checked',true);
 		}
 	});
 	 
 
-	$('input[name="filter_location"]').on('change', function() {
+	$('input[name="gloc"]').on('change', function() {
 		if ($(this).is(':checked')) { 
 			if($(this).val() == "on") {
-				location.href='review_main.do'
+				location.href='/review_main'
 			}
 			else {
 				ReviewSearchForm.submit();

@@ -132,12 +132,11 @@ public class ReviewController {
 
 
     //리뷰 검색 페이징
-    @GetMapping("review_main_search")
-    public String review_main_search(String page, String gloc, HttpSession session, Model model) {
-        PageDto pageDto = pageService.getPageResult(new PageDto(page,"reviewSearch"));
-        pageDto.setGloc(gloc);
+    @PostMapping("/review_main_search")
+    public String review_main_search(PageDto pageDto, HttpSession session, Model model) {
+        pageService.getPageResult(new PageDto(pageDto.getPage(),"reviewSearch"));
         model.addAttribute("list", reviewService.listPage(pageDto));
         model.addAttribute("page", pageDto);
-        return ("/review/review_main_search");
+        return "redirect:/review_main_search/1/"+pageDto.getGloc()+"/";
     }
 }

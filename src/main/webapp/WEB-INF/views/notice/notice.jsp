@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 공지사항</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
-<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/css/kang_style.css">
+<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/js/am-pagination.js"></script>
 <script>
 	$(document).ready(function(){
 		var pager = jQuery('#ampaginationsm').pagination({
@@ -31,7 +31,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/notice/"+e.page+"/");
+	           $(location).attr('href', "http://localhost:9000/notice/"+e.page+"/");
 	    });
 		
  	});
@@ -56,7 +56,7 @@
 				<c:forEach var="list" items="${list }">
 					<tr>
 						<td>${list.rno }</td>
-						<td><a href="notice_content/${list.nid }/${page}/">${list.title }</a></td>
+						<td><a href="/notice_content/${list.nid }/${page.reqPage}/">${list.title }</a></td>
 						<td>${list.ndate }</td>
 						<td>${list.nhits }</td>
 					</tr>
