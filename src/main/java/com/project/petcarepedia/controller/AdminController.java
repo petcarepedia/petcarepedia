@@ -58,25 +58,30 @@ public class AdminController {
         model.addAttribute("page", pageDto);
         return "admin/review/admin_review_list";
     }
-    
+
+    /* 예약 검색 결과 페이지 */
+    @GetMapping("reserve_msearch/{page}/{mid}")
+    public String reserve_msearch(@PathVariable String page, @PathVariable String mid, Model model){
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, mid));
+        pageDto.setMid(mid);
+        model.addAttribute("list", bookingServcie.Bslist(pageDto));
+        model.addAttribute("page", pageDto);
+
+        return "admin/reserve/admin_reserve_msearch";
+    }
+
     /* 예약 메인 페이지 */
     @GetMapping("reserve_list/{page}/")
     public String reserve_list(@PathVariable String page, BookingDto bookingDto, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "reserve"));
-
-        if(bookingDto.getMid() != null && bookingDto.getMid() != ""){
-            model.addAttribute("list", bookingServcie.Bslist(pageDto));
-            model.addAttribute("page", pageDto);
-        }else{
-            model.addAttribute("list", bookingServcie.Blist(pageDto));
-            model.addAttribute("page", pageDto);
-        }
+        model.addAttribute("list", bookingServcie.Blist(pageDto));
+        model.addAttribute("page", pageDto);
 
         return "admin/reserve/admin_reserve_list";
     }
     
     /* 회원 상세 페이지 */
-    @GetMapping("member_content/{mid}/{page}/")
+    @GetMapping("member_detail/{page}/{mid}/")
     public String member_content(@PathVariable String mid, @PathVariable String page, Model model){
         model.addAttribute("content", memberService.content(mid));
         model.addAttribute("page", page);
@@ -84,7 +89,14 @@ public class AdminController {
     }
 
     /* 회원 검색 결과 페이지 */
-
+    @GetMapping("member_msearch/{page}/{mid}")
+    public String member_msearch(@PathVariable String page, @PathVariable String mid,Model model){
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, mid));
+        pageDto.setMid(mid);
+        model.addAttribute("list", memberService.mslist(pageDto));
+        model.addAttribute("page", pageDto);
+        return "admin/member/admin_member_msearch";
+    }
 
     /* 회원 메인 페이지 */
     @GetMapping("member_list/{page}/")

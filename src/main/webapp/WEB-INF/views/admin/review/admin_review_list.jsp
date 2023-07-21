@@ -4,22 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
-	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
+	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="http://localhost:9000/js/am-pagination.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
 	$(document).ready(function(){
 		var pager = jQuery('#ampaginationsm').pagination({
-		
-		    maxSize: '${maxSize}',	    		// max page size
-		    totals: '${totals}',	// total pages	
-		    page: '${page}',		// initial page		
-		    pageSize: '${pageSize}',			// max number items per page
+
+			maxSize: '${page.pageCount}',	    		// max page size
+			totals: '${page.dbCount}',	// total pages
+			page: '${page.reqPage}',		// initial page
+			pageSize: '${page.pageSize}',				// max number items per page
 		
 		    // custom labels		
 		    lastText: '&raquo;&raquo;', 		
@@ -32,7 +32,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_review_list.do?page="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/admin/review_list/"+e.page + "/");
 	    });
 		
  	});
@@ -49,11 +49,11 @@
 						<nav>
 							<ul>
 								<li>신고리뷰관리</li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -67,13 +67,13 @@
 								<th>내용</th>
 								<th>작성일</th>
 							</tr>
-						<c:forEach var="reviewVo" items="${list}">
+						<c:forEach var="review" items="${list}">
 							<tr>
-								<td>${reviewVo.rno}</td>
-								<td>${reviewVo.mid}</td>
-								<td>${reviewVo.hname}</td>
-								<td><a href="admin_review_detail.do?rid=${reviewVo.rid}">${reviewVo.rcontent}</a></td>
-								<td>${reviewVo.rdate}</td>
+								<td>${review.rno}</td>
+								<td>${review.mid}</td>
+								<td>${review.hname}</td>
+								<td><a href="/admin/review_detail/${review.rid}">${review.rcontent}</a></td>
+								<td>${review.rdate}</td>
 							</tr>
 						</c:forEach>
 							<tr>
