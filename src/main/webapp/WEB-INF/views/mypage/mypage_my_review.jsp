@@ -104,7 +104,7 @@
 									<span><!-- 진료 일자 : 2023-04-26 --></span>
 								</div>
 								<div id = "aside4">
-									<a href = "/mypage_review_content/${review.rid}/${page.reqPage}">
+									<a href = "/mypage_review_content/${review.rid}">
 										<button type = "button" id = "btnReview_content">상세보기</button>
 									</a>
 								</div>

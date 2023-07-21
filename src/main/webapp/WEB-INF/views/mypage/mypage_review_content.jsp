@@ -70,18 +70,18 @@
 						<td>${review.rdate }</td>
 					</tr>
 				</table>
-				<div class="rc_button_r" id = "rc_button_r">
-					<a href = "/mypage_review_revise/${review.rid}/${page}">
-						<button type = "button" id = "btnReview_revise">수정하기</button>
-					</a>
-					<a href = "/mypage_review_delete/${review.rid}/${page}">
-						<button type = "button" id = "btnReview_delete">삭제하기</button>
-					</a>
-					<a href = "/mypage_my_review/${page}">
-						<button type = "button" id = "cancle">리뷰목록</button>
-					</a>
 				</div>
-				</div>
+			</div>
+			<div class="rc_button_r" id = "rc_button_r">
+				<a href = "/mypage_review_revise/${review.rid}">
+					<button type = "button" id = "btnReview_revise">수정하기</button>
+				</a>
+				<a href = "/mypage_review_delete/${review.rid}">
+					<button type = "button" id = "btnReview_delete">삭제하기</button>
+				</a>
+				<a href = "/mypage_my_review/1">
+					<button type = "button" id = "cancle">리뷰목록</button>
+				</a>
 			</div>
 		</section>
 	</div>

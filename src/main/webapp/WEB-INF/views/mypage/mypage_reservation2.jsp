@@ -13,6 +13,31 @@
 <link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
 <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
+<script>
+	function delete_booking(bid) {
+		Swal.fire({
+			title: '내역을 삭제하시겠습니까?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#FFB3BD',
+			cancelButtonColor: '#98DFFF',
+			confirmButtonText: '승인',
+			cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					icon: 'success',
+					text: '삭제가 완료되었습니다.',
+					confirmButtonColor:'#98dfff',
+					confirmButtonText:'확인'
+				}).then(() => {
+					location.href = "/end_review_delete/" + bid + "/";
+				});
+			}
+		});
+	}
+
+</script>
 <body>
 	<!-- header -->
 	 <jsp:include page="../header.jsp"></jsp:include>
@@ -91,7 +116,8 @@
 									</c:when>
 									<c:otherwise>
 										<div id = "btn_review">
-											<span>리뷰작성기간 만료</span>
+											<span id = "review_date" style = "margin-left : 30px">리뷰작성기간 만료</span>
+											<button class = "end_delete" id = "btnDeleteEnd" onclick = "delete_booking('${booking.bid}')">진료내역 삭제</button>
 											<%-- <a href = "review_write.do?mid=${booking.mid}&hid=${booking.hid}&bid=${booking.bid}">
 												<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 											</a> --%>
@@ -121,7 +147,7 @@
 									</div>
 								</div>
 								<div id = "btn_review">
-									<a href = "mypage_review_content/${bookingReview.rid}">
+									<a href = "/mypage_review_content/${bookingReview.rid}">
 										<button type = "button" id = "btn_watch_review">리뷰보기</button>
 									</a> 
 								</div>

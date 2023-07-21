@@ -33,7 +33,6 @@
 			<hr>
 			<form name="updateForm" action="/review_update" method="post" enctype="multipart/form-data">
 			<input type = "hidden" name = "rid" value = "${review.rid}">
-			<input type = "hidden" name = "page" value = "${page}">
 				<section id = "section1">
 					<div>
 						<nav>
@@ -107,7 +106,7 @@
 							</div>
 						</c:otherwise>							
 					</c:choose>
-					<a href = "/mypage_review_content/${review.rid}/${page} ">
+					<a href = "/mypage_review_content/${review.rid} ">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
 					<button type = "button" id = "btnReviewUpdate">수정완료</button>

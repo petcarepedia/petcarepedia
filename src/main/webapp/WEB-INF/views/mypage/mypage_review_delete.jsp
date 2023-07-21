@@ -46,7 +46,7 @@
 				<div class = "box">
 					<p>정말로 삭제하시겠습니까?</p>
 					<button type="button" class="btn_style" id = "btnReviewDelete">삭제완료</button>
-					<a href="/mypage_review_content/${review.rid}/${page}">
+					<a href="/mypage_review_content/${review.rid}">
 						<button type="button" class="btn_style">취소</button>
 					</a>
 				</div>
