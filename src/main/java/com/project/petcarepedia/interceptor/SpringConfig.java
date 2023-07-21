@@ -9,6 +9,6 @@ public class SpringConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler( "/upload/**")
-                .addResourceLocations("file:///C://dev//petcarepedia//src//main//resources//static//upload/");
+                .addResourceLocations("file:///C://dev//ideaProjectList//petcarepedia//src//main//resources//static//upload/");
     }
 }

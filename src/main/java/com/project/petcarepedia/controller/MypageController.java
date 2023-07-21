@@ -83,7 +83,18 @@ public class MypageController {
         }
         return viewName;
     }
-    
+
+    //진료완료 리뷰작성기간 만료병원 삭제 처리
+    @GetMapping("end_review_delete/{bid}")
+    public String delete_booking(@PathVariable String bid) {
+        String viewName = "";
+        int result = bookingService.delete(bid);
+        if(result == 1) {
+            viewName = "redirect:/mypage_reservation2";
+        }
+        return viewName;
+    }
+
     // 예약내역(진료완료) 폼
     @GetMapping("mypage_reservation2")
     public String mypage_reservation2(HttpSession session, Model model) {
@@ -135,18 +146,16 @@ public class MypageController {
     }
 
     // 리뷰 상세보기 폼
-    @GetMapping("mypage_review_content/{rid}/{page}")
-    public String mypage_review_content(@PathVariable String rid, @PathVariable String page, Model model){
+    @GetMapping("mypage_review_content/{rid}")
+    public String mypage_review_content(@PathVariable String rid, Model model){
         model.addAttribute("review", reviewService.enter_content(rid));
-        model.addAttribute("page", page);
         return "/mypage/mypage_review_content";
     }
 
     // 리뷰 수정하기 폼
-    @GetMapping("mypage_review_revise/{rid}/{page}")
-    public String mypage_review_revise(@PathVariable String rid, @PathVariable String page, Model model) {
+    @GetMapping("mypage_review_revise/{rid}")
+    public String mypage_review_revise(@PathVariable String rid, Model model) {
         model.addAttribute("review", reviewService.content(rid));
-        model.addAttribute("page", page);
         return "/mypage/mypage_review_revise";
     }
 
@@ -167,10 +176,9 @@ public class MypageController {
     }
 
     // 리뷰 삭제하기 폼
-    @GetMapping("mypage_review_delete/{rid}/{page}")
-    public String mypage_review_delete(@PathVariable String rid, @PathVariable String page, Model model){
+    @GetMapping("mypage_review_delete/{rid}")
+    public String mypage_review_delete(@PathVariable String rid, Model model){
         model.addAttribute("review", reviewService.content(rid));
-        model.addAttribute("page", page);
         return "/mypage/mypage_review_delete";
     }
 
