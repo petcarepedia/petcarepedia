@@ -321,7 +321,7 @@ $(document).ready(function(){
 	      		{
 		        title: '사이트 이동',
 		        link: {
-		          webUrl: 'http://localhost:9000/search_result/' + $("input[name='hid']").val() + "/basic/",
+		          webUrl: 'http://localhost:9000/search_result/' + $("input[name='hid']").val(),
 		        },
 	      },
 	    ],
