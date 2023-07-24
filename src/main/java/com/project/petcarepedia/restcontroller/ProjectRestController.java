@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ public class ProjectRestController {
     BookingService bookingService;
     @Autowired
     BookmarkService bookmarkService;
+    @Autowired
+    ReviewService reviewService;
     @Autowired
     ReviewLikeService reviewLikeService;
     @Autowired
@@ -40,14 +43,6 @@ public class ProjectRestController {
     }
 
 
-    /** search_main_map **/
-/*    @GetMapping("search_main_map/{gloc}")
-    public Map search_main_map(@PathVariable String gloc) {
-        Map map = new HashMap();
-        map.put("list", hospitalService.searchGloc(gloc));
-
-        return  map;
-    }*/
     @GetMapping("search_main_map/{gloc}")
     public Map search_main_map(@PathVariable String gloc) {
         Map map = new HashMap();
@@ -66,6 +61,50 @@ public class ProjectRestController {
     public Map search_result_map(@PathVariable String hid) {
         Map map = new HashMap();
         map.put("list", hospitalService.content(hid));
+
+        return map;
+    }
+
+
+    /** 리뷰 정렬 **/
+    @GetMapping("search_result/{hid}/{filter}/")
+    public Map search_result(@PathVariable String hid, @PathVariable String filter, HttpSession session) {
+        Map map = new HashMap();
+
+        //session
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+
+        String mid;
+        if(svo == null) {
+            mid = "";
+        } else {
+            mid = svo.getMid();
+        }
+
+        ArrayList<ReviewDto> RM_select = new ArrayList<>();
+
+        if(filter.equals("basic")) {
+            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
+        } else if(filter.equals("like")) {
+            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select2(hid);
+        } else if(filter.equals("totalUp")) {
+            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select3(hid);
+        } else if(filter.equals("totalDown")) {
+            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select4(hid);
+        }
+
+        //check like
+        ReviewLikeDto reviewLikeDto = new ReviewLikeDto();
+        reviewLikeDto.setMid(mid);
+
+        for(ReviewDto review : RM_select) {
+            String targetRid = review.getRid();
+            reviewLikeDto.setRid(targetRid);
+            int likeResult = reviewLikeService.idCheck(reviewLikeDto);
+            review.setLikeresult(likeResult);
+        }
+
+        map.put("card", RM_select);
 
         return map;
     }
@@ -267,5 +306,11 @@ public class ProjectRestController {
             session.invalidate();
         }
         return "success";
+    }
+
+    @GetMapping(value="/review_report_check/{rid}")
+    public String review_report_check(@PathVariable String rid) {
+        int result = reviewService.reportReview(rid);
+        return String.valueOf(result);
     }
 }

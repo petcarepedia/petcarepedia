@@ -128,7 +128,7 @@
 		from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid}
 	</select>
 	
-	<select id="reportReivew" parameterType="String" resultType="int">
+	<select id="reportReview" parameterType="String" resultType="int">
 		select count(*) from pcp_review where rid = #{rid} and rstate = 'O'
 	</select>
 	

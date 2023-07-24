@@ -32,6 +32,7 @@ public class PageService {
         }else if(pageDto.getServiceName().equals("reviewSearch")) {
             pageSize = 7;
             dbCount = reviewService.searchCount(pageDto.getGloc());
+            gloc = pageDto.getGloc();
         }else if(pageDto.getServiceName().equals("notice")) {
             pageSize = 10;
             dbCount = noticeService.count();
@@ -82,6 +83,7 @@ public class PageService {
             endCount = pageSize;
         }
 
+        pageDto.setGloc(gloc);
         pageDto.setStartCount(startCount);
         pageDto.setEndCount(endCount);
         pageDto.setDbCount(dbCount);

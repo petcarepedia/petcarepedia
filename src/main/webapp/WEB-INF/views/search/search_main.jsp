@@ -131,10 +131,10 @@
 								
 									<span id="harea" value="${list.gloc}">${list.gloc}</span>
 									<span id="htime">진료 중</span>
-									<a href="http://localhost:9000/search_result/${list.hid}/basic/">
+									<a href="http://localhost:9000/search_result/${list.hid}">
 										<button type="button" class="hservation" id="${list.hid}">
 											병원 상세보기&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-											&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
+											&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 										</button>
 									</a>
 								</div>
