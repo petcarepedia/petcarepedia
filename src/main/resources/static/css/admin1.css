@@ -245,8 +245,7 @@ section1 style sheet - 카테고리
 /****************************
 hospital_list style sheet
 *****************************/
-section.hospital tr:first-child td, section.hospital_detail tr:first-child td,
-section.review_detail tr:first-child td{
+section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
 	padding:0 0 20px 600px;
@@ -477,7 +476,6 @@ section.review_detail div#d3 {
 	display:inline-block;
 }
 div#dButton{
-	border:1px solid red;
 	display:inline-flex;
 	margin-top: 120px;
 	/* padding:20px 50px; */
@@ -490,11 +488,13 @@ div#dButton button{
 	color:#3D3D3D;
 	border:1px solid #3D3D3D;
 	font-size: 11pt;
-	padding:20px 55px;
 	font-weight:700;
 	cursor:pointer;
 	text-decoration:none;
 	border-radius:5px;
+	width: 110px;
+	padding: 10px 15px;
+	height: 40px;
 
 }
 

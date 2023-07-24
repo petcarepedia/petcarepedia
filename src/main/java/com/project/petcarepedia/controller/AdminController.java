@@ -35,16 +35,18 @@ public class AdminController {
     }
 
     /* 신고 리뷰 삭제 페이지 */
-    @GetMapping("review_delete/{rid}/{page}")
+    @GetMapping("review_delete2/{page}/{rid}/")
     public String review_delete(@PathVariable String rid, @PathVariable String page, Model model){
-        model.addAttribute("delete", reviewService.delete(rid));
+        System.out.println(rid+1);
+        model.addAttribute("content", reviewService.content(rid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_delete2";
     }
-    
+
     /* 신고 리뷰 상세 페이지 */
-    @GetMapping("review_content/{rid}/{page}")
-    public String review_content(@PathVariable String rid, @PathVariable String page, Model model){
+    @GetMapping("review_detail/{page}/{rid}/")
+    public String review_detail(@PathVariable String rid, @PathVariable String page, Model model){
+        System.out.println(rid);
         model.addAttribute("content", reviewService.content(rid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_detail";
@@ -71,8 +73,8 @@ public class AdminController {
     }
 
     /* 예약 메인 페이지 */
-    @GetMapping("reserve_list/{page}/")
-    public String reserve_list(@PathVariable String page, BookingDto bookingDto, Model model){
+    @GetMapping("reserve_list/{page}")
+    public String reserve_list(@PathVariable String page, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "reserve"));
         model.addAttribute("list", bookingServcie.Blist(pageDto));
         model.addAttribute("page", pageDto);
@@ -83,7 +85,7 @@ public class AdminController {
     /* 회원 상세 페이지 */
     @GetMapping("member_detail/{page}/{mid}/")
     public String member_content(@PathVariable String mid, @PathVariable String page, Model model){
-        model.addAttribute("content", memberService.content(mid));
+        model.addAttribute("member", memberService.content(mid));
         model.addAttribute("page", page);
         return "admin/member/admin_member_detail";
     }
