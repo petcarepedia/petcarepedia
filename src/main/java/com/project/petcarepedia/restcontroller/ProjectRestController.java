@@ -307,4 +307,10 @@ public class ProjectRestController {
         }
         return "success";
     }
+
+    @GetMapping(value="/review_report_check/{rid}")
+    public String review_report_check(@PathVariable String rid) {
+        int result = reviewService.reportReview(rid);
+        return String.valueOf(result);
+    }
 }

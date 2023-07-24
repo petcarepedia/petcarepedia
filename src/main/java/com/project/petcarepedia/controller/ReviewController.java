@@ -8,9 +8,7 @@ import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,6 +31,26 @@ public class ReviewController {
     }
 
     //review_content.do 리뷰 상세 페이지
+    @GetMapping("review_content/{rid}")
+    public String review_content(@PathVariable String rid, Model model, HttpSession session) {
+        ReviewDto reviewDto = reviewService.enter_content(rid);
+        ReviewLikeDto reviewLikeDto = new ReviewLikeDto();
+
+        reviewDto.setRcontent(reviewDto.getRcontent().replace("\n", "<br>"));
+        String mid ="";
+        if(session.getAttribute("svo") != null) {
+            SessionDto sessionDto = (SessionDto) session.getAttribute("svo");
+            mid = sessionDto.getMid();
+        }
+        reviewLikeDto.setMid(mid);
+        reviewLikeDto.setRid(rid);
+        int likeResult = reviewLikeService.idCheck(reviewLikeDto);
+
+        model.addAttribute("likeResult",likeResult);
+        model.addAttribute("rvo",reviewDto);
+        return ("/review/review_content");
+    }
+
     @GetMapping("review_content/{rid}/{page}")
     public String review_content(@PathVariable String rid, @PathVariable String page, Model model, HttpSession session) {
         ReviewDto reviewDto = reviewService.enter_content(rid);
@@ -81,13 +99,13 @@ public class ReviewController {
 
 
     //review_delete_proc.do 리뷰 삭제 처리
-    @GetMapping("review_delete")
+    @PostMapping("/review_delete")
     public String review_delete_proc(ReviewDto reviewDto) {
         int result = reviewService.delete(reviewDto.getRid());
         if(result == 1) {
             //파일 삭제 추가하기
         }
-        return ("redirect:/review_main/"+reviewDto.getPage()+"/");
+        return ("redirect:/review_main/1/");
     }
 
     //review_report_check.do 리뷰 신고 체크 ----- restComtroller로 바꾸기
@@ -101,19 +119,19 @@ public class ReviewController {
     */
 
     //review_report_proc.do 리뷰 신고 처리
-    @PostMapping("review_report")
+    @PostMapping("/review_report")
     public String review_report_proc(ReviewDto reviewDto) {
         int result = reviewService.report(reviewDto.getRid());
         String view ="";
         if(result == 1) {
             // 리뷰로 돌아가게하기
-            view = "redirect:/review/review_main";
+            view = "redirect:/review_main";
         }
         return view;
     }
 
     //리뷰 좋아요
-    @PostMapping("review_like")
+    @PostMapping("/review_like")
     public String review_like_proc(ReviewLikeDto reviewLikeDto, PageDto pageDto, HttpSession session, Model model) {
         SessionDto sessionDto = (SessionDto) session.getAttribute("svo");
         reviewLikeDto.setMid(sessionDto.getMid());
@@ -127,16 +145,20 @@ public class ReviewController {
             reviewLikeService.likesUp(reviewLikeDto);
         }
         model.addAttribute("page", pageDto);
-        return ("/review/review_content");
+        return ("redirect:/review_content/"+reviewLikeDto.getRid()+"/"+pageDto.getPage()+"/");
     }
 
 
     //리뷰 검색 페이징
-    @PostMapping("/review_main_search")
-    public String review_main_search(PageDto pageDto, HttpSession session, Model model) {
-        pageService.getPageResult(new PageDto(pageDto.getPage(),"reviewSearch"));
-        model.addAttribute("list", reviewService.listPage(pageDto));
+    @GetMapping("/review_main_search")
+    public String review_main_search(@RequestParam(required = false)String page, @RequestParam(required = false) String gloc, Model model) {
+        PageDto pageDto1 = new PageDto(page,"reviewSearch");
+        pageDto1.setGloc(gloc);
+        PageDto pageDto = pageService.getPageResult(pageDto1);
+        model.addAttribute("list", reviewService.searchListPage(pageDto));
         model.addAttribute("page", pageDto);
-        return "redirect:/review_main_search/1/"+pageDto.getGloc()+"/";
+        return("/review/review_main_search");
     }
+
+
 }

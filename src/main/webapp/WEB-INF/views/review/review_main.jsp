@@ -42,12 +42,13 @@
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 		<div id="brbox" class="review">
-			<jsp:include page="/best_review_list"></jsp:include>
+			<jsp:include page="/best_review_list/1/"></jsp:include>
 		</div>
 		<section id="filter">	
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
 			<form name="ReviewSearchForm" action="/review_main_search" method="get">
+				<input type="hidden" name="page" value="1">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
