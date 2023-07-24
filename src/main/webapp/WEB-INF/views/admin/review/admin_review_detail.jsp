@@ -4,11 +4,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
-	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
-		<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/css/kang_style.css">
+	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
+		<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
@@ -22,76 +21,70 @@
 						<nav>
 							<ul>
 								<li>신고리뷰관리</li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
 				</section>
 				<section id="section2">
-					<button type="submit" class="button4" id="btn_delete">
-						<a href="http://localhost:9000/petcarepedia/admin_review_delete2.do?rid=${reviewVo.rid}">삭제하기</a>
-					</button>
 					<div class="review_detail">
 						<div id = "table" >
+							<input type="hidden" id="rrid" name="rid" value="${reviewLike.rid }">
+							<input type="hidden" id="rid" name="rid" value="${review.rid }">
+							<input type="hidden" id="mid" name="mid" value="${mid }">
 							<table class="rv_detail_menu">
 								<tr>
 									<th>병원이름</th>
 									<td>
-										${reviewVo.hname }
+										${review.hname }
 									</td>
 									
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td><img src="http://localhost:9000/petcarepedia/images/cat.png"><p>${reviewVo.nickname }</p></td>
+									<td><img src="http://localhost:9000/images/cat.png"><p>${review.nickname }</p></td>
 								</tr>
 								<tr>
 									<th>상세내용</th>
 									<td colspan='3'>
-										${reviewVo.rcontent }
+										${review.rcontent }
 									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="table_right">
 							<div id="right_top">
-								<c:choose>
-									<c:when test="${reviewVo.mid eq mid || mid eq '' || mid eq null}">
-										<button type="button" id="btnLike" disabled>
-											<span class="review_like">
-												♥️
-											</span>
-											${reviewVo.rlike }
-										</button>
-									</c:when>
-									<c:otherwise>
-										<form name="reviewLikeForm" action="review_like_Proc.do" method="post">
-											<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
-											<input type="hidden" id="mid" name="mid" value="${mid }">
-											<input type="hidden" id="page" name="page" value="${page }">
-											<input type="hidden" id="filter_location" name="filter_location" value="${filter_location }">
-										</form>							
-									</c:otherwise>
-								</c:choose>
+								<button type="button" id="btnLike" disabled>
+										♥️${review.rlike }
+								</button>
 							</div>
 							<div id="star">
 								<div class="score" id="score_l">
 									평점
 								</div>
 								<div id="avg" class="score">
-									⭐ ${reviewVo.rstar } / 5.0
+									⭐ ${review.rstar } / 5.0
 								</div>
 							</div>
 							<table>
 								<tr>
 									<td>작성일자</td>
-									<td>${reviewVo.rdate }</td>
+									<td>${review.rdate }</td>
 								</tr>
 							</table>
+							<div id="dButton">
+								<a href="http://localhost:9000/admin/review_delete2/1/${review.rid}/">
+									<button type="submit" class="button5" id="btn_delete">삭제하기</button>
+								</a>
+								<button type="submit" class="button5" id="btn_report" onclick = "report()">신고취소</button>
+								<a href="http://localhost:9000/admin/review_list/1/">
+									<button type="button" class="button5" id="btn_before">이전으로</button>
+								</a>
+							</div>
 						</div>
 					</div>
 				</section>

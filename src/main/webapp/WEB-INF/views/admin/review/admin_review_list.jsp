@@ -72,7 +72,7 @@
 								<td>${review.rno}</td>
 								<td>${review.mid}</td>
 								<td>${review.hname}</td>
-								<td><a href="/admin/review_detail/${review.rid}">${review.rcontent}</a></td>
+								<td><a href="/admin/review_detail/1/${review.rid}/">${review.rcontent}</a></td>
 								<td>${review.rdate}</td>
 							</tr>
 						</c:forEach>
