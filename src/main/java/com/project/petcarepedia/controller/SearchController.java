@@ -34,9 +34,9 @@ public class SearchController {
 
 
     /** search_result - 병원 상세정보 **/
-    @GetMapping("/search_result/{hid}/{filter}")
+    @GetMapping("/search_result/{hid}")
     /*public String search_result(@PathVariable String hid, String rid, String filter, HttpSession session, Model model) {*/
-    public String search_result(@PathVariable String hid, @PathVariable String filter, HttpSession session, Model model) {
+    public String search_result(@PathVariable String hid, HttpSession session, Model model) {
 
         //session
         SessionDto svo = (SessionDto) session.getAttribute("svo");
@@ -55,8 +55,9 @@ public class SearchController {
 
         //filter
         ArrayList<ReviewDto> RM_select = new ArrayList<>();
+        RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
 
-        if(filter == null) {
+        /*if(filter == null) {
             RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
         } else if(filter.equals("basic")) {
             RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
@@ -68,7 +69,7 @@ public class SearchController {
             RM_select = (ArrayList<ReviewDto>) reviewService.RM_select4(hid);
         }
 
-        model.addAttribute("filter", filter); // 리뷰 정렬 필터
+        model.addAttribute("filter", filter); // 리뷰 정렬 필터*/
 
         //check bookmark
         BookmarkDto bookmarkDto = new BookmarkDto();
