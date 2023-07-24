@@ -69,7 +69,7 @@ $(document).ready(function(){
 					        '<div class="iw_inner" style="padding:10px;">',
 					        '   <div style="clear:both;margin-bottom:5px;">',
 					        '	<img src="http://localhost:9000/images/foot_98DFFF.png" width="20px" height="20px">',
-					        '	<a href="http://localhost:9000/search_result/'+obj.hid + "/basic/",
+					        '	<a href="http://localhost:9000/search_result/'+obj.hid + "/",
 					        '" style="font-size:18px;text-decoration:none;color:#3d3d3d;font-weight:bold;">'+obj.hname+'</a></div>',
 					        '   <p style="font-size:12px;color:darkgray;margin-bottom:5px">Time | '+obj.htime+'<br>Tel | '+obj.tel+'</h3>',
 					        '   <p style="font-size:13px;color:#636363">'+obj.loc+'</p>',

@@ -1,13 +1,12 @@
 $(document).ready(function(){
 	var mid = $("input[name='loginId']").val(); // 로그인 확인
+	var hid = $("input[name='hid']").val(); // 현재 병원
 
 
 	/** 북마크 버튼 **/
 	$("#bookmark").click(function(event) { // 북마크
 		event.preventDefault(); // 페이지 바로넘어감 방지
-		
-		var hid = $("input[name='hid']").val();
-		
+
 		 if(mid == "") { // 미로그인시
 			 Swal.fire({
 				 icon: 'warning',
@@ -55,7 +54,7 @@ $(document).ready(function(){
 	});
 	
 	
-	/** 예약  버튼 **/
+	/** 예약 버튼 **/
 	$("#reservation").click(function() { // 예약 버튼
 		if(mid == "") { // 미로그인시
 			 Swal.fire({
@@ -345,5 +344,147 @@ $(document).ready(function(){
 			});
 		});
 	});
+
+
+	/*
+	리뷰 정렬
+	*/
+	$('#filter').on('change', function() {
+		var filter = $('#filter').val();
+		$.ajax({
+			type : 'GET',
+			url : 'http://localhost:9000/search_result/' + hid + "/" + filter + "/",
+			data : 'json',
+		}).done(function(result){
+			console.log(result);
+			console.log(filter);
+
+			$('.review_card').remove();
+
+			var reviewSet = new Set(); // 중복 리뷰 방지를 위한 Set 객체
+			var cards = []; // 리뷰 카드를 담을 배열
+
+			for (var r of result.card) {
+				if (!reviewSet.has(r.rid)) { // 이미 추가된 리뷰인지 검사
+					reviewSet.add(r.rid); // Set에 추가
+				}
+
+				// 각 리뷰마다 독립적인 카드를 생성
+				var reviewCard = '<div class="review_card"><div class="member"><div class="name">';
+
+				if (r.msfile != null) {
+					reviewCard += '<img src="http://localhost:9000/upload/' + r.msfile + '">';
+				} else {
+					reviewCard += '<img src="http://localhost:9000/images/cat.png">';
+				}
+
+				reviewCard += '<span>' + r.nickname + '</span></div>';
+				reviewCard += '<hr class="member_hr">';
+				reviewCard += '<span class="stext">⭐';
+				reviewCard += ' ' + r.rstar + ' / 5</span>';
+
+				reviewCard += '<hr class="member_hr">';
+
+				if (r.rstar >= 1 && r.rstar < 2) {
+					reviewCard += ' <span class="stot">별점 ⭐</span>';
+				} else if (r.rstar >= 2 && r.rstar < 3) {
+					reviewCard += ' <span class="stot">별점 ⭐⭐</span>';
+				} else if (r.rstar >= 3 && r.rstar < 4) {
+					reviewCard += ' <span class="stot">별점 ⭐⭐⭐</span>';
+				} else if (r.rstar >= 4 && r.rstar < 5) {
+					reviewCard += ' <span class="stot">별점 ⭐⭐⭐⭐</span>';
+				} else if (r.rstar >= 5) {
+					reviewCard += ' <span class="stot">별점 ⭐⭐⭐⭐⭐</span>';
+				}
+				reviewCard += '</div>';
+				reviewCard += '<div class="write"><p>' + r.rcontent + '</p>';
+
+					reviewCard += '<div class="rm_img">';
+					if (r.rsfile1 != null && r.rsfile1 != "") {
+						reviewCard += '<a href="http://localhost:9000/upload/' + r.rsfile1 + '" data-title="img" data-lightbox="example-set" class="pop">';
+						reviewCard += '<img class="rsfile" src="http://localhost:9000/upload/' + r.rsfile1 + '" alt=""></a>';
+					} else if (r.rsfile2 != null && r.rsfile2 != "") {
+						reviewCard += '<a href="http://localhost:9000/upload/' + r.rsfile2 + '" data-title="img" data-lightbox="example-set" class="pop">';
+						reviewCard += '<img class="rsfile" src="http://localhost:9000/upload/' + r.rsfile2 + '" alt=""></a>';
+					}
+					reviewCard += '</div></div>';
+
+					reviewCard += '<div class="date">';
+					reviewCard += '<span>작성 일자 : ' + r.rdate + '</span> ';
+					reviewCard += '<span> </span>';
+					reviewCard += '<form name="likeForm" action="/like" method="get">';
+					reviewCard += '<input type="hidden" name="hid" value="' + r.hid + '">';
+					reviewCard += '<input type=hidden name="rid" value="' + r.rid + '">';
+					reviewCard += '<input type="hidden" name="mid" value="' + mid + '">';
+					reviewCard += '<input type="hidden" name="likeresult" value="' + r.likeresult + '">';
+
+
+					if (mid != null) {
+					if (mid == r.mid) {
+						if (r.likeresult == 0) {
+							reviewCard += '<a href="javascript:;" class="icon heart">';
+							reviewCard += '<button type="submit" id="like" class="like disabled check" data-rid="' + r.rid + '" disabled>';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						} else {
+							reviewCard += '<a href="javascript:;" class="icon heart">';
+							reviewCard += '<button type="submit" id="like" class="like active disabled check" data-rid="' + r.rid + '" disabled>';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						}
+					} else {
+						if (r.likeresult == 0) {
+							reviewCard += '<a href="javascript:;" class="icon heart"><button type="submit" id="like" class="like check" data-rid="' + r.rid + '">';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						} else {
+							reviewCard += '<a href="javascript:;" class="icon heart">';
+							reviewCard += '<button type="submit" id="like" class="like active check" data-rid="' + r.rid + '">';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						}
+					}
+				} else {
+					reviewCard += '<a href="javascript:;" class="icon">';
+					reviewCard += '<button type="submit" id="like" class="like non" data-rid="' + r.rid + '">';
+					reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+					reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기"> ';
+					reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+					reviewCard += '</button></a></form>';
+				}
+
+				reviewCard += '<form name="rstateForm" action="/rstate" method="get">';
+				if (mid != r.mid) {
+					reviewCard += '<input type="hidden" name="mid" value="' + mid + '">';
+					reviewCard += '<input type="hidden" name="rid" value="' + r.rid + '">';
+					reviewCard += '<input type="hidden" name="hid" value="' + r.hid + '">';
+					reviewCard += '<button type="button" class="rstate" name="rstate" data-rid="' + r.rid + '">신고하기</button>';
+				} else {
+					reviewCard += '<button type="button" class="rstate" name="rstate" hidden></button>';
+				}
+				reviewCard += '</form>';
+				reviewCard += '</div></div>'; // 이 부분에서 하나의 리뷰 카드가 끝남
+
+					cards.unshift(reviewCard);
+
+			} // for
+
+			for (var card of cards) {
+				$('#filter').after(card);
+			}
+
+		}).fail(function(result){
+			console.log('에러');
+		});
+	});
+
 
 });

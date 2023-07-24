@@ -236,7 +236,8 @@
 				<form name="filterForm" action="/search_result" method="GET">
 					<input type="hidden" name="hid" value="${hospital.hid}">
 					<input type="hidden" id="filterCheck" value="${filter}">
-				    <select name="filter" id="filter" class="filter" onchange="this.form.submit()">
+				    <%--<select name="filter" id="filter" class="filter" onchange="this.form.submit()">--%>
+				    <select name="filter" id="filter" class="filter">
 				    	<option value="" selected>리뷰 정렬</option>
 					    <option value="basic">기본 정렬</option>
 					    <option value="like">좋아요 많은 순서</option>
@@ -312,7 +313,7 @@
 											</c:if>
 
 											<c:if test="${RM_select.rsfile2 != null && RM_select.rsfile2 != ''}">
-												<a href="http://localhost:9000/upload/${RM_select.rsfile1}" data-title="img" data-lightbox="example-set" class="pop">
+												<a href="http://localhost:9000/upload/${RM_select.rsfile2}" data-title="img" data-lightbox="example-set" class="pop">
 													<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile2}" alt="">
 												</a>
 											</c:if>
