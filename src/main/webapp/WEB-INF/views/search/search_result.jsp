@@ -238,7 +238,7 @@
 					<input type="hidden" id="filterCheck" value="${filter}">
 				    <%--<select name="filter" id="filter" class="filter" onchange="this.form.submit()">--%>
 				    <select name="filter" id="filter" class="filter">
-				    	<option value="" selected>리뷰 정렬</option>
+				    	<option value="basic" selected>리뷰 정렬</option>
 					    <option value="basic">기본 정렬</option>
 					    <option value="like">좋아요 많은 순서</option>
 					    <option value="totalUp">별점 높은 순서</option>
@@ -325,9 +325,9 @@
 									<span> </span>
 									
 									<!-- 좋아요 -->
-									<form name="likeForm" action="/like" method="get">
+									<form name="likeForm" action="like" method="get">
 										<input type="hidden" name="hid" value="${hospital.hid}">
-										<input type=hidden name="rid" value="${RM_select.rid}">
+										<input type="hidden" name="rid" value="${RM_select.rid}">
 										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
 										<input type="hidden" name="likeresult" value="${RM_select.likeresult}">
 
@@ -387,7 +387,7 @@
 										
 											<c:otherwise>
 												<a href="javascript:;" class="icon">										
-													<button type="submit" id="like" class="like non" data-rid="${RM_select.rid}">								
+													<button type="submit" id="like" class="like non" data-rid="${RM_select.rid}">
 														좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp								
 														<!-- <span class="heart">♥</span>  -->								
 														<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기"> 
