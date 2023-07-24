@@ -413,10 +413,10 @@ $(document).ready(function(){
 					reviewCard += '<span>작성 일자 : ' + r.rdate + '</span> ';
 					reviewCard += '<span> </span>';
 					reviewCard += '<form name="likeForm" action="/like" method="get">';
-					reviewCard += '<input type="hidden" name="hid" value="' + r.hid + '">';
-					reviewCard += '<input type=hidden name="rid" value="' + r.rid + '">';
-					reviewCard += '<input type="hidden" name="mid" value="' + mid + '">';
-					reviewCard += '<input type="hidden" name="likeresult" value="' + r.likeresult + '">';
+					reviewCard += '<input type="text" name="hid" value="' + hid + '">';
+					reviewCard += '<input type=text name="rid" value="' + r.rid + '">';
+					reviewCard += '<input type="text" name="mid" value="' + mid + '">';
+					reviewCard += '<input type="text" name="likeresult" value="' + r.likeresult + '">';
 
 
 					if (mid != null) {
