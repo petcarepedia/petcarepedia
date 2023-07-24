@@ -70,9 +70,7 @@ public class ReviewService {
     public List<ReviewDto> my_select(String mid) {
         return reviewMapper.my_select(mid);
     }
-    public int reportReview(String rid) {
-        return reviewMapper.reportReview(rid);
-    }
+    public int reportReview(String rid) {return reviewMapper.reportReview(rid);}
     public int report2(String rid) {
         return reviewMapper.report2(rid);
     }

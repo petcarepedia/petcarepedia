@@ -94,7 +94,10 @@
 <!--					WHERE RNO BETWEEN #{start} AND #{end}-->
 <!--	</select>-->
 <!--	-->
-	
+	<select id="RRcount" resultType="int">
+		select count(*) from pcp_review_report
+	</select>
+
 	<select id="Rcount" resultType="int">
 		select count(*) from pcp_review
 	</select>
@@ -128,7 +131,7 @@
 	</select>
 	
 	<select id = "Myscount" parameterType="com.project.petcarepedia.dto.PageDto" resultType = "int">
-		select count(*) from pcp_review where mid = #{mid}
+		select count(*) from pcp_review where mid = #{serviceName}
 	</select>
 	
 </mapper>

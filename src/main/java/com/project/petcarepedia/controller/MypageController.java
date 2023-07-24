@@ -135,10 +135,9 @@ public class MypageController {
     @GetMapping("mypage_my_review/{page}")
     public String mypage_my_review(@PathVariable String page, HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        PageDto pageDto = new PageDto(page,"My_review");
-        pageDto.setMid(svo.getMid());
-        pageDto = pageService.getPageResult(pageDto);
-//        PageDto pageDto = pageService.getPageResult(new PageDto(page, "My_review"));
+        PageDto pageDto = pageService.getPageResult(new PageDto(page,svo.getMid()));
+//        PageDto pageDto = new PageDto(page, svo.getMid());
+//        pageDto = pageService.getPageResult(pageDto);
         List<ReviewDto> list = reviewService.my_select(svo.getMid());
         model.addAttribute("page", pageDto);
         model.addAttribute("list", list);
@@ -168,7 +167,7 @@ public class MypageController {
         if(result == 1) {
             fileService.multiFileSave(reviewDto);
             fileService.multiFileDelete(reviewDto, oldFileName);
-            viewName = "redirect:/mypage_review_content/" + reviewDto.getRid() + "/" + reviewDto.getPage() + "/";
+            viewName = "redirect:/mypage_review_content/" + reviewDto.getRid();
         } else {
             //오류페이지 호출
         }

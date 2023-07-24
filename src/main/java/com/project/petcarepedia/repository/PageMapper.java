@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PageMapper {
     int Rcount();
+    int RRcount();
     int Bscount(PageDto pageDto);
     int Bcount();
     int Mscount(PageDto pageDto);
