@@ -98,7 +98,7 @@ $(document).ready(function(){
         }).then((result) => {
         	if(result.value) {
 				$.ajax({
-					url : "review_report_check.do?rid="+$("#rid").val(),
+					url : "/review_report_check/"+$("#rid").val()+"/",
 					success : function(result) {
 						if(result == 1) {
 							Swal.fire({
@@ -131,23 +131,23 @@ $(document).ready(function(){
 
 	/*******************************************
 		리뷰 필터 클릭
-	********************************************/	
+	********************************************/
 	$('input[name="gloc"]').click(function(){
 		if($(this).prop('checked')){
 			$('input[name="gloc"]').prop('checked',false);
 			$(this).prop('checked',true);
 		}
 	});
-	 
+
 
 	$('input[name="gloc"]').on('change', function() {
-		if ($(this).is(':checked')) { 
+		if ($(this).is(':checked')) {
 			if($(this).val() == "on") {
-				location.href='/review_main'
+				location.href='/review_main/1/'
 			}
 			else {
 				ReviewSearchForm.submit();
-			}  
+			}
 		}
 	});
 

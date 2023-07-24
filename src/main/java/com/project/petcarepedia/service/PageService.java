@@ -22,6 +22,8 @@ public class PageService {
         int reqPage = 1;	//요청페이지
         int pageCount = 1;	//전체 페이지 수
         int dbCount = 0;	//DB에서 가져온 전체 행수
+        String gloc = "";
+
         if(pageDto.getServiceName().equals("My_review")) {
             dbCount = pageMapper.Myscount(pageDto);
             pageSize = 5;
@@ -31,6 +33,7 @@ public class PageService {
         }else if(pageDto.getServiceName().equals("reviewSearch")) {
             pageSize = 7;
             dbCount = reviewService.searchCount(pageDto.getGloc());
+            gloc = pageDto.getGloc();
         }else if(pageDto.getServiceName().equals("notice")) {
             pageSize = 10;
             dbCount = noticeService.count();
@@ -81,6 +84,7 @@ public class PageService {
             endCount = pageSize;
         }
 
+        pageDto.setGloc(gloc);
         pageDto.setStartCount(startCount);
         pageDto.setEndCount(endCount);
         pageDto.setDbCount(dbCount);
