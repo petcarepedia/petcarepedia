@@ -1488,7 +1488,6 @@ textarea[name='review'] {
 #rc_button_r > a {
 	text-decoration : none;
 	display : inline-block;
-	border : 1px solid red;
 	cursor : pointer;
 	width: 120px;
 	height: 44px;

@@ -77,7 +77,7 @@
 						<c:otherwise>
 							<c:forEach var = "review" items = "${list}">
 								<div id = "aside1">
-									<a href = "http://localhost:9000/search_result/${review.hid}">
+									<a href = "http://localhost:9000/search_result/${review.hid}/basic/">
 										<span>${review.hname}</span>
 									</a>
 									<span>${review.tel}</span>

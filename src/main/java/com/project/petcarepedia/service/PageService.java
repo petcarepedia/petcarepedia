@@ -22,9 +22,10 @@ public class PageService {
         int reqPage = 1;	//요청페이지
         int pageCount = 1;	//전체 페이지 수
         int dbCount = 0;	//DB에서 가져온 전체 행수
+
         if(pageDto.getServiceName().equals("My_review")) {
-            dbCount = pageMapper.Myscount(pageDto);
             pageSize = 5;
+            dbCount = pageMapper.Myscount(pageDto);
         }else if(pageDto.getServiceName().equals("review")) {
             pageSize = 7;
             dbCount = reviewService.count();
@@ -59,9 +60,9 @@ public class PageService {
         } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
             pageSize = 10;
             dbCount = pageMapper.Bscount(pageDto);
-        }else if(pageDto.getServiceName().equals("review2")){
+        }else if(pageDto.getServiceName().equals("review_report")){
             pageSize=10;
-            dbCount= pageMapper.Rcount();
+            dbCount= pageMapper.RRcount();
         }
 
         //총 페이지 수 계산

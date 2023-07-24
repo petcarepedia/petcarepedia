@@ -21,33 +21,38 @@ public class AdminController {
     @Autowired
     BookingService bookingServcie;
     @Autowired
-    ReviewService reviewService;
-    @Autowired
     PageService pageService;
     @Autowired
     FileUploadService fileUploadService;
+    @Autowired
+    ReviewReportService reviewReportService;
+
+
 
     /* 신고 리뷰 삭제 처리 */
-    @PostMapping("review_delete")
-    public String review_delete_proc(ReviewDto reviewDto){
-        int result = reviewService.delete(reviewDto.getRid());
-        return "redirect:/admin_review_list/";
+    @PostMapping("review_delete/")
+    public String review_delete_proc(ReviewReportDto reviewReportDto) throws Exception {
+        String oldFileName = reviewReportDto.getMsfile();
+        int result = reviewReportService.reviewDelete(reviewReportDto.getRrid());
+        if(result == 1){
+            fileUploadService.fileDelete(oldFileName);
+        }
+        return "redirect:/admin/review_list/1/";
     }
 
     /* 신고 리뷰 삭제 페이지 */
-    @GetMapping("review_delete2/{page}/{rid}/")
-    public String review_delete(@PathVariable String rid, @PathVariable String page, Model model){
-        System.out.println(rid+1);
-        model.addAttribute("content", reviewService.content(rid));
+    @GetMapping("review_delete2/{page}/{rrid}/")
+    public String review_delete(@PathVariable String rrid, @PathVariable String page, Model model){
+        model.addAttribute("review_report", reviewReportService.content(rrid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_delete2";
     }
 
     /* 신고 리뷰 상세 페이지 */
-    @GetMapping("review_detail/{page}/{rid}/")
-    public String review_detail(@PathVariable String rid, @PathVariable String page, Model model){
-        System.out.println(rid);
-        model.addAttribute("content", reviewService.content(rid));
+    @GetMapping("review_detail/{page}/{rrid}/")
+    public String review_detail(@PathVariable String rrid, @PathVariable String page, Model model){
+        System.out.println(rrid);
+        model.addAttribute("review_report", reviewReportService.content(rrid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_detail";
     }
@@ -55,8 +60,8 @@ public class AdminController {
     /* 신고 리뷰 메인 페이지 */
     @GetMapping("review_list/{page}/")
     public String review_list(@PathVariable String page, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto (page, "review2"));
-        model.addAttribute("list", reviewService.Rlist(pageDto));
+        PageDto pageDto = pageService.getPageResult(new PageDto (page, "review_report"));
+        model.addAttribute("list", reviewReportService.RRlist(pageDto));
         model.addAttribute("page", pageDto);
         return "admin/review/admin_review_list";
     }

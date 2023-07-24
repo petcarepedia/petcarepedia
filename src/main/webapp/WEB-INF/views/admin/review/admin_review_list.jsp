@@ -67,13 +67,13 @@
 								<th>내용</th>
 								<th>작성일</th>
 							</tr>
-						<c:forEach var="review" items="${list}">
+						<c:forEach var="review_report" items="${list}">
 							<tr>
-								<td>${review.rno}</td>
-								<td>${review.mid}</td>
-								<td>${review.hname}</td>
-								<td><a href="/admin/review_detail/1/${review.rid}/">${review.rcontent}</a></td>
-								<td>${review.rdate}</td>
+								<td>${review_report.rno}</td>
+								<td>${review_report.mid}</td>
+								<td>${review_report.hname}</td>
+								<td><a href="/admin/review_detail/1/${review_report.rrid}/">${review_report.rcontent}</a></td>
+								<td>${review_report.rdate}</td>
 							</tr>
 						</c:forEach>
 							<tr>

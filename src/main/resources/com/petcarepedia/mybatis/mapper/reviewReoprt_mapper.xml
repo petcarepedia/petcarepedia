@@ -14,5 +14,27 @@
 	<select id="check" parameterType="com.project.petcarepedia.dto.ReviewReportDto" resultType="int">
 		select count(*) from pcp_review_report where mid = #{mid} and rid = #{rid}
 	</select>
-	
+
+	<delete id="delete" parameterType="com.project.petcarepedia.dto.ReviewReportDto">
+		delete from pcp_review_report where rrid = #{rrid};
+	</delete>
+
+	<select id="RRlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.ReviewReportDto">
+		select * from
+			(select * from
+				(select rownum rno, rrid, mid, rid, hid, rrdate, rreson, rcontent, rdate, msfile, hname from
+					(select l.rrid, l.mid, l.rid, l.hid, to_char(l.rrdate, 'yyyy-mm-dd') rrdate, l.rreson, r.rcontent, to_char(r.rdate, 'yyyy-mm-dd') rdate, m.msfile, h.hname
+					 from pcp_review_report l, pcp_review r, pcp_hospital h, pcp_member m where l.rid = r.rid and l.hid = h.hid and m.mid = l.mid))
+			 order by rrid desc)
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewReportDto">
+		select rrid, rid, hid, rrdate, rreson, rcontent, rdate, rlike, rstar, msfile, hname from
+			(select l.rrid, l.mid, l.rid, l.hid, to_char(l.rrdate, 'yyyy-mm-dd') rrdate, l.rreson, r.rcontent,
+					to_char(r.rdate, 'yyyy-mm-dd') rdate, r.rlike, r.rstar ,m.msfile, h.hname
+			 from pcp_review_report l, pcp_review r, pcp_hospital h, pcp_member m
+			 where l.rid = r.rid and l.hid = h.hid and m.mid = l.mid) where rrid = #{rrid};
+	</select>
+
 </mapper>

@@ -9,6 +9,12 @@
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 		<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
+	<script>
+		function report(){
+			alert("11");
+		}
+	</script>
+
 </head>
 <body>
 <!-- header -->
@@ -33,25 +39,25 @@
 				<section id="section2">
 					<div class="review_detail">
 						<div id = "table" >
-							<input type="hidden" id="rrid" name="rid" value="${reviewLike.rid }">
-							<input type="hidden" id="rid" name="rid" value="${review.rid }">
-							<input type="hidden" id="mid" name="mid" value="${mid }">
+							<input type="hidden" id="rid" name="rid" value="${review_report.rid }">
+							<input type="hidden" id="rrid" name="rrid" value="${review_report.rrid }">
+							<input type="hidden" id="mid" name="mid" value="${review_report.mid }">
 							<table class="rv_detail_menu">
 								<tr>
 									<th>병원이름</th>
 									<td>
-										${review.hname }
+										${review_report.hname }
 									</td>
 									
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td><img src="http://localhost:9000/images/cat.png"><p>${review.nickname }</p></td>
+									<td>${review_report.msfile}<p>${review_report.nickname }</p></td>
 								</tr>
 								<tr>
 									<th>상세내용</th>
 									<td colspan='3'>
-										${review.rcontent }
+										${review_report.rcontent }
 									</td>
 								</tr>
 							</table>
@@ -59,7 +65,7 @@
 						<div class="table_right">
 							<div id="right_top">
 								<button type="button" id="btnLike" disabled>
-										♥️${review.rlike }
+										♥️${review_report.rlike }
 								</button>
 							</div>
 							<div id="star">
@@ -67,17 +73,17 @@
 									평점
 								</div>
 								<div id="avg" class="score">
-									⭐ ${review.rstar } / 5.0
+									⭐ ${review_report.rstar } / 5.0
 								</div>
 							</div>
 							<table>
 								<tr>
 									<td>작성일자</td>
-									<td>${review.rdate }</td>
+									<td>${review_report.rdate}</td>
 								</tr>
 							</table>
 							<div id="dButton">
-								<a href="http://localhost:9000/admin/review_delete2/1/${review.rid}/">
+								<a href="http://localhost:9000/admin/review_delete2/1/${review_report.rrid}/">
 									<button type="submit" class="button5" id="btn_delete">삭제하기</button>
 								</a>
 								<button type="submit" class="button5" id="btn_report" onclick = "report()">신고취소</button>
