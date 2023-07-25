@@ -578,9 +578,13 @@ section.review_content div#table table.rv_detail_menu tr:nth-child(2) td{
 	border:1px solid white;
 	border-right:1px solid #3D3D3D;
 	border-bottom:1px solid #3D3D3D;
-	padding-right:150px;
-
+	padding: 16px 80px;
 }
+section.review_content table.rv_detail_menu tr th {
+	width:80px;
+	height:25px;
+}
+
 
 section.review_content table.rv_detail_menu tr:nth-child(2) td img{
 	width:30px;
