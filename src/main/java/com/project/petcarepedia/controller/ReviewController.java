@@ -4,13 +4,14 @@ import com.project.petcarepedia.dto.*;
 import com.project.petcarepedia.service.PageService;
 import com.project.petcarepedia.service.ReviewLikeService;
 import com.project.petcarepedia.service.ReviewService;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 @Controller
 public class ReviewController {
@@ -150,15 +151,31 @@ public class ReviewController {
 
 
     //리뷰 검색 페이징
-    @GetMapping("/review_main_search")
-    public String review_main_search(@RequestParam(required = false)String page, @RequestParam(required = false) String gloc, Model model) {
+    @PostMapping("/review_main")
+    public String review_main_search(String page , String gloc, Model model) throws UnsupportedEncodingException {
         PageDto pageDto1 = new PageDto(page,"reviewSearch");
         pageDto1.setGloc(gloc);
         PageDto pageDto = pageService.getPageResult(pageDto1);
         model.addAttribute("list", reviewService.searchListPage(pageDto));
         model.addAttribute("page", pageDto);
-        return("/review/review_main_search");
+        String url = pageDto.getGloc();
+        url = URLEncoder.encode(url, "UTF-8");
+        return("redirect:/review_main/1/"+url+"/");
     }
 
+    @GetMapping("review_main/{page}/{gloc}")
+    public String review_main(@PathVariable String page, @PathVariable String gloc, Model model) {
+        PageDto pageDto1 = new PageDto(page, "reviewSearch");
+        pageDto1.setGloc(gloc);
+        PageDto pageDto = pageService.getPageResult(pageDto1);
+        if(pageDto.getGloc().equals("서울전체")) {
+            model.addAttribute("list", reviewService.listPage(pageDto));
+        }
+        else {
+            model.addAttribute("list", reviewService.searchListPage(pageDto));
+        }
+        model.addAttribute("page", pageDto);
+        return ("/review/review_main");
+    }
 
 }

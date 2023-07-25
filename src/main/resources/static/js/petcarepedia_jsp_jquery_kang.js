@@ -139,15 +139,9 @@ $(document).ready(function(){
 		}
 	});
 
-
 	$('input[name="gloc"]').on('change', function() {
 		if ($(this).is(':checked')) {
-			if($(this).val() == "on") {
-				location.href='/review_main/1/'
-			}
-			else {
 				ReviewSearchForm.submit();
-			}
 		}
 	});
 
@@ -206,6 +200,24 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	/**********************************
+	 리뷰 필터 처리
+	 ***********************************/
+	if($('input[name="chkGloc"]').val()!=null) {
+		let Gloc = $('input[name="chkGloc"]').val();
+		$('input[name="gloc"]').prop('checked',false);
+		$('input[value='+Gloc+']').prop('checked',true);
+	}
+
+	if($('input[name="chkGloc"]').val()=="서울전체" & $('input[name="chkPage"]').val()=="1") {
+		return false;
+	}
+	else {
+		$('html, body').animate({
+			scrollTop: $('#filter_lo').offset().top
+		}, 'slow');
+	}
 
 }); //ready
 

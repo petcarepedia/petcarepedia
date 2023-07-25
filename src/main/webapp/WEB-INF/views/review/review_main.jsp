@@ -31,10 +31,20 @@
 				     
 		    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/review_main/"+e.page+"/");
-   		 });
+		if(gloc == "" || gloc == null) {
+			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+				jQuery('.showlabelsm').text('The selected page no: '+e.page);
+				$(location).attr('href', "http://localhost:9000/review_main/"+e.page+"/");
+			});
+		}
+		else {
+			$('input:checkbox[name=filter_location][value= "${page.gloc}"]').attr("checked", true).parent().addClass('on');
+			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+				jQuery('.showlabelsm').text('The selected page no: '+e.page);
+				$(location).attr('href', "http://localhost:9000/review_main_search/"+e.page+"/"+gloc+"/");
+			});
+		}
+
  	});
 </script> 
 </head>
@@ -47,12 +57,14 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
-			<form name="ReviewSearchForm" action="/review_main_search" method="get">
+			<input type="hidden" name="chkGloc" value="${page.gloc}">
+			<input type="hidden" name="chkPage" value="${page.reqPage}">
+			<form name="ReviewSearchForm" action="/review_main" method="post">
 				<input type="hidden" name="page" value="1">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
-						<td><input type="checkbox" name="gloc" checked="checked"> 서울전체</td>
+						<td><input type="checkbox" name="gloc" value="서울전체"checked="checked"> 서울전체</td>
 						<td><input type="checkbox" name="gloc" value="강남구"> 강남구</td>
 						<td><input type="checkbox" name="gloc" value="강동구"> 강동구</td>
 						<td><input type="checkbox" name="gloc" value="강북구"> 강북구</td>

@@ -49,12 +49,13 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
+			<input type="hidden" name="chkGloc" value="${page.gloc}">
 			<form name="ReviewSearchForm" action="review_main_search" method="get">
 				<input type="hidden" name="page" value="1">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
-						<td><input type="checkbox" name="gloc"> 서울전체</td>
+						<td><input type="checkbox" name="gloc" value="서울전체"> 서울전체</td>
 						<td><input type="checkbox" name="gloc" value="강남구"> 강남구</td>
 						<td><input type="checkbox" name="gloc" value="강동구"> 강동구</td>
 						<td><input type="checkbox" name="gloc" value="강북구"> 강북구</td>
