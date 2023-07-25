@@ -17,9 +17,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 <script>
 	$(document).ready(function(){
-		var mid = "${sessionScope.svo.mid}";
-		var page = "${page}";
-		
+
 		var pager = jQuery('#ampaginationsm').pagination({
 
 			maxSize: '${page.pageCount}',	    		// max page size
@@ -38,7 +36,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-				   $(location).attr('href', "http://localhost:9000/mypage_my_review/"+e.page);
+				   $(location).attr('href', "http://localhost:9000/mypage_my_review/"+e.page + "/");
 	    });
 		
  	});
@@ -77,7 +75,7 @@
 						<c:otherwise>
 							<c:forEach var = "review" items = "${list}">
 								<div id = "aside1">
-									<a href = "http://localhost:9000/search_result/${review.hid}/basic/">
+									<a href = "http://localhost:9000/search_result/${review.hid}">
 										<span>${review.hname}</span>
 									</a>
 									<span>${review.tel}</span>

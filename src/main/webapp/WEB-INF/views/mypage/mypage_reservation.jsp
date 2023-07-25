@@ -61,7 +61,7 @@
 									<img src = "http://localhost:9000/upload/${booking.hsfile}">
 									<div>
 										<span>서울시 > ${booking.gloc}</span>
-										<a href = "http://localhost:9000/search_result/${booking.hid}/basic/"><span>${booking.hname}</span></a>
+										<a href = "http://localhost:9000/search_result/${booking.hid}"><span>${booking.hname}</span></a>
 										<span></span>
 										<img src = "http://localhost:9000/images/위치.png">
 										<span>${booking.loc}</span>
@@ -85,7 +85,7 @@
 									<img src = "http://localhost:9000/upload/${booking.hsfile}">
 									<div>
 										<span>서울시 > ${booking.gloc}</span>
-										<a href = "http://localhost:9000/search_result/${booking.hid}/basic/"><span>${booking.hname}</span></a>
+										<a href = "http://localhost:9000/search_result/${booking.hid}"><span>${booking.hname}</span></a>
 										<span></span>
 										<img src = "http://localhost:9000/images/위치.png">
 										<span>${booking.loc}</span>

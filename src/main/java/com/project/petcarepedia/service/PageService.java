@@ -14,7 +14,7 @@ public class PageService {
     @Autowired
     private NoticeService noticeService;
     public PageDto getPageResult(PageDto pageDto) {
-
+        String gloc = "";
         //페이징 처리 - startCount, endCount 구하기
         int startCount = 0;
         int endCount = 0;
@@ -23,8 +23,8 @@ public class PageService {
         int pageCount = 1;	//전체 페이지 수
         int dbCount = 0;	//DB에서 가져온 전체 행수
 
-        if(pageDto.getServiceName().equals("My_review")) {
-            pageSize = 5;
+        if(pageDto.getServiceName().equals("my_review")) {
+            pageSize = 3;
             dbCount = pageMapper.Myscount(pageDto);
         }else if(pageDto.getServiceName().equals("review")) {
             pageSize = 7;
