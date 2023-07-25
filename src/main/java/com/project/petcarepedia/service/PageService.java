@@ -22,7 +22,6 @@ public class PageService {
         int reqPage = 1;	//요청페이지
         int pageCount = 1;	//전체 페이지 수
         int dbCount = 0;	//DB에서 가져온 전체 행수
-        String gloc = "";
 
         if(pageDto.getServiceName().equals("my_review")) {
             pageSize = 3;
