@@ -115,7 +115,7 @@
 			<div id = "aside">
 				<section id = "section2">
 					<c:choose>
-						<c:when test="${hospital == null}">
+						<c:when test="${hospital == null || hospital.auth == null}">
 							<div class="mhbox null">
 								<i class="fa-solid fa-circle-plus fa-3x" style="color: #989898;"></i>
 								<p>병원 등록하기</p>
