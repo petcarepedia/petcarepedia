@@ -51,7 +51,6 @@ public class AdminController {
     /* 신고 리뷰 상세 페이지 */
     @GetMapping("review_detail/{page}/{rrid}/")
     public String review_detail(@PathVariable String rrid, @PathVariable String page, Model model){
-        System.out.println(rrid);
         model.addAttribute("review_report", reviewReportService.content(rrid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_detail";

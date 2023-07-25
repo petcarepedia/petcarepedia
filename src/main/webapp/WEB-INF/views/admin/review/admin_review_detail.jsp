@@ -52,7 +52,7 @@
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td>${review_report.msfile}<p>${review_report.nickname }</p></td>
+									<td>${review_report.msfile}<p>${review_report.mid }</p></td>
 								</tr>
 								<tr>
 									<th>상세내용</th>
