@@ -31,19 +31,12 @@
 				     
 		    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
-		if(gloc == "" || gloc == null) {
-			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-				jQuery('.showlabelsm').text('The selected page no: '+e.page);
-				$(location).attr('href', "http://localhost:9000/review_main/"+e.page+"/");
-			});
-		}
-		else {
-			$('input:checkbox[name=filter_location][value= "${page.gloc}"]').attr("checked", true).parent().addClass('on');
-			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-				jQuery('.showlabelsm').text('The selected page no: '+e.page);
-				$(location).attr('href', "http://localhost:9000/review_main_search/"+e.page+"/"+gloc+"/");
-			});
-		}
+
+		$('input:checkbox[name=filter_location][value= "${page.gloc}"]').attr("checked", true).parent().addClass('on');
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			jQuery('.showlabelsm').text('The selected page no: '+e.page);
+			$(location).attr('href', "http://localhost:9000/review_main_search/"+e.page+"/"+gloc+"/");
+		});
 
  	});
 </script> 
@@ -116,47 +109,57 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<ul>
-				<c:forEach var="list" items="${list }">
-					<li class="review_list">
-						<ul>
-							<li id="list_left" class="list">
-								<p><img src="http://localhost:9000/images/cat.png"><span>${list.nickname }</span></p>
-								<div id="star">
-									<div id="avg">
-										⭐ ${list.rstar } / 5.0
-									</div>
-								</div>
-							</li>
-								<li id="list_middle" class="list">
-									<a href="/review_content/${list.rid }/${page.reqPage}/">
-										<div id="review_hname">${list.hname }</div>
-										<div class="rvc">
-											${list.rcontent }
+			<c:choose>
+				<c:when test="${page.dbCount == 0}">
+					<ul>
+						<li>없음</li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul>
+						<c:forEach var="list" items="${list }">
+							<li class="review_list">
+								<ul>
+									<li id="list_left" class="list">
+										<p><img src="http://localhost:9000/images/cat.png"><span>${list.nickname }</span></p>
+										<div id="star">
+											<div id="avg">
+												⭐ ${list.rstar } / 5.0
+											</div>
 										</div>
-									</a>
-								</li>
-							<li id="list_right" class="list">
-								<div>
-									도움이 되었어요
-									<span>
-										<!-- ♥️ -->
-										<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;"> 
-									</span>
-									${list.rlike }
-								</div>
-								<table>
-									<tr>
-										<td>작성일자</td>
-										<td>${list.rdate }</td>
-									</tr>
-								</table>
+									</li>
+									<li id="list_middle" class="list">
+										<a href="/review_content/${page.gloc}/${page.reqPage}/${list.rid }/">
+											<div id="review_hname">${list.hname }</div>
+											<div class="rvc">
+													${list.rcontent }
+											</div>
+										</a>
+									</li>
+									<li id="list_right" class="list">
+										<div>
+											도움이 되었어요
+											<span>
+											<!-- ♥️ -->
+											<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;">
+										</span>
+												${list.rlike }
+										</div>
+										<table>
+											<tr>
+												<td>작성일자</td>
+												<td>${list.rdate }</td>
+											</tr>
+										</table>
+									</li>
+								</ul>
 							</li>
-						</ul>
-					</li>
-				</c:forEach>
-				<li><div id="ampaginationsm"></div></li>
-			</ul>
+						</c:forEach>
+						<li><div id="ampaginationsm"></div></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 		</section>
 	<!-- </form> -->

@@ -2,6 +2,7 @@ package com.project.petcarepedia.service;
 
 import com.project.petcarepedia.dto.PageDto;
 import com.project.petcarepedia.repository.PageMapper;
+import com.project.petcarepedia.repository.ReviewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,10 @@ public class PageService {
     @Autowired
     private PageMapper pageMapper;
     @Autowired
-    private ReviewService reviewService;
-    @Autowired
     private NoticeService noticeService;
+    @Autowired
+    private ReviewMapper reviewMapper;
+
     public PageDto getPageResult(PageDto pageDto) {
         String gloc = "";
         //페이징 처리 - startCount, endCount 구하기
@@ -28,16 +30,11 @@ public class PageService {
             dbCount = pageMapper.Myscount(pageDto);
         }else if(pageDto.getServiceName().equals("review")) {
             pageSize = 7;
-            dbCount = reviewService.count();
+            dbCount = reviewMapper.count();
         }else if(pageDto.getServiceName().equals("reviewSearch")) {
             pageSize = 7;
             gloc = pageDto.getGloc();
-            if(gloc=="서울전체") {
-                dbCount = reviewService.count();
-            }
-            else {
-                dbCount = reviewService.searchCount(pageDto.getGloc());
-            }
+            dbCount = reviewMapper.searchCount(pageDto.getGloc());
         }else if(pageDto.getServiceName().equals("notice")) {
             pageSize = 10;
             dbCount = noticeService.count();

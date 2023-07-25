@@ -60,8 +60,8 @@
 							<c:otherwise>
 								<form name="reviewLikeForm" action="/review_like" method="post">
 									<input type="hidden"  name="rid" value="${rvo.rid }">
-									<input type="hidden" id="page" name="page" value="${page.page}">
-									<input type="hidden" id="gloc" name="gloc" value="${page.gloc }">
+									<input type="hidden"  name="page" value="${page.page}">
+									<input type="hidden"  name="gloc" value="${page.gloc }">
 									<button type="submit" id="btnLikeProc">
 										<c:choose>
 											<c:when test="${likeResult eq 1 }">
@@ -79,7 +79,7 @@
 										</c:choose>
 										${rvo.rlike }
 									</button>
-								</form>							
+								</form>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -113,6 +113,8 @@
 						<c:otherwise>
 							<button type="button" class="report" id="btnReviewReport">신고하기</button>
 							<input type="hidden" name="rid" id="rid" value="${rvo.rid }">
+							<input type="hidden" name="page"  value="${page.page }">
+							<input type="hidden" name="gloc"  value="${page.gloc }">
 						</c:otherwise>
 					</c:choose>
 				</form>	
@@ -124,32 +126,12 @@
 							<a href="/mypage_review_revise/${rvo.rid }/"><button type="button" class="button">수정</button></a>
 							<button type="button" class="button" id="reviewDelBtn">삭제</button>
 							<input type="hidden" name="rid" value="${rvo.rid }">
-							<c:choose>
-								<c:when test="${page.page eq null || page eq '' }">
-									<a href="/review_main/1/"><button type="button" class="button">목록</button></a>
-								</c:when>
-								<c:when test="${page.gloc eq null || page.gloc eq '' }">
-									<a href="/review_main/${page.page }/"><button type="button" class="button">목록</button></a>
-								</c:when>
-								<c:otherwise>
-									<a href="/review_main_search.${page.page }/${page.gloc}/"><button type="button" class="button">목록</button></a>
-								</c:otherwise>
-							</c:choose>
+							<a href="/review_main/${page.gloc}/${page.page }/"><button type="button" class="button">목록</button></a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="rc_button_r">
-							<c:choose>
-								<c:when test="${page.reqPage eq null }">
-									<a href="/review_main"><button type="button" class="button">목록</button></a>
-								</c:when>
-								<c:when test="${page.gloc eq null }">
-									<a href="/review_main/${page.page }/"><button type="button" class="button">목록</button></a>
-								</c:when>
-								<c:otherwise>
-									<a href="/review_main_search/${page.page }/${page.gloc}/"><button type="button" class="button">목록</button></a>
-								</c:otherwise>
-							</c:choose>
+							<a href="/review_main/${page.gloc}/${page.page }/"><button type="button" class="button">목록</button></a>
 						</div>
 					</c:otherwise>
 				</c:choose>
