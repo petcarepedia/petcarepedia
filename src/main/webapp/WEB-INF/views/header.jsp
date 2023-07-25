@@ -39,7 +39,7 @@
 		                            <a href="http://localhost:9000/search_main/">병원검색</a>
 		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/review_main/1/서울전체/">리뷰사전</a>
+		                            <a href="http://localhost:9000/review_main/서울전체/1/">리뷰사전</a>
 		                        </li>
 		                        <li>
 		                            <a href="http://localhost:9000/login">로그인</a>
@@ -58,7 +58,7 @@
 		                            <a href="http://localhost:9000/search_main/">병원검색</a>
 		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/review_main/1/">리뷰사전</a>
+		                            <a href="http://localhost:9000/review_main/서울전체/1/">리뷰사전</a>
 		                        </li>
 		                        <li>
 		                            <a href="http://localhost:9000/mypage_member_information/">마이페이지</a>

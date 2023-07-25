@@ -1,0 +1,471 @@
+/*****************************
+	commons style sheet
+******************************/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
+*{
+    padding : 0px;
+    margin : 0px;
+    /* 	font-family: 'Inter'; */
+    font-style: normal;
+}
+div#ampaginationsm ul li.active a {
+    background-color:#FFB3BD;
+    border-color:#FFB3BD;
+    margin-bottom : 100px;
+}
+#content {
+    width : 1000px;
+    height : 700px;
+    margin:auto;
+    margin-top : 140px;
+    padding-top : 20px;
+}
+
+#section1 div nav ul li a:hover {
+    font-size : 16px;
+    font-weight:bold;
+    color :#FFB3BD;
+    text-decoration : none;
+}
+
+button {
+    cursor : pointer;
+}
+hr {
+    /* 	position : absolute;
+        left: 580px;
+        top: 237px;  */
+    margin-left : 200px;
+    width: 777px;
+    height: 0px;
+    border: 1px solid #8A8A8A;
+    transform: rotate(-0.09deg);
+
+}
+#title{
+    /* 	position: absolute; */
+    margin-left : 200px;
+    width: 300px;
+    height: 45px;
+
+    /* 	left: 581px;
+        top: 189px; */
+}
+
+#section1 {
+    width: 148px;
+    height: 300px;
+    float : left;
+}
+#aside {
+    float : left;
+    margin-left : 50px;
+}
+#information #aside, #revise #aside {
+    margin-left : 130px;
+}
+#section1 div nav ul{
+    list-style-type:none;
+
+}
+#section1 div nav ul li{
+    margin-bottom : 15px;
+}
+#section1 div nav ul li:first-child {
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFB3BD;
+    border-left : 10px solid #FFB3BD;
+    margin-bottom : 25px;
+    padding-left : 7px;
+}
+
+#section1 div nav ul li a {
+    font-size : 16px;
+    /* 	font-weight : 500; */
+    color : #3D3D3D;
+    text-decoration : none;
+}
+#section1 div nav ul li:nth-child(4) a{
+    font-weight:bold;
+}
+
+
+
+
+
+
+
+#profileBox {
+    width: 100px;
+    height: 100px;
+    border-radius: 70%;
+    border : 2px solid gray;
+    overflow: hidden;
+    margin-left : 40px;
+    float : left;
+    margin-top : 15px;
+}
+#profileBoxOut {
+    position : relative;
+    width : 600px;
+    height : 150px;
+    float : left;
+    margin-right : 30px;
+    border-radius : 5px;
+    border : 1px solid #F2F2F2;
+    margin-bottom : 5px;
+    background : #EFF5FB;
+}
+#file1 {
+    display : none;
+}
+#update_profile {
+    position : absolute;
+    width : 30px;
+    height : 30px;
+    top : 100px;
+    left : 110px;
+}
+#profileBoxOut label {
+    margin-left : 60px;
+}
+#profileBoxOut #lb_id {
+    display : inline-block;
+    font-size : 18px;
+    margin-top : 20px;
+    margin-bottom : 10px;
+}
+#profileBoxOut #lb_name {
+    font-size : 25px;
+}
+
+#profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#update_info{
+    width : 600px;
+    height : 50px;
+    float : left;
+    border : 1px solid #F2F2F2;
+    border-bottom : none;
+    border-radius : 5px;
+    background : #FFB3BD;
+    margin-bottom : 3px;
+}
+#update_info label {
+    display : inline-block;
+    margin: 15px 0px 0px 15px;
+    color : white;
+    font-size : 20px;
+    font-weight : 700;
+}
+#update1 {
+    width:10px;
+    height:30px;
+}
+#information #aside #updateForm #section2 ul li label:first-child{
+    display : inline-block;
+    text-align : center;
+    width: 77px;
+    height: 35px;
+    background: #FFB3BD;
+    color : white;
+    font-size: 14px;
+    font-weight: 700;
+    padding:20px 0 0 0;
+    border-radius: 5px;
+}
+#information #aside #updateForm #section2 ul li label:first-child span {
+    color : #FFD8D8;
+}
+#information #aside #updateForm #section2 ul li input{
+    position : relative;
+    display : inline-block;
+    width : 513px;
+    height: 50px;
+    border : 1px solid #D8D8D8;
+    border-radius : 5px;
+    padding: 2px 0 0 5px;
+    font-weight : 700;
+    font-size: 14px;
+    vertical-align: bottom;
+    background : white;
+
+}
+#information #aside #updateForm #section2 ul li input:hover {
+    background : #EFF5FB;
+}
+#information #aside #updateForm #section2 ul li button {
+    position : absolute;
+    float : right;
+    backgroung : white;
+    border : none;
+}
+#information #aside #updateForm #section2 ul li button img{
+    position : absolute;
+    top : 10px;
+    left : -40px;
+    width : 35px;
+    height : 35px;
+}
+#information #aside #updateForm #section2 ul li:nth-child(3){
+    position : relative;
+}
+
+#information #aside #updateForm #section2 p {
+    margin-bottom : 10px;
+    margin-top : -20px;
+    margin-left : 440px;
+    font-size : 12px;
+}
+#information #aside #updateForm #section2 p span.ess {
+    font : black;
+    font-weight : 500px;
+}
+#information #aside #updateForm #section2 ul li {
+    margin-bottom : 7px;
+}
+
+#information #aside #updateForm #section2 ul{
+    list-style-type:none;
+}
+
+#section2 {
+    /* 	position: absolute;
+        left: 580px;
+        top: 284px; */
+    width: 614px;
+    /* 	height: 375.36px;	 */
+    padding-top : 30px;
+}
+#information #aside #updateForm #section2 {
+    width : 630px;
+    padding-top: 47px;
+}
+
+#information #section3 #btn_style1 {
+    /* 	position : absolute; */
+    border : none;
+    background: #FFB3BD;
+    text-align : center;
+    color : white;
+    width: 240px;
+    height: 48px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    margin-top : 35px;
+    margin-left : 202px;
+    margin-bottom : 100px;
+    /* 	left: 782px;
+        top: 693px; */
+}
+
+input[type='date'] {
+    position : relative;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+    position : absolute;
+    left:100px;
+    width: 30%;
+    height: 30%;
+    cursor: pointer;
+}
+
+section#section2 {
+    float:left;
+    width: 614px;
+    height: 375px;
+}
+
+section#section2 div.review_detail {
+    width:777px;
+    height:420px;
+    border: 1px solid #FFB3BD;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 40px;
+}
+
+section#section2 .button, button#review_manage {
+    background:#FFB3BD;
+    color:white;
+    border:1px solid #FFB3BD;
+    padding:5px 10px;
+    border-radius:5px;
+}
+
+button#review_manage {
+    margin-left: 720px;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 28px;
+}
+
+
+
+/*
+	review_content
+*/
+section#section2 .rc_button_r {
+    width:135%;
+    margin-top:10px;
+    text-align:right;
+    padding-right:100px;
+}
+section#section2 table.rv_detail_menu {
+    width:60%;
+    margin-top:20px;
+    height:350px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+}
+section#section2 table.rv_detail_menu tr {
+    margin-bottom:0px;
+}
+section#section2 table.rv_detail_menu tr th {
+    width:80px;
+    height:25px;
+    color:#3d3d3d;
+}
+section#section2 table.rv_detail_menu tr td {
+    text-align:left;
+    font-size:14px;
+    font-weight: 10;
+    color:#3d3d3d;
+    /* border:1px solid blue; */
+}
+section#section2 table.rv_detail_menu tr td a {
+    text-decoration: none;
+    color:#3d3d3d;
+}
+section#section2 table.rv_detail_menu tr:nth-child(2) td {
+    display:flex;
+}
+section#section2 table.rv_detail_menu tr:nth-child(2) td p {
+    font-size:16px;
+    font-weight:100;
+}
+div#review ul li.review_list ul li#list_left p img {
+    width:20px;
+    margin-right:10px;
+}
+section#section2 table.rv_detail_menu tr td img {
+    width:30px;
+    height:30px;
+    margin-right:10px;
+}
+section#section2 table.rv_detail_menu tr:nth-child(2) td:nth-child(2) {
+    width:200px;
+}
+section#section2 table.rv_detail_menu tr:last-child {
+    vertical-align:top;
+    height:250px;
+}
+section#section2 table.rv_detail_menu tr:last-child td {
+    padding:20px 10px;
+    border:1px solid #D9D9D9;
+    border-radius:5px;
+    font-size:14px;
+    text-align: justify;
+    word-break:break-all;
+}
+section#section2 div.review_detail div.table_right {
+    position: relative;
+    left: 530px;
+    top: -370px;
+    height:400px;
+    width:250px;
+}
+section#section2 div.review_detail button.report {
+    width:60px;
+    position: relative;
+    left:20px;
+    top: -395px;
+    font-size:15px;
+    background:white;
+    border:none;
+    color:red;
+}
+section#section2 div.review_detail button.report:hover {
+    cursor:pointer;
+}
+section#section2 div.review_detail div.table_right button {
+    background:white;
+    border:1px solid #FFB3BD;
+    border-radius:5px;
+    margin-right:10px;
+    border-radius:5px;
+    height:30px;
+    width:70px;
+    vertical-align:middle;
+}
+section#section2 div.review_detail div.table_right button:disabled {
+    color:#3d3d3d;
+}
+section#section2 div.review_detail div.table_right button:disabled:hover {
+    cursor:default;
+}
+section#section2 div.review_detail div.table_right button:hover {
+    cursor:pointer;
+}
+section#section2 div.review_detail div.table_right div#right_top {
+    text-align:right;
+    margin-top:10px;
+    padding-right:5px;
+}
+section#section2 div.review_detail div.table_right div#right_top button img {
+    height:25px;
+}
+section#section2 div.review_detail div.table_right div#star {
+    margin-top:50px;
+    height:100px;
+    text-align:center;
+    color:#3d3d3d;
+}
+section#section2 div.review_detail div.table_right table {
+    font-size:15px;
+    margin-left:80px;
+    margin-top:55px;
+    width:200px;
+    color:#3d3d3d;
+}
+section#section2 div.review_detail div.table_right div#star div.score{
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+    width:170px;
+    height:30px;
+    margin-left:50px;
+    margin-bottom:10px;
+    padding:5px;
+    padding-top:10px;
+    font-size:14px;
+}
+section#section2 div.review_detail div.table_right div#star div#score_l {
+    border:none;
+    margin-bottom:0;
+}
+div#star {
+    font-size:12px;
+}
+section#section2 div.review_detail div.table_right div#imgArea {
+    margin-top:30px;
+    margin-left: 30px;
+}
+section#section2 div.review_detail div.table_right div#imgArea a img{
+    width:100px;
+    height:100px;
+}
+section#section2 div.review_detail div.table_right table td.td{
+    vertical-align:bottom;
+}
+section#section2 div.review_detail div.table_right table td#tdc {
+    width:40px;
+}
