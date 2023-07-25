@@ -22,6 +22,7 @@ public class PageService {
         int reqPage = 1;	//요청페이지
         int pageCount = 1;	//전체 페이지 수
         int dbCount = 0;	//DB에서 가져온 전체 행수
+        String gloc = "";
 
         if(pageDto.getServiceName().equals("my_review")) {
             pageSize = 3;
@@ -31,8 +32,13 @@ public class PageService {
             dbCount = reviewService.count();
         }else if(pageDto.getServiceName().equals("reviewSearch")) {
             pageSize = 7;
-            dbCount = reviewService.searchCount(pageDto.getGloc());
             gloc = pageDto.getGloc();
+            if(gloc=="서울전체") {
+                dbCount = reviewService.count();
+            }
+            else {
+                dbCount = reviewService.searchCount(pageDto.getGloc());
+            }
         }else if(pageDto.getServiceName().equals("notice")) {
             pageSize = 10;
             dbCount = noticeService.count();
