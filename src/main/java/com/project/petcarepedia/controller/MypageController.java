@@ -135,10 +135,12 @@ public class MypageController {
     @GetMapping("mypage_my_review/{page}")
     public String mypage_my_review(@PathVariable String page, HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        PageDto pageDto = pageService.getPageResult(new PageDto(page,svo.getMid()));
+        PageDto pageDto = new PageDto(page, "my_review");
+        pageDto.setMid(svo.getMid());
+        pageDto = pageService.getPageResult(pageDto);
 //        PageDto pageDto = new PageDto(page, svo.getMid());
 //        pageDto = pageService.getPageResult(pageDto);
-        List<ReviewDto> list = reviewService.my_select(svo.getMid());
+        List<ReviewDto> list = reviewService.Mylist(pageDto);
         model.addAttribute("page", pageDto);
         model.addAttribute("list", list);
         return "mypage/mypage_my_review";
