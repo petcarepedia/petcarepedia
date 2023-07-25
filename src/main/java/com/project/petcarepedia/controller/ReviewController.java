@@ -127,19 +127,21 @@ public class ReviewController {
 
     //review_report_proc.do 리뷰 신고 처리
     @PostMapping("/review_report")
-    public String review_report_proc(ReviewDto reviewDto) {
+    public String review_report_proc(ReviewDto reviewDto) throws UnsupportedEncodingException {
         int result = reviewService.report(reviewDto.getRid());
         String view ="";
         if(result == 1) {
             // 리뷰로 돌아가게하기
-            view = "redirect:/review_content/"+reviewDto.getGloc()+"/"+reviewDto.getPage()+"/"+reviewDto.getRid()+"/";
+            String url = reviewDto.getGloc();
+            url = URLEncoder.encode(url, "UTF-8");
+            view = "redirect:/review_content/"+url+"/"+reviewDto.getPage()+"/"+reviewDto.getRid()+"/";
         }
         return view;
     }
 
     //리뷰 좋아요
     @PostMapping("/review_like")
-    public String review_like_proc(ReviewLikeDto reviewLikeDto, PageDto pageDto, HttpSession session, Model model) {
+    public String review_like_proc(ReviewLikeDto reviewLikeDto, PageDto pageDto, HttpSession session, Model model) throws UnsupportedEncodingException {
         SessionDto sessionDto = (SessionDto) session.getAttribute("svo");
         reviewLikeDto.setMid(sessionDto.getMid());
 
@@ -151,8 +153,10 @@ public class ReviewController {
             reviewLikeService.likesUpID(reviewLikeDto);
             reviewLikeService.likesUp(reviewLikeDto);
         }
+        String url = pageDto.getGloc();
+        url = URLEncoder.encode(url, "UTF-8");
         model.addAttribute("page", pageDto);
-        return ("redirect:/review_content/"+reviewLikeDto.getRid()+"/"+pageDto.getPage()+"/");
+        return ("redirect:/review_content/"+url+"/"+pageDto.getPage()+"/"+reviewLikeDto.getRid()+"/");
     }
 
 
