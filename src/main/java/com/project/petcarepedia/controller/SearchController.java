@@ -57,20 +57,6 @@ public class SearchController {
         ArrayList<ReviewDto> RM_select = new ArrayList<>();
         RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
 
-        /*if(filter == null) {
-            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
-        } else if(filter.equals("basic")) {
-            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select(hid);
-        } else if(filter.equals("like")) {
-            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select2(hid);
-        } else if(filter.equals("totalUp")) {
-            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select3(hid);
-        } else if(filter.equals("totalDown")) {
-            RM_select = (ArrayList<ReviewDto>) reviewService.RM_select4(hid);
-        }
-
-        model.addAttribute("filter", filter); // 리뷰 정렬 필터*/
-
         //check bookmark
         BookmarkDto bookmarkDto = new BookmarkDto();
         bookmarkDto.setHid(hid);
