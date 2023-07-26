@@ -14,6 +14,8 @@ public class HospitalService {
     @Autowired
     HospitalMapper hospitalMapper;
 
+    public int manager_insert(HospitalDto hospitalDto){return hospitalMapper.manager_insert(hospitalDto);}
+
     public List<HospitalDto> Hslist2(PageDto pageDto){return hospitalMapper.Hslist2(pageDto);}
 
     public List<HospitalDto> Hslist(PageDto pageDto){return hospitalMapper.Hslist(pageDto);}
