@@ -75,7 +75,7 @@
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td><img src="http://localhost:9000/images/cat.png"><p>${review_report.mid}</p></td>
+									<td>${review_report.msfile}${review_report.mid}</td>
 								</tr>
 								<tr>
 									<th>상세내용</th>

@@ -10,6 +10,8 @@
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2&submodules=geocoder"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
@@ -53,13 +55,16 @@
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td><input type="text" name="loc" id="loc" value="${hospital.loc}"></td>
+									<td>
+										<input type="text" name="loc" id="loc" value="${hospital.loc}">
+										<button type="button" class="button4" id="search_loc" >주소 찾기</button>
+									</td>
 								</tr>
 								<tr>
 									<th>좌표</th>
 									<td>
-										<input type="text" name="x" id="x" value="${hospital.x}" placeholder="위도">
-										<input type="text" name="y" id="y" value="${hospital.y}" placeholder="경도">
+										<input type="text" name="x" id="x" placeholder="위도" value="${hospital.x}">
+										<input type="text" name="y" id="y" placeholder="경도" value="${hospital.y}">
 									</td>
 								</tr>
 								<tr>
