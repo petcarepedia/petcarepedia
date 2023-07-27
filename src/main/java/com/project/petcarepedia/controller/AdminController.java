@@ -22,11 +22,13 @@ public class AdminController {
     @Autowired
     MemberService memberService;
     @Autowired
-    BookingService bookingServcie;
+    BookingService bookingService;
     @Autowired
     PageService pageService;
     @Autowired
     FileUploadService fileUploadService;
+    @Autowired
+    ReviewService reviewService;
     @Autowired
     ReviewReportService reviewReportService;
 
@@ -39,7 +41,7 @@ public class AdminController {
         pageDto.setHid(hid);
         pageDto.setMid(svo.getMid());
         pageDto = pageService.getPageResult(pageDto);
-        model.addAttribute("list", bookingServcie.HBslist(pageDto));
+        model.addAttribute("list", bookingService.HBslist(pageDto));
         model.addAttribute("page", pageDto);
 
         return "admin/manager_reserve_msearch";
@@ -50,13 +52,32 @@ public class AdminController {
     public String hospital_reserve_list(@PathVariable String page,@PathVariable String hid, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, hid));
         pageDto.setHid(hid);
-        model.addAttribute("list", bookingServcie.HBlist(pageDto));
+        model.addAttribute("list", bookingService.HBlist(pageDto));
         model.addAttribute("page", pageDto);
         return "admin/manager_reserve_list";
     }
 
-    /* 신고 리뷰 삭제 처리 */
-    @PostMapping("review_delete/")
+    /* 신고 리뷰 삭제 처리*/
+    @PostMapping("review_delete")
+    public String review_delete(ReviewDto reviewDto)throws Exception{
+        String oldFileName = reviewDto.getMsfile();
+        int result = reviewService.delete(reviewDto.getRid());
+        if(result == 1){
+            fileUploadService.fileDelete(oldFileName);
+        }
+        return "redirect:/admin/review_list/1/";
+    }
+
+    /* 신고 리뷰 삭제 페이지 */
+    @GetMapping("review_delete2/{page}/{rid}/")
+    public String review_delete(@PathVariable String rid, @PathVariable String page, Model model){
+        model.addAttribute("review", reviewService.content(rid));
+        model.addAttribute("page", page);
+        return "admin/review/admin_review_delete2";
+    }
+
+    /* 신고 리뷰 취소 처리 */
+    @PostMapping("review_report_delete/")
     public String review_delete_proc(ReviewReportDto reviewReportDto) throws Exception {
         String oldFileName = reviewReportDto.getMsfile();
         int result = reviewReportService.reviewDelete(reviewReportDto.getRrid());
@@ -66,22 +87,14 @@ public class AdminController {
         return "redirect:/admin/review_list/1/";
     }
 
-    /* 신고 리뷰 삭제 페이지 */
-    @GetMapping("review_delete2/{page}/{rrid}/")
-    public String review_delete(@PathVariable String rrid, @PathVariable String page, Model model){
-        model.addAttribute("review_report", reviewReportService.content(rrid));
-        model.addAttribute("page", page);
-        return "admin/review/admin_review_delete2";
-    }
-
     /* 신고 리뷰 상세 페이지 */
-    @GetMapping("review_detail/{page}/{rrid}/")
-    public String review_detail(@PathVariable String rrid, @PathVariable String page, Model model){
-        model.addAttribute("review_report", reviewReportService.content(rrid));
+    @GetMapping("review_detail/{page}/{rid}/")
+    public String review_detail(@PathVariable String rid, @PathVariable String page, Model model){
+        model.addAttribute("review", reviewService.content(rid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_detail";
     }
-    
+
     /* 신고 리뷰 메인 페이지 */
     @GetMapping("review_list/{page}/")
     public String review_list(@PathVariable String page, Model model){
@@ -96,7 +109,7 @@ public class AdminController {
     public String reserve_msearch(@PathVariable String page, @PathVariable String mid, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, mid));
         pageDto.setMid(mid);
-        model.addAttribute("list", bookingServcie.Bslist(pageDto));
+        model.addAttribute("list", bookingService.Bslist(pageDto));
         model.addAttribute("page", pageDto);
 
         return "admin/reserve/admin_reserve_msearch";
@@ -106,7 +119,7 @@ public class AdminController {
     @GetMapping("reserve_list/{page}")
     public String reserve_list(@PathVariable String page, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "reserve"));
-        model.addAttribute("list", bookingServcie.Blist(pageDto));
+        model.addAttribute("list", bookingService.Blist(pageDto));
         model.addAttribute("page", pageDto);
 
         return "admin/reserve/admin_reserve_list";

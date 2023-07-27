@@ -64,29 +64,29 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="deleteForm" action="/admin/review_delete/" method="post">
-						<input type = "hidden" name = "rrid" value = "${review_report.rrid}">
+						<form name="deleteForm" action="/admin/review_delete" method="post">
+							<input type = "hidden" name = "rid" value = "${review.rid}">
 							<table class="table">
 								<tr>
 									<th>병원이름</th>
 									<td>
-										${review_report.hname }
+										${review.hname }
 									</td>
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td>${review_report.msfile}${review_report.mid}</td>
+									<td>${review.msfile}${review.mid}</td>
 								</tr>
 								<tr>
 									<th>상세내용</th>
 									<td colspan='3'>
-										${review_report.rcontent }
+										${review.rcontent }
 									</td>
 								</tr>
 								<tr>
 									<td colspan="5"> 
 										<button type="submit" class="button5" id="btn_delete">삭제완료</button>
-										<a href="/admin/review_detail/${review_report.rrid}">
+										<a href="/admin/review_detail/${review.rid}">
 											<button type="button" class="button5" id="btn_before">이전으로</button>
 										</a>
 									</td>
