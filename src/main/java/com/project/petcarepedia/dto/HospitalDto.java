@@ -2,7 +2,7 @@ package com.project.petcarepedia.dto;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -10,13 +10,17 @@ import java.util.ArrayList;
 public class HospitalDto {
     String page;
     int rno;
-    String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime, hfile, hsfile;
+    String hid, hname, gloc, loc, tel,htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime, hfile, hsfile, auth ;
     float rstar;
     MultipartFile file1;
+
+
     private MultipartFile[] files;
-    private ArrayList<String> hfiles = new ArrayList<String>();
-    private ArrayList<String> hsfiles = new ArrayList<String>();
-    private String hfile1, hsfile1, hfile2, hsfile2;
+
+    private ArrayList hfiles = new ArrayList();
+    private ArrayList hsfiles = new ArrayList();
+
+    String hfile1, hsfile1, hfile2, hsfile2;
     String htime1, htime2, mid;
 
     public String getHtime() {
@@ -28,4 +32,5 @@ public class HospitalDto {
     public void setHtime(String htime) {
         this.htime = htime;
     }
+
 }

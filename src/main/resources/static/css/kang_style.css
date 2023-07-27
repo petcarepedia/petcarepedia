@@ -312,7 +312,7 @@ div#review ul li a, div#best_review ul li a {
 	color:#3D3D3D;
 	overflow:hidden;
 }
-div#review ul li a:hover, div#best_review ul li a:hover {
+div#review ul li ul li#list_middle a:hover, div#best_review ul li a:hover, div#review div#title span:last-child a {
 	cursor:pointer;
 }
 div#best_review ul li a div.review_top, div#best_review ul li a div.review_bottom {

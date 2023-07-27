@@ -37,6 +37,7 @@
 				<section id="section2">
 					<div id="d3">
 						<form name="writeForm" action="/admin/hospital_detail" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="auth" id="auth">
 							<table class="table">
 								<tr>
 									<th>병원명</th>

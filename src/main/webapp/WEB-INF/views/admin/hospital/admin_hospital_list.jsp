@@ -120,7 +120,7 @@
 						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/">${hospital.hname}</a></td>
 						<td>${hospital.animal}</td>
 						<td>${hospital.ntime}</td>
-						<td>${hospital.holiday}</td>
+						<td><a href="/admin/manager/reserve_list/1/${hospital.hid}/"> ${hospital.hname}</a></td>
 						
 					</tr>
 					</c:forEach>

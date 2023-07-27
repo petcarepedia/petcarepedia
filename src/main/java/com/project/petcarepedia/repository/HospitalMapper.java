@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper
 public interface HospitalMapper {
 
+    int manager_insert(HospitalDto hospitalDto);
+
     /* 지역구 검색 결과 조회 및 페이징 처리 */
     List<HospitalDto> Hslist2(PageDto pageDto);
 

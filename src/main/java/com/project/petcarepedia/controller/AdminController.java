@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/")
 public class AdminController {
@@ -28,6 +31,29 @@ public class AdminController {
     ReviewReportService reviewReportService;
 
 
+    /* 병원 관리 검색 */
+    @GetMapping("manager/reserve_msearch/{page}/{hid}")
+    public String hospital_reserve_msearch(HttpSession session ,@PathVariable String page,@PathVariable String hid, Model model){
+        SessionDto svo =  (SessionDto) session.getAttribute("svo");
+        PageDto pageDto = new PageDto(page, hid);
+        pageDto.setHid(hid);
+        pageDto.setMid(svo.getMid());
+        pageDto = pageService.getPageResult(pageDto);
+        model.addAttribute("list", bookingServcie.HBslist(pageDto));
+        model.addAttribute("page", pageDto);
+
+        return "admin/manager_reserve_msearch";
+    }
+
+    /* 병원 관리 예약하기 */
+    @GetMapping("manager/reserve_list/{page}/{hid}")
+    public String hospital_reserve_list(@PathVariable String page,@PathVariable String hid, Model model){
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, hid));
+        pageDto.setHid(hid);
+        model.addAttribute("list", bookingServcie.HBlist(pageDto));
+        model.addAttribute("page", pageDto);
+        return "admin/manager_reserve_list";
+    }
 
     /* 신고 리뷰 삭제 처리 */
     @PostMapping("review_delete/")
@@ -51,7 +77,6 @@ public class AdminController {
     /* 신고 리뷰 상세 페이지 */
     @GetMapping("review_detail/{page}/{rrid}/")
     public String review_detail(@PathVariable String rrid, @PathVariable String page, Model model){
-        System.out.println(rrid);
         model.addAttribute("review_report", reviewReportService.content(rrid));
         model.addAttribute("page", page);
         return "admin/review/admin_review_detail";
