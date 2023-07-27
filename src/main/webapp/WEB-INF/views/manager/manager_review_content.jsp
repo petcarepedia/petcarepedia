@@ -12,6 +12,13 @@
     <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".header-menu").css('background','#FFB3BD');
+            $(".footer-menu").css('background','#FFF2F4');
+            $("#btnMainSearch-header > img").attr("src",'http://localhost:9000/images/foot_pink.png');
+        });
+    </script>
 </head>
 <body>
 

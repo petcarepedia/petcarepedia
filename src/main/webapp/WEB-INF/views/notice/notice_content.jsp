@@ -29,7 +29,7 @@
 			</table>
 			<div id="date">${nvo.ndate }</div>
 			<div class="nc_button_r">
-				<a href="/notice/${page}/"><button type="button" class="button">목록</button></a>
+				<a href="/notice/${page}"><button type="button" class="button">목록</button></a>
 			</div>
 		</section>
 	</div>

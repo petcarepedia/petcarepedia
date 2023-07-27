@@ -51,7 +51,7 @@ public class NoticeController {
         int result = noticeService.insert(noticeDto);
         String view = "";
         if(result == 1) {
-            view = "redirect:/admin_notice/1/";
+            view = "redirect:/admin_notice/1";
         }
         return view;
     }
@@ -72,7 +72,7 @@ public class NoticeController {
         if(result == 1) {
 
         }
-        return "redirect:/admin_notice_content/"+noticeDto.getNid()+"/"+noticeDto.getPage()+"/";
+        return "redirect:/admin_notice_content/"+noticeDto.getNid()+"/"+noticeDto.getPage();
     }
 
     // admin_notice_delete_proc.do 관리자 공지사항 삭제 처리
@@ -83,7 +83,7 @@ public class NoticeController {
             //삭제처리
 
         }
-        return "redirect:/admin_notice/1/";
+        return "redirect:/admin_notice/1";
     }
 
     //notice.do 사용자 공지사항 리스트 페이징

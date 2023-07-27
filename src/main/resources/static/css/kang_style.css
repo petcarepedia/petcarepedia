@@ -648,12 +648,12 @@ div#brbox div.main-review div.sub a {
 div#brbox div.main-review div div:first-child a {
 	width:170px;
 }
-div#brbox div.main-review div div:first-child p {
-	font-size: 14px;
-    font-weight: bold;
-    padding-top: 1.5px;
-    float: right;
-}
+/*div#brbox div.main-review div div:first-child p {*/
+/*	font-size: 14px;*/
+/*    font-weight: bold;*/
+/*    padding-top: 1.5px;*/
+/*    float: right;*/
+/*}*/
 
 div#ampaginationsm ul li.active a {
 	background-color:#98DFFF;
@@ -699,4 +699,12 @@ input#title {
 }
 section.notice .nc_button_r form {
 	display:inline;
+}
+
+.review_card_no {
+	border-right: 1px solid #98DFFF;
+}
+
+#NoImgArea {
+	height: 134px;
 }
