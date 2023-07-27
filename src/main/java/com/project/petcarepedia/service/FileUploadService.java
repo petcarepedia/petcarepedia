@@ -13,18 +13,46 @@ import java.util.UUID;
 @Service
 public class FileUploadService {
 
+
     //병원 멀티파일 등록
     public void hospitalFileSave(HospitalDto hospitalDto) throws Exception {
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
         int count = 0;
         for(MultipartFile file : hospitalDto.getFiles()) {
             if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-                File saveFile = new File(root_path +  hospitalDto.getHsfiles().get(count));
+                File saveFile = new File(root_path + hospitalDto.getHsfiles().get(count));
                 file.transferTo(saveFile);
             }
             count++;
         }
     }
+    /*
+     * hospitalMultiFileCheck - 병원 멀티파일 체크
+     */
+    public HospitalDto hospitalMultiFileCheck(HospitalDto hospitalDto) {
+        int count = 0;
+        for(MultipartFile file : hospitalDto.getFiles()) {
+            if(!file.getOriginalFilename().equals("")) {
+                UUID uuid = UUID.randomUUID();
+                hospitalDto.getHfiles().add(file.getOriginalFilename());
+                hospitalDto.getHsfiles().add(uuid+"_"+file.getOriginalFilename());
+            }
+            else {
+                hospitalDto.getHfiles().add("");
+                hospitalDto.getHsfiles().add("");
+            }
+            count++;
+        }
+        hospitalDto.setHfile1(hospitalDto.getHfiles().get(0));
+        hospitalDto.setHsfile1(hospitalDto.getHsfiles().get(0));
+        hospitalDto.setHfile2(hospitalDto.getHfiles().get(1));
+        hospitalDto.setHsfile2(hospitalDto.getHsfiles().get(1));
+
+        return hospitalDto;
+    }
+
+
+
 
     ////////////////////////////Review///////////////////////////////////////
     /*

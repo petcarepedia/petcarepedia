@@ -262,20 +262,13 @@ public class MypageController {
     @PostMapping("hospital_write")
     public String hospital_write(HospitalDto hospitalDto) throws Exception{
         String viewName = "";
-        System.out.println(hospitalDto.getMid());
-        System.out.println(hospitalDto.getHfile1());
-        System.out.println(hospitalDto.getHfile2());
-        System.out.println(hospitalDto.getHtime());
-        System.out.println(hospitalDto.getAnimal());
-        System.out.println(hospitalDto.getX());
-        System.out.println(hospitalDto.getLoc());
-        int result = hospitalService.manager_insert(hospitalDto);
+        int result = hospitalService.manager_insert(fileService.hospitalMultiFileCheck(hospitalDto));
         if(result == 1) {
             if(result == 1) {
                 if(hospitalDto.getFiles()[0].getOriginalFilename() != null) {
                     fileService.hospitalFileSave(hospitalDto);
                 }
-                viewName = "redirect:/mypage_my_review/1/";
+                viewName = "redirect:/manager_hospital_list";
             }
         }
         return viewName;

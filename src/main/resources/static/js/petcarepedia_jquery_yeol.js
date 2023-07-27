@@ -463,13 +463,13 @@ $("#btnReservationDelete").click(function(){
 	}
 	for(var i = 0; i < 24; i++) {
 		var option1 = "<option value = '" + htime1List[i] + "'>" + htime1List[i] + "</option>";
-		var option2 = "<option value = htime2List[i]>" + htime2List[i] + "</option>";
+		var option2 = "<option value = '" + htime2List[i] + "'>" + htime2List[i] + "</option>";
 		$("#htime1").append(option1);
 		$("#htime1").append(option2);
 	}
 	for(var i = 0; i < 24; i++) {
-		var option1 = "<option value = htime1List[i]>" + htime1List[i] + "</option>";
-		var option2 = "<option value = htime2List[i]>" + htime2List[i] + "</option>";
+		var option1 = "<option value = '" + htime1List[i] + "'>" + htime1List[i] + "</option>";
+		var option2 = "<option value = '" + htime2List[i] + "'>" + htime2List[i] + "</option>";
 		$("#htime2").append(option1);
 		$("#htime2").append(option2);
 	}
