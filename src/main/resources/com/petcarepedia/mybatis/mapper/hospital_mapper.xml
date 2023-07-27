@@ -112,4 +112,10 @@
 		VALUES ('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')), #{hname}, #{gloc}, #{loc}, #{tel}, #{htime}, #{ntime}, #{holiday}, #{animal}, #{intro}, #{hrink},
 		        #{x}, #{y}, #{hfile1, jdbcType=VARCHAR}, #{hsfile1 , jdbcType=VARCHAR}), #{hfile2, jdbcType=VARCHAR}, #{hsfile2 , jdbcType=VARCHAR}, #{mid})
 	</insert>
+
+	<select id="selectMh" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
+		select hid, hname, loc, gloc, tel, htime, ntime, holiday, animal, intro, img, hrink, x, y, hfile, hsfile, m.mid, auth
+		from pcp_hospital h, pcp_member m
+		where h.mid = m.mid and m.mid=#{mid}
+	</select>
 </mapper>
