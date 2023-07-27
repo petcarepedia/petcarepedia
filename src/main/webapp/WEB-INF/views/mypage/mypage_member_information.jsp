@@ -80,7 +80,7 @@ const autoHyphen = (target) => {
 					 	<input type = "hidden" name = "mfile" value = "${member.mfile}">
 						<input type = "hidden" id = "msfile" name = "msfile" value = "${member.msfile}">
 						<input type = "hidden" name = "grade" value = "${member.grade}">
-						<input type="file" name="file1" id = "file1" onchange = "readURL(this)" accept="image/*">
+						<input type="file" name="file1" id = "file1" onchange = "readURL(this)" accept="image/*" style = "display : none">
 							<div id = profileBox>
 								<img src = "http://localhost:9000/upload/${member.msfile}/" id = "profile">
 								<button type = "button"><img src = "http://localhost:9000/images/수정.png" id = "update_profile"></button>

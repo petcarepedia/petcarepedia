@@ -2,7 +2,6 @@ package com.project.petcarepedia.controller;
 
 import com.project.petcarepedia.dto.*;
 import com.project.petcarepedia.service.*;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +28,8 @@ public class MypageController {
     private PageService pageService;
     @Autowired
     private FileUploadService fileService;
+    @Autowired
+    private HospitalService hospitalService;
 
     // 나의 회원정보 폼
     @GetMapping("mypage_member_information")
@@ -244,4 +245,39 @@ public class MypageController {
         return viewName;
     }
 
+    //병원정보 수정 폼
+    @GetMapping("manager_hospital_update")
+    public String manager_hospital_info() {
+        return "/manager/manager_hospital_update";
+    }
+
+    //병원정보 등록 폼
+    @GetMapping("manager_hospital_write")
+    public String manager_hospital_write(HttpSession session) {
+        SessionDto svo = (SessionDto)session.getAttribute("svo");
+        return "/manager/manager_hospital_write";
+    }
+
+    //병원정보 등록 처리
+    @PostMapping("hospital_write")
+    public String hospital_write(HospitalDto hospitalDto) throws Exception{
+        String viewName = "";
+        System.out.println(hospitalDto.getMid());
+        System.out.println(hospitalDto.getHfile1());
+        System.out.println(hospitalDto.getHfile2());
+        System.out.println(hospitalDto.getHtime());
+        System.out.println(hospitalDto.getAnimal());
+        System.out.println(hospitalDto.getX());
+        System.out.println(hospitalDto.getLoc());
+        int result = hospitalService.manager_insert(hospitalDto);
+        if(result == 1) {
+            if(result == 1) {
+                if(hospitalDto.getFiles()[0].getOriginalFilename() != null) {
+                    fileService.hospitalFileSave(hospitalDto);
+                }
+                viewName = "redirect:/mypage_my_review/1/";
+            }
+        }
+        return viewName;
+    }
 }
