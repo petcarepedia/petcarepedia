@@ -142,7 +142,7 @@
 						</c:when>
 						<c:when test="${hospital.auth == 'auth'}">
 							<div id = "aside1">
-								<img src = "http://localhost:9000/upload/${hospital.hsfile}">
+								<img src = "http://localhost:9000/upload/${hospital.hsfile1}">
 								<div>
 									<span>서울시 > ${hospital.gloc}</span>
 									<a href = "http://localhost:9000/search_result/${hospital.hid}"><span>${hospital.hname}</span></a>
