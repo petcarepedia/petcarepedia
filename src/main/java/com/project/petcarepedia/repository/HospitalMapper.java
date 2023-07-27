@@ -53,4 +53,5 @@ public interface HospitalMapper {
     /* 병원 등록 */
     int insert(HospitalDto hospitalDto);
 
+    int manager_insert(HospitalDto hospitalDto);
 }

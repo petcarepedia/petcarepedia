@@ -446,20 +446,91 @@ $("#btnReservationDelete").click(function(){
 	        } // else
 	        
 		})
-			
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/************************************************
+	 				병원 정보 영업시간 배열추가
+	 ***********************************************/
+
+	var htime1List = new Array();
+	var htime2List = new Array();
+	for(var i = 0; i < 24 ; i++) {
+		if(i < 10) {
+			htime1List[i] = "0" + i + ":00";
+			htime2List[i] = "0" + i + ":30";
+		} else {
+			htime1List[i] = i + ":00";
+			htime2List[i] = i + ":30";
+		}
+	}
+	for(var i = 0; i < 24; i++) {
+		var option1 = "<option value = '" + htime1List[i] + "'>" + htime1List[i] + "</option>";
+		var option2 = "<option value = htime2List[i]>" + htime2List[i] + "</option>";
+		$("#htime1").append(option1);
+		$("#htime1").append(option2);
+	}
+	for(var i = 0; i < 24; i++) {
+		var option1 = "<option value = htime1List[i]>" + htime1List[i] + "</option>";
+		var option2 = "<option value = htime2List[i]>" + htime2List[i] + "</option>";
+		$("#htime2").append(option1);
+		$("#htime2").append(option2);
+	}
+	/*******************************************
+	 		병원 정보 주소찾기
+	 *****************************************/
+	$("#btnSearchLoc").click(function(){
+		new daum.Postcode({
+			oncomplete: function(data) {
+				$("#loc").val("(" + data.zonecode + ") " + data.address);
+				$("#loc").focus();
+				searchAddressToCoordinate(data.address);
+				//data = {zonecode:"12345", address:"서울시 강남구...,}
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+				// 예제를 참고하여 다양한 활용법을 확인해 보세요.
+			}
+		}).open();
+	})
+
+
+	/*************************************
+	 			 좌표 변환
+	 ************************************/
+	function searchAddressToCoordinate(address) {
+		naver.maps.Service.geocode({
+			query: address
+		}, function(status, response) {
+			if (status === naver.maps.Service.Status.ERROR) {
+				return alert('Something Wrong!');
+			}
+			if (response.v2.meta.totalCount === 0) {
+				return alert('올바른 주소를 입력해주세요.');
+			}
+			var htmlAddresses = [],
+				item = response.v2.addresses[0];
+
+			if (item.roadAddress) {
+				htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+			}
+			insertAddress(item.roadAddress, item.x, item.y);
+		})
+
+	} // searchAddressToCoordinate
+
+
+	//input입력
+	function insertAddress(address, latitude, longitude) {
+		$('#x').val(latitude);
+		$('#y').val(longitude);
+	}
+
+	/******************************************
+	  				병원 등록 처리
+	 ****************************************/
+	$("#btnHospitalWrite").click(function(){
+		writeForm.submit();
+	})
+
+
+
+
 
 
 

@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.util.ArrayList;
+
 @Data
 public class HospitalDto {
     String page;
@@ -11,4 +13,19 @@ public class HospitalDto {
     String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime, hfile, hsfile;
     float rstar;
     MultipartFile file1;
+    private MultipartFile[] files;
+    private ArrayList<String> hfiles = new ArrayList<String>();
+    private ArrayList<String> hsfiles = new ArrayList<String>();
+    private String hfile1, hsfile1, hfile2, hsfile2;
+    String htime1, htime2, mid;
+
+    public String getHtime() {
+        if(htime1 != null) {
+            htime = htime1 + "~" + htime2;
+        }
+        return htime;
+    }
+    public void setHtime(String htime) {
+        this.htime = htime;
+    }
 }
