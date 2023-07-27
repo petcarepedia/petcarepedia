@@ -517,8 +517,8 @@ $("#btnReservationDelete").click(function(){
 
 	//input입력
 	function insertAddress(address, latitude, longitude) {
-		$('#x').val(latitude);
-		$('#y').val(longitude);
+		$('#x').val(longitude);
+		$('#y').val(latitude);
 	}
 
 	/******************************************
