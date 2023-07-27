@@ -107,7 +107,7 @@
 			  GROUP BY HID, RID)
 	</select>
 
-	<select id="HBlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="int">
+	<select id="HBcount" parameterType="com.project.petcarepedia.dto.PageDto" resultType="int">
 		select count(*) from pcp_booking where hid = #{hid}
 	</select>
 
