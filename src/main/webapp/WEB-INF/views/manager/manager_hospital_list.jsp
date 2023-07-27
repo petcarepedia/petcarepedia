@@ -32,6 +32,10 @@
 		$("#aside1").css("border","1px solid #FFB3BD");
 		$("#aside1 > div > a > span").mouseover(function (){$(this).css('color','#FFB3BD');});
 		$("#aside1 > div > a > span").mouseleave(function (){$(this).css('color','#3d3d3d');});
+
+		$("#btnMhWrite").click(function () {
+			location.href = "/manager_hospital_write";
+		})
 	});
 </script>
 <style>
@@ -103,10 +107,10 @@
 					<nav class="manager-menu">
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "/mypage_member_information">병원 정보 관리</a></li>
+							<li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
 							<li><a href = "/mypage_reservation">예약 관리</a></li>
-							<li><a href = "/mypage_my_review/1/">리뷰 관리</a></li>
-							<li><a href = "/mypage_bookmark">회원 정보</a></li>
+							<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
+							<li><a href = "/mypage_member_information">회원 정보</a></li>
 							<li><a href = "/mypage_signout">회원 탈퇴</a></li>
 						</ul>
 					</nav>
@@ -116,7 +120,7 @@
 				<section id = "section2">
 					<c:choose>
 						<c:when test="${hospital == null || hospital.auth == null}">
-							<div class="mhbox null">
+							<div class="mhbox null" id="btnMhWrite">
 								<i class="fa-solid fa-circle-plus fa-3x" style="color: #989898;"></i>
 								<p>병원 등록하기</p>
 							</div>

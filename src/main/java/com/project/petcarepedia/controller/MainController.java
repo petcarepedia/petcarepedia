@@ -66,7 +66,6 @@ public class MainController {
     public String manager_hospital_list(HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");
         model.addAttribute("hospital", hospitalService.selectMh(svo.getMid()));
-//        model.addAttribute("hospital", new HospitalDto());
         return "manager/manager_hospital_list";
     }
 }
