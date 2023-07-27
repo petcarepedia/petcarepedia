@@ -28,7 +28,7 @@
 
             jQuery('#ampaginationsm').on('am.pagination.change',function(e){
                 jQuery('.showlabelsm').text('The selected page no: '+e.page);
-                $(location).attr('href', "http://localhost:9000/manager_review_list/${page.hid}/"+e.page+"/");
+                $(location).attr('href', "http://localhost:9000/manager_review_list/"+e.page+"/");
             });
 
             /*호버 효과*/
@@ -39,7 +39,7 @@
                 var row = el.closest('tr');
 
                 // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
-                row.find('td, th').css({ "background": "#FFB3BD", "color": "white" });
+                row.find('td, th').css({ "background": "#FFF2F4"});
             }).on("mouseout", function() {
                 var el = $(this);
                 var row = el.closest('tr');

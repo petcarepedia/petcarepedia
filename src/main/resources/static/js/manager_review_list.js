@@ -10,7 +10,7 @@ $(document).ready(function() {
     /* 신고상태 함수 */
     function stateAjax(hid, page) {
         $.ajax({
-            url: "http://localhost:9000/manager_review_list/" + hid + "/" + page + "/state",
+            url: "http://localhost:9000/manager_review_list/" + page + "/state",
             data : 'json',
             success: function(result) {
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
                 $('.stateBtn').text("전체   보기");
 
                 $('.stateBtn').click(function () {
-                    window.location.href = "http://localhost:9000/manager_review_list/"+hid+"/1/";
+                    window.location.href = "http://localhost:9000/manager_review_list/1/";
                 });
 
                 /*호버 효과*/
@@ -45,7 +45,7 @@ $(document).ready(function() {
                     var row = el.closest('tr');
 
                     // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
-                    row.find('td, th').css({ "background": "#FFB3BD", "color": "white" });
+                    row.find('td, th').css({ "background": "#FFF2F4"});
                 }).on("mouseout", function() {
                     var el = $(this);
                     var row = el.closest('tr');
