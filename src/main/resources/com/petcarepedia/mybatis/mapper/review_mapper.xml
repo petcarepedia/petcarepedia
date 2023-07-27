@@ -153,4 +153,23 @@
 					where r.hid=h.hid and r.mid = m.mid and rstate='O' order by r.rdate desc))
 		where rno between #{startCount} AND #{endCount}
 	</select>
+
+	<select id="MRlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.ReviewDto">
+		SELECT * FROM
+			(SELECT ROWNUM RNO, RID, HID, MID, BID, RCONTENT, TO_CHAR(RDATE, 'YYYY-MM-DD') RDATE, RLIKE, RSTAR, RSTATE, RFILE1, RSFILE1, RFILE2, RSFILE2
+			 FROM (SELECT * FROM PCP_REVIEW WHERE HID=#{hid} ORDER BY RDATE DESC))
+		WHERE RNO between #{startCount} AND #{endCount}
+	</select>
+
+	<select id="MRRlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.ReviewDto">
+		SELECT RNO, RID, MID, HID, RCONTENT, RDATE
+		FROM (SELECT ROW_NUMBER() OVER(ORDER BY R.RID DESC) AS RNO, R.RID, R.MID, R.HID, R.RCONTENT, TO_CHAR(R.RDATE, 'YYYY-MM-DD') RDATE
+			  FROM PCP_REVIEW_REPORT RR
+					   JOIN PCP_REVIEW R ON R.RID = RR.RID
+			  WHERE RR.HID=#{hid}
+			  GROUP BY R.RID, R.MID, R.HID, R.RCONTENT, TO_CHAR(R.RDATE, 'YYYY-MM-DD')
+			  ORDER BY R.RID DESC) R
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
 </mapper>
