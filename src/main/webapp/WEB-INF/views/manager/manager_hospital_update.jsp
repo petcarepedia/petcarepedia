@@ -53,22 +53,22 @@
 <%--            </li>--%>
             <li>
               <label>병원명</label>
-              <label>더조은동물병원</label>
+              <label>${hospital.hname}</label>
             </li>
             <li>
               <label>주소</label>
-              <input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요" value="${memberVo.addr}">
+              <input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요" value="${hospital.loc}">
               <button type="button" class="btnSearchAddr" id="btnSearchAddr">주소찾기</button>
-                <input type="hidden" name="x" id="x" placeholder="위도">
-                <input type="hidden" name="y" id="y" placeholder="경도">
+                <input type="hidden" name="x" id="x" placeholder="경도">
+                <input type="hidden" name="y" id="y" placeholder="위도">
             </li>
             <li>
               <label>지역구</label>
-              <input type = "text" name = "gloc" id = "gloc" placeholder = "지역구를 입력해주세요!">
+              <input type = "text" name = "gloc" id = "gloc" placeholder = "지역구를 입력해주세요!" value = "${hospital.gloc}">
             </li>
             <li>
               <label>휴대폰</label>
-              <input type="text" value = "${member.phone}" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!">
+              <input type="text" value = "${hospital.tel}" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!">
             </li>
             <li>
               <label>영업시간</label>
@@ -105,15 +105,31 @@
             </li>
             <li>
                 <label>병원소개</label>
-                <textarea name = "intro" id = "intro"></textarea>
+                <textarea name = "intro" id = "intro" value = ${hospital.intro}></textarea>
             </li>
             <li>
                 <label>홈페이지</label>
-                <input type = "text" name = "hrink" id = "hrink">
+                <input type = "text" name = "hrink" id = "hrink" value = ${hospital.hrink}>
             </li>
             <li>
                 <label>병원이미지</label>
+                <input type = "text" name = "hfile1" value = "${hospital.hfile1}">
+                <input type = "text" name = "hsfile1" value = "${hospital.hsfile1}">
+                <input type = "text" name = "hfile2" value = "${hospital.hfile2}">
+                <input type = "text" name = "hsfile2" value = "${hospital.hsfile2}">
                 <input type="file" name="file1" id = "file1" accept="image/*">
+                <input type="file" name="file1" id = "file2" accept="image/*">
+                <c:choose>
+                    <c:when test = "${hospital.hfile1 != null}">
+                        <span id = "update_file1">${hospital.hfile1}</span>
+                    </c:when>
+                    <c:when test = "${hospital.hfile1 != null}">
+                        <span id = "update_file2">${hospital.hfile2}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span>선택된 파일 없음</span>
+                    </c:otherwise>
+                </c:choose>
             </li>
           </ul>
         </section>

@@ -247,7 +247,10 @@ public class MypageController {
 
     //병원정보 수정 폼
     @GetMapping("manager_hospital_update")
-    public String manager_hospital_info() {
+    public String manager_hospital_info(HttpSession session, Model model) {
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+        HospitalDto hospitalDto = hospitalService.selectMh(svo.getMid());
+        model.addAttribute("hospital", hospitalDto);
         return "/manager/manager_hospital_update";
     }
 
