@@ -250,7 +250,11 @@ public class MypageController {
     public String manager_hospital_info(HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");
         HospitalDto hospitalDto = hospitalService.selectMh(svo.getMid());
+        String htime1 = hospitalDto.getHtime1();
+        String htime2 = hospitalDto.getHtime2();
         model.addAttribute("hospital", hospitalDto);
+        model.addAttribute("htime1", htime1);
+        model.addAttribute("htime2", htime2);
         return "/manager/manager_hospital_update";
     }
 

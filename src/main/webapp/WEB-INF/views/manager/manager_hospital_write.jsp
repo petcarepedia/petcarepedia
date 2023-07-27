@@ -42,7 +42,7 @@
           <nav>
             <ul>
               <li>마이페이지</li>
-              <li><a href = "/mypage_member_information">병원 정보 관리</a></li>
+              <li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
               <li><a href = "/mypage_reservation">예약 관리</a></li>
               <li><a href = "/mypage_my_review/1/">리뷰 관리</a></li>
               <li><a href = "/mypage_bookmark">회원 정보</a></li>

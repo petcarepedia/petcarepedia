@@ -20,6 +20,34 @@
               .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     }
   </script>
+    <script>
+        $(document).ready(function(){
+            var select = '${hospital.htime}';
+            var selectHtime1 = select.substr(0,5);
+            var selectHtime2 = select.substr(6,10);
+            $('#ntime').val('${hospital.ntime}').prop("selected",true);
+            $('#holiday').val('${hospital.holiday}').prop("selected",true);
+            $('#animal').val('${hospital.animal}').prop("selected",true);
+            $('#htime1').val(selectHtime1).prop("selected",true);
+            $('#htime2').val(selectHtime2).prop("selected",true);
+        })
+    </script>
+    <script>
+    $(document).ready(function(){
+        $("#file1").change(function(){
+            if(window.FileReader){
+                let fname = $(this)[0].files[0].name;
+                $("#update_file1").text(fname);
+            }
+        });
+        $("#file2").change(function(){
+            if(window.FileReader){
+                let fname = $(this)[0].files[0].name;
+                $("#update_file2").text(fname);
+            }
+        });
+    })
+    </script>
 </head>
 <body>
 <!-- header -->
@@ -35,7 +63,7 @@
           <nav>
             <ul>
               <li>마이페이지</li>
-              <li><a href = "/mypage_member_information">병원 정보 관리</a></li>
+              <li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
               <li><a href = "/mypage_reservation">예약 관리</a></li>
               <li><a href = "/mypage_my_review/1/">리뷰 관리</a></li>
               <li><a href = "/mypage_bookmark">회원 정보</a></li>
@@ -57,10 +85,10 @@
             </li>
             <li>
               <label>주소</label>
-              <input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요" value="${hospital.loc}">
-              <button type="button" class="btnSearchAddr" id="btnSearchAddr">주소찾기</button>
-                <input type="hidden" name="x" id="x" placeholder="경도">
-                <input type="hidden" name="y" id="y" placeholder="위도">
+                <input type = "text" name = "loc" id = "loc" placeholder = "  등록할 병원 주소를 입력해주세요" value = "${hospital.loc}">
+                <button type="button" class="btnSearchLoc" id="btnSearchLoc">주소찾기</button>
+                <input type="hidden" name="x" id="x" placeholder="위도" value = "${hospital.x}">
+                <input type="hidden" name="y" id="y" placeholder="경도" value = "${hospital.y}">
             </li>
             <li>
               <label>지역구</label>
@@ -105,7 +133,7 @@
             </li>
             <li>
                 <label>병원소개</label>
-                <textarea name = "intro" id = "intro" value = ${hospital.intro}></textarea>
+                <textarea name = "intro" id = "intro">${hospital.intro}</textarea>
             </li>
             <li>
                 <label>홈페이지</label>
@@ -113,22 +141,19 @@
             </li>
             <li>
                 <label>병원이미지</label>
+                <input type="file" name="file1" id = "file1" accept="image/*">
+                <input type="file" name="file1" id = "file2" accept="image/*">
                 <input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
                 <input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
                 <input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
                 <input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
-                <input type="file" name="file1" id = "file1" accept="image/*">
-                <input type="file" name="file1" id = "file2" accept="image/*">
                 <c:choose>
                     <c:when test = "${hospital.hfile1 != null}">
                         <span id = "update_file1">${hospital.hfile1}</span>
                     </c:when>
-                    <c:when test = "${hospital.hfile1 != null}">
+                    <c:when test = "${hospital.hfile2 != null}">
                         <span id = "update_file2">${hospital.hfile2}</span>
                     </c:when>
-                    <c:otherwise>
-                        <span>선택된 파일 없음</span>
-                    </c:otherwise>
                 </c:choose>
             </li>
           </ul>
