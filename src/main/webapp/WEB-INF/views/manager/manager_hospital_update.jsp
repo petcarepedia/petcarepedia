@@ -113,10 +113,10 @@
             </li>
             <li>
                 <label>병원이미지</label>
-                <input type = "text" name = "hfile1" value = "${hospital.hfile1}">
-                <input type = "text" name = "hsfile1" value = "${hospital.hsfile1}">
-                <input type = "text" name = "hfile2" value = "${hospital.hfile2}">
-                <input type = "text" name = "hsfile2" value = "${hospital.hsfile2}">
+                <input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
+                <input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
+                <input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
+                <input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
                 <input type="file" name="file1" id = "file1" accept="image/*">
                 <input type="file" name="file1" id = "file2" accept="image/*">
                 <c:choose>
