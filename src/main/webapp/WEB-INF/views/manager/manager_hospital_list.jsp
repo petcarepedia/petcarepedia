@@ -29,7 +29,7 @@
 		$(".manager-menu > ul > li:nth-child(2) > a").css('font-weight','bold');
 		$(".manager-menu > ul > li:nth-child(3) > a").css('font-weight','normal');
 
-		$("#aside1").css("border","1px solid #FFB3BD");
+		$("#aside1").css("border","1px solid #d8d8d8");
 		$("#aside1 > div > a > span").mouseover(function (){$(this).css('color','#FFB3BD');});
 		$("#aside1 > div > a > span").mouseleave(function (){$(this).css('color','#3d3d3d');});
 
@@ -159,13 +159,14 @@
 									</div>
 								</div>
 							</div>
-								<button type = "button" id = "btn_cancle1">정보 수정</button></a>
+							<button type = "button" id = "btn_cancle1">정보 수정</button></a>
+
 						</c:when>
 						<c:otherwise>
 							<div class="mhbox reject">
 								<i class="fa-solid fa-circle-xmark fa-3x" style="color: #f95f5c;"></i>
 								<p>승인 거부</p>
-								<div class="btn-mh bre" id="btnReject">정보 재등록</div>
+								<div class="btn-mh bre" id="btnMhReject">정보 재등록</div>
 							</div>
 							<ul class="mhex mhexreject">
 								<li>부적절한 병원 정보 등록으로 승인이 거부되었습니다. 사유 확인 후 정보를 다시 재등록해주세요.</li>
