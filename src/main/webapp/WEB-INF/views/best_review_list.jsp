@@ -33,7 +33,7 @@
 						<input type="hidden" value="${page.reqPage}" id="rpage">
 						<input type="hidden" value="${page.pageCount}" id="maxSize">
 						<c:forEach var="reviewVo" items="${list}">
-							<div id="brcontent" onclick="location.href='http://localhost:9000/review_content/${reviewVo.rid}/1'" class="review-card">
+							<div id="brcontent" onclick="location.href='http://localhost:9000/review_content/서울전체/1/${reviewVo.rid}'" class="review-card">
 									<div>
 										<a>${reviewVo.hname}</a>
 										<p>⭐ ${reviewVo.rstar}</p>
