@@ -27,11 +27,14 @@
 					success : function(result){
 							let contentString = "";
 							if(result.list != null) {
+								contentString += '<form name="SPWordForm" action="/main_search" method="post">';
+								contentString += '<input type="hidden" name="hname" id="shname">';
 								for(obj of result.list){
-									contentString += `<li class="spword-li" onclick="location.href='http://localhost:9000/main_search?hname=`+obj.word+`'">`;
+									contentString += '<li class="spword-li" id='+obj.word+'>';
 									contentString += '<label class="spword-li-label">'+obj.rno+'</label>';
 									contentString += '<a class="spword-li-a">'+obj.word+'</a></li></a>';
 								}
+								contentString += '</form>';
 							} else {
 								contentString += '<div style="width:100%;height:150px;text-align:center;vertical-align:middle;display: table-cell;">'
 								contentString += '<img src="http://localhost:9000/images/info.png" width="30px">';
@@ -39,6 +42,10 @@
 							}
 							
 							$(".spword-ul").html(contentString);
+							$(".spword-li").click(function (){
+								$("#shname").val($(this).attr("id"));
+								SPWordForm.submit();
+							});
 					}
 			  });
 	  		};
