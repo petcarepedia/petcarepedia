@@ -50,6 +50,14 @@
 
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".header-menu").css('background','#FFB3BD');
+            $(".footer-menu").css('background','#FFF2F4');
+            $("#btnMainSearch-header > img").attr("src",'http://localhost:9000/images/foot_pink.png');
+        });
+    </script>
 </head>
 <body>
 <!-- header -->
