@@ -134,4 +134,27 @@
 		update pcp_booking set bstate = '예약 완료' where bid=#{bid}
 	</update>
 
+	<!--7/26-->
+	<select id="HBlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM
+			(SELECT ROWNUM RNO, HID ,HNAME, MID, to_char(BDATE, 'yyyy-mm-dd') VDATE ,BSTATE, VTIME, BID, BDATE FROM
+				(SELECT H.HID, H.HNAME, M.MID , VDATE ,B.BSTATE, VTIME , BID, BDATE
+				 FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_MEMBER M where b.hid = h.hid AND M.MID = B.MID ORDER BY BDATE DESC)
+			 WHERE HID= #{hid})
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<select id="HBslist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM
+			(SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM
+				(SELECT ROWNUM RNO, HID ,HNAME, MID, to_char(BDATE, 'yyyy-mm-dd') VDATE ,BSTATE, VTIME, BID, BDATE FROM
+					(SELECT H.HID, H.HNAME, M.MID , VDATE ,B.BSTATE, VTIME , BID, BDATE
+					 FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_MEMBER M where b.hid = h.hid AND M.MID = B.MID
+					 ORDER BY BDATE DESC)
+				 WHERE HID= #{hid})
+			 WHERE MID LIKE '%' || #{mid} || '%')
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+
 </mapper>

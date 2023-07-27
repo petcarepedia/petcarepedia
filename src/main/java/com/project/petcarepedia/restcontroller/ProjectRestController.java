@@ -3,6 +3,7 @@ package com.project.petcarepedia.restcontroller;
 import com.project.petcarepedia.dto.*;
 import com.project.petcarepedia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -33,6 +34,8 @@ public class ProjectRestController {
     SPWordService spWordService;
     @Autowired
     MailService mailService;
+    @Autowired
+    PageService pageService;
 
     @GetMapping("pass_check/{mid}/{pass}")
     public String pass_check(@PathVariable String mid, @PathVariable String pass) {
@@ -180,6 +183,34 @@ public class ProjectRestController {
 
         return "error";
     }
+
+
+    /* 리뷰 관리 게시판 */
+    @GetMapping("manager_review_list/{hid}/{page}/state")
+    public Map manager_review_list(@PathVariable String hid, @PathVariable String page, HttpSession session){
+        Map map = new HashMap();
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+        PageDto pageDto = new PageDto(page, "manager_review_report");
+        pageDto.setHid(hid);
+        pageDto = pageService.getPageResult(pageDto);
+
+        List<ReviewDto> list = reviewService.MRRlist(pageDto);
+
+        /* string rid */
+        for (ReviewDto review : list) {
+            String targetRid = review.getRid();
+            int state = reviewReportService.MRRlist(targetRid);
+            review.setLikeresult(state);
+
+        }
+
+        System.out.println(list);
+
+        map.put("list", list);
+        map.put("page", pageDto);
+        return map;
+    }
+
 
     /**
      * splist_data

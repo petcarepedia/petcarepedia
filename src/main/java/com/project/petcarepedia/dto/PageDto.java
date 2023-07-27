@@ -16,5 +16,4 @@ public class PageDto {
     private String mid;
     private String hname;
     private String hid;
-
 }

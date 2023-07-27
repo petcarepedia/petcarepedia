@@ -12,9 +12,21 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
+
+    //병원 멀티파일 등록
+    public void hospitalFileSave(HospitalDto hospitalDto) throws Exception {
+        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
+        int count = 0;
+        for(MultipartFile file : hospitalDto.getFiles()) {
+            if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+                File saveFile = new File(root_path +  hospitalDto.getHsfiles().get(count));
+                file.transferTo(saveFile);
+            }
+            count++;
+        }
+    }
+
     ////////////////////////////Review///////////////////////////////////////
-
-
     /*
      * multiFileDelete - �뵳�됰윮 占쎄텣占쎌젫占쎈뻻 占쎈솁占쎌뵬 占쎄텣占쎌젫
      */
@@ -236,4 +248,9 @@ public class FileUploadService {
 
         return memberDto;
     }
+
+
+
+
+
 }

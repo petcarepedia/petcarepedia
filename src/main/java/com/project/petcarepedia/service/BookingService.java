@@ -88,4 +88,10 @@ public class BookingService {
         return bookingMapper.Blist(pageDto);
     }
 
+    /*07.26*/
+    public List<BookingDto> HBlist(PageDto pageDto) {return bookingMapper.HBlist(pageDto);}
+
+    public List<BookingDto> HBslist(PageDto pageDto){return bookingMapper.HBslist(pageDto);}
+
+
 }

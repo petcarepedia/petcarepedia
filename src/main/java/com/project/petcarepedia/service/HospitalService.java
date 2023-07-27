@@ -34,5 +34,5 @@ public class HospitalService {
     public ArrayList<HospitalDto> select(){return hospitalMapper.list2();}
     public HospitalDto selectTime(String hid){return hospitalMapper.selectTime(hid);}
     public int insert(HospitalDto hospitalDto){return hospitalMapper.insert(hospitalDto);}
-
+    public HospitalDto selectMh(String mid){return hospitalMapper.selectMh(mid);}
 }

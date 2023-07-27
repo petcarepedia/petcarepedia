@@ -39,7 +39,7 @@
 		                            <a href="http://localhost:9000/search_main/">병원검색</a>
 		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/review_main/1/">리뷰사전</a>
+		                            <a href="http://localhost:9000/review_main/서울전체/1/">리뷰사전</a>
 		                        </li>
 		                        <li>
 		                            <a href="http://localhost:9000/login">로그인</a>
@@ -58,10 +58,17 @@
 		                            <a href="http://localhost:9000/search_main/">병원검색</a>
 		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/review_main/1/">리뷰사전</a>
+		                            <a href="http://localhost:9000/review_main/서울전체/1/">리뷰사전</a>
 		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/mypage_member_information/">마이페이지</a>
+									<c:choose>
+										<c:when test="${sessionScope.svo.grade == 'user' || sessionScope.svo.grade == 'admin'}">
+											<a href="http://localhost:9000/mypage_member_information/">마이페이지</a>
+										</c:when>
+										<c:otherwise>
+											<a href="http://localhost:9000/manager_hospital_list/">마이페이지</a>
+										</c:otherwise>
+									</c:choose>
 		                        </li>
 		                        <li>
 		                            <a id="logout">로그아웃</a>

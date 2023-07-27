@@ -91,7 +91,7 @@ tr td:nth-child(1) {
 }
 section.reserve tr:last-child td,section.review tr:last-child td,
 section.member tr:last-child td
-{/* ÀÌÀüÀ¸·Î */
+{/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	border-color:white;
 	padding:0 0 0 650px;
 }
@@ -130,7 +130,7 @@ section.notice #section1 div nav ul li:nth-child(6) a
 }
 
 /****************************
-section1 style sheet - Ä«Å×°í¸®
+section1 style sheet - Ä«ï¿½×°ï¿½
 *****************************/
 #section1 {
 	width: 148px;
@@ -278,7 +278,7 @@ section.notice_detail table.table tr:nth-last-child(-n+2) {
 }
 
 /*************************************
-	°øÁö»çÇ× Ãß°¡ »çÇ×
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
 ***************************************/
 section.notice tr:first-child td {
 	padding-left:700px;
