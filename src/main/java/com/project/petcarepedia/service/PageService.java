@@ -15,6 +15,7 @@ public class PageService {
     private NoticeService noticeService;
     public PageDto getPageResult(PageDto pageDto) {
         String gloc = "";
+        String hid ="";
         //페이징 처리 - startCount, endCount 구하기
         int startCount = 0;
         int endCount = 0;
@@ -64,7 +65,19 @@ public class PageService {
         }else if(pageDto.getServiceName().equals("review_report")){
             pageSize=10;
             dbCount= pageMapper.RRcount();
+        }else if(pageDto.getHid() != null && pageDto.getHid() != ""){
+            pageSize=10;
+            dbCount = pageMapper.HBcount(pageDto);
+        }else if(pageDto.getServiceName().equals("manager_review")) {
+            pageSize = 10;
+            dbCount = pageMapper.MRcount(pageDto);
+            hid = pageDto.getHid();
+        } else if(pageDto.getServiceName().equals("manager_review_report")) {
+            pageSize = 10;
+            dbCount = pageMapper.MRScount(pageDto);
+            hid = pageDto.getHid();
         }
+
 
         //총 페이지 수 계산
         if(dbCount % pageSize == 0){
@@ -90,6 +103,7 @@ public class PageService {
         pageDto.setPageCount(pageCount);
         pageDto.setPageSize(pageSize);
         pageDto.setReqPage(reqPage);
+        pageDto.setHid(hid);
 
         return pageDto;
     }

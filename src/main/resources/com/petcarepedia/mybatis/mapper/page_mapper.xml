@@ -94,6 +94,23 @@
 <!--					WHERE RNO BETWEEN #{start} AND #{end}-->
 <!--	</select>-->
 <!--	-->
+	<select id="MRcount" parameterType="com.project.petcarepedia.dto.PageDto" resultType="int">
+		select count(*) from pcp_review where hid=#{hid}
+	</select>
+
+
+	<select id="MRScount" parameterType="com.project.petcarepedia.dto.PageDto" resultType="int">
+		SELECT COUNT(*)
+		FROM (SELECT HID, RID, COUNT(RID)
+			  FROM PCP_REVIEW_REPORT
+			  WHERE HID=#{hid}
+			  GROUP BY HID, RID)
+	</select>
+
+	<select id="HBlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="int">
+		select count(*) from pcp_booking where hid = #{hid}
+	</select>
+
 	<select id="RRcount" resultType="int">
 		select count(*) from pcp_review_report
 	</select>

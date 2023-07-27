@@ -24,4 +24,8 @@
 	<select id="idCheck" parameterType="com.project.petcarepedia.dto.ReviewLikeDto" resultType="int">
 		select count(*) from pcp_review_like where mid=#{mid} and rid=#{rid}
 	</select>
+
+	<select id="MRRlist" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM PCP_REVIEW_REPORT WHERE RID=#{rid}
+	</select>
 </mapper>

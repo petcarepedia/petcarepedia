@@ -64,7 +64,7 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="deleteForm" action="/admin/hospital_delete" method="post">
+						<form name="delete`	Form" action="/admin/hospital_delete" method="post">
 						<input type = "hidden" name = "hid" value = "${hospital.hid}">
 						<%--<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">--%>
 							<table class="table">
