@@ -26,4 +26,9 @@ public class ReviewReportService {
     public List<ReviewReportDto> RRlist(PageDto pageDto){return reviewReportMapper.RRlist(pageDto);}
 
     public ReviewReportDto content(String rrid){return  reviewReportMapper.content(rrid);}
+
+    public int MRRlist(String rid) {
+        return reviewReportMapper.MRRlist(rid);
+    }
+
 }

@@ -13,4 +13,6 @@ public interface ReviewReportMapper {
     int delete(String rrid); /* 신고 리뷰 삭제 */
     List<ReviewReportDto> RRlist(PageDto pageDto);
     ReviewReportDto content(String rrid);
+
+    int MRRlist(String rid);
 }
