@@ -31,4 +31,6 @@ public interface ReviewMapper {
     int report2(String rid);
     List<ReviewDto> Mylist(PageDto pageDto);
     List<ReviewDto> Rlist(PageDto pageDto);
+    List<ReviewDto> MRlist(PageDto pageDto);
+    List<ReviewDto> MRRlist(PageDto pageDto);
 }

@@ -83,4 +83,12 @@ public class ReviewService {
         return reviewMapper.Rlist(pageDto);
     }
 
+    public List<ReviewDto> MRlist(PageDto pageDto) {
+        return reviewMapper.MRlist(pageDto);
+    }
+
+    public List<ReviewDto> MRRlist(PageDto pageDto) {
+        return reviewMapper.MRRlist(pageDto);
+    }
+
 }
