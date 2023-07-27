@@ -17,7 +17,7 @@ public class PageService {
 
     public PageDto getPageResult(PageDto pageDto) {
         String gloc = "";
-        String hid ="";
+        String hid = "";
         //페이징 처리 - startCount, endCount 구하기
         int startCount = 0;
         int endCount = 0;
@@ -46,15 +46,23 @@ public class PageService {
         }else if(pageDto.getServiceName().equals("hospital")) {
             pageSize = 10;
             dbCount = pageMapper.Hcount();
-        }else if(pageDto.getHname() != null && pageDto.getHname() != "") {
-            pageSize = 10;
-            dbCount = pageMapper.Hscount(pageDto);
-        }else if(pageDto.getGloc() != null && pageDto.getGloc() != "") {
-            pageSize = 10;
-            dbCount = pageMapper.Hscount2(pageDto);
         }else if(pageDto.getServiceName().equals("member")) {
             pageSize = 10;
             dbCount = pageMapper.Mcount();
+        }else if(pageDto.getServiceName().equals("review_report")){
+            pageSize=10;
+            dbCount= pageMapper.RRcount();
+        }else if(pageDto.getServiceName().equals("manager_review")) {
+            pageSize = 10;
+            dbCount = pageMapper.MRcount(pageDto);
+            hid = pageDto.getHid();
+        } else if(pageDto.getServiceName().equals("manager_review_report")) {
+            pageSize = 10;
+            dbCount = pageMapper.MRScount(pageDto);
+            hid = pageDto.getHid();
+        }else if(pageDto.getHid() != null && pageDto.getHid() != ""){
+            pageSize=10;
+            dbCount = pageMapper.HBcount(pageDto);
         }else if(pageDto.getMid() != null && pageDto.getMid() != "") {
             pageSize = 10;
             dbCount = pageMapper.Mscount(pageDto);
@@ -64,22 +72,13 @@ public class PageService {
         } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
             pageSize = 10;
             dbCount = pageMapper.Bscount(pageDto);
-        }else if(pageDto.getServiceName().equals("review_report")){
-            pageSize=10;
-            dbCount= pageMapper.RRcount();
-        }else if(pageDto.getHid() != null && pageDto.getHid() != ""){
-            pageSize=10;
-            dbCount = pageMapper.HBcount(pageDto);
-        }else if(pageDto.getServiceName().equals("manager_review")) {
+        }else if(pageDto.getHname() != null && pageDto.getHname() != "") {
             pageSize = 10;
-            dbCount = pageMapper.MRcount(pageDto);
-            hid = pageDto.getHid();
-        } else if(pageDto.getServiceName().equals("manager_review_report")) {
+            dbCount = pageMapper.Hscount(pageDto);
+        }else if(pageDto.getGloc() != null && pageDto.getGloc() != "") {
             pageSize = 10;
-            dbCount = pageMapper.MRScount(pageDto);
-            hid = pageDto.getHid();
+            dbCount = pageMapper.Hscount2(pageDto);
         }
-
 
         //총 페이지 수 계산
         if(dbCount % pageSize == 0){
