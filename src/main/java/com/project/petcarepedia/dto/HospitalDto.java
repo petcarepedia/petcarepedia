@@ -17,8 +17,8 @@ public class HospitalDto {
 
     private MultipartFile[] files;
 
-    private ArrayList hfiles = new ArrayList();
-    private ArrayList hsfiles = new ArrayList();
+    private ArrayList<String> hfiles = new ArrayList<String>();
+    private ArrayList<String> hsfiles = new ArrayList<String>();
 
     String hfile1, hsfile1, hfile2, hsfile2;
     String htime1, htime2, mid;
