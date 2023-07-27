@@ -3,6 +3,7 @@ package com.project.petcarepedia.controller;
 import com.project.petcarepedia.dto.PageDto;
 import com.project.petcarepedia.dto.ReviewDto;
 import com.project.petcarepedia.dto.SessionDto;
+import com.project.petcarepedia.service.HospitalService;
 import com.project.petcarepedia.service.PageService;
 import com.project.petcarepedia.service.ReviewReportService;
 import com.project.petcarepedia.service.ReviewService;
@@ -23,11 +24,21 @@ public class ManagerReviewListController {
     PageService pageService;
     @Autowired
     ReviewReportService reviewReportService;
+    @Autowired
+    HospitalService hospitalService;
 
     /*리뷰 리스트*/
-    @GetMapping("manager_review_list/{hid}/{page}/")
-    public String manager_review_list(@PathVariable String hid, @PathVariable String page, HttpSession session, Model model){
+    @GetMapping("manager_review_list/{page}/")
+    public String manager_review_list(@PathVariable String page, HttpSession session, Model model){
         SessionDto svo = (SessionDto) session.getAttribute("svo");
+        String mid;
+        if(svo == null) {
+            mid = "";
+        } else {
+            mid = svo.getMid();
+        }
+        String hid = hospitalService.selectMh(mid).getHid();
+
         PageDto pageDto = new PageDto(page, "manager_review");
         pageDto.setHid(hid);
         pageDto = pageService.getPageResult(pageDto);

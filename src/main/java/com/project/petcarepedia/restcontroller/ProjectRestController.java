@@ -186,10 +186,18 @@ public class ProjectRestController {
 
 
     /* 리뷰 관리 게시판 */
-    @GetMapping("manager_review_list/{hid}/{page}/state")
-    public Map manager_review_list(@PathVariable String hid, @PathVariable String page, HttpSession session){
+    @GetMapping("manager_review_list/{page}/state")
+    public Map manager_review_list(@PathVariable String page, HttpSession session){
         Map map = new HashMap();
         SessionDto svo = (SessionDto) session.getAttribute("svo");
+        String mid;
+        if(svo == null) {
+            mid = "";
+        } else {
+            mid = svo.getMid();
+        }
+
+        String hid = hospitalService.selectMh(mid).getHid();
         PageDto pageDto = new PageDto(page, "manager_review_report");
         pageDto.setHid(hid);
         pageDto = pageService.getPageResult(pageDto);
