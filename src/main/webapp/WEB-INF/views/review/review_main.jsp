@@ -35,7 +35,7 @@
 		$('input:checkbox[name=filter_location][value= "${page.gloc}"]').attr("checked", true).parent().addClass('on');
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			jQuery('.showlabelsm').text('The selected page no: '+e.page);
-			$(location).attr('href', "http://localhost:9000/review_main_search/"+e.page+"/"+gloc+"/");
+			$(location).attr('href', "http://localhost:9000/review_main/"+gloc+"/"+e.page);
 		});
 
  	});
@@ -112,7 +112,13 @@
 			<c:choose>
 				<c:when test="${page.dbCount == 0}">
 					<ul>
-						<li>없음</li>
+						<li>
+							<div class="review_card_no">
+								<img id="review_img"
+									 src="http://localhost:9000/images/review.png">
+								<span>등록된 리뷰가 없습니다.</span>
+							</div>
+						</li>
 					</ul>
 				</c:when>
 				<c:otherwise>
@@ -129,7 +135,7 @@
 										</div>
 									</li>
 									<li id="list_middle" class="list">
-										<a href="/review_content/${page.gloc}/${page.reqPage}/${list.rid }/">
+										<a href="/review_content/${page.gloc}/${page.reqPage}/${list.rid }">
 											<div id="review_hname">${list.hname }</div>
 											<div class="rvc">
 													${list.rcontent }
