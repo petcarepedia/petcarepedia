@@ -61,7 +61,8 @@
 			<input type="hidden" id="vtime" name="vtime" value="">
 
 			<c:choose>
-				<c:when test="${svo.grade eq 'manage' }">
+				<%--본인 병원 예약 방지--%>
+				<c:when test="${svo.hid == hospital.hid}">
 					<td></td>
 				</c:when>
 				<c:otherwise>
