@@ -36,7 +36,7 @@
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td><img src="http://localhost:9000/images/cat.png"><p>${rvo.nickname }</p></td>
+						<td><img src="http://localhost:9000/upload/${rvo.msfile}"><p>${rvo.nickname }</p></td>
 					</tr>
 					<tr>
 						<th>상세내용</th>

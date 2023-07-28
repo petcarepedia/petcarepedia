@@ -127,7 +127,7 @@
 							<li class="review_list">
 								<ul>
 									<li id="list_left" class="list">
-										<p><img src="http://localhost:9000/images/cat.png"><span>${list.nickname }</span></p>
+										<p><img src="http://localhost:9000/upload/${list.msfile}"><span>${list.nickname }</span></p>
 										<div id="star">
 											<div id="avg">
 												⭐ ${list.rstar } / 5.0
