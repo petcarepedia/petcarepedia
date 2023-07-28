@@ -84,7 +84,20 @@ public class SearchController {
 
     /** search_reservation **/
     @GetMapping("search_reservation/{hid}")
-    public String search_reservation(@PathVariable String hid, Model model) {
+    public String search_reservation(@PathVariable String hid, HttpSession session, Model model) {
+        //session
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+
+        String mid;
+        if(svo == null) {
+            mid = "";
+        } else {
+            mid = svo.getMid();
+        }
+
+        System.out.println("mid:"+mid + "hid:"+hospitalService.content(hid).getHid());
+        System.out.println(svo.getGrade());
+
         model.addAttribute("hospital", hospitalService.content(hid));
         model.addAttribute("time", bookingService.selectTime2(hid));
 

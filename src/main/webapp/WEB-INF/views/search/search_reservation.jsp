@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -55,10 +56,19 @@
 
 	    <form name="reservationForm" action="/reservation" method="get">
 			<input type="hidden" name="hid" value="${hospital.hid}">
-			<input type="hidden" name="mid" value="${sessionScope.svo.mid}"> 
+			<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
 		    <input type="hidden" id="vdate" name="vdate" value="">
 			<input type="hidden" id="vtime" name="vtime" value="">
-			<button type="button" id="check">확인</button>
+
+			<c:choose>
+				<c:when test="${svo.grade eq 'manage' }">
+					<td></td>
+				</c:when>
+				<c:otherwise>
+					<button type="button" id="check">확인</button>
+				</c:otherwise>
+			</c:choose>
+
 		</form>
 	</div>
 </body>
