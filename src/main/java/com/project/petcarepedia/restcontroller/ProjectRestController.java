@@ -326,7 +326,9 @@ public class ProjectRestController {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
+                sessionDto.setHid(hospitalService.selectMh(memberDto.getMid()).getHid());
 
+                map.put("mhid", sessionDto.getHid());
                 map.put("name", sessionDto.getName());
                 map.put("result", "1");
             }
