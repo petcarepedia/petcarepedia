@@ -72,7 +72,8 @@
                         <li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
                         <li><a href = "http://localhost:9000/manager/reserve_list/1/">예약 관리</a></li>
                         <li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
-                        <li><a href = "#">내 정보 관리</a></li>
+                        <li><a href = "http://localhost:9000/mypage_member_information">회원 정보</a></li>
+                        <li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
                     </ul>
                 </nav>
             </section>
