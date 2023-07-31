@@ -270,9 +270,9 @@ public class ProjectRestController {
     /**
      * mail_mulcheck - 이메일 중복체크
      */
-    @GetMapping("mail_mulcheck/{email}")
-    public String mail_mulcheck(@PathVariable String email) {
-        return String.valueOf(memberService.checkMail(email));
+    @GetMapping("mail_mulcheck/{email}/{grade}")
+    public String mail_mulcheck(@PathVariable String email, @PathVariable String grade) {
+        return String.valueOf(memberService.checkMail(email, grade));
     }
 
     /**

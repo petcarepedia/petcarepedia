@@ -57,7 +57,7 @@
 	</select>
 	
 	<select id="checkMail" parameterType="string" resultType="int">
-		select count(*) from pcp_member where email=#{email}
+		select count(*) from pcp_member where email=#{email} and grade=#{grade}
 	</select>
 	
 	<update id="update" parameterType="com.project.petcarepedia.dto.MemberDto">
