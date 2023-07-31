@@ -28,8 +28,7 @@
 					icon: 'success',
 					title: '취소가 완료되었습니다.'
 				}).then(() => {
-					document.deleteForm.submit();
-
+					ReportDeleteForm.submit();
 
 				});
 				}
@@ -62,7 +61,7 @@
 				<section id="section2">
 
 					<div class="review_detail">
-						<form name="deleteForm" action="/admin/review_delete/" method="post">
+						<form name="ReportDeleteForm" action="/admin/review_report_delete" method="post">
 							<div id = "table" >
 								<input type="hidden" id="rid" name="rid" value="${review.rid }">
 								<input type="hidden" id="rrid" name="rrid" value="${review_report.rrid }">
@@ -70,18 +69,18 @@
 									<tr>
 										<th>병원이름</th>
 										<td>
-											${review.hname }
+											${review_report.hname }
 										</td>
 
 									</tr>
 									<tr>
 										<th>작성자</th>
-										<td>${review.msfile}${review.mid}</td>
+										<td>${review_report.msfile}${review_report.mid}</td>
 									</tr>
 									<tr>
 										<th>상세내용</th>
 										<td colspan='3'>
-											${review.rcontent }
+											${review_report.rcontent }
 										</td>
 									</tr>
 								</table>
@@ -90,7 +89,7 @@
 						<div class="table_right">
 							<div id="right_top">
 								<button type="button" id="btnLike" disabled>
-										♥️${review.rlike }
+										♥️${review_report.rlike }
 								</button>
 							</div>
 							<div id="star">
@@ -98,21 +97,21 @@
 									평점
 								</div>
 								<div id="avg" class="score">
-									⭐ ${review.rstar } / 5.0
+									⭐ ${review_report.rstar } / 5.0
 								</div>
 							</div>
 							<table>
 								<tr>
 									<td>작성일자</td>
-									<td>${review.rdate}</td>
+									<td>${review_report.rdate}</td>
 								</tr>
 							</table>
 
 							<div id="dButton">
-								<a href="http://localhost:9000/admin/review_delete2/1/${review.rid}/">
+								<a href="http://localhost:9000/admin/review_delete2/1/${review_report.rid}/">
 									<button type="submit" class="button5" id="btn_delete">삭제하기</button>
 								</a>
-								<button type="submit" class="button5" id="btn_report" onclick = "report()">신고취소</button>
+								<button type="submit" class="button5" id="btn_report">신고취소</button>
 								<a href="http://localhost:9000/admin/review_list/1/">
 									<button type="button" class="button5" id="btn_before">이전으로</button>
 								</a>

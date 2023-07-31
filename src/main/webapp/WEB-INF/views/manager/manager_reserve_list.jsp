@@ -35,9 +35,9 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 			   if(mid!=null && mid!=""){
-				   $(location).attr('href', "http://localhost:9000/admin/manager/reserve_msearch/"+e.page+"/"+mid);
+				   $(location).attr('href', "http://localhost:9000/manager/reserve_msearch/"+e.page+"/"+hid);
 			   } else {
-				   $(location).attr('href', "http://localhost:9000/admin/manager/reserve_list/"+e.page);
+				   $(location).attr('href', "http://localhost:9000/manager/reserve_list/"+e.page);
 			   }
 	                    
 	    });
@@ -64,7 +64,7 @@
 			</section>
 			<section id="section2">
 				<h2>예약 관리</h2>
-				<p></p>
+				<p id="p"></p>
 				<div class="d2" id = "d2">
 					<input type="text"  class="search_bar" id ="Hreserve_bar"placeholder="회원아이디 입력">
 					<button type="submit" class="button1" id="Hreserve_btn">

@@ -127,7 +127,6 @@ $(document).ready(function(){
 			        confirmButtonText: '확인'
 			    }).then((result) => {
 			        if (result.isConfirmed) {
-			           
 			            updateForm.submit(); 
 			        }
 			    });
@@ -179,7 +178,7 @@ $(document).ready(function(){
 	/*************************
 	 * 병원 관리자 예약 - 회원 아이디 검색창
 	 **************************/
-	$("#Hreserve_btn").click(function(){
+	$("#Hreserve_btn").click(function () {
 		if($("#Hreserve_bar").val() ==""){
 			Swal.fire({
 				icon: 'warning',                         // Alert 타입
@@ -192,7 +191,7 @@ $(document).ready(function(){
 			$("#Hreserve_bar").focus();
 			return false;
 		}else{
-			location.href = "http://localhost:9000/admin/manager/reserve_msearch/1/"+$("#Hreserve_bar").val();
+			location.href = "http://localhost:9000/manager_reserve_msearch/1/H_0001/"+ $("#Hreserve_bar").val();
 		}//else
 
 	});//function

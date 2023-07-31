@@ -37,4 +37,8 @@ public class HospitalService {
     public HospitalDto selectTime(String hid){return hospitalMapper.selectTime(hid);}
     public int insert(HospitalDto hospitalDto){return hospitalMapper.insert(hospitalDto);}
     public HospitalDto selectMh(String mid){return hospitalMapper.selectMh(mid);}
+
+    public int manager_update(HospitalDto hospitalDto) {
+        return hospitalMapper.manager_update(hospitalDto);
+    }
 }
