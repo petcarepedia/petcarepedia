@@ -1727,7 +1727,7 @@ div.review_card_no span {
 	padding-left : 10px;
 }
 #content>.hospital_info>form>.aside>.section2>ul>li>input {
-	width : 513px;
+	width : 520px;
 	height: 50px;
 	border : 1px solid #D8D8D8;
 	border-radius : 5px;
@@ -1742,7 +1742,8 @@ div.review_card_no span {
 	border : 1px solid #D8D8D8;
 }
 #content>.hospital_info>form>.aside>.section2>ul>li>#loc {
-	width : 435px;
+	width : 440px;
+
 }
 #content>.hospital_info>form>.aside>.section2>ul>li>#gloc,
 #content>.hospital_info>form>.aside>.section2>ul>li>#tel{
@@ -1788,7 +1789,7 @@ div.review_card_no span {
 	text-align-last: center;
 }
 #intro {
-	width : 513px;
+	width : 520px;
 	height : 55px;
 	vertical-align : top;
 	border : 1px solid #D8D8D8;
@@ -1812,4 +1813,41 @@ div.review_card_no span {
 	margin-top : 35px;
 	margin-left : 202px;
 	margin-bottom : 100px;
+}
+.filebox .upload-name_file1, .filebox .upload-name_file2 {
+	display: inline-block;
+	width : 435px;
+	height: 55px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	color: #999999;
+	border-radius : 5px;
+}
+.filebox {
+	display : inline-block;
+}
+.filebox label.find_file1, .filebox label.find_file2 {
+	display: inline-block;
+	color: white;
+	font-weight: 700;
+	font-size : 12px;
+	padding : 21px 2px 0px 10px;
+	border-radius : 5px;
+	vertical-align: middle;
+	background-color: #FFB3BD;
+	cursor: pointer;
+	width : 55px;
+	height: 36px;
+}
+.filebox .upload-name_file2 {
+	margin-left : 81px;
+}
+.filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
 }

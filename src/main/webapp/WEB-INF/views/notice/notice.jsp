@@ -31,7 +31,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/notice/"+e.page+"/");
+	           $(location).attr('href', "http://localhost:9000/notice/"+e.page);
 	    });
 		
  	});
@@ -56,7 +56,7 @@
 				<c:forEach var="list" items="${list }">
 					<tr>
 						<td>${list.rno }</td>
-						<td><a href="/notice_content/${list.nid }/${page.reqPage}/">${list.title }</a></td>
+						<td><a href="/notice_content/${list.nid }/${page.reqPage}">${list.title }</a></td>
 						<td>${list.ndate }</td>
 						<td>${list.nhits }</td>
 					</tr>

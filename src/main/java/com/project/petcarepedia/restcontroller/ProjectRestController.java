@@ -186,10 +186,18 @@ public class ProjectRestController {
 
 
     /* 리뷰 관리 게시판 */
-    @GetMapping("manager_review_list/{hid}/{page}/state")
-    public Map manager_review_list(@PathVariable String hid, @PathVariable String page, HttpSession session){
+    @GetMapping("manager_review_list/{page}/state")
+    public Map manager_review_list(@PathVariable String page, HttpSession session){
         Map map = new HashMap();
         SessionDto svo = (SessionDto) session.getAttribute("svo");
+        String mid;
+        if(svo == null) {
+            mid = "";
+        } else {
+            mid = svo.getMid();
+        }
+
+        String hid = hospitalService.selectMh(mid).getHid();
         PageDto pageDto = new PageDto(page, "manager_review_report");
         pageDto.setHid(hid);
         pageDto = pageService.getPageResult(pageDto);
@@ -262,9 +270,9 @@ public class ProjectRestController {
     /**
      * mail_mulcheck - 이메일 중복체크
      */
-    @GetMapping("mail_mulcheck/{email}")
-    public String mail_mulcheck(@PathVariable String email) {
-        return String.valueOf(memberService.checkMail(email));
+    @GetMapping("mail_mulcheck/{email}/{grade}")
+    public String mail_mulcheck(@PathVariable String email, @PathVariable String grade) {
+        return String.valueOf(memberService.checkMail(email, grade));
     }
 
     /**
@@ -317,6 +325,12 @@ public class ProjectRestController {
                 } else {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
+                }
+
+                HospitalDto mh = hospitalService.selectMh(memberDto.getMid());
+                if(mh != null) {
+                    sessionDto.setHid(mh.getHid());
+                    map.put("mhid", sessionDto.getHid());
                 }
 
                 map.put("name", sessionDto.getName());

@@ -12,7 +12,24 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
+    /*
+     * hospitalMultiFileDelete - 병원 멀티파일 삭제
+     */
+    public void hospitalMultiFileDelete(HospitalDto hospitalDto, String[] oldFileName) throws Exception{
+        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 
+        int count = 0;
+        for(MultipartFile file : hospitalDto.getFiles()) {
+            if(!file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
+                File deleteFile = new File(root_path +  oldFileName[count]);
+                System.out.println(root_path + oldFileName[count]);
+                if(deleteFile.exists()) {
+                    deleteFile.delete();
+                }
+            }
+            count++;
+        }
+    }
 
     //병원 멀티파일 등록
     public void hospitalFileSave(HospitalDto hospitalDto) throws Exception {
@@ -30,7 +47,8 @@ public class FileUploadService {
      * hospitalMultiFileCheck - 병원 멀티파일 체크
      */
     public HospitalDto hospitalMultiFileCheck(HospitalDto hospitalDto) {
-        int count = 0;
+        System.out.println(hospitalDto.getFiles()[0]);
+        System.out.println(hospitalDto.getFiles()[1]);
         for(MultipartFile file : hospitalDto.getFiles()) {
             if(!file.getOriginalFilename().equals("")) {
                 UUID uuid = UUID.randomUUID();
@@ -41,13 +59,11 @@ public class FileUploadService {
                 hospitalDto.getHfiles().add("");
                 hospitalDto.getHsfiles().add("");
             }
-            count++;
         }
         hospitalDto.setHfile1(hospitalDto.getHfiles().get(0));
         hospitalDto.setHsfile1(hospitalDto.getHsfiles().get(0));
         hospitalDto.setHfile2(hospitalDto.getHfiles().get(1));
         hospitalDto.setHsfile2(hospitalDto.getHsfiles().get(1));
-
         return hospitalDto;
     }
 

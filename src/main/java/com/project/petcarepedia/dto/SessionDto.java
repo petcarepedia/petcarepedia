@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class SessionDto {
     private int loginResult;
-    private String mid, name, grade;
+    private String mid, name, grade, hid;
 }

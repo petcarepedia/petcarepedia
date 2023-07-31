@@ -517,8 +517,8 @@ $("#btnReservationDelete").click(function(){
 
 	//input입력
 	function insertAddress(address, latitude, longitude) {
-		$('#x').val(latitude);
-		$('#y').val(longitude);
+		$('#x').val(longitude);
+		$('#y').val(latitude);
 	}
 
 	/******************************************
@@ -529,12 +529,25 @@ $("#btnReservationDelete").click(function(){
 	})
 
 
+	/****************************************
+	 * 파일 처리
+	 *******************************************/
+	$("#file1").on('change',function(){
+		var fileName = $("#file1").val();
+		$(".upload-name_file1").val(fileName);
+	});
 
+	$("#file2").on('change', function (){
+		var fileName = $("#file2").val();
+		$(".upload-name_file2").val(fileName);
+	})
 
-
-
-
-
+	/***************************************
+	 * 		병원 수정하기 버튼
+	 **************************************/
+	$("#btnHospitalUpdate").click(function(){
+		updateForm.submit();
+	})
 
 
 });

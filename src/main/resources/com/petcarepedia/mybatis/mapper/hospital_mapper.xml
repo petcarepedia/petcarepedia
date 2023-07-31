@@ -107,10 +107,10 @@
 
 	<!--  manager 추가  -->
 	<insert id="manager_insert" parameterType="com.project.petcarepedia.dto.HospitalDto">
-		INSERT INTO PCP_HOSPITAL (HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, HRINK, X, Y, HFILE1, HSFILE1, HFILE2, HSFILE2, MID)
+		INSERT INTO PCP_HOSPITAL (HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, HRINK, X, Y, HFILE1, HSFILE1, HFILE2, HSFILE2, MID, AUTH)
 		VALUES ('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')), #{hname}, #{gloc}, #{loc}, #{tel}, #{htime}, #{ntime}, #{holiday},
 		        #{animal}, #{intro}, #{hrink}, #{x}, #{y}, #{hfile1, jdbcType=VARCHAR}, #{hsfile1 , jdbcType=VARCHAR},
-		    	#{hfile2, jdbcType=VARCHAR}, #{hsfile2 , jdbcType=VARCHAR}, #{mid})
+		    	#{hfile2, jdbcType=VARCHAR}, #{hsfile2 , jdbcType=VARCHAR}, #{mid}, 'unauth')
 
 	</insert>
 

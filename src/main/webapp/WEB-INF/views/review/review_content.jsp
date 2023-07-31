@@ -28,7 +28,7 @@
 					<tr>
 						<th>병원이름</th>
 						<td>
-							<a href="/search_result.do/${rvo.hid }">
+							<a href="/search_result/${rvo.hid }">
 								${rvo.hname }
 							</a>
 						</td>
@@ -36,7 +36,7 @@
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td><img src="http://localhost:9000/images/cat.png"><p>${rvo.nickname }</p></td>
+						<td><img src="http://localhost:9000/upload/${rvo.msfile}"><p>${rvo.nickname }</p></td>
 					</tr>
 					<tr>
 						<th>상세내용</th>
@@ -91,14 +91,21 @@
 							⭐ ${rvo.rstar } / 5.0
 						</div>
 					</div>
-					<div id="imgArea">
-						<c:if test="${rvo.rsfile1 != null && rvo.rsfile1 != ''}">
-							<a href="http://localhost:9000/upload/${rvo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile1 }" alt=""></a>
-						</c:if>
-						<c:if test="${rvo.rsfile2 != null && rvo.rsfile2 != ''}">
-							<a href="http://localhost:9000/upload/${rvo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile2 }" alt=""></a>
-						</c:if>
-					</div>
+					<c:choose>
+						<c:when test="${(rvo.rsfile1 != null && rvo.rsfile1 != '')|| (rvo.rsfile2 != null && rvo.rsfile2 != '')}">
+							<div id="imgArea">
+								<c:if test="${rvo.rsfile1 != null && rvo.rsfile1 != ''}">
+									<a href="http://localhost:9000/upload/${rvo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile1 }" alt=""></a>
+								</c:if>
+								<c:if test="${rvo.rsfile2 != null && rvo.rsfile2 != ''}">
+									<a href="http://localhost:9000/upload/${rvo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile2 }" alt=""></a>
+								</c:if>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div id="NoImgArea"></div>
+						</c:otherwise>
+					</c:choose>
 					<table>
 						<tr>
 							<td>작성일자</td>
@@ -123,15 +130,17 @@
 				<c:choose>
 					<c:when test="${rvo.mid eq sessionScope.svo.mid }">
 						<div class="rc_button_r">
-							<a href="/mypage_review_revise/${rvo.rid }/"><button type="button" class="button">수정</button></a>
+							<a href="/mypage_review_revise/${rvo.rid }"><button type="button" class="button">수정</button></a>
 							<button type="button" class="button" id="reviewDelBtn">삭제</button>
 							<input type="hidden" name="rid" value="${rvo.rid }">
-							<a href="/review_main/${page.gloc}/${page.page }/"><button type="button" class="button">목록</button></a>
+							<input type="hidden" name="rsfile1" value="${rvo.rsfile1 }">
+							<input type="hidden" name="rsfile2" value="${rvo.rsfile2 }">
+							<a href="/review_main/${page.gloc}/${page.page }"><button type="button" class="button">목록</button></a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="rc_button_r">
-							<a href="/review_main/${page.gloc}/${page.page }/"><button type="button" class="button">목록</button></a>
+							<a href="/review_main/${page.gloc}/${page.page }"><button type="button" class="button">목록</button></a>
 						</div>
 					</c:otherwise>
 				</c:choose>

@@ -16,7 +16,7 @@ public interface MemberMapper {
     List<MemberDto> mslist(PageDto pageDto);
     MemberDto content(String mid);
     int checkId(String mid);
-    int checkMail(String email);
+    int checkMail(String email, String grade);
     int update(MemberDto memberDto);
     String find(MemberDto memberDto);
     int updatePass(MemberDto memberDto);

@@ -37,7 +37,14 @@ $(document).ready(function(){
 				});
 		}
 		else {
-			writeForm.submit();
+			Swal.fire({
+				icon: 'success',
+				text:'공지사항이 등록되었습니다.',
+				confirmButtonColor: '#98DFFF',
+				confirmButtonText:'확인',
+			}).then(() => {
+				writeForm.submit();
+			});
 		}	
 	});
 	
@@ -77,7 +84,14 @@ $(document).ready(function(){
 				});
 		}
 		else {
-			updateForm.submit();
+			Swal.fire({
+				icon: 'success',
+				text:'공지사항이 수정되었습니다.',
+				confirmButtonColor: '#98DFFF',
+				confirmButtonText:'확인',
+			}).then(() => {
+				updateForm.submit();
+			});
 		}
 	});
 	

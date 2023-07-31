@@ -32,13 +32,13 @@
 			</table>
 			<div id="date">${nvo.ndate }</div>
 			<div class="nc_button_r">
-				<a href="/admin_notice_update/${nvo.nid }/${page}/"><button type="button" class="ad_button">수정</button></a>
+				<a href="/admin_notice_update/${nvo.nid }/${page}"><button type="button" class="ad_button">수정</button></a>
 					<form name="deleteForm" action="/admin_notice_delete" method="post">
 						<input type="hidden" name="nid" value="${nvo.nid }">
 						<input type="hidden" name="page" value="${page }">
 						<button type="button" class="ad_button" id="noticeDelBtn">삭제</button>
 					</form>
-				<a href="/admin_notice/${page}/"><button type="button" class="ad_button">목록</button></a>
+				<a href="/admin_notice/${page}"><button type="button" class="ad_button">목록</button></a>
 			</div>
 		</section>
 	</div>

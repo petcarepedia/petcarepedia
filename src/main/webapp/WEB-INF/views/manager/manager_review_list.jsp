@@ -28,7 +28,7 @@
 
             jQuery('#ampaginationsm').on('am.pagination.change',function(e){
                 jQuery('.showlabelsm').text('The selected page no: '+e.page);
-                $(location).attr('href', "http://localhost:9000/manager_review_list/${page.hid}/"+e.page+"/");
+                $(location).attr('href', "http://localhost:9000/manager_review_list/"+e.page+"/");
             });
 
             /*호버 효과*/
@@ -39,7 +39,7 @@
                 var row = el.closest('tr');
 
                 // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
-                row.find('td, th').css({ "background": "#FFB3BD", "color": "white" });
+                row.find('td, th').css({ "background": "#FFF2F4"});
             }).on("mouseout", function() {
                 var el = $(this);
                 var row = el.closest('tr');
@@ -69,10 +69,11 @@
                 <nav>
                     <ul>
                         <li>마이페이지</li>
-                        <li><a href = "#">병원 정보 관리</a></li>
-                        <li><a href = "#">예약 관리</a></li>
-                        <li><a href = "http://localhost:9000/manager_review_list/hid/1/">리뷰 관리</a></li>
-                        <li><a href = "#">내 정보 관리</a></li>
+                        <li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
+                        <li><a href = "http://localhost:9000/manager/reserve_list/1/">예약 관리</a></li>
+                        <li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
+                        <li><a href = "http://localhost:9000/mypage_member_information">회원 정보</a></li>
+                        <li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
                     </ul>
                 </nav>
             </section>

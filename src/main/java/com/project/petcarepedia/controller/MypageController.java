@@ -245,11 +245,6 @@ public class MypageController {
         return viewName;
     }
 
-    //병원정보 수정 폼
-    @GetMapping("manager_hospital_update")
-    public String manager_hospital_info() {
-        return "/manager/manager_hospital_update";
-    }
 
     //병원정보 등록 폼
     @GetMapping("manager_hospital_write")
@@ -273,4 +268,33 @@ public class MypageController {
         }
         return viewName;
     }
+    //병원정보 수정 폼
+    @GetMapping("manager_hospital_update")
+    public String manager_hospital_info(HttpSession session, Model model) {
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+        HospitalDto hospitalDto = hospitalService.selectMh(svo.getMid());
+        String htime1 = hospitalDto.getHtime1();
+        String htime2 = hospitalDto.getHtime2();
+        model.addAttribute("hospital", hospitalDto);
+        model.addAttribute("htime1", htime1);
+        model.addAttribute("htime2", htime2);
+        return "/manager/manager_hospital_update";
+    }
+
+    //병원정보 수정 처리
+    @PostMapping("manager_update")
+    public String manager_update(HospitalDto hospitalDto) throws Exception{
+        String[] oldFileName = {hospitalDto.getHsfile1(), hospitalDto.getHsfile2()};
+        String viewName = "";
+        int result = hospitalService.manager_update(fileService.hospitalMultiFileCheck(hospitalDto));
+        if(result == 1) {
+            fileService.hospitalFileSave(hospitalDto);
+            fileService.hospitalMultiFileDelete(hospitalDto, oldFileName);
+            viewName = "redirect:/manager_hospital_list";
+        } else {
+            //오류페이지 호출
+        }
+        return viewName;
+    }
+
 }

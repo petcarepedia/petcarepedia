@@ -28,7 +28,7 @@
 							let contentString = "";
 							if(result.list != null) {
 								for(obj of result.list){
-									contentString += `<li class="spword-li" onclick="location.href='http://localhost:9000/main_search?hname=`+obj.word+`'">`;
+									contentString += '<li class="spword-li" id="'+obj.word+'">';
 									contentString += '<label class="spword-li-label">'+obj.rno+'</label>';
 									contentString += '<a class="spword-li-a">'+obj.word+'</a></li></a>';
 								}
@@ -39,6 +39,10 @@
 							}
 							
 							$(".spword-ul").html(contentString);
+							$(".spword-li").click(function (){
+								$("#shname").val($(this).attr("id"));
+								SPWordForm.submit();
+							});
 					}
 			  });
 	  		};
@@ -130,8 +134,11 @@
 	
 	<div class="spword-box">
 		<a class="spword-title">실시간 인기 검색어</a>
-		<ul class="spword-ul">
-		</ul>
+		<form name="SPWordForm" action="/main_search" method="post">
+			<input type="hidden" name="hname" id="shname">
+			<ul class="spword-ul">
+			</ul>
+		</form>
 	</div>
 	
 	<script>

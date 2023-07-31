@@ -21,7 +21,7 @@ public class MemberService {
     public List<MemberDto> mslist(PageDto pageDto) { return memberMapper.mslist(pageDto); }
     public MemberDto content(String mid) { return memberMapper.content(mid); }
     public int checkId(String mid) { return memberMapper.checkId(mid); }
-    public int checkMail(String email) { return memberMapper.checkMail(email); }
+    public int checkMail(String email, String grade) { return memberMapper.checkMail(email, grade); }
     public int update(MemberDto memberDto) { return memberMapper.update(memberDto); }
     public String find(MemberDto memberDto) { return memberMapper.find(memberDto); }
     public int updatePass(MemberDto memberDto) { return memberMapper.updatePass(memberDto); }

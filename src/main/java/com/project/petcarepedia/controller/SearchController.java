@@ -48,7 +48,6 @@ public class SearchController {
             mid = svo.getMid();
         }
 
-
         model.addAttribute("hospital", hospitalService.content(hid)); //병원 정보 출력
         model.addAttribute("star", hospitalService.selectStar(hid)); //병원 별점 출력
         model.addAttribute("time", bookingService.selectTime2(hid)); //영업시간 출력
@@ -84,7 +83,10 @@ public class SearchController {
 
     /** search_reservation **/
     @GetMapping("search_reservation/{hid}")
-    public String search_reservation(@PathVariable String hid, Model model) {
+    public String search_reservation(@PathVariable String hid, HttpSession session, Model model) {
+        //session
+        session.getAttribute("svo");
+
         model.addAttribute("hospital", hospitalService.content(hid));
         model.addAttribute("time", bookingService.selectTime2(hid));
 

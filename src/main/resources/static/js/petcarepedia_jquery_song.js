@@ -133,7 +133,7 @@ $(document).ready(function(){
 			$("#emailauthcheck_msg").text("").css("display","none");
 		} else {
 			$.ajax({
-				url : "/mail_mulcheck/"+$("#email").val(),
+				url : "/mail_mulcheck/"+$("#email").val()+"/"+$("#grade").val(),
 				success : function(result){
 					if(result >= 1){
 						$("#emailcheck_msg").text("중복된 이메일입니다.").css("color","red")
@@ -507,7 +507,7 @@ $(document).ready(function(){
 	$("#btnMainSearch-index").click(function(){
 		if($("#hname-index").val()==""){
 			Swal.fire({
-	            icon: 'info',                         
+	            icon: 'info',
 	            title: '검색어 미입력',         
 	            text: '찾고싶은 동물병원의 이름을 입력해주세요', 
 	            confirmButtonColor:'#98dfff',

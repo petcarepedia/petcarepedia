@@ -105,6 +105,8 @@ public class ReviewController {
     //review_delete_proc.do 리뷰 삭제 처리
     @PostMapping("/review_delete")
     public String review_delete_proc(ReviewDto reviewDto) throws Exception {
+        System.out.println("rsfile2----------->"+reviewDto.getRsfile2());
+        System.out.println("rsfile1----------->"+reviewDto.getRsfile1());
         String[] oldFileName = {reviewDto.getRsfile1(), reviewDto.getRsfile2()};
         int result = reviewService.delete(reviewDto.getRid());
         if(result == 1) {
@@ -112,7 +114,7 @@ public class ReviewController {
         }
         String url = "서울전체";
         url = URLEncoder.encode(url, "UTF-8");
-        return ("redirect:/review_main/"+url+"/1/");
+        return ("redirect:/review_main/"+url+"/1");
     }
 
     //review_report_check.do 리뷰 신고 체크 ----- restComtroller로 바꾸기
@@ -134,7 +136,7 @@ public class ReviewController {
             // 리뷰로 돌아가게하기
             String url = reviewDto.getGloc();
             url = URLEncoder.encode(url, "UTF-8");
-            view = "redirect:/review_content/"+url+"/"+reviewDto.getPage()+"/"+reviewDto.getRid()+"/";
+            view = "redirect:/review_content/"+url+"/"+reviewDto.getPage()+"/"+reviewDto.getRid();
         }
         return view;
     }
@@ -156,7 +158,7 @@ public class ReviewController {
         String url = pageDto.getGloc();
         url = URLEncoder.encode(url, "UTF-8");
         model.addAttribute("page", pageDto);
-        return ("redirect:/review_content/"+url+"/"+pageDto.getPage()+"/"+reviewLikeDto.getRid()+"/");
+        return ("redirect:/review_content/"+url+"/"+pageDto.getPage()+"/"+reviewLikeDto.getRid());
     }
 
 
@@ -170,7 +172,7 @@ public class ReviewController {
         model.addAttribute("page", pageDto);
         String url = pageDto.getGloc();
         url = URLEncoder.encode(url, "UTF-8");
-        return("redirect:/review_main/"+url+"/1/");
+        return("redirect:/review_main/"+url+"/1");
     }
 
     @GetMapping("review_main/{gloc}/{page}")

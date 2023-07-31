@@ -54,17 +54,17 @@
 	</select>
 	
 	<select id="listPage" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.ReviewDto">
-		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname
-		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, msfile
+		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname , msfile
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, m.msfile from pcp_review r, pcp_hospital h, pcp_member m
 		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc))
 		where rno between #{startCount} and #{endCount}
 	</select>
 	
 	<select id="searchListPage" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.ReviewDto">
-		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
-		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, msfile
+		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, msfile
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, m.msfile from pcp_review r, pcp_hospital h, pcp_member m
 		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{gloc}) 
 		where rno between #{startCount} and #{endCount}
 	</select>
@@ -77,15 +77,15 @@
 	</select>
 	
 	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
-		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2, msfile
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile
 		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
 	</select>
 	
 	<select id="enter_content" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
-		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2, msfile
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile
 		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
 	</select>
@@ -112,7 +112,7 @@
 	<select id="bestList" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.ReviewDto">
 		select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid, nickname 
 		from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid,nickname
-		from(select r.rid,r.hid,r.rcontent,h.hname,h.gloc,to_char(r.rdate,'yyyy-mm-dd') rdate,r.rlike,r.rstar,r.mid,m.nickname 
+		from(select r.rid,r.hid,r.rcontent,h.hname,h.gloc,to_char(r.rdate,'yyyy-mm-dd') rdate,r.rlike,r.rstar,r.mid,m.nickname
 		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid  
 		order by rlike desc))
@@ -138,9 +138,9 @@
 
 	<!-- pageMapper 추가  -->
 	<select id = "Mylist" parameterType = "com.project.petcarepedia.dto.PageDto" resultType = "com.project.petcarepedia.dto.ReviewDto">
-		select rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2
-		from (select rownum rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2
-			  from (select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2  from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b
+		select rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2, msfile
+		from (select rownum rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2, msfile
+			  from (select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile  from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b
 					where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid} order by r.rid desc))
 		where rno between #{startCount} AND #{endCount}
 

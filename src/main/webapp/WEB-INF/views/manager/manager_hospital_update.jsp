@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,6 +21,34 @@
               .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     }
   </script>
+    <script>
+        $(document).ready(function(){
+            var select = '${hospital.htime}';
+            var selectHtime1 = select.substr(0,5);
+            var selectHtime2 = select.substr(6,10);
+            $('#ntime').val('${hospital.ntime}').prop("selected",true);
+            $('#holiday').val('${hospital.holiday}').prop("selected",true);
+            $('#animal').val('${hospital.animal}').prop("selected",true);
+            $('#htime1').val(selectHtime1).prop("selected",true);
+            $('#htime2').val(selectHtime2).prop("selected",true);
+        })
+    </script>
+    <script>
+    $(document).ready(function(){
+        $("#file1").change(function(){
+            if(window.FileReader){
+                let fname = $(this)[0].files[0].name;
+                $("#update_file1").text(fname);
+            }
+        });
+        $("#file2").change(function(){
+            if(window.FileReader){
+                let fname = $(this)[0].files[0].name;
+                $("#update_file2").text(fname);
+            }
+        });
+    })
+    </script>
 </head>
 <body>
 <!-- header -->
@@ -29,13 +58,13 @@
   <section class = "hospital_info" id = "hospital_info">
     <h1 id = "title">병원 정보</h1>
     <hr>
-    <form name="updateForm" action="/manager_update" method="post">
+    <form name="updateForm" action="/manager_update" method="post" enctype="multipart/form-data">
       <section class = "section1" id = "section1">
         <div>
           <nav>
             <ul>
               <li>마이페이지</li>
-              <li><a href = "/mypage_member_information">병원 정보 관리</a></li>
+              <li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
               <li><a href = "/mypage_reservation">예약 관리</a></li>
               <li><a href = "/mypage_my_review/1/">리뷰 관리</a></li>
               <li><a href = "/mypage_bookmark">회원 정보</a></li>
@@ -53,22 +82,22 @@
 <%--            </li>--%>
             <li>
               <label>병원명</label>
-              <label>더조은동물병원</label>
+              <label>${hospital.hname}</label>
             </li>
             <li>
               <label>주소</label>
-              <input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요" value="${memberVo.addr}">
-              <button type="button" class="btnSearchAddr" id="btnSearchAddr">주소찾기</button>
-                <input type="hidden" name="x" id="x" placeholder="위도">
-                <input type="hidden" name="y" id="y" placeholder="경도">
+                <input type = "text" name = "loc" id = "loc" placeholder = "  등록할 병원 주소를 입력해주세요" value = "${hospital.loc}">
+                <button type="button" class="btnSearchLoc" id="btnSearchLoc">주소찾기</button>
+                <input type="hidden" name="x" id="x" placeholder="위도" value = "${hospital.x}">
+                <input type="hidden" name="y" id="y" placeholder="경도" value = "${hospital.y}">
             </li>
             <li>
               <label>지역구</label>
-              <input type = "text" name = "gloc" id = "gloc" placeholder = "지역구를 입력해주세요!">
+              <input type = "text" name = "gloc" id = "gloc" placeholder = "지역구를 입력해주세요!" value = "${hospital.gloc}">
             </li>
             <li>
               <label>휴대폰</label>
-              <input type="text" value = "${member.phone}" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!">
+              <input type="text" value = "${hospital.tel}" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!">
             </li>
             <li>
               <label>영업시간</label>
@@ -105,15 +134,50 @@
             </li>
             <li>
                 <label>병원소개</label>
-                <textarea name = "intro" id = "intro"></textarea>
+                <textarea name = "intro" id = "intro">${hospital.intro}</textarea>
             </li>
             <li>
                 <label>홈페이지</label>
-                <input type = "text" name = "hrink" id = "hrink">
+                <input type = "text" name = "hrink" id = "hrink" value = ${hospital.hrink}>
             </li>
             <li>
                 <label>병원이미지</label>
-                <input type="file" name="file1" id = "file1" accept="image/*">
+                <c:choose>
+                    <c:when test = "${hospital.hfile1 != null}">
+                        <div class="filebox">
+                            <input class="upload-name_file1" value="${hospital.hfile1}" placeholder="첨부파일">
+                            <label class = "find_file1" for="file1">파일찾기</label>
+                            <input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+                            <input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
+                            <input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="filebox">
+                            <input class="upload-name_file1" value="첨부파일" placeholder="첨부파일">
+                            <label class = "find_file1" for="file1">파일찾기</label>
+                            <input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test = "${hospital.hfile2 != null}">
+                        <div class="filebox">
+                            <input class="upload-name_file2" value="${hospital.hfile2}" placeholder="첨부파일">
+                            <label class = "find_file2" for="file2">파일찾기</label>
+                            <input type="file" name="files" class = "file_second" id = "file2" accept="image/*">
+                            <input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
+                            <input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="filebox">
+                            <input class="upload-name_file2" value="첨부파일" placeholder="첨부파일">
+                            <label class = "find_file2" for="file2">파일찾기</label>
+                            <input type="file" name="files" class = "file_second" id = "file2" accept="image/*">
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </li>
           </ul>
         </section>
@@ -121,7 +185,7 @@
           <button type = "button" id = "btnHospitalUpdate">수정하기</button>
         </section>
       </div>
-      <input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}">
+      <input type = "hidden" name = "hid" id = "hid" value = "${hospital.hid}">
     </form>
   </section>
 </div>
