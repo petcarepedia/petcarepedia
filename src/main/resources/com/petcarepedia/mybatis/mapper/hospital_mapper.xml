@@ -69,21 +69,29 @@
 					   WHERE HID = #{hid}
 	</update>
 
+	<update id = "manager_update" parameterType="com.project.petcarepedia.dto.HospitalDto">
+		UPDATE PCP_HOSPITAL SET GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel},
+								HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal},
+								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1} , hsfile1=#{hsfile1}, hfile2=#{hfile2}, hsfile2=#{hsfile2}
+		WHERE HID = #{hid}
+	</update>
+
+
 	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hfile, hsfile
-				 FROM PCP_HOSPITAL WHERE HID = #{hid}
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hfile, hsfile, hsfile1, hsfile2, auth
+		FROM PCP_HOSPITAL WHERE HID = #{hid}
 	</select>
-	
+
 	<select id="list2" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT  H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5) AS STARTTIME, 
-				SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR, H.HSFILE
-								 FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0, 5) STARTTIME, SUBSTR(HTIME, 7, 6) ENDTIME, 
-								 		NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y , HSFILE FROM PCP_HOSPITAL 
-				            		 	ORDER BY HID DESC) H 
-								LEFT JOIN PCP_REVIEW R ON H.HID = R.HID 
-								 GROUP BY H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6), 
-								 H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y , H.HSFILE
-								 ORDER BY H.HID 
+		SELECT H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5) AS STARTTIME,
+			   SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR, H.HSFILE, H.AUTH, H.HSFILE1, H.HSFILE2
+		FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0, 5) STARTTIME, SUBSTR(HTIME, 7, 6) ENDTIME,
+					 NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y , HSFILE, AUTH, HSFILE1, HSFILE2 FROM PCP_HOSPITAL
+			  ORDER BY HID DESC) H
+				 LEFT JOIN PCP_REVIEW R ON H.HID = R.HID
+		GROUP BY H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6),
+				 H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y , H.HSFILE, H.AUTH, H.HSFILE1, H.HSFILE2
+		ORDER BY H.HID
 	</select>
 	
 	<select id="selectTime" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">

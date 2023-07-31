@@ -70,7 +70,11 @@ public class PageService {
         }else if(pageDto.getHid() != null && pageDto.getHid() != ""){
             pageSize=10;
             dbCount = pageMapper.HBcount(pageDto);
-        }else if(pageDto.getServiceName().equals("manager_review")) {
+        } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
+            pageSize=10;
+            dbCount = pageMapper.HBscount(pageDto);
+            hid = pageDto.getHid();
+        } else if(pageDto.getServiceName().equals("manager_review")) {
             pageSize = 10;
             dbCount = pageMapper.MRcount(pageDto);
             hid = pageDto.getHid();

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface HospitalMapper {
+    int manager_update(HospitalDto hospitalDto);
 
     int manager_insert(HospitalDto hospitalDto);
 

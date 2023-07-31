@@ -33,29 +33,7 @@ public class AdminController {
     ReviewReportService reviewReportService;
 
 
-    /* 병원 관리 검색 */
-    @GetMapping("manager/reserve_msearch/{page}/{hid}")
-    public String hospital_reserve_msearch(HttpSession session ,@PathVariable String page,@PathVariable String hid, Model model){
-        SessionDto svo =  (SessionDto) session.getAttribute("svo");
-        PageDto pageDto = new PageDto(page, hid);
-        pageDto.setHid(hid);
-        pageDto.setMid(svo.getMid());
-        pageDto = pageService.getPageResult(pageDto);
-        model.addAttribute("list", bookingService.HBslist(pageDto));
-        model.addAttribute("page", pageDto);
 
-        return "admin/manager_reserve_msearch";
-    }
-
-    /* 병원 관리 예약하기 */
-    @GetMapping("manager/reserve_list/{page}/{hid}")
-    public String hospital_reserve_list(@PathVariable String page,@PathVariable String hid, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, hid));
-        pageDto.setHid(hid);
-        model.addAttribute("list", bookingService.HBlist(pageDto));
-        model.addAttribute("page", pageDto);
-        return "admin/manager_reserve_list";
-    }
 
     /* 신고 리뷰 삭제 처리*/
     @PostMapping("review_delete")
@@ -77,8 +55,8 @@ public class AdminController {
     }
 
     /* 신고 리뷰 취소 처리 */
-    @PostMapping("review_report_delete/")
-    public String review_delete_proc(ReviewReportDto reviewReportDto) throws Exception {
+    @PostMapping("review_report_delete")
+    public String review_report_delete(ReviewReportDto reviewReportDto) throws Exception{
         String oldFileName = reviewReportDto.getMsfile();
         int result = reviewReportService.reviewDelete(reviewReportDto.getRrid());
         if(result == 1){
@@ -88,10 +66,17 @@ public class AdminController {
     }
 
     /* 신고 리뷰 상세 페이지 */
-    @GetMapping("review_detail/{page}/{rid}/")
+    /*@GetMapping("review_detail/{page}/{rid}/")
     public String review_detail(@PathVariable String rid, @PathVariable String page, Model model){
         model.addAttribute("review", reviewService.content(rid));
         model.addAttribute("page", page);
+        return "admin/review/admin_review_detail";
+    }*/
+    @GetMapping("review_detail/{page}/{rrid}")
+    public String review_detail(@PathVariable String page, @PathVariable String rrid, Model model){
+        model.addAttribute("review_report", reviewReportService.content(rrid));
+        model.addAttribute("page", page);
+
         return "admin/review/admin_review_detail";
     }
 

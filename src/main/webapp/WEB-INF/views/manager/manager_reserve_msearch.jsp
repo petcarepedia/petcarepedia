@@ -16,7 +16,7 @@
 	<script>
 		$(document).ready(function(){
 			var mid = "${mid}";
-			var hid = "${hid}"
+			var hid = "${hid}";
 			var pager = jQuery('#ampaginationsm').pagination({
 
 				maxSize: '${page.pageCount}',	    		// max page size
@@ -36,19 +36,18 @@
 			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 				jQuery('.showlabelsm').text('The selected page no: '+e.page);
 				if(mid!=null && mid!=""){
-					$(location).attr('href', "http://localhost:9000/admin/reserve_msearch/"+e.page+"/"+ hid +"/"+mid);
+					$(location).attr('href', "http://localhost:9000/manager_reserve_msearch/"+e.page+"/" +hid+"/" +mid +"/");
 				} else {
-					$(location).attr('href', "http://localhost:9000/admin/reserve_list/"+e.page+"/"+ hid +"/");
+					$(location).attr('href', "http://localhost:9000/manager_reserve_list/"+e.page+"/"+ hid);
 				}
 
 			});
-
 		});
 	</script>
 </head>
 <body>
 <!-- header -->
-<jsp:include page="admin_header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"></jsp:include>
 <div class="d1">
 	<section class="reserve">
 		<section id = "section1">
@@ -56,16 +55,15 @@
 				<nav>
 					<ul>
 						<li>예약관리</li>
-						<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
-						<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
-						<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
-						<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
-						<li><a href = "http://localhost:9000/admin/notice/1/">공지 사항 관리</a></li>
+						<li><a href = "http://localhost:9000/manager_hospital_list/1/">병원 관리</a></li>
+						<li><a href = "http://localhost:9000/manager_reserve_list/1/">예약 관리</a></li>
+						<li><a href = "http://localhost:9000/manager_reserve_list/1/">리뷰 보기</a></li>
 					</ul>
 				</nav>
 			</div>
 		</section>
 		<section id="section2">
+			<input type="hidden" name="hid" id="hid" value="${booking.hid}">
 			<div class="d2" id = "d2">
 				<input type="text"  class="search_bar" id ="Hreserve_bar"placeholder="회원아이디 입력">
 				<button type="submit" class="button1" id="Hreserve_btn">
