@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -57,7 +58,7 @@
   <section class = "hospital_info" id = "hospital_info">
     <h1 id = "title">병원 정보</h1>
     <hr>
-    <form name="updateForm" action="/manager_update" method="post">
+    <form name="updateForm" action="/manager_update" method="post" enctype="multipart/form-data">
       <section class = "section1" id = "section1">
         <div>
           <nav>
@@ -141,19 +142,41 @@
             </li>
             <li>
                 <label>병원이미지</label>
-                <input type="file" name="file1" id = "file1" accept="image/*">
-                <input type="file" name="file1" id = "file2" accept="image/*">
-                <input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
-                <input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
-                <input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
-                <input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
                 <c:choose>
                     <c:when test = "${hospital.hfile1 != null}">
-                        <span id = "update_file1">${hospital.hfile1}</span>
+                        <div class="filebox">
+                            <input class="upload-name_file1" value="${hospital.hfile1}" placeholder="첨부파일">
+                            <label class = "find_file1" for="file1">파일찾기</label>
+                            <input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+                            <input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
+                            <input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
+                        </div>
                     </c:when>
+                    <c:otherwise>
+                        <div class="filebox">
+                            <input class="upload-name_file1" value="첨부파일" placeholder="첨부파일">
+                            <label class = "find_file1" for="file1">파일찾기</label>
+                            <input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
                     <c:when test = "${hospital.hfile2 != null}">
-                        <span id = "update_file2">${hospital.hfile2}</span>
+                        <div class="filebox">
+                            <input class="upload-name_file2" value="${hospital.hfile2}" placeholder="첨부파일">
+                            <label class = "find_file2" for="file2">파일찾기</label>
+                            <input type="file" name="files" class = "file_second" id = "file2" accept="image/*">
+                            <input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
+                            <input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
+                        </div>
                     </c:when>
+                    <c:otherwise>
+                        <div class="filebox">
+                            <input class="upload-name_file2" value="첨부파일" placeholder="첨부파일">
+                            <label class = "find_file2" for="file2">파일찾기</label>
+                            <input type="file" name="files" class = "file_second" id = "file2" accept="image/*">
+                        </div>
+                    </c:otherwise>
                 </c:choose>
             </li>
           </ul>
@@ -162,7 +185,7 @@
           <button type = "button" id = "btnHospitalUpdate">수정하기</button>
         </section>
       </div>
-      <input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}">
+      <input type = "hidden" name = "hid" id = "hid" value = "${hospital.hid}">
     </form>
   </section>
 </div>
