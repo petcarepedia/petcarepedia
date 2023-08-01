@@ -96,7 +96,7 @@
                         <tr>
                             <td>${reivew.rno}</td>
                             <td title="${reivew.mid}">${reivew.mid}</td>
-                            <td><a href="/manager/manager_list/${hid}/${reivew.rid}/">${reivew.rcontent}</a></td>
+                            <td><a href="/manager_review_content/${reivew.rid}/">${reivew.rcontent}</a></td>
                             <td>${reivew.rdate}</td>
 
                             <c:choose>

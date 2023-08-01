@@ -21,7 +21,7 @@ $(document).ready(function() {
                 for (var review of result.list) {
                         code += '<tr><td>' + review.rno + '</td>';
                         code += '<td title="' + review.mid + '">' + review.mid + '</td>';
-                        code += '<td><a href="/manager/manager_list/' + hid + '/' + review.rid + '/">' + review.rcontent + '</a></td>';
+                        code += '<td><a href="/manager_review_content/' + review.rid + '/">' + review.rcontent + '</a></td>';
                         code += '<td>' + review.rdate + '</td>';
                         code += '<td class="state">신고 접수 중</td></tr>';
                 } // for

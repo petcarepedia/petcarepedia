@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -21,48 +21,64 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
-	
+
 	<script>
 		Kakao.init('8e977bf42a12bf9762111f31b4017078');
-		/* console.log(Kakao.isInitialized()); */
 	</script>
 </head>
 
 <body>
-	<!-- header -->
-	<div class="header-wrapper">
-		<jsp:include page="../header.jsp"></jsp:include>
-	</div>
+<!-- header -->
+<div class="header-wrapper">
+	<jsp:include page="../header.jsp"></jsp:include>
+</div>
 
 
-	<!-- content -->
-	<div class="result_main">
-		<section class="info">
-			<div class="info_d">
-				<!-- 병원 사진 표시 -->
-				<div class="images_d">
-					<c:if test="${hospital.hsfile != null}">
-						<%-- <img src="${hospital.img}"> --%>
-						<img src="http://localhost:9000/upload/${hospital.hsfile}">
-					</c:if>
+<!-- content -->
+<div class="result_main">
+	<section class="info">
+		<div class="info_d">
+			<!-- 병원 사진 표시 -->
+			<div class="images_d">
+				<c:if test="${hospital.hsfile1 != null}">
+					<a href="http://localhost:9000/upload/${hospital.hsfile1}" data-title="img2" data-lightbox="example-set" class="pop">
+						<img class="hsfile" src="http://localhost:9000/upload/${hospital.hsfile1}" alt="">
+					</a>
+				</c:if>
+				<c:if test="${hospital.hsfile2 != null}">
+					<a href="http://localhost:9000/upload/${hospital.hsfile2}" data-title="img2" data-lightbox="example-set" class="pop">
+						<img class="hsfile" src="http://localhost:9000/upload/${hospital.hsfile2}" alt="">
+					</a>
+				</c:if>
+				<c:if test="${hospital.hsfile != null}">
+					<a href="http://localhost:9000/upload/${hospital.hsfile}" data-title="img2" data-lightbox="example-set" class="pop">
+						<img class="hsfile" src="http://localhost:9000/upload/${hospital.hsfile}" alt="">
+					</a>
+				</c:if>
+			</div>
+
+			<!-- 병원 정보 표시 -->
+			<div class="name_d">
+				<div class="area_d">
+					<a href="http://localhost:9000/search_main">서울</a>
+					<span>></span>
+					<a>${hospital.gloc}</a>
 				</div>
-				
-				<!-- 병원 정보 표시 -->	
-				<div class="name_d">
-					<div class="area_d">
-						<a href="http://localhost:9000/search_main">서울</a>
-						<span>></span>
-						<a>${hospital.gloc}</a>
+
+				<span class="name">${hospital.hname}</span>
+				<input type="hidden" name="loginId" value="${sessionScope.svo.mid}">
+
+				<c:if test="${svo.grade eq 'manager'}">
+					<div class="buttons">
+						<button id="bookmark" style="cursor: default" disabled></button>
 					</div>
-
-					<span class="name">${hospital.hname}</span>
-					<input type="hidden" name="loginId" value="${sessionScope.svo.mid}"> 
-
+				</c:if>
+				<c:if test="${svo.grade ne 'manager'}">
 					<div class="buttons">
 						<!-- 북마크 -->
 						<form name="bookmarkForm" action="/bookmark" method="get">
 							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="mid" value="${sessionScope.svo.mid}"> 
+							<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
 							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
 
 							<!-- 북마크 여부에 따라서 -->
@@ -70,358 +86,416 @@
 								<c:when test="${bookmarkResult == 1}">
 									<button type="submit" id="bookmark">
 										<img
-											src="http://localhost:9000/images/bookmark_yellow.png">
+												src="http://localhost:9000/images/bookmark_yellow.png">
 									</button>
 								</c:when>
-								
+
 								<c:otherwise>
 									<button type="submit" id="bookmark">
 										<img
-											src="http://localhost:9000/images/bookmark.png">
+												src="http://localhost:9000/images/bookmark.png">
 									</button>
 								</c:otherwise>
 							</c:choose>
 						</form>
 					</div>
+				</c:if>
 
-					<!-- 별점 표시 -->
-					<c:choose>
-						<c:when test="${star.rstar>=1}">
-							<span class="grade">⭐ ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
-						</c:when>
+				<!-- 별점 표시 -->
+				<c:choose>
+					<c:when test="${star.rstar>=1}">
+						<span class="grade">⭐ ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
+					</c:when>
 
-						<c:otherwise>
-							<span class="grade">⭐ 0 | 리뷰 ${fn:length(RM_select)}</span>
-						</c:otherwise>
-					</c:choose>
+					<c:otherwise>
+						<span class="grade">⭐ 0 | 리뷰 ${fn:length(RM_select)}</span>
+					</c:otherwise>
+				</c:choose>
 
-					<!-- 예약하기 -->
-					<button type="button" id="reservation" value="${hospital.hid}">
-						<img src="http://localhost:9000/images/cal.png">
+				<!-- 예약하기 -->
+				<c:choose>
+					<c:when test="${svo.mid == null || svo.mid == ''}">
+						<button type="button" id="reservation" value="${hospital.hid}">
+							<img src="http://localhost:9000/images/cal.png">
 							간편 예약하기 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
-					</button>
-					
-					<!-- 공유하기 -->
-					<button id="share">
-						<img src="http://localhost:9000/images/share.png" id="shareB">
-					</button>
-					
-					<div id="shareLink">
-							<button id="kakaoShare"> 
+						</button>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${svo.hid eq hospital.hid}">
+								<button type="button" id="reservation" value="${hospital.hid}">
+									<img src="http://localhost:9000/images/cal.png">
+									간편 예약하기 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" id="reservation" style="display: none" disabled></button>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+
+				<!-- 공유하기 -->
+				<c:choose>
+					<c:when test="${svo.mid == null || svo.mid == ''}">
+						<button id="share">
+							<img src="http://localhost:9000/images/share.png" id="shareB">
+						</button>
+
+						<div id="shareLink">
+							<button id="kakaoShare">
 								<img src="http://localhost:9000/images/kakao.png" id="kakao">
 							</button>
-							
+
 							<button id="linkCopy">
 								<img src="http://localhost:9000/images/copy.png" id="copy">
 							</button>
-					</div>
-					
-					
-					<!-- 예약화면 모달 -->
-					<div id="hmodal" class="modal">
-						<div class="modal-content">
-							<span class="close">&times;</span>
-							<jsp:include page="search_reservation.jsp"></jsp:include>
 						</div>
-					</div>
-				</div>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${svo.hid eq hospital.hid}">
+								<button id="share">
+									<img src="http://localhost:9000/images/share.png" id="shareB">
+								</button>
 
-				<hr>
-				
-				<!-- 병원 상세 정보 -->
-				<div class="link">
-					<span><img
-						src="http://localhost:9000/images/loc.png">${hospital.loc}</span>
+								<div id="shareLink">
+									<button id="kakaoShare">
+										<img src="http://localhost:9000/images/kakao.png" id="kakao">
+									</button>
 
-					<c:if test="${hospital.hrink != null && hospital.hrink != 'X'}">
-						<span><img src="http://localhost:9000/images/home.png">
-							<a href="${hospital.hrink}">병원 홈페이지 가기</a>
-						</span>
-					</c:if>
+									<button id="linkCopy">
+										<img src="http://localhost:9000/images/copy.png" id="copy">
+									</button>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<button id="share2">
+									<img src="http://localhost:9000/images/share.png" id="shareB">
+								</button>
 
-					<span><img src="http://localhost:9000/images/call.png">${hospital.tel}</span>
-				</div>
+								<div id="shareLink2">
+									<button id="kakaoShare">
+										<img src="http://localhost:9000/images/kakao.png" id="kakao">
+									</button>
 
-				<hr>
-				
-				<!-- 네이게이션바 -->
-				<div class="nav">
-					<span id="info_s">병원정보</span> 
-					<span id="review_s">리뷰</span>
-				</div>
+									<button id="linkCopy">
+										<img src="http://localhost:9000/images/copy.png" id="copy">
+									</button>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
 
-				<hr>
-				
-				<!-- 병원 지도 -->
-				<div class="api_info">
-					<div class="api">
-						<span>병원정보</span> 
-						<span>위치 & 진료시간</span>
-						<div class="map">
-							<jsp:include page="search_result_map.jsp"></jsp:include>
-						</div>
-
-						<span class="api_home">${hospital.loc}</span>
-					</div>
-
-					<div class="time">
-						<ul>
-							<li>영업시간</li>
-							<li>야간 진료 여부</li>
-							<li>휴일 진료 여부</li>
-							<li>특수동물 취급 여부</li>
-							<li>소개</li>
-						</ul>
-
-						<ul>
-							<li>${hospital.htime}</li>
-							<li>${hospital.ntime}</li>
-							<li>${hospital.holiday}</li>
-							<li>${hospital.animal}</li>
-							<c:if test="${! hospital.intro.equals('X')}">
-								<li>${hospital.intro}</li>
-							</c:if>
-						</ul>
+				<!-- 예약화면 모달 -->
+				<div id="hmodal" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<jsp:include page="search_reservation.jsp"></jsp:include>
 					</div>
 				</div>
 			</div>
 
 			<hr>
 
-		</section>
+			<!-- 병원 상세 정보 -->
+			<div class="link">
+					<span><img
+							src="http://localhost:9000/images/loc.png">${hospital.loc}</span>
 
-		<section class="review">
-			<div class="list">
-				<!-- 리뷰 정보 -->
-				<div class="grade">
-					<span>리뷰 ${fn:length(RM_select)}</span>
+				<c:if test="${hospital.hrink != null && hospital.hrink != 'X'}">
+						<span><img src="http://localhost:9000/images/home.png">
+							<a href="${hospital.hrink}">병원 홈페이지 가기</a>
+						</span>
+				</c:if>
 
-					<div class="total">
-						<!-- 점수에 따라 -->
-						<c:choose>
-							<c:when test="${star.rstar>=1}">
-								<span>${star.rstar} / 5</span>
-							</c:when>
+				<span><img src="http://localhost:9000/images/call.png">${hospital.tel}</span>
+			</div>
 
-							<c:otherwise>
-								<span>0 / 5</span>
-							</c:otherwise>
-						</c:choose>
-						
-						<!-- 별점 표시 -->
-						<c:if test="${star.rstar>=1 && star.rstar<2}">
-							<span> ⭐ </span>
-						</c:if>
+			<hr>
 
-						<c:if test="${star.rstar>=2 && star.rstar<3}">
-							<span> ⭐⭐ </span>
-						</c:if>
+			<!-- 네이게이션바 -->
+			<div class="nav">
+				<span id="info_s">병원정보</span>
+				<span id="review_s">리뷰</span>
+			</div>
 
-						<c:if test="${star.rstar>=3 && star.rstar<4}">
-							<span> ⭐⭐⭐ </span>
-						</c:if>
+			<hr>
 
-						<c:if test="${star.rstar>=4 && star.rstar<5}">
-							<span> ⭐⭐⭐⭐ </span>
-						</c:if>
-
-						<c:if test="${star.rstar>=5}">
-							<span> ⭐⭐⭐⭐⭐ </span>
-						</c:if>
+			<!-- 병원 지도 -->
+			<div class="api_info">
+				<div class="api">
+					<span>병원정보</span>
+					<span>위치 & 진료시간</span>
+					<div class="map">
+						<jsp:include page="search_result_map.jsp"></jsp:include>
 					</div>
+
+					<span class="api_home">${hospital.loc}</span>
 				</div>
-				<form name="filterForm" action="/search_result" method="GET">
-					<input type="hidden" name="hid" value="${hospital.hid}">
-					<input type="hidden" id="filterCheck" value="${filter}">
-				    <%--<select name="filter" id="filter" class="filter" onchange="this.form.submit()">--%>
-				    <select name="filter" id="filter" class="filter">
-				    	<option value="basic" selected>리뷰 정렬</option>
-					    <option value="basic">기본 정렬</option>
-					    <option value="like">좋아요 많은 순서</option>
-					    <option value="totalUp">별점 높은 순서</option>
-					    <option value="totalDown">별점 낮은 순서</option>
-					</select>
-				</form>
-				
-				<!-- 리뷰 리스트 -->
-				<c:choose>
-					<c:when test="${fn:length(RM_select) == 0}">
-						<div class="review_card_no">
-							<img id="review_img" src="http://localhost:9000/images/review.png">
-							<p>등록된 리뷰가 아직 없습니다.</p>
-						</div>
-					</c:when>
 
-					<c:otherwise>
-						<c:forEach var="RM_select" items="${RM_select}">
-							<div class="review_card">
-								<div class="member">
-									<div class="name">
-										<!-- if문으로 등록된 이미지 없을 시 해당 이미지로 출력되게 하기 -->
-										<c:choose>
-											<c:when test="${RM_select.msfile !=null}">
-												<img src="http://localhost:9000/upload/${RM_select.msfile}">
-											</c:when>
-											<c:otherwise>
-												<img src="http://localhost:9000/images/cat.png">
-											</c:otherwise>
-										</c:choose>
-										<span>${RM_select.nickname}</span>
-									</div>
+				<div class="time">
+					<ul>
+						<li>영업시간</li>
+						<li>야간 진료 여부</li>
+						<li>휴일 진료 여부</li>
+						<li>특수동물 취급 여부</li>
+						<li>소개</li>
+					</ul>
 
-									<hr class="member_hr">
-									
-									<span class="stext">⭐
+					<ul>
+						<li>${hospital.htime}</li>
+						<li>${hospital.ntime}</li>
+						<li>${hospital.holiday}</li>
+						<li>${hospital.animal}</li>
+						<c:if test="${! hospital.intro.equals('X')}">
+							<li>${hospital.intro}</li>
+						</c:if>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+	</section>
+
+	<section class="review">
+		<div class="list">
+			<!-- 리뷰 정보 -->
+			<div class="grade">
+				<span>리뷰 ${fn:length(RM_select)}</span>
+
+				<div class="total">
+					<!-- 점수에 따라 -->
+					<c:choose>
+						<c:when test="${star.rstar>=1}">
+							<span>${star.rstar} / 5</span>
+						</c:when>
+
+						<c:otherwise>
+							<span>0 / 5</span>
+						</c:otherwise>
+					</c:choose>
+
+					<!-- 별점 표시 -->
+					<c:if test="${star.rstar>=1 && star.rstar<2}">
+						<span> ⭐ </span>
+					</c:if>
+
+					<c:if test="${star.rstar>=2 && star.rstar<3}">
+						<span> ⭐⭐ </span>
+					</c:if>
+
+					<c:if test="${star.rstar>=3 && star.rstar<4}">
+						<span> ⭐⭐⭐ </span>
+					</c:if>
+
+					<c:if test="${star.rstar>=4 && star.rstar<5}">
+						<span> ⭐⭐⭐⭐ </span>
+					</c:if>
+
+					<c:if test="${star.rstar>=5}">
+						<span> ⭐⭐⭐⭐⭐ </span>
+					</c:if>
+				</div>
+			</div>
+			<form name="filterForm" action="/search_result" method="GET">
+				<input type="hidden" name="hid" value="${hospital.hid}">
+				<input type="hidden" id="filterCheck" value="${filter}">
+				<%--<select name="filter" id="filter" class="filter" onchange="this.form.submit()">--%>
+				<select name="filter" id="filter" class="filter">
+					<option value="basic" selected>리뷰 정렬</option>
+					<option value="basic">기본 정렬</option>
+					<option value="like">좋아요 많은 순서</option>
+					<option value="totalUp">별점 높은 순서</option>
+					<option value="totalDown">별점 낮은 순서</option>
+				</select>
+			</form>
+
+			<!-- 리뷰 리스트 -->
+			<c:choose>
+				<c:when test="${fn:length(RM_select) == 0}">
+					<div class="review_card_no">
+						<img id="review_img" src="http://localhost:9000/images/review.png">
+						<p>등록된 리뷰가 아직 없습니다.</p>
+					</div>
+				</c:when>
+
+				<c:otherwise>
+					<c:forEach var="RM_select" items="${RM_select}">
+						<div class="review_card">
+							<div class="member">
+								<div class="name">
+									<!-- if문으로 등록된 이미지 없을 시 해당 이미지로 출력되게 하기 -->
+									<c:choose>
+										<c:when test="${RM_select.msfile !=null}">
+											<img src="http://localhost:9000/upload/${RM_select.msfile}">
+										</c:when>
+										<c:otherwise>
+											<img src="http://localhost:9000/images/cat.png">
+										</c:otherwise>
+									</c:choose>
+									<span>${RM_select.nickname}</span>
+								</div>
+
+								<hr class="member_hr">
+
+								<span class="stext">⭐
 									 <fmt:formatNumber type="number" pattern="0" value="${RM_select.rstar}" /> / 5
 									</span>
-									
-									<hr class="member_hr">
-									
-									<c:choose>
-							            <c:when test="${RM_select.rstar<1}">
-							              <span class="stot">별점 </span>
-							            </c:when>
-							            <c:when test="${RM_select.rstar>=1 && RM_select.rstar<2}">
-							              <span class="stot">별점 ⭐</span>
-							            </c:when>
-							            <c:when test="${RM_select.rstar>=2 && RM_select.rstar<3}">
-							              <span class="stot">별점 ⭐⭐</span>
-							            </c:when>
-							            <c:when test="${RM_select.rstar>=3 && RM_select.rstar<4}">
-							              <span class="stot">별점 ⭐⭐⭐</span>
-							            </c:when>
-							            <c:when test="${RM_select.rstar>=4 && RM_select.rstar<5}">
-							              <span class="stot">별점 ⭐⭐⭐⭐</span>
-							            </c:when>
-							            <c:when test="${RM_select.rstar>=5}">
-							              <span class="stot">별점 ⭐⭐⭐⭐⭐</span>
-							            </c:when>
-									</c:choose>
-								</div>
 
-								<div class="write">
-									<p>${RM_select.rcontent}</p>
+								<hr class="member_hr">
+
+								<c:choose>
+									<c:when test="${RM_select.rstar<1}">
+										<span class="stot">별점 </span>
+									</c:when>
+									<c:when test="${RM_select.rstar>=1 && RM_select.rstar<2}">
+										<span class="stot">별점 ⭐</span>
+									</c:when>
+									<c:when test="${RM_select.rstar>=2 && RM_select.rstar<3}">
+										<span class="stot">별점 ⭐⭐</span>
+									</c:when>
+									<c:when test="${RM_select.rstar>=3 && RM_select.rstar<4}">
+										<span class="stot">별점 ⭐⭐⭐</span>
+									</c:when>
+									<c:when test="${RM_select.rstar>=4 && RM_select.rstar<5}">
+										<span class="stot">별점 ⭐⭐⭐⭐</span>
+									</c:when>
+									<c:when test="${RM_select.rstar>=5}">
+										<span class="stot">별점 ⭐⭐⭐⭐⭐</span>
+									</c:when>
+								</c:choose>
+							</div>
+
+							<div class="write">
+								<p>${RM_select.rcontent}</p>
 									<%--리뷰 이미지--%>
-										<div class="rm_img">
-											<c:if test="${RM_select.rsfile1 != null && RM_select.rsfile1 != ''}">
-												<a href="http://localhost:9000/upload/${RM_select.rsfile1}" data-title="img" data-lightbox="example-set" class="pop">
-													<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile1}" alt="">
-												</a>
-											</c:if>
+								<div class="rm_img">
+									<c:if test="${RM_select.rsfile1 != null && RM_select.rsfile1 != ''}">
+										<a href="http://localhost:9000/upload/${RM_select.rsfile1}" data-title="img" data-lightbox="example-set" class="pop">
+											<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile1}" alt="">
+										</a>
+									</c:if>
 
-											<c:if test="${RM_select.rsfile2 != null && RM_select.rsfile2 != ''}">
-												<a href="http://localhost:9000/upload/${RM_select.rsfile2}" data-title="img" data-lightbox="example-set" class="pop">
-													<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile2}" alt="">
-												</a>
-											</c:if>
-										</div>
+									<c:if test="${RM_select.rsfile2 != null && RM_select.rsfile2 != ''}">
+										<a href="http://localhost:9000/upload/${RM_select.rsfile2}" data-title="img" data-lightbox="example-set" class="pop">
+											<img class="rsfile" src="http://localhost:9000/upload/${RM_select.rsfile2}" alt="">
+										</a>
+									</c:if>
 								</div>
+							</div>
 
-								<div class="date">
-									<span>작성 일자 : ${RM_select.rdate}</span> 
-									<span> </span>
-									
-									<!-- 좋아요 -->
-									<form name="likeForm" action="like" method="get">
-										<input type="hidden" name="hid" value="${hospital.hid}">
-										<input type="hidden" name="rid" value="${RM_select.rid}">
-										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
-										<input type="hidden" name="likeresult" value="${RM_select.likeresult}">
+							<div class="date">
+								<span>작성 일자 : ${RM_select.rdate}</span>
+								<span> </span>
 
-										<!-- session 체크 이후 -->
-										<c:choose>
-											<c:when test="${sessionScope.svo.mid != null}">
-												<c:choose>
-													<c:when test="${sessionScope.svo.mid == RM_select.mid}">
-														<c:if test="${RM_select.likeresult==0}">
-															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like disabled check" data-rid="${RM_select.rid}" disabled>
-																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-																	<!-- <span class="heart">♥</span>  -->
-																	<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
-																	<span class="like-count">${RM_select.rlike}</span>
-																</button>
-															</a>
-														</c:if>
-														
-														<c:if test="${RM_select.likeresult!=0}">
-															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like active disabled check" data-rid="${RM_select.rid}" disabled>
-																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-																	<!-- <span class="heart">♥</span>  -->
-																	<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">
-																	<span class="like-count">${RM_select.rlike}</span>
-																</button>
-															</a>
-														</c:if>
-													</c:when>
-														
-													 <c:otherwise>
-													 	<c:if test="${RM_select.likeresult==0}">
-															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like check" data-rid="${RM_select.rid}">
-																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-																	<!-- <span class="heart">♥</span>  -->
-																	<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
-																	<span class="like-count">${RM_select.rlike}</span>
-																</button>
-															</a>
-														</c:if>
-														
-														<c:if test="${RM_select.likeresult!=0}">
-															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like active check" data-rid="${RM_select.rid}">
-																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-																	<!-- <span class="heart">♥</span>  -->
-																	<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">
-																	<span class="like-count">${RM_select.rlike}</span>
-																</button>
-															</a>
-														</c:if>
-													</c:otherwise>
-												</c:choose>
-											</c:when>
-										
-											<c:otherwise>
-												<a href="javascript:;" class="icon">										
-													<button type="submit" id="like" class="like non" data-rid="${RM_select.rid}">
-														좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp								
-														<!-- <span class="heart">♥</span>  -->								
-														<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기"> 
-														<span class="like-count">${RM_select.rlike}</span>							
-													</button>									
-												</a>
-											</c:otherwise>
-										</c:choose>
-									</form>
-									
-								<%-- <a href="javascript:;" class="icon heart">
-									<button type="submit" id="like" class="like"
-										data-rid="${RM_select.rid}">
-										좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-										<!-- <span class="heart">♥</span>  -->
-										<img
-											src="https://cdn-icons-png.flaticon.com/512/812/812327.png"
-											alt="찜하기"> <span class="like-count">${RM_select.rlike}</span>
-									</button>
-								</a> --%>
-								
+								<!-- 좋아요 -->
+								<form name="likeForm" action="like" method="get">
+									<input type="hidden" name="hid" value="${hospital.hid}">
+									<input type="hidden" name="rid" value="${RM_select.rid}">
+									<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
+									<input type="hidden" name="likeresult" value="${RM_select.likeresult}">
+
+									<!-- session 체크 이후 -->
+									<c:choose>
+										<c:when test="${sessionScope.svo.mid != null}">
+											<c:choose>
+												<c:when test="${sessionScope.svo.mid == RM_select.mid}">
+													<c:if test="${RM_select.likeresult==0}">
+														<a href="javascript:;" class="icon heart">
+															<button type="submit" id="like" class="like disabled check" data-rid="${RM_select.rid}" disabled>
+																좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+																<!-- <span class="heart">♥</span>  -->
+																<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
+																<span class="like-count">${RM_select.rlike}</span>
+															</button>
+														</a>
+													</c:if>
+
+													<c:if test="${RM_select.likeresult!=0}">
+														<a href="javascript:;" class="icon heart">
+															<button type="submit" id="like" class="like active disabled check" data-rid="${RM_select.rid}" disabled>
+																좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+																<!-- <span class="heart">♥</span>  -->
+																<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">
+																<span class="like-count">${RM_select.rlike}</span>
+															</button>
+														</a>
+													</c:if>
+												</c:when>
+
+												<c:otherwise>
+													<c:if test="${RM_select.likeresult==0}">
+														<a href="javascript:;" class="icon heart">
+															<button type="submit" id="like" class="like check" data-rid="${RM_select.rid}">
+																좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+																<!-- <span class="heart">♥</span>  -->
+																<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
+																<span class="like-count">${RM_select.rlike}</span>
+															</button>
+														</a>
+													</c:if>
+
+													<c:if test="${RM_select.likeresult!=0}">
+														<a href="javascript:;" class="icon heart">
+															<button type="submit" id="like" class="like active check" data-rid="${RM_select.rid}">
+																좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+																<!-- <span class="heart">♥</span>  -->
+																<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">
+																<span class="like-count">${RM_select.rlike}</span>
+															</button>
+														</a>
+													</c:if>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+
+										<c:otherwise>
+											<a href="javascript:;" class="icon">
+												<button type="submit" id="like" class="like non" data-rid="${RM_select.rid}">
+													좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+													<!-- <span class="heart">♥</span>  -->
+													<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
+													<span class="like-count">${RM_select.rlike}</span>
+												</button>
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</form>
+
+									<%-- <a href="javascript:;" class="icon heart">
+                                        <button type="submit" id="like" class="like"
+                                            data-rid="${RM_select.rid}">
+                                            좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <!-- <span class="heart">♥</span>  -->
+                                            <img
+                                                src="https://cdn-icons-png.flaticon.com/512/812/812327.png"
+                                                alt="찜하기"> <span class="like-count">${RM_select.rlike}</span>
+                                        </button>
+                                    </a> --%>
+
 								<!-- 신고하기 -->
 								<form name="rstateForm" action="/rstate" method="get">
 									<c:choose>
-									<c:when test="${sessionScope.svo.mid != RM_select.mid}">
-										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
-										<input type="hidden" name="rid" value="${RM_select.rid}">
-										<input type="hidden" name="hid" value="${hospital.hid}">
-										<button type="button" class="rstate" name="rstate" data-rid="${RM_select.rid}">신고하기</button>
-									</c:when>
-									
-									<c:otherwise>
-										<button type="button" class="rstate" name="rstate" hidden></button>
-									</c:otherwise>
+										<c:when test="${sessionScope.svo.mid != RM_select.mid}">
+											<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
+											<input type="hidden" name="rid" value="${RM_select.rid}">
+											<input type="hidden" name="hid" value="${hospital.hid}">
+											<button type="button" class="rstate" name="rstate" data-rid="${RM_select.rid}">신고하기</button>
+										</c:when>
+
+										<c:otherwise>
+											<button type="button" class="rstate" name="rstate" hidden></button>
+										</c:otherwise>
 									</c:choose>
 								</form>
 							</div>
@@ -429,14 +503,14 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			
-			</div>
-		</section>
-	</div>
 
-	<!-- footer -->
-	<div class="footer-wrapper">
-		<jsp:include page="../footer.jsp"></jsp:include>
-	</div>
+		</div>
+	</section>
+</div>
+
+<!-- footer -->
+<div class="footer-wrapper">
+	<jsp:include page="../footer.jsp"></jsp:include>
+</div>
 </body>
 </html>
