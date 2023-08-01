@@ -45,7 +45,7 @@
               <li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
               <li><a href = "/mypage_reservation">예약 관리</a></li>
               <li><a href = "/mypage_my_review/1/">리뷰 관리</a></li>
-              <li><a href = "/mypage_bookmark">회원 정보</a></li>
+              <li><a href = "/manager_information">회원 정보</a></li>
               <li><a href = "/mypage_signout">회원 탈퇴</a></li>
             </ul>
           </nav>
@@ -74,7 +74,7 @@
                 <input type = "text" name = "gloc" id = "gloc" placeholder = "등록할 병원의 지역구를 입력해주세요!">
             </li>
             <li>
-                <label>휴대폰</label>
+                <label>전화번호</label>
                 <input type="text" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="병원의 전화번호를 입력해보세요!">
             </li>
             <li>

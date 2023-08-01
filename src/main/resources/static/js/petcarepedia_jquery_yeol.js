@@ -549,5 +549,19 @@ $("#btnReservationDelete").click(function(){
 		updateForm.submit();
 	})
 
+	/*************************************
+	 * 		manager 정보 수정
+	 ************************************/
+	$("#btnHosUpdate").click(function(){
+		Swal.fire({
+			icon: 'success',
+			title: '수정 완료',
+			confirmButtonColor:'#98dfff',
+			confirmButtonText:'확인'
+		}).then(function() {
+			$('input').prop('disabled', false);
+			updateForm.submit();
+		});
+	})
 
 });
