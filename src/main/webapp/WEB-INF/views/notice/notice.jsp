@@ -56,7 +56,7 @@
 				<c:forEach var="list" items="${list }">
 					<tr>
 						<td>${list.rno }</td>
-						<td><a href="/notice_content/${list.nid }/${page.reqPage}">${list.title }</a></td>
+						<td><a href="/notice_content/${page.reqPage}/${list.nid }">${list.title }</a></td>
 						<td>${list.ndate }</td>
 						<td>${list.nhits }</td>
 					</tr>

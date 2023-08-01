@@ -49,11 +49,11 @@
 						<nav>
 							<ul>
 								<li>공지사항 관리</li>
-								<li><a href = "/admin_hospital_list">병원 관리</a></li>
-								<li><a href = "/admin_member_list">회원 관리</a></li>
-								<li><a href = "/admin_reserve_list">예약 관리</a></li>
-								<li><a href = "/admin_review_list">신고 리뷰 관리</a></li>
-								<li><a href = "/admin_notice">공지사항 관리</a></li>
+								<li><a href = "/admin/hospital_list/1/">병원 관리</a></li>
+								<li><a href = "/admin/member_list/1/">회원 관리</a></li>
+								<li><a href = "/admin/reserve_list/1/">예약 관리</a></li>
+								<li><a href = "/admin/review_list/1/">신고 리뷰 관리</a></li>
+								<li><a href = "/admin/notice/1">공지사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -66,7 +66,7 @@
 				<table class="table" id=ad_nt_list>
 					<tr>
 						<td colspan="5" >
-							<button type="button" class="button"><a href="/admin_notice_write">등록</a></button>
+							<button type="button" class="button"><a href="/admin/notice_write">등록</a></button>
 						</td>
 					</tr>
 					<tr>
@@ -78,7 +78,7 @@
 					<c:forEach var="list" items="${list }">
 						<tr>
 							<td>${list.rno }</td>
-							<td><a href="/admin_notice_content/${list.nid }/${page.reqPage}">${list.title }</a></td>
+							<td><a href="/admin/notice_content/${page.reqPage}/${list.nid }">${list.title }</a></td>
 							<td>${list.ndate }</td>
 							<td>${list.nhits }</td>
 						</tr>

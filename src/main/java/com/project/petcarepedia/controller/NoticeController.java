@@ -21,7 +21,7 @@ public class NoticeController {
 
     //notice.do 관리자 공지사항 리스트 페이징
 
-    @GetMapping("admin_notice/{page}")
+    @GetMapping("admin/notice/{page}")
     public String admin_notice(@PathVariable String page, Model model) {
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "notice"));
         model.addAttribute("list", noticeService.listPage(pageDto));
@@ -30,8 +30,8 @@ public class NoticeController {
     }
 
     // admin_notice_content.do 관리자 공지사항 상세보기 페이지
-    @GetMapping("admin_notice_content/{nid}/{page}")
-    public String admin_notice_content(@PathVariable String nid, @PathVariable String page, Model model) {
+    @GetMapping("admin/notice_content/{page}/{nid}")
+    public String admin_notice_content(@PathVariable String page, @PathVariable String nid, Model model) {
         NoticeDto noticeDto = noticeService.enter_content(nid);
         noticeDto.setNcontent(noticeDto.getNcontent().replace("\n", "<br>"));
         model.addAttribute("nvo",noticeDto);
@@ -40,26 +40,26 @@ public class NoticeController {
     }
 
     //admin_notice_write.do 관리자 공지사항 작성 페이지
-    @GetMapping("admin_notice_write")
+    @GetMapping("admin/notice_write")
     public String admin_notice_write() {
         return("/admin/notice/admin_notice_write");
     }
 
     //admin_notice_write_proc.do 관리자 공지사항 작성 처리
-    @PostMapping("admin_notice_write")
+    @PostMapping("/admin_notice_write")
     public String admin_notice_write_proc(NoticeDto noticeDto) throws Exception {
         int result = noticeService.insert(noticeDto);
         String view = "";
         if(result == 1) {
-            view = "redirect:/admin_notice/1";
+            view = "redirect:/admin/notice/1";
         }
         return view;
     }
 
 
     //admin_notice_update.do 관리자 공지사항 수정 페이지
-    @GetMapping("admin_notice_update/{nid}/{page}")
-    public String admin_notice_update(@PathVariable String nid, @PathVariable String page, Model model) {
+    @GetMapping("admin/notice_update/{page}/{nid}")
+    public String admin_notice_update(@PathVariable String page, @PathVariable String nid, Model model) {
         model.addAttribute("nvo",noticeService.content(nid));
         model.addAttribute("page",page);
         return ("/admin/notice/admin_notice_update");
@@ -72,7 +72,7 @@ public class NoticeController {
         if(result == 1) {
 
         }
-        return "redirect:/admin_notice_content/"+noticeDto.getNid()+"/"+noticeDto.getPage();
+        return "redirect:/admin/notice_content/"+noticeDto.getPage()+"/"+noticeDto.getNid();
     }
 
     // admin_notice_delete_proc.do 관리자 공지사항 삭제 처리
@@ -83,7 +83,7 @@ public class NoticeController {
             //삭제처리
 
         }
-        return "redirect:/admin_notice/1";
+        return "redirect:/admin/notice/1";
     }
 
     //notice.do 사용자 공지사항 리스트 페이징
@@ -96,8 +96,8 @@ public class NoticeController {
     }
 
     // notice_content.do 사용자 공지사항 상세보기
-    @GetMapping("notice_content/{nid}/{page}")
-    public String notice_content(@PathVariable String nid, @PathVariable String page, Model model) {
+    @GetMapping("notice_content/{page}/{nid}")
+    public String notice_content(@PathVariable String page, @PathVariable String nid, Model model) {
         NoticeDto noticeDto = noticeService.enter_content(nid);
         noticeDto.setNcontent(noticeDto.getNcontent().replace("\n", "<br>"));
         if(noticeDto != null) {

@@ -37,7 +37,7 @@
 				</table>
 				<div class="nw_button_r">
 					<button type="button" class="ad_button" id="BTN_update">수정</button>
-					<a href="/admin_notice_content/${nvo.nid }/${page }"><button type="button" class="ad_button">취소</button></a>
+					<a href="/admin/notice_content/${page }/${nvo.nid }"><button type="button" class="ad_button">취소</button></a>
 				</div>
 			</form>
 		</section>
