@@ -40,6 +40,13 @@
 					<p>비밀번호를 재설정하려면 계정 정보를 입력해주세요.</p>
 					
 					<ul>
+						<li class="cgrade">
+							<label>회원구분</label>
+							<input type="radio" name="grade" value="user" style="width:15px;height:15px;" checked>
+							<p style="margin:0px 20px 0px 5px;font-size: 14px;display: inline-block;">개인회원</p>
+							<input type="radio" name="grade" value="manager" style="width:15px;height:15px;">
+							<p style="margin:0px 20px 0px 5px;font-size: 14px;display: inline-block;">사업자회원</span>
+						</li>
 						<li>
 							<label>아이디</label>
 							<c:choose>

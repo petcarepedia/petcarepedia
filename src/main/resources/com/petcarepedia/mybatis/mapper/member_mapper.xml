@@ -73,6 +73,7 @@
 		from pcp_member 
 		where name=#{name} 
 			and email=#{email}
+		  	and grade=#{grade}
 		<if test='mid != null'>
 			and mid=#{mid}
 		</if>

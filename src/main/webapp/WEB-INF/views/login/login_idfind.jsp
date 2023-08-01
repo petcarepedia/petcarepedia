@@ -40,6 +40,13 @@ $(document).ready(function(){
 					
 					<p>회원정보에 등록된 정보로 아이디를 찾을 수 있습니다.</p>
 					<ul>
+						<li class="cgrade">
+							<label>회원구분</label>
+							<input type="radio" name="grade" value="user" style="width:15px;height:15px;" checked>
+							<p style="margin:0px 20px 0px 5px;font-size: 14px;display: inline-block;">개인회원</p>
+							<input type="radio" name="grade" value="manager" style="width:15px;height:15px;">
+							<p style="margin:0px 20px 0px 5px;font-size: 14px;display: inline-block;">사업자회원</span>
+						</li>
 						<li>
 							<label>성명</label>
 							<input type="text" name="name" id="name" placeholder="성명 입력">
