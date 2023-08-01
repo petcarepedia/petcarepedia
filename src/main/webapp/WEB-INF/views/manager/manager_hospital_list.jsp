@@ -35,7 +35,29 @@
 
 		$("#btnMhWrite").click(function () {
 			location.href = "/manager_hospital_write";
-		})
+		});
+		$(".btnMhUpdate").click(function () {
+			location.href = "/manager_hospital_update";
+		});
+
+		var text = "";
+		var mhauth = $("#mhAuth").val();
+
+		if(mhauth=="r1") text="중복 또는 부적절한 병원명을 사용하였습니다.";
+		else if(mhauth=="r2") text="병원 위치 정보가 부적절하거나, 지역구가 일치하지 않습니다.";
+		else if(mhauth=="r3") text="병원 소개글에 부적절한 내용이 포함되어있습니다.";
+		else if(mhauth=="r4") text="부적절한 병원 이미지를 사용하였습니다.";
+		else if(mhauth=="r5") text="기타 사유입니다. 문의 바랍니다.";
+
+		$("#btnReject").click(function () {
+			Swal.fire({
+				icon: 'warning',
+				title: '승인 거부 사유',
+				text: text,
+				confirmButtonColor:'#98dfff',
+				confirmButtonText:'확인'
+			});
+		});
 	});
 </script>
 <style>
@@ -90,6 +112,15 @@
 	.bre {
 		background: #f95f5c;
 	}
+	#btnReject {
+		color:#45C5EE;
+		text-decoration: underline;
+		font-weight: bold;
+	}
+	#btnReject:hover {
+		cursor: pointer;
+		opacity: 0.7;
+	}
 
 	#aside, #section2 {width: 777px}
 </style>
@@ -108,7 +139,7 @@
 						<ul>
 							<li>마이페이지</li>
 							<li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
-							<li><a href = "/mypage_reservation">예약 관리</a></li>
+							<li><a href = "/admin/manager/reserve_list/1/${sessionScope.svo.hid}">예약 관리</a></li>
 							<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
 							<li><a href = "/mypage_member_information">회원 정보</a></li>
 							<li><a href = "/mypage_signout">회원 탈퇴</a></li>
@@ -118,6 +149,7 @@
 			</section>
 			<div id = "aside">
 				<section id = "section2">
+					<input type="hidden" name="auth" id="mhAuth" value="${hospital.auth}">
 					<c:choose>
 						<c:when test="${hospital == null || hospital.auth == null}">
 							<div class="mhbox null" id="btnMhWrite">
@@ -133,7 +165,7 @@
 							<div class="mhbox unauth">
 								<i class="fa-solid fa-circle-check fa-3x" style="color: #ffb3bd;"></i>
 								<p>승인 대기중</p>
-								<div class="btn-mh" id="btnUnauth">등록 정보 확인</div>
+								<div class="btn-mh btnMhUpdate" id="btnMhUpdate">등록 정보 확인</div>
 							</div>
 							<ul class="mhex">
 								<li>병원 등록 후 승인 완료까지 1~2일 소요될 수 있으며, 허위나 부적절한 정보 입력 시 승인이 거부될 수 있습니다. </li>
@@ -159,17 +191,17 @@
 									</div>
 								</div>
 							</div>
-							<button type = "button" id = "btn_cancle1">정보 수정</button></a>
+							<button type = "button" id = "btn_cancle1" class="btnMhUpdate">정보 수정</button></a>
 
 						</c:when>
 						<c:otherwise>
 							<div class="mhbox reject">
 								<i class="fa-solid fa-circle-xmark fa-3x" style="color: #f95f5c;"></i>
 								<p>승인 거부</p>
-								<div class="btn-mh bre" id="btnMhReject">정보 재등록</div>
+								<div class="btn-mh bre btnMhUpdate">정보 재등록</div>
 							</div>
 							<ul class="mhex mhexreject">
-								<li>부적절한 병원 정보 등록으로 승인이 거부되었습니다. 사유 확인 후 정보를 다시 재등록해주세요.</li>
+								<li>부적절한 병원 정보 등록으로 승인이 거부되었습니다. <a id="btnReject">사유 확인</a> 후 정보를 다시 재등록해주세요.</li>
 								<li>정확한 거부 사유 및 기타 사항에 대한 문의는 이메일 혹은 카카오톡 일대일 채팅으로 상담이 가능합니다. (상담 운영 시간: 10:00 ~ 19:00)</li>
 							</ul>
 						</c:otherwise>
