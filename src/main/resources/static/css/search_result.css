@@ -57,16 +57,14 @@ div.result_main div.images_d {
 	overflow-x: auto;
 	overflow-y: hidden;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 }
 
-div.result_main div.images_d img {
-	/* border: 1px solid red; */
-	width: 100%;
+div.result_main div.images_d img.hsfile {
+	width: 1000px;
 	height: auto;
 	display: inline-block;
-	/* margin: 0px -3px; */
 	object-fit: contain;
 }
 
