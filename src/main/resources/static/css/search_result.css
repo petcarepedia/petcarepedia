@@ -193,11 +193,31 @@ div.result_main button#share img, div#shareLink img {
 	margin: 0px 10px;
 }
 
-div#shareLink img {
-	/* display: none; */
+div.result_main button#share2 {
+	background: #ffffff;
+	color: white;
+	border-style: none;
+	clean: both;
+	margin-top: 15px;
+	margin-left: -7px;
 }
 
+div#shareLink2 {
+	display:none;
 
+}
+
+div#shareLink2 button {
+	background: #ffffff;
+	opacity: 1;
+	color: white;
+	border-style: none;
+}
+
+div.result_main button#share2 img, div#shareLink2 img {
+	width: 30px;
+	margin: 0px 10px;
+}
 
 /***************************************
 	modal

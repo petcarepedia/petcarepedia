@@ -7,16 +7,16 @@ $(document).ready(function(){
 	$("#bookmark").click(function(event) { // 북마크
 		event.preventDefault(); // 페이지 바로넘어감 방지
 
-		 if(mid == "") { // 미로그인시
-			 Swal.fire({
-				 icon: 'warning',
-				 title: '로그인 확인',
-				 text: '로그인을 먼저 해주세요.',
-				 showConfirmButton: true, // 확인 버튼 표시
-				 confirmButtonColor:'#98dfff',
-				 confirmButtonText: '확인'
-			 });
-		 } else { // 로그인시
+		if(mid == "") { // 미로그인시
+			Swal.fire({
+				icon: 'warning',
+				title: '로그인 확인',
+				text: '로그인을 먼저 해주세요.',
+				showConfirmButton: true, // 확인 버튼 표시
+				confirmButtonColor:'#98dfff',
+				confirmButtonText: '확인'
+			});
+		} else { // 로그인시
 			$.ajax({
 				url: "http://localhost:9000/bookmark",
 				type: "GET",
@@ -50,22 +50,22 @@ $(document).ready(function(){
 					}
 				}
 			});
-		 }
+		}
 	});
-	
-	
+
+
 	/** 예약 버튼 **/
 	$("#reservation").click(function() { // 예약 버튼
 		if(mid == "") { // 미로그인시
-			 Swal.fire({
-				 icon: 'warning',
-				 title: '로그인 확인',
-				 text: '로그인을 먼저 해주세요.',
-				 showConfirmButton: true, // 확인 버튼 표시
-				 confirmButtonColor:'#98dfff',
-				 confirmButtonText: '확인'
-			 });
-		 } else { // 로그인시
+			Swal.fire({
+				icon: 'warning',
+				title: '로그인 확인',
+				text: '로그인을 먼저 해주세요.',
+				showConfirmButton: true, // 확인 버튼 표시
+				confirmButtonColor:'#98dfff',
+				confirmButtonText: '확인'
+			});
+		} else { // 로그인시
 			//var hid = $(this).val();
 			//var iframeSrc = "search_reservation.do?hid=" + hid;
 			var modal = $("#hmodal");
@@ -79,8 +79,8 @@ $(document).ready(function(){
 			$(".spword-box").css("box-shadow", "none");
 		}
 	});
-	
-	
+
+
 	/* 모달 닫기 */
 	$(".close").click(function() {
 		$("#hmodal").css("display", "");
@@ -228,7 +228,7 @@ $(document).ready(function(){
 	});
 
 
-	
+
 	/** 네비게이션 **/
 	$("#info_s").click(function() {
 		var offsetTop = $(".api_info").offset().top - 100;
@@ -236,15 +236,15 @@ $(document).ready(function(){
 			scrollTop: offsetTop
 		}, 500);
 	});
-	
+
 	$("#review_s").click(function() {
 		var offsetTop2 = $(".review").offset().top - 100;
 		$('html, body').animate({
 			scrollTop: offsetTop2
 		}, 500);
 	});
-	
-	
+
+
 	/** 하트효과 **/
 	function heartE() {
 		$('.check').click(function () {
@@ -272,47 +272,55 @@ $(document).ready(function(){
 
 	/** 공유 링크 클릭시 **/
 	$("#share").click(function() {
-	    if ($("#shareLink").css('display') === 'none') {
-	        $("#shareLink").css('display', 'inline-block');
-	    } else {
-	        $("#shareLink").css('display', 'none');
-	    }
+		if ($("#shareLink").css('display') === 'none') {
+			$("#shareLink").css('display', 'inline-block');
+		} else {
+			$("#shareLink").css('display', 'none');
+		}
 	});
-	
-	
-	
+
+	$("#share2").click(function() {
+		if ($("#shareLink2").css('display') === 'none') {
+			$("#shareLink2").css('display', 'inline-block');
+		} else {
+			$("#shareLink2").css('display', 'none');
+		}
+	});
+
+
+
 	/** 공유하기 - 카카오 **/
 	$("#kakaoShare").click(function() {
 		Kakao.Link.sendDefault({
 			objectType: 'feed',
-	    	content: {
-	      		title: '팻케어피디아',
-	     		description: $('.name').text(),
-	      		imageUrl: 
-	      			'https://cdn-icons-png.flaticon.com/512/2358/2358595.png',
-	     		link: {
-	       			webUrl: 'http://localhost:9000/',
-	      		},
-    		},
+			content: {
+				title: '팻케어피디아',
+				description: $('.name').text(),
+				imageUrl:
+					'https://cdn-icons-png.flaticon.com/512/2358/2358595.png',
+				link: {
+					webUrl: 'http://localhost:9000/',
+				},
+			},
 			buttons: [
-	      		{
-		        title: '사이트 이동',
-		        link: {
-		          webUrl: 'http://localhost:9000/search_result/' + $("input[name='hid']").val(),
-		        },
-	      },
-	    ],
-	  });
+				{
+					title: '사이트 이동',
+					link: {
+						webUrl: 'http://localhost:9000/search_result/' + $("input[name='hid']").val(),
+					},
+				},
+			],
+		});
 	});
-	
-	
+
+
 	/** 공유하기 - 링크 복사 **/
-	//현재 url 변수로 가져오기
+		//현재 url 변수로 가져오기
 	let nowUrl = window.location.href;
-	
+
 	$("#linkCopy").click(function() {
 		window.navigator.clipboard.writeText(nowUrl).then(() => {
-		  	Swal.fire({
+			Swal.fire({
 				icon: 'success',
 				title: '링크가 복사되었습니다',
 				showConfirmButton: true,
@@ -373,70 +381,70 @@ $(document).ready(function(){
 				reviewCard += '</div>';
 				reviewCard += '<div class="write"><p>' + r.rcontent + '</p>';
 
-					reviewCard += '<div class="rm_img">';
-					if (r.rsfile1 != null && r.rsfile1 != '') {
-						reviewCard += '<a href="http://localhost:9000/upload/' + r.rsfile1 + '" data-title="img" data-lightbox="example-set" class="pop" style="padding-right: 4px;">';
-						reviewCard += '<img class="rsfile" src="http://localhost:9000/upload/' + r.rsfile1 + '" alt=""></a>';
-					}
+				reviewCard += '<div class="rm_img">';
+				if (r.rsfile1 != null && r.rsfile1 != '') {
+					reviewCard += '<a href="http://localhost:9000/upload/' + r.rsfile1 + '" data-title="img" data-lightbox="example-set" class="pop" style="padding-right: 4px;">';
+					reviewCard += '<img class="rsfile" src="http://localhost:9000/upload/' + r.rsfile1 + '" alt=""></a>';
+				}
 
-					if (r.rsfile2 != null && r.rsfile2 != "") {
-						reviewCard += '<a href="http://localhost:9000/upload/' + r.rsfile2 + '" data-title="img" data-lightbox="example-set" class="pop">';
-						reviewCard += '<img class="rsfile" src="http://localhost:9000/upload/' + r.rsfile2 + '" alt=""></a>';
-					}
-					reviewCard += '</div></div>';
+				if (r.rsfile2 != null && r.rsfile2 != "") {
+					reviewCard += '<a href="http://localhost:9000/upload/' + r.rsfile2 + '" data-title="img" data-lightbox="example-set" class="pop">';
+					reviewCard += '<img class="rsfile" src="http://localhost:9000/upload/' + r.rsfile2 + '" alt=""></a>';
+				}
+				reviewCard += '</div></div>';
 
-					reviewCard += '<div class="date">';
-					reviewCard += '<span>작성 일자 : ' + r.rdate + '</span> ';
-					reviewCard += '<span> </span>';
+				reviewCard += '<div class="date">';
+				reviewCard += '<span>작성 일자 : ' + r.rdate + '</span> ';
+				reviewCard += '<span> </span>';
 
-					reviewCard += '<form name="likeForm" action="/like" method="get">';
-					reviewCard += '<input type="hidden" name="hid" value="' + hid + '">';
-					reviewCard += '<input type="hidden" name="rid" value="' + r.rid + '">';
-					reviewCard += '<input type="hidden" name="mid" value="' + mid + '">';
-					reviewCard += '<input type="hidden" name="likeresult" value="' + r.likeresult + '">';
+				reviewCard += '<form name="likeForm" action="/like" method="get">';
+				reviewCard += '<input type="hidden" name="hid" value="' + hid + '">';
+				reviewCard += '<input type="hidden" name="rid" value="' + r.rid + '">';
+				reviewCard += '<input type="hidden" name="mid" value="' + mid + '">';
+				reviewCard += '<input type="hidden" name="likeresult" value="' + r.likeresult + '">';
 
 
-					if (mid != null && mid != "") { //로그인시
-						if (mid == r.mid) { // 로그인=작성자
-							if (r.likeresult == 0) {
-								reviewCard += '<a href="javascript:;" class="icon heart">';
-								reviewCard += '<button type="button" id="like" class="like2 disabled check" data-rid="' + r.rid + '" disabled>';
-								reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-								reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">';
-								reviewCard += '<span class="like-count">' + r.rlike + '</span>';
-								reviewCard += '</button></a>';
-							} else {
-								reviewCard += '<a href="javascript:;" class="icon heart">';
-								reviewCard += '<button type="button" id="like" class="like2 active disabled check" data-rid="' + r.rid + '" disabled>';
-								reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-								reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">';
-								reviewCard += '<span class="like-count">' + r.rlike + '</span>';
-								reviewCard += '</button></a>';
-							}
-						} else {// 로그인!=작성자
-							if (r.likeresult == 0) {
-								reviewCard += '<a href="javascript:;" class="icon heart"><button type="button" id="like" class="like2 check" data-rid="' + r.rid + '">';
-								reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-								reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">';
-								reviewCard += '<span class="like-count">' + r.rlike + '</span>';
-								reviewCard += '</button></a>';
-							} else {
-								reviewCard += '<a href="javascript:;" class="icon heart">';
-								reviewCard += '<button type="button" id="like" class="like2 active check" data-rid="' + r.rid + '">';
-								reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-								reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">';
-								reviewCard += '<span class="like-count">' + r.rlike + '</span>';
-								reviewCard += '</button></a>';
-							}
+				if (mid != null && mid != "") { //로그인시
+					if (mid == r.mid) { // 로그인=작성자
+						if (r.likeresult == 0) {
+							reviewCard += '<a href="javascript:;" class="icon heart">';
+							reviewCard += '<button type="button" id="like" class="like2 disabled check" data-rid="' + r.rid + '" disabled>';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						} else {
+							reviewCard += '<a href="javascript:;" class="icon heart">';
+							reviewCard += '<button type="button" id="like" class="like2 active disabled check" data-rid="' + r.rid + '" disabled>';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
 						}
-					} else { //로그인시
-						reviewCard += '<a href="javascript:;" class="icon">';
-						reviewCard += '<button type="button" id="like" class="like2 non" data-rid="' + r.rid + '">';
-						reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-						reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기"> ';
-						reviewCard += '<span class="like-count">' + r.rlike + '</span>';
-						reviewCard += '</button></a>';
+					} else {// 로그인!=작성자
+						if (r.likeresult == 0) {
+							reviewCard += '<a href="javascript:;" class="icon heart"><button type="button" id="like" class="like2 check" data-rid="' + r.rid + '">';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						} else {
+							reviewCard += '<a href="javascript:;" class="icon heart">';
+							reviewCard += '<button type="button" id="like" class="like2 active check" data-rid="' + r.rid + '">';
+							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+							reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">';
+							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+							reviewCard += '</button></a>';
+						}
 					}
+				} else { //로그인시
+					reviewCard += '<a href="javascript:;" class="icon">';
+					reviewCard += '<button type="button" id="like" class="like2 non" data-rid="' + r.rid + '">';
+					reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+					reviewCard += '<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기"> ';
+					reviewCard += '<span class="like-count">' + r.rlike + '</span>';
+					reviewCard += '</button></a>';
+				}
 				reviewCard += '</form>';
 
 				reviewCard += '<form name="rstateForm" action="rstate" method="get">';
@@ -451,7 +459,7 @@ $(document).ready(function(){
 				reviewCard += '</form>';
 				reviewCard += '</div></div>'; // 이 부분에서 하나의 리뷰 카드가 끝남
 
-					cards.unshift(reviewCard);
+				cards.unshift(reviewCard);
 
 			} // for
 
@@ -482,6 +490,5 @@ $(document).ready(function(){
 		}); // ajax
 
 	});
-
 
 });
