@@ -103,7 +103,7 @@
               <input type = "text" name = "gloc" id = "gloc" placeholder = "지역구를 입력해주세요!" value = "${hospital.gloc}">
             </li>
             <li>
-              <label>휴대폰</label>
+              <label>전화번호</label>
               <input type="text" value = "${hospital.tel}" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!">
             </li>
             <li>

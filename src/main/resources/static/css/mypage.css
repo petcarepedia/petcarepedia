@@ -1690,6 +1690,14 @@ div.review_card_no span {
 /************************************
 			병원 정보 수정
 *************************************/
+#content>.hospital_info>.section1>div>nav>ul>li:first-child {
+	border-left : 10px solid #FFB3BD;
+	color : #FFB3BD;
+}
+#content>.hospital_info>.section1>div>nav>ul>li>a:hover {
+	color : #FFB3BD;
+}
+
 #content>.hospital_info>form>.section1>div>nav>ul>li:first-child {
 	border-left : 10px solid #FFB3BD;
 	color : #FFB3BD;
@@ -1850,4 +1858,134 @@ div.review_card_no span {
 	padding: 0;
 	overflow: hidden;
 	border: 0;
+}
+#hospital_picture {
+	width : 600px;
+	height : 50px;
+	float : left;
+	border : 1px solid #F2F2F2;
+	border-bottom : none;
+	border-radius : 5px;
+	background : #FFB3BD;
+	margin-bottom : 3px;
+}
+#hospital_info {
+	width : 600px;
+	height : 50px;
+	float : left;
+	border : 1px solid #F2F2F2;
+	border-bottom : none;
+	border-radius : 5px;
+	background : #FFB3BD;
+	margin-bottom : 3px;
+	margin-top : 55px;
+}
+#hospital_info label {
+	display : inline-block;
+	margin: 15px 0px 0px 15px;
+	color : white;
+	font-size : 20px;
+	font-weight : 700;
+}
+#hospital_picture label {
+	display : inline-block;
+	margin: 15px 0px 0px 15px;
+	color : white;
+	font-size : 20px;
+	font-weight : 700;
+}
+#content>.hospital_info>#aside>#updateForm>#section2>.hospital_box {
+	position : relative;
+	width : 600px;
+	height : 210px;
+	float : left;
+	margin-right : 30px;
+	border-radius : 5px;
+	border : 1px solid #F2F2F2;
+	margin-bottom : 15px;
+	background : #F6F2F3;
+}
+#content>.hospital_info>#aside>#updateForm>#section2>.hospital_box>img{
+	width : 600px;
+	height : 200px;
+}
+#content>.hospital_info>#aside>#section2>ul>li>label:first-child,
+#content>.hospital_info>#aside>#section2>ul>#updateForm>li>label:first-child{
+	display : inline-block;
+	text-align : center;
+	width: 77px;
+	height: 35px;
+	background: #FFB3BD;
+	color : white;
+	font-size: 14px;
+	font-weight: 700;
+	padding:20px 0 0 0;
+	border-radius: 5px;
+}
+#hos_profileBox {
+	width: 597px;
+	height: 205px;
+	border : 1px solid #F2F2F2;
+	overflow: hidden;
+	float : left;
+}
+#hos_update_profile{
+	position : absolute;
+	width : 30px;
+	height : 30px;
+	top : 125px;
+	left : 210px;
+}
+#btnHosUpdate{
+	border : none;
+	background: #7AB2CC;
+	text-align : center;
+	color : white;
+	width: 240px;
+	height: 48px;
+	border-radius: 5px;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 18px;
+	margin-top : 35px;
+	margin-left : 202px;
+	margin-bottom : 100px;
+}
+
+#content>.hospital_info>#aside>#section2>ul>#updateForm>li>button {
+	position : absolute;
+	float : right;
+	backgroung : white;
+	border : none;
+}
+#content>.hospital_info>#aside>#section2>ul>#updateForm>li>button>img{
+	position : absolute;
+	top : 10px;
+	left : -40px;
+	width : 35px;
+	height : 35px;
+}
+
+#content>.hospital_info>#aside>#section2>ul>li>input,
+#content>.hospital_info>#aside>#section2>ul>#updateForm>li>input{
+position : relative;
+display : inline-block;
+width : 513px;
+height: 50px;
+border : 1px solid #D8D8D8;
+border-radius : 5px;
+padding: 2px 0 0 5px;
+font-weight : 700;
+font-size: 14px;
+vertical-align: bottom;
+background : white;
+}
+
+#content>.hospital_info>#aside>#section2>ul {
+	list-style-type:none;
+}
+
+#content>.hospital_info>#aside>#section2>ul>li,
+#content>.hospital_info>#aside>#section2>ul>#updateForm>li{
+	margin-bottom : 7px;
 }

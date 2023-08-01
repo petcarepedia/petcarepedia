@@ -297,4 +297,26 @@ public class MypageController {
         return viewName;
     }
 
+    //병원 관리자 회원정보
+    @GetMapping("manager_information")
+    public String manager_information(HttpSession session, Model model) {
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+        MemberDto memberDto = memberService.manager_select(svo.getMid());
+        model.addAttribute("member", memberDto);
+        return "/manager/manager_information";
+    }
+
+    //병원 관리자 정보 수정처리
+    @PostMapping("manager_info_update")
+    public String manager_info_update(MemberDto memberDto) {
+        String viewName = "";
+        System.out.println(memberDto.getPhone());
+        System.out.println(memberDto.getEmail());
+        System.out.println(memberDto.getMid());
+        int result = memberService.manager_update(memberDto);
+        if(result == 1) {
+            viewName = "redirect:/manager_information";
+        }
+        return viewName;
+    }
 }
