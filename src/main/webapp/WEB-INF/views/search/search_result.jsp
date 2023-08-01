@@ -114,6 +114,7 @@
 
 				<!-- 예약하기 -->
 				<c:choose>
+					<%-- 미로그인 시 --%>
 					<c:when test="${svo.mid == null || svo.mid == ''}">
 						<button type="button" id="reservation" value="${hospital.hid}">
 							<img src="http://localhost:9000/images/cal.png">
@@ -123,8 +124,21 @@
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 						</button>
 					</c:when>
+					<%-- 로그인 시 --%>
 					<c:otherwise>
 						<c:choose>
+							<%-- 일반/admin 로그인 --%>
+							<c:when test="${svo.hid == null || svo.hid == ''}">
+								<button type="button" id="reservation" value="${hospital.hid}">
+									<img src="http://localhost:9000/images/cal.png">
+									간편 예약하기 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
+								</button>
+							</c:when>
+							<%-- manager 로그인 --%>
+							<%-- 본인 병원 --%>
 							<c:when test="${svo.hid eq hospital.hid}">
 								<button type="button" id="reservation" value="${hospital.hid}">
 									<img src="http://localhost:9000/images/cal.png">
@@ -134,6 +148,7 @@
 									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 								</button>
 							</c:when>
+							<%-- 타인 병원 --%>
 							<c:otherwise>
 								<button type="button" id="reservation" style="display: none" disabled></button>
 							</c:otherwise>
