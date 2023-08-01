@@ -49,12 +49,12 @@
 	</select>
 	
 	<select id="searchGloc" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, HSFILE
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, HSFILE, auth
 				 FROM PCP_HOSPITAL where gloc= #{gloc}
 	</select>	
 	
 	<select id="search" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y , HFILE, HSFILE
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y , HFILE, HSFILE, hsfile1, hsfile2, auth
 		FROM PCP_HOSPITAL WHERE HNAME LIKE '%'|| #{hname}||'%' 
 	</select>
 	
