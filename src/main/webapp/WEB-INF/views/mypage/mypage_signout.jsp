@@ -88,6 +88,7 @@
 			font-weight: bold;
 			color: #636363;
 			margin-bottom: 20px;
+			display: inline-block;
 		}
 		.outpw input {
 			width:258px; height:50px;
@@ -192,6 +193,7 @@
 
 						<div class="outpwbox">
 							<div class="outpw">
+								<i class="fa-solid fa-lock" style="color: #41c8a6;"></i>
 								<p>회원 탈퇴 처리를 위해 비밀번호를 다시 한번 입력해주세요.</p>
 								<input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}">
 								<input type = "password" name = "pass" id = "pass" placeholder = "비밀번호 입력">
