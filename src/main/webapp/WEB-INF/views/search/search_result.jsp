@@ -68,38 +68,41 @@
 				<span class="name">${hospital.hname}</span>
 				<input type="hidden" name="loginId" value="${sessionScope.svo.mid}">
 
-				<c:if test="${svo.grade eq 'manager'}">
-					<div class="buttons">
-						<button id="bookmark" style="cursor: default" disabled></button>
-					</div>
-				</c:if>
-				<c:if test="${svo.grade ne 'manager'}">
-					<div class="buttons">
-						<!-- 북마크 -->
-						<form name="bookmarkForm" action="/bookmark" method="get">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
-							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
+				<%-- 북마크 로그인 여부 --%>
+				<c:choose>
+					<c:when test="${svo.grade eq 'manager'}">
+						<div class="buttons">
+							<button id="bookmark" style="cursor: default" disabled></button>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="buttons">
+							<!-- 북마크 -->
+							<form name="bookmarkForm" action="/bookmark" method="get">
+								<input type="hidden" name="hid" value="${hospital.hid}">
+								<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
+								<input type="hidden" name="BookmarkResult" value="${bookmarkResult}">
 
-							<!-- 북마크 여부에 따라서 -->
-							<c:choose>
-								<c:when test="${bookmarkResult == 1}">
-									<button type="submit" id="bookmark">
-										<img
-												src="http://localhost:9000/images/bookmark_yellow.png">
-									</button>
-								</c:when>
+								<!-- 북마크 여부에 따라서 -->
+								<c:choose>
+									<c:when test="${bookmarkResult == 1}">
+										<button type="submit" id="bookmark">
+											<img
+													src="http://localhost:9000/images/bookmark_yellow.png">
+										</button>
+									</c:when>
 
-								<c:otherwise>
-									<button type="submit" id="bookmark">
-										<img
-												src="http://localhost:9000/images/bookmark.png">
-									</button>
-								</c:otherwise>
-							</c:choose>
-						</form>
-					</div>
-				</c:if>
+									<c:otherwise>
+										<button type="submit" id="bookmark">
+											<img
+													src="http://localhost:9000/images/bookmark.png">
+										</button>
+									</c:otherwise>
+								</c:choose>
+							</form>
+						</div>
+					</c:otherwise>
+				</c:choose>
 
 				<!-- 별점 표시 -->
 				<c:choose>
@@ -114,6 +117,7 @@
 
 				<!-- 예약하기 -->
 				<c:choose>
+					<%-- 미로그인 시 --%>
 					<c:when test="${svo.mid == null || svo.mid == ''}">
 						<button type="button" id="reservation" value="${hospital.hid}">
 							<img src="http://localhost:9000/images/cal.png">
@@ -123,8 +127,21 @@
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 						</button>
 					</c:when>
+					<%-- 로그인 시 --%>
 					<c:otherwise>
 						<c:choose>
+							<%-- 일반/admin 로그인 --%>
+							<c:when test="${svo.hid == null || svo.hid == ''}">
+								<button type="button" id="reservation" value="${hospital.hid}">
+									<img src="http://localhost:9000/images/cal.png">
+									간편 예약하기 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
+								</button>
+							</c:when>
+							<%-- manager 로그인 --%>
+							<%-- 본인 병원 --%>
 							<c:when test="${svo.hid eq hospital.hid}">
 								<button type="button" id="reservation" value="${hospital.hid}">
 									<img src="http://localhost:9000/images/cal.png">
@@ -134,6 +151,7 @@
 									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 								</button>
 							</c:when>
+							<%-- 타인 병원 --%>
 							<c:otherwise>
 								<button type="button" id="reservation" style="display: none" disabled></button>
 							</c:otherwise>
@@ -143,6 +161,7 @@
 
 				<!-- 공유하기 -->
 				<c:choose>
+					<%-- 미로그인 시 --%>
 					<c:when test="${svo.mid == null || svo.mid == ''}">
 						<button id="share">
 							<img src="http://localhost:9000/images/share.png" id="shareB">
@@ -158,8 +177,27 @@
 							</button>
 						</div>
 					</c:when>
+					<%-- 로그인 시 --%>
 					<c:otherwise>
 						<c:choose>
+							<%-- 일반/admin 로그인 --%>
+							<c:when test="${svo.hid == null || svo.hid == ''}">
+								<button id="share">
+									<img src="http://localhost:9000/images/share.png" id="shareB">
+								</button>
+
+								<div id="shareLink">
+									<button id="kakaoShare">
+										<img src="http://localhost:9000/images/kakao.png" id="kakao">
+									</button>
+
+									<button id="linkCopy">
+										<img src="http://localhost:9000/images/copy.png" id="copy">
+									</button>
+								</div>
+							</c:when>
+							<%-- manager 로그인 --%>
+							<%-- 본인 병원 --%>
 							<c:when test="${svo.hid eq hospital.hid}">
 								<button id="share">
 									<img src="http://localhost:9000/images/share.png" id="shareB">
@@ -175,6 +213,7 @@
 									</button>
 								</div>
 							</c:when>
+							<%-- 타인 병원 --%>
 							<c:otherwise>
 								<button id="share2">
 									<img src="http://localhost:9000/images/share.png" id="shareB">
