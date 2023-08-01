@@ -199,10 +199,11 @@ public class ReviewController {
         return ("/review/review_main");
     }
 
-    @GetMapping("manager_review_content/{rid}")
-    public String manager_review_content(@PathVariable String rid, Model model) {
+    @GetMapping("manager_review_content/{page}/{rid}")
+    public String manager_review_content(@PathVariable String page, @PathVariable String rid, Model model) {
         ReviewDto reviewDto = reviewService.enter_content(rid);
         reviewDto.setRcontent(reviewDto.getRcontent().replace("\n", "<br>"));
+        reviewDto.setPage(page);
         model.addAttribute("rvo",reviewDto);
         return("/manager/manager_review_content");
     }

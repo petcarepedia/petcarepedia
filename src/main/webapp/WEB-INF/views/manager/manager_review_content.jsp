@@ -34,9 +34,9 @@
                     <nav>
                         <ul>
                             <li>마이페이지</li>
-                            <li><a href = "/mypage_member_information">병원 관리</a></li>
-                            <li><a href = "/mypage_reservation">예약 관리</a></li>
-                            <li><a href = "/mypage_my_review/1/">리뷰 보기</a></li>
+                            <li><a href = "/manager_hospital_list/1/">병원 관리</a></li>
+                            <li><a href = "/manager_reserve_list/1/">예약 관리</a></li>
+                            <li><a href = "/manager_review_list/1/">리뷰 보기</a></li>
                             <li><a href = "/mypage_bookmark">정보 관리</a></li>
                             <li><a href = "/mypage_signout">회원 탈퇴</a></li>
                         </ul>
@@ -88,14 +88,21 @@
                                 ⭐ ${rvo.rstar } / 5.0
                             </div>
                         </div>
-                        <div id="imgArea">
-                            <c:if test="${rvo.rsfile1 != null && rvo.rsfile1 != ''}">
-                                <a href="http://localhost:9000/upload/${rvo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile1 }" alt=""></a>
-                            </c:if>
-                            <c:if test="${rvo.rsfile2 != null && rvo.rsfile2 != ''}">
-                                <a href="http://localhost:9000/upload/${rvo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile2 }" alt=""></a>
-                            </c:if>
-                        </div>
+                        <c:choose>
+                            <c:when test="${(rvo.rsfile1 != null && rvo.rsfile1 != '')|| (rvo.rsfile2 != null && rvo.rsfile2 != '')}">
+                                <div id="imgArea">
+                                    <c:if test="${rvo.rsfile1 != null && rvo.rsfile1 != ''}">
+                                        <a href="http://localhost:9000/upload/${rvo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile1 }" alt=""></a>
+                                    </c:if>
+                                    <c:if test="${rvo.rsfile2 != null && rvo.rsfile2 != ''}">
+                                        <a href="http://localhost:9000/upload/${rvo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${rvo.rsfile2 }" alt=""></a>
+                                    </c:if>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div id="NoImgArea"></div>
+                            </c:otherwise>
+                        </c:choose>
                         <table>
                             <tr>
                                 <td>작성일자</td>
@@ -105,7 +112,7 @@
                     </div>
                 </div>
                 <div class="rc_button_r">
-                    <a href="/manager_review_list/1/"><button type="button" class="button">이전으로</button></a>
+                    <a href="/manager_review_list/${rvo.page}"><button type="button" class="button">이전으로</button></a>
                 </div>
             </section>
         </section>
