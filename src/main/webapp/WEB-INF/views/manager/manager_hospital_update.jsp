@@ -15,6 +15,13 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2&submodules=geocoder"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+        $(document).ready(function () {
+            $(".header-menu").css('background','#FFB3BD');
+            $(".footer-menu").css('background','#FFF2F4');
+            $("#btnMainSearch-header > img").attr("src",'http://localhost:9000/images/foot_pink.png');
+        });
+    </script>
+    <script>
       const autoHyphen = (target) => {
       target.value = target.value
               .replace(/[^0-9]/g, '')

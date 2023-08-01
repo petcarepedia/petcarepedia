@@ -120,8 +120,16 @@
             </li>
             <li>
                 <label>병원이미지</label>
-                <input type="file" name="files" id="file1" class="upload-hidden" accept = "image/*">
-                <input type="file" name="files" id="file2" class="upload-hidden" accept = "image/*">
+                        <div class="filebox">
+                            <input class="upload-name_file1" value="첨부파일" placeholder="첨부파일">
+                            <label class = "find_file1" for="file1">파일찾기</label>
+                            <input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+                        </div>
+                        <div class="filebox">
+                            <input class="upload-name_file2" value="첨부파일" placeholder="첨부파일">
+                            <label class = "find_file2" for="file2">파일찾기</label>
+                            <input type="file" name="files" class = "file_second" id = "file2" accept="image/*">
+                        </div>
             </li>
               <input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}">
           </ul>
