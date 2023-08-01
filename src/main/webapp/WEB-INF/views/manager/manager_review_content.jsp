@@ -12,6 +12,7 @@
     <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+    <script src="http://localhost:9000/js/manager_review_list.js"></script>
     <script>
         $(document).ready(function () {
             $(".header-menu").css('background','#FFB3BD');
@@ -44,6 +45,9 @@
             </section>
             <section id="section2">
                 <button type="button" id="review_manage">리뷰 관리 요청</button>
+                <input type="hidden" name="mid" value="${rvo.mid}">
+                <input type="hidden" name="rid" value="${rvo.rid}">
+                <input type="hidden" name="hid" value="${rvo.hid}">
                 <div class="review_detail">
                     <table class="rv_detail_menu">
                         <tr>
@@ -101,7 +105,7 @@
                     </div>
                 </div>
                 <div class="rc_button_r">
-                    <a href="#"><button type="button" class="button">이전으로</button></a>
+                    <a href="/manager_review_list/1/"><button type="button" class="button">이전으로</button></a>
                 </div>
             </section>
         </section>
