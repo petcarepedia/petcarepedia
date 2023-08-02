@@ -7,7 +7,7 @@
   <link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
   <title>펫캐어피디아 | 병원 등록</title>
   <link rel="stylesheet" href="http://localhost:9000/css/mypage.css">
-  <link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<%--  <link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">--%>
   <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
   <script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

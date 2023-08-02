@@ -229,12 +229,15 @@ public class MypageController {
 
     //회원탈퇴 처리
     @PostMapping("member_delete")
-    public String member_delete(HttpSession session, String pass) {
+    public String member_delete(HttpSession session, MemberDto memberDto) {
         String viewName = "";
-        SessionDto svo = (SessionDto) session.getAttribute("svo");
-        MemberDto memberDto = new MemberDto();
-        memberDto.setMid(svo.getMid());
-        memberDto.setPass(pass);
+
+        if(memberDto.getDeletemh() != null) {
+            if(memberDto.getDeletemh().equals("f")){
+                hospitalService.updateMid(memberDto.getMid());
+            }
+        }
+
         int result = memberService.delete(memberDto);
         if(result == 1) {
             session.invalidate();
@@ -310,9 +313,6 @@ public class MypageController {
     @PostMapping("manager_info_update")
     public String manager_info_update(MemberDto memberDto) {
         String viewName = "";
-        System.out.println(memberDto.getPhone());
-        System.out.println(memberDto.getEmail());
-        System.out.println(memberDto.getMid());
         int result = memberService.manager_update(memberDto);
         if(result == 1) {
             viewName = "redirect:/manager_information";
