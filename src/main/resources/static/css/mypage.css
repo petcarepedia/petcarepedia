@@ -1895,19 +1895,14 @@ div.review_card_no span {
 	font-weight : 700;
 }
 #content>.hospital_info>#aside>#updateForm>#section2>.hospital_box {
-	position : relative;
+	display : inline-block;
 	width : 600px;
 	height : 210px;
-	float : left;
 	margin-right : 30px;
 	border-radius : 5px;
 	border : 1px solid #F2F2F2;
 	margin-bottom : 15px;
 	background : #F6F2F3;
-}
-#content>.hospital_info>#aside>#updateForm>#section2>.hospital_box>img{
-	width : 600px;
-	height : 200px;
 }
 #content>.hospital_info>#aside>#section2>ul>li>label:first-child,
 #content>.hospital_info>#aside>#section2>ul>#updateForm>li>label:first-child{
@@ -1928,6 +1923,10 @@ div.review_card_no span {
 	border : 1px solid #F2F2F2;
 	overflow: hidden;
 	float : left;
+}
+#hos_profileBox img {
+	width : 600px;
+	height : 200px;
 }
 #hos_update_profile{
 	position : absolute;
