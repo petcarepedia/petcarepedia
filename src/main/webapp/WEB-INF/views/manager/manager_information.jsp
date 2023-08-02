@@ -90,7 +90,7 @@ const autoHyphen = (target) => {
 										<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "hos_profile">
 									</c:when>
 									<c:otherwise>
-										<img src = "hos.png">
+										<img src = "images/hos.png" id = "hos_profile">
 									</c:otherwise>
 								</c:choose>
 							</div>
