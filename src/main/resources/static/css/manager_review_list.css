@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
 /***************************************
 	common
 ***************************************/
@@ -10,76 +9,12 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-/*div.header-wrapper {
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 0;
-}
-
-div.footer-wrapper {
-    width: 100%;
-    z-index: 0;
-}*/
-
-div.reviewList {
-    /*border: 1px solid gray;*/
+#content {
     width: 1000px;
-     height: auto;
     margin: auto;
     margin-top: 140px;
-    margin-bottom: 100px;
-    /* text-align: center; */
-}
-
-
-/****************************
-    section1 Nav
-*****************************/
-#section1 {
-    width: 148px;
-    height: 300px;
-    float: left;
-    margin-top: 80px;
-}
-
-#section1 nav ul {
-    list-style-type: none;
-}
-
-#section1 nav ul li {
-    margin-bottom: 15px;
-}
-
-#section1 nav ul li:first-child {
-    font-weight: bold;
-    font-size: 20px;
-    color: #FFB3BD;
-    border-left: 10px solid #FFB3BD;
-    margin-bottom: 25px;
-    padding-left: 7px;
-}
-
-#section1 ul > li > a {
-    /*border: 1px solid red;*/
-   /* margin-left: 15px;*/
-    font-size: 15px;
-    font-weight: 500;
-    color: #3D3D3D;
-    text-decoration: none;
-}
-
-#section1 nav ul li:nth-child(4) a {
-    font-weight: bold;
-    color: #3D3D3D;
-    font-size: 16px;
-}
-
-#section1 nav ul li a:hover {
-    font-size : 16px;
-    font-weight:bold;
-    color :#FFB3BD;
-    text-decoration : none;
+    padding-top: 20px;
+    margin-bottom: 40px;
 }
 
 .swal2-icon.swal2-warning .swal2-icon-content {
@@ -90,9 +25,8 @@ div.reviewList {
     color: #45C5EE;
 }
 
-
 /****************************
-    section2 list
+    information
 *****************************/
 .title {
     margin-left: 200px;
@@ -107,6 +41,52 @@ div.reviewList {
     border: 1px solid #8A8A8A;
 }
 
+/****************************
+    section1 Nav
+*****************************/
+#section1 {
+    width: 148px;
+    height: 300px;
+    float: left;
+    margin-top: 20px;
+}
+
+#section1 div nav ul{
+    list-style-type: none;
+}
+
+#section1 div nav ul li{
+    margin-bottom: 15px;
+}
+#section1 div nav ul li:first-child {
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFB3BD;
+    border-left: 10px solid #FFB3BD;
+    margin-bottom: 25px;
+    padding-left: 7px;
+}
+
+#section1 div nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #3D3D3D;
+    text-decoration: none;
+}
+#section1 div nav ul li:nth-child(4) a{
+    font-weight: bold;
+}
+
+#section1 div nav ul li a:hover {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFB3BD;
+    text-decoration: none;
+}
+
+/****************************
+    section2 list
+*****************************/
 .stateBtn {
     background: #FFB3BD;
     border: none;
@@ -114,7 +94,6 @@ div.reviewList {
     font-weight: bold;
     width: 100px;
     height: 35px;
-    /*padding: 10px 15px;*/
     position: relative;
     top: 35px;
     left: 728px;
@@ -209,6 +188,41 @@ td.state {
     font-weight: bold;
 }
 
+/****************************
+    section3
+*****************************/
+#aside {
+    float: left;
+    margin-left: 50px;
+}
+
+#section3 {
+    width: 614px;
+    padding-top: 47px;
+}
+
+.mhbox {
+    background: #F2F2F2;
+    padding: 30px;
+    border-radius: 10px;
+    width: 717px; height: 90px;
+    display: flex; align-items: center;
+}
+
+.unauth {
+    background: #FFF4F6;
+}
+
+.mhbox > i {
+    margin-right: 30px;
+}
+
+.mhbox > p {
+    font-weight: bold; font-size: 20px;
+    color: #3D3D3D;
+    flex: 2;
+    line-height : 2;
+}
 
 /****************************
     pagination
