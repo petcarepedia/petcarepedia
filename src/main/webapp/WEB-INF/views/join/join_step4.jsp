@@ -119,17 +119,12 @@ const autoHyphen = (target) => {
 					</li>
 					
 					<li>
-						<c:choose>
-							<c:when test="${grade == 'user'}">
-								<label>별명 <span class="ess">*</span></label>
-							</c:when>
-							<c:otherwise>
-								<label>병원명 <span class="ess">*</span></label>
-							</c:otherwise>
-						</c:choose>
-						<input type="text" name="nickname" id="nickname" placeholder="2~16자리 문자 또는 숫자">
-						<span id="nickcheck_msg"></span>
-					</li>	
+						<c:if test="${grade == 'user'}">
+							<label>별명 <span class="ess">*</span></label>
+							<input type="text" name="nickname" id="nickname" placeholder="2~16자리 문자 또는 숫자">
+							<span id="nickcheck_msg"></span>
+						</c:if>
+					</li>
 					<li>
 						<label>연락처 <span class="ess">*</span></label>
 						<input type="text" name = "phone" id = "phone" oninput="autoHyphen(this)" maxlength="13" placeholder="연락처를 입력하세요">

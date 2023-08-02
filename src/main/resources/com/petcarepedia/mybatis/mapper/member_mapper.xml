@@ -8,7 +8,7 @@
 	<insert id="join" parameterType="com.project.petcarepedia.dto.MemberDto">
 		INSERT 
 			INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate,grade,msfile) 
-			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth, jdbcType=VARCHAR},
+			VALUES(#{mid},#{pass},#{name},#{nickname, jdbcType=VARCHAR},#{phone},#{birth, jdbcType=VARCHAR},
 			#{email},#{addr, jdbcType=VARCHAR},SYSDATE,#{grade},#{msfile, jdbcType=VARCHAR})
 	</insert>
 	
