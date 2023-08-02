@@ -88,7 +88,7 @@ const autoHyphen = (target) => {
 								<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "profile">
 							</div>
 						</div>
-						<div id = "hospital_info">
+						<div id = "hospital_infomation">
 							<label>선택 정보</label>
 						</div>
 							<ul>

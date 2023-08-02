@@ -1869,7 +1869,7 @@ div.review_card_no span {
 	background : #FFB3BD;
 	margin-bottom : 3px;
 }
-#hospital_info {
+#hospital_information {
 	width : 600px;
 	height : 50px;
 	float : left;
@@ -1880,7 +1880,7 @@ div.review_card_no span {
 	margin-bottom : 3px;
 	margin-top : 55px;
 }
-#hospital_info label {
+#hospital_information label {
 	display : inline-block;
 	margin: 15px 0px 0px 15px;
 	color : white;
