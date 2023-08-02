@@ -21,4 +21,6 @@ public interface MemberMapper {
     String find(MemberDto memberDto);
     int updatePass(MemberDto memberDto);
     int checkPass(MemberDto memberDto);
+    MemberDto manager_select(String mid);
+    int manager_update(MemberDto memberDto);
 }
