@@ -61,7 +61,7 @@
 <!-- header -->
 <jsp:include page="../header.jsp"></jsp:include>
 
-<div id = "content">
+<div id = "content" style = "margin-top: 140px;">
   <section class = "hospital_info" id = "hospital_info">
     <h1 id = "title">병원 정보</h1>
     <hr>
