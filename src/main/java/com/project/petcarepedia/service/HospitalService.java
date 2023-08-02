@@ -41,4 +41,5 @@ public class HospitalService {
     public int manager_update(HospitalDto hospitalDto) {
         return hospitalMapper.manager_update(hospitalDto);
     }
+    public int updateMid(String mid){return hospitalMapper.updateMid(mid);}
 }

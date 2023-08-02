@@ -119,4 +119,8 @@
 		from pcp_hospital h, pcp_member m
 		where h.mid = m.mid and m.mid=#{mid}
 	</select>
+
+	<update id="updateMid" parameterType="String">
+		update pcp_hospital set mid=null where mid=#{mid}
+	</update>
 </mapper>
