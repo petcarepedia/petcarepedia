@@ -85,10 +85,17 @@ const autoHyphen = (target) => {
 						<div id = "profileBoxOut" class = "hospital_box">
 							<input type="file" name="file1" id = "file1" onchange = "readURL(this)" accept="image/*" style = "display : none">
 							<div id = "hos_profileBox">
-								<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "profile">
+								<c:choose>
+									<c:when test = "${member.hsfile1  != null}">
+										<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "hos_profile">
+									</c:when>
+									<c:otherwise>
+										<img src = "hos.png">
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
-						<div id = "hospital_infomation">
+						<div id = "hospital_information">
 							<label>선택 정보</label>
 						</div>
 							<ul>
