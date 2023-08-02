@@ -310,7 +310,6 @@ public class MypageController {
             hospitalDto = hospitalService.selectMh(svo.getMid());
             svo.setHid(hospitalDto.getHid());
         }
-
         if(svo.getHid() != null) {
             memberDto = memberService.manager_select(svo.getMid());
         } else {

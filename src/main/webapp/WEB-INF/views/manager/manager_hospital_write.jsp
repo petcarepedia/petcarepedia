@@ -60,22 +60,22 @@
 <%--            </li>--%>
             <li>
                 <label>병원명</label>
-                <input type = "text" name = "hname" id = "hname" placeholder = "  병원명을 입력해주세요">
+                <input type = "text" name = "hname" id = "hname" placeholder = "병원명을 입력해주세요">
             </li>
             <li>
                 <label>주소</label>
-                <input type = "text" name = "loc" id = "loc" placeholder = "  등록할 병원 주소를 입력해주세요">
+                <input type = "text" name = "loc" id = "loc" placeholder = "등록할 병원 주소를 선택해주세요">
                 <button type="button" class="btnSearchLoc" id="btnSearchLoc">주소찾기</button>
                 <input type="hidden" name="x" id="x" placeholder="위도">
                 <input type="hidden" name="y" id="y" placeholder="경도">
             </li>
             <li>
                 <label>지역구</label>
-                <input type = "text" name = "gloc" id = "gloc" placeholder = "등록할 병원의 지역구를 입력해주세요!">
+                <input type = "text" name = "gloc" id = "gloc" placeholder = "ex) 강남구">
             </li>
             <li>
                 <label>전화번호</label>
-                <input type="text" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="병원의 전화번호를 입력해보세요!">
+                <input type="text" name = "tel" id = "tel" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요">
             </li>
             <li>
                 <label>영업시간</label>
@@ -93,6 +93,7 @@
                     <option value="O">O</option>
                     <option value="X">X</option>
                 </select>
+                <span style = "font-size : 12px; color : #7AB2CC; font-weight : 500">*21시 이후 진료 여부</span>
             </li>
             <li>
                 <label>휴일진료</label>
@@ -101,6 +102,7 @@
                     <option value="O">O</option>
                     <option value="X">X</option>
                 </select>
+                <span style = "font-size : 12px; color : #7AB2CC; font-weight : 500">*공휴일 진료 여부</span>
             </li>
             <li>
                 <label>특수동물</label>
@@ -109,14 +111,15 @@
                     <option value="O">O</option>
                     <option value="X">X</option>
                 </select>
+                <span style = "font-size : 12px; color : #7AB2CC; font-weight : 500">*특수동물 진료 가능 여부</span>
             </li>
             <li>
                 <label>병원소개</label>
-                <textarea name = "intro" id = "intro"></textarea>
+                <textarea name = "intro" id = "intro" placeholder="병원소개를 해보세요!" rows="1"></textarea>
             </li>
             <li>
                 <label>홈페이지</label>
-                <input type = "text" name = "hrink" id = "hrink">
+                <input type = "text" name = "hrink" id = "hrink" placeholder="홈페이지 주소가 있으면 주소를 입력해주세요">
             </li>
             <li>
                 <label>병원이미지</label>
