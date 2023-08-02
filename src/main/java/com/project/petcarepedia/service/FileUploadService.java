@@ -20,7 +20,7 @@ public class FileUploadService {
 
         int count = 0;
         for(MultipartFile file : hospitalDto.getFiles()) {
-            if(!file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
+            if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
                 File deleteFile = new File(root_path +  oldFileName[count]);
                 System.out.println(root_path + oldFileName[count]);
                 if(deleteFile.exists()) {
@@ -47,18 +47,20 @@ public class FileUploadService {
      * hospitalMultiFileCheck - 병원 멀티파일 체크
      */
     public HospitalDto hospitalMultiFileCheck(HospitalDto hospitalDto) {
-        System.out.println(hospitalDto.getFiles()[0]);
-        System.out.println(hospitalDto.getFiles()[1]);
+        String[] hfile = {hospitalDto.getHfile1(), hospitalDto.getHfile2()};
+        String[] hsfile = {hospitalDto.getHsfile1(), hospitalDto.getHsfile2()};
+        int count = 0 ;
         for(MultipartFile file : hospitalDto.getFiles()) {
-            if(!file.getOriginalFilename().equals("")) {
+            if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
                 UUID uuid = UUID.randomUUID();
                 hospitalDto.getHfiles().add(file.getOriginalFilename());
                 hospitalDto.getHsfiles().add(uuid+"_"+file.getOriginalFilename());
             }
             else {
-                hospitalDto.getHfiles().add("");
-                hospitalDto.getHsfiles().add("");
+                hospitalDto.getHfiles().add(hfile[count]);
+                hospitalDto.getHsfiles().add(hsfile[count]);
             }
+            count++;
         }
         hospitalDto.setHfile1(hospitalDto.getHfiles().get(0));
         hospitalDto.setHsfile1(hospitalDto.getHsfiles().get(0));
