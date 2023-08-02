@@ -1755,7 +1755,7 @@ div.review_card_no span {
 }
 #content>.hospital_info>form>.aside>.section2>ul>li>#gloc,
 #content>.hospital_info>form>.aside>.section2>ul>li>#tel{
-	padding-left : 10px;
+	padding-left : 5px;
 }
 #content>.hospital_info>form>.aside>.section2>ul>li>#btnSearchLoc {
 	left : 80px;

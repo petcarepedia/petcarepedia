@@ -525,7 +525,79 @@ $("#btnReservationDelete").click(function(){
 	  				병원 등록 처리
 	 ****************************************/
 	$("#btnHospitalWrite").click(function(){
-		writeForm.submit();
+		if($("#hname").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '병원명을 입력해주세요',
+				confirmButtonColor:'#98dfff',
+				confirmButtonText:'확인'
+			})
+			return false;
+		} else if($("#loc").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '주소를 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#gloc").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '지역구를 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#hname").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '병원명을 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#tel").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '병원 전화번호를 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#ntime").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '야간진료 여부를 선택해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#holiday").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '휴일진료 여부를 선택해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#animal").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '특수동물 취급 여부를 선택해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		} else {
+			writeForm.submit();
+		}
 	})
 
 
@@ -546,7 +618,70 @@ $("#btnReservationDelete").click(function(){
 	 * 		병원 수정하기 버튼
 	 **************************************/
 	$("#btnHospitalUpdate").click(function(){
-		updateForm.submit();
+		if($("#hname").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '병원명을 입력해주세요',
+				confirmButtonColor:'#98dfff',
+				confirmButtonText:'확인'
+			})
+			return false;
+		} else if($("#loc").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '주소를 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#gloc").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '지역구를 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#tel").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '병원 전화번호를 입력해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#ntime").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '야간진료 여부를 선택해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#holiday").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '휴일진료 여부를 선택해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		}
+		else if($("#animal").val() == "") {
+			Swal.fire({
+				icon: 'error',
+				title: '특수동물 취급 여부를 선택해주세요',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		} else {
+			updateForm.submit();
+		}
 	})
 
 	/*************************************
