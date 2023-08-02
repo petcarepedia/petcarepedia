@@ -10,6 +10,22 @@
 <link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
 <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/js/petcarepedia_jquery_song.js"></script>
+	<script>
+		$(document).ready(function () {
+			if("${sessionScope.svo}"!=null){
+				if("${sessionScope.svo.grade}"=='manager'){
+					$("input:radio[value='user']").prop('checked',false).prop('disabled',true);
+					$("input:radio[value='manager']").prop('checked',true);
+
+					$(".header-menu").css('background', '#FFB3BD');
+					$(".footer-menu").css('background', '#FFF2F4');
+					$("#btnMainSearch-header > img").attr("src", 'http://localhost:9000/images/foot_pink.png');
+				} else {
+					$("input:radio[value='manager']").prop('disabled',true);
+				}
+			}
+		});
+	</script>
 </head>
 <body>
 	<!-- header -->
