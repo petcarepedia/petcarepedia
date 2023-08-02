@@ -12,7 +12,7 @@
 <script src="http://localhost:9000/js/petcarepedia_jquery_song.js"></script>
 	<script>
 		$(document).ready(function () {
-			if("${sessionScope.svo}"!=null){
+			if(${sessionScope.svo!=null}){
 				if("${sessionScope.svo.grade}"=='manager'){
 					$("input:radio[value='user']").prop('checked',false).prop('disabled',true);
 					$("input:radio[value='manager']").prop('checked',true);
