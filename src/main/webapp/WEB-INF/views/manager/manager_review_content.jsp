@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="rc_button_r">
-                    <a href="/manager_review_list/${rvo.page}"><button type="button" class="button">이전으로</button></a>
+                    <a href="/manager_review_list/${rvo.page}/"><button type="button" class="button">이전으로</button></a>
                 </div>
             </section>
         </section>
