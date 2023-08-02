@@ -596,7 +596,15 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		} else {
-			writeForm.submit();
+			Swal.fire({
+				icon: 'success',
+				title: '등록 완료',
+				confirmButtonColor:'#98dfff',
+				confirmButtonText:'확인'
+			}).then(function() {
+				writeForm.submit();
+			});
+			
 		}
 	})
 
@@ -680,7 +688,14 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		} else {
-			updateForm.submit();
+			Swal.fire({
+				icon: 'success',
+				title: '수정 완료',
+				confirmButtonColor:'#98dfff',
+				confirmButtonText:'확인'
+			}).then(function() {
+				updateForm.submit();
+			});
 		}
 	})
 
