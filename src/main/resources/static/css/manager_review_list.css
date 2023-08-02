@@ -188,6 +188,41 @@ td.state {
     font-weight: bold;
 }
 
+/****************************
+    section3
+*****************************/
+#aside {
+    float: left;
+    margin-left: 50px;
+}
+
+#section3 {
+    width: 614px;
+    padding-top: 47px;
+}
+
+.mhbox {
+    background: #F2F2F2;
+    padding: 30px;
+    border-radius: 10px;
+    width: 717px; height: 90px;
+    display: flex; align-items: center;
+}
+
+.unauth {
+    background: #FFF4F6;
+}
+
+.mhbox > i {
+    margin-right: 30px;
+}
+
+.mhbox > p {
+    font-weight: bold; font-size: 20px;
+    color: #3D3D3D;
+    flex: 2;
+    line-height : 2;
+}
 
 /****************************
     pagination

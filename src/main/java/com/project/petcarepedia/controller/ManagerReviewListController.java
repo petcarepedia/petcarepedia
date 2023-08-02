@@ -32,6 +32,7 @@ public class ManagerReviewListController {
     public String manager_review_list(@PathVariable String page, HttpSession session, Model model){
         SessionDto svo = (SessionDto) session.getAttribute("svo");
         String hid = svo.getHid();
+        String auth = hospitalService.selectMh(svo.getMid()).getAuth();
 
         if (hid == "" || hid == null) {
             hid = "H_0000";
@@ -64,6 +65,7 @@ public class ManagerReviewListController {
                 review.setLikeresult(state);
             }
 
+            model.addAttribute("auth", auth);
             model.addAttribute("list", list);
             model.addAttribute("page", pageDto);
         }

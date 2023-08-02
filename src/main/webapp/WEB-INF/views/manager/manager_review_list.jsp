@@ -83,39 +83,54 @@
             </section>
 
             <section id="section2">
-                <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
-                <table class="reviewTable">
-                    <tr>
-                        <th>번호</th>
-                        <th>아이디</th>
-                        <th>내용</th>
-                        <th>작성일</th>
-                        <th>신고여부</th>
-                    </tr>
-                    ${svo.auth}
+                    <c:choose>
+                        <c:when test="${auth eq 'auth'}">
+                        <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
+                        <table class="reviewTable">
+                            <tr>
+                                <th>번호</th>
+                                <th>아이디</th>
+                                <th>내용</th>
+                                <th>작성일</th>
+                                <th>신고여부</th>
+                            </tr>
+                            <c:forEach var="reivew" items="${list}">
+                                <tr>
+                                    <td>${reivew.rno}</td>
+                                    <td title="${reivew.mid}">${reivew.mid}</td>
+                                    <td><a href="/manager_review_content/${reivew.rid}/">${reivew.rcontent}</a></td>
+                                    <td>${reivew.rdate}</td>
 
-                    <c:forEach var="reivew" items="${list}">
-                        <tr>
-                            <td>${reivew.rno}</td>
-                            <td title="${reivew.mid}">${reivew.mid}</td>
-                            <td><a href="/manager_review_content/${reivew.rid}/">${reivew.rcontent}</a></td>
-                            <td>${reivew.rdate}</td>
+                                    <c:choose>
+                                        <c:when test="${reivew.likeresult == 0}">
+                                            <td></td>
+                                        </c:when>
+                                        <c:when test="${reivew.likeresult != 0}">
+                                            <td class="state">신고 접수 중</td>
+                                        </c:when>
+                                    </c:choose>
+                                </tr>
+                            </c:forEach>
+                            <tr>
+                                <td colspan="5">
+                                    <div id="ampaginationsm"></div>
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <div id = "aside">
+                                <section id = "section3">
+                                    <div class="mhbox unauth">
+                                        <i class="fa-solid fa-circle-check fa-3x" style="color: #ffb3bd;"></i>
+                                        <p>병원 등록이 완료되지 않았습니다. <br>
+                                            병원 등록 후 이용 가능합니다.</p>
+                                    </div>
+                                </section>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
 
-                            <c:choose>
-                                <c:when test="${reivew.likeresult == 0}">
-                                    <td></td>
-                                </c:when>
-                                <c:when test="${reivew.likeresult != 0}">
-                                    <td class="state">신고 접수 중</td>
-                                </c:when>
-                            </c:choose>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <td colspan="5">
-                            <div id="ampaginationsm"></div>
-                        </td>
-                    </tr>
+
                 </table>
             </section>
         </section>
