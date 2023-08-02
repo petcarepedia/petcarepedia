@@ -304,7 +304,18 @@ public class MypageController {
     @GetMapping("manager_information")
     public String manager_information(HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        MemberDto memberDto = memberService.manager_select(svo.getMid());
+        MemberDto memberDto = new MemberDto();
+        HospitalDto hospitalDto = new HospitalDto();
+        if(hospitalService.selectMh(svo.getMid()) != null) {
+            hospitalDto = hospitalService.selectMh(svo.getMid());
+            svo.setHid(hospitalDto.getHid());
+        }
+
+        if(svo.getHid() != null) {
+            memberDto = memberService.manager_select(svo.getMid());
+        } else {
+            memberDto = memberService.content(svo.getMid());
+        }
         model.addAttribute("member", memberDto);
         return "/manager/manager_information";
     }

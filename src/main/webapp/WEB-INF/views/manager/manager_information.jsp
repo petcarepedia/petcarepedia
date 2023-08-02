@@ -86,7 +86,7 @@ const autoHyphen = (target) => {
 							<input type="file" name="file1" id = "file1" onchange = "readURL(this)" accept="image/*" style = "display : none">
 							<div id = "hos_profileBox">
 								<c:choose>
-									<c:when test = "${member.hsfile1  != null}">
+									<c:when test = "${member.hsfile1 != null}">
 										<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "hos_profile">
 									</c:when>
 									<c:otherwise>
@@ -107,13 +107,27 @@ const autoHyphen = (target) => {
 								</li>
 								<li>
 									<label>병원명</label>
-									<input type = "text" value = "${member.hname}" name = "hname"  id = "hname" disabled>
+									<c:choose>
+										<c:when test = "${member.hname == null}">
+											<input type = "text" value = "${member.nickname}" name = "nickname"  id = "nickname" disabled>
+										</c:when>
+										<c:otherwise>
+											<input type = "text" value = "${member.hname}" name = "hname"  id = "hname" disabled>
+										</c:otherwise>
+									</c:choose>
 <%--									<button type = "button" id = "update_nickname"><img id = "img2" src = "http://localhost:9000/images/편집2.png"></button>--%>
 <%--									<span id="nickcheck_msg"></span>--%>
 								</li>
 								<li>
 									<label>병원주소</label>
-									<input type = "text" value = "${member.loc}" name = "loc" id = "loc" disabled>
+									<c:choose>
+										<c:when test = "${member.addr == null}">
+											<input type = "text" value = "${member.loc}" name = "loc" id = "loc" disabled>
+										</c:when>
+										<c:otherwise>
+											<input type = "text" value = "${member.addr}" name = "addr" id = "addr" disabled>
+										</c:otherwise>
+									</c:choose>
 <%--									<button type = "button" id = "update_addr"><img id = "img5" src = "http://localhost:9000/images/편집2.png"></button>--%>
 								</li>
 								<form name="updateForm" id = "updateForm" action="/manager_info_update" method="post" enctype = "multipart/form-data">

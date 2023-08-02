@@ -89,11 +89,11 @@
 <%--            </li>--%>
             <li>
               <label>병원명</label>
-              <label>${hospital.hname}</label>
+             <input type = "text" name = "hname" id = "hname" placeholder = "수정할 병원명을 입력해주세요" value = "${hospital.hname}">
             </li>
             <li>
               <label>주소</label>
-                <input type = "text" name = "loc" id = "loc" placeholder = "  등록할 병원 주소를 입력해주세요" value = "${hospital.loc}">
+                <input type = "text" name = "loc" id = "loc" placeholder = "등록할 병원 주소를 입력해주세요" value = "${hospital.loc}">
                 <button type="button" class="btnSearchLoc" id="btnSearchLoc">주소찾기</button>
                 <input type="hidden" name="x" id="x" placeholder="위도" value = "${hospital.x}">
                 <input type="hidden" name="y" id="y" placeholder="경도" value = "${hospital.y}">
