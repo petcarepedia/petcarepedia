@@ -31,7 +31,7 @@ public class ManagerReviewListController {
     @GetMapping("manager_review_list/{page}/")
     public String manager_review_list(@PathVariable String page, HttpSession session, Model model){
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        String hid = svo.getHid();
+        String hid = hospitalService.selectMh(svo.getMid()).getHid();
         String auth = hospitalService.selectMh(svo.getMid()).getAuth();
 
         if (hid == "" || hid == null) {
