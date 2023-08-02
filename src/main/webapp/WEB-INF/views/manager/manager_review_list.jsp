@@ -63,25 +63,26 @@
 <!-- header -->
     <jsp:include page="../header.jsp"></jsp:include>
 
-    <div class="reviewList">
-        <div class="reviewNav">
-            <section id="section1">
-                <nav>
-                    <ul>
-                        <li>마이페이지</li>
-                        <li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
-                        <li><a href = "http://localhost:9000/manager/reserve_list/1/">예약 관리</a></li>
-                        <li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
-                        <li><a href = "http://localhost:9000/mypage_member_information">회원 정보</a></li>
-                        <li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
-                    </ul>
-                </nav>
+    <div id = "content">
+        <section id = "information">
+            <h1 class="title">리뷰 관리</h1>
+            <hr class="bar">
+            <section id = "section1">
+                <div>
+                    <nav>
+                        <ul>
+                            <li>마이페이지</li>
+                            <li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
+                            <li><a href = "http://localhost:9000/manager/reserve_list/1/">예약 관리</a></li>
+                            <li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
+                            <li><a href = "http://localhost:9000/mypage_member_information">회원 정보</a></li>
+                            <li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </section>
 
             <section id="section2">
-                <h1 class="title">리뷰 관리</h1>
-                <hr class="bar">
-
                 <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
                 <table class="reviewTable">
                     <tr>
@@ -91,6 +92,7 @@
                         <th>작성일</th>
                         <th>신고여부</th>
                     </tr>
+                    ${svo.auth}
 
                     <c:forEach var="reivew" items="${list}">
                         <tr>
@@ -107,11 +109,8 @@
                                     <td class="state">신고 접수 중</td>
                                 </c:when>
                             </c:choose>
-
                         </tr>
                     </c:forEach>
-
-
                     <tr>
                         <td colspan="5">
                             <div id="ampaginationsm"></div>
@@ -119,7 +118,7 @@
                     </tr>
                 </table>
             </section>
-        </div>
+        </section>
     </div>
 
     <!-- footer -->
