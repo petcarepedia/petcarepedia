@@ -1,5 +1,6 @@
 package com.project.petcarepedia.controller;
 
+import com.project.petcarepedia.dto.HospitalDto;
 import com.project.petcarepedia.dto.PageDto;
 import com.project.petcarepedia.dto.ReviewDto;
 import com.project.petcarepedia.dto.SessionDto;
@@ -29,46 +30,34 @@ public class ManagerReviewListController {
 
     /*리뷰 리스트*/
     @GetMapping("manager_review_list/{page}/")
-    public String manager_review_list(@PathVariable String page, HttpSession session, Model model){
+    public String manager_review_list(@PathVariable String page, HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        String hid = hospitalService.selectMh(svo.getMid()).getHid();
-        String auth = hospitalService.selectMh(svo.getMid()).getAuth();
 
-        if (hid == "" || hid == null) {
+        HospitalDto mh = hospitalService.selectMh(svo.getMid());
+        String hid = "";
+
+        if(mh != null) { // 병원 등록 시
+            hid = mh.getHid();
+            model.addAttribute("auth", mh.getAuth());
+            
+        } else { // 병원 미등록 시
             hid = "H_0000";
-
-            PageDto pageDto = new PageDto(page, "manager_review");
-            pageDto.setHid(hid);
-            pageDto = pageService.getPageResult(pageDto);
-            List<ReviewDto> list = reviewService.MRlist(pageDto);
-
-            /* string rid */
-            for(ReviewDto review : list) {
-                String targetRid = review.getRid();
-                int state = reviewReportService.MRRlist(targetRid);
-                review.setLikeresult(state);
-            }
-
-            model.addAttribute("list", list);
-            model.addAttribute("page", pageDto);
-
-        } else {
-            PageDto pageDto = new PageDto(page, "manager_review");
-            pageDto.setHid(hid);
-            pageDto = pageService.getPageResult(pageDto);
-            List<ReviewDto> list = reviewService.MRlist(pageDto);
-
-            /* string rid */
-            for(ReviewDto review : list) {
-                String targetRid = review.getRid();
-                int state = reviewReportService.MRRlist(targetRid);
-                review.setLikeresult(state);
-            }
-
-            model.addAttribute("auth", auth);
-            model.addAttribute("list", list);
-            model.addAttribute("page", pageDto);
         }
+
+        PageDto pageDto = new PageDto(page, "manager_review");
+        pageDto.setHid(hid);
+        pageDto = pageService.getPageResult(pageDto);
+        List<ReviewDto> list = reviewService.MRlist(pageDto);
+
+        /* string rid */
+        for(ReviewDto review : list) {
+            String targetRid = review.getRid();
+            int state = reviewReportService.MRRlist(targetRid);
+            review.setLikeresult(state);
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("page", pageDto);
 
         return "/manager/manager_review_list";
     }
