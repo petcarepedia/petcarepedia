@@ -16,6 +16,7 @@
 	<script>
 	$(document).ready(function(){
 		var mid = "${mid}";
+		var hid = "${hid}";
 		var pager = jQuery('#ampaginationsm').pagination({
 
 			maxSize: '${page.pageCount}',	    		// max page size
@@ -35,29 +36,38 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 			   if(mid!=null && mid!=""){
-				   $(location).attr('href', "http://localhost:9000/manager/reserve_msearch/"+e.page+"/"+hid);
+				   $(location).attr('href', "http://localhost:9000/manager_reserve_msearch/"+e.page+"/"+hid+"/"+mid);
 			   } else {
-				   $(location).attr('href', "http://localhost:9000/manager/reserve_list/"+e.page);
+				   $(location).attr('href', "http://localhost:9000/manager_reserve_list/"+e.page+"/"+hid);
 			   }
 	                    
 	    });
 		
  	});
-	</script> 
+	</script>
+	<script>
+		$(document).ready(function () {
+			$(".header-menu").css('background','#FFB3BD');
+			$(".footer-menu").css('background','#FFF2F4');
+			$("#btnMainSearch-header > img").attr("src",'http://localhost:9000/images/foot_pink.png');
+		});
+	</script>
 </head>
 <body>
 <!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	<div class="d1">
 		<section class="reserve">	
-			<section id = "section1">
+			<section id = "section3">
 				<div>
 					<nav>
 						<ul>
-							<li>예약관리</li>
-							<li><a href = "http://localhost:9000/manager/hospital_list/1/">병원 관리</a></li>
+							<li>마이페이지</li>
+							<li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
 							<li><a href = "http://localhost:9000/manager/reserve_list/1/">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/manager/reserve_list/1/">리뷰 보기</a></li>
+							<li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/mypage_member_information">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -68,7 +78,7 @@
 				<div class="d2" id = "d2">
 					<input type="text"  class="search_bar" id ="Hreserve_bar"placeholder="회원아이디 입력">
 					<button type="submit" class="button1" id="Hreserve_btn">
-						<img src="http://localhost:9000/images/foot_ffb3bd.png">
+						<img src="http://localhost:9000/images/foot_pink.png">
 					</button>
 				</div>
 				<table class="reserve_table">
