@@ -307,11 +307,7 @@ public class ProjectRestController {
      * 로그인
      */
     @PostMapping("login")
-    public Map login_proc(@RequestParam("mid") String mid, @RequestParam("pass") String pass, @RequestParam("rememberMid") String rememberMid, HttpSession session, HttpServletResponse response){
-        MemberDto memberDto = new MemberDto();
-        memberDto.setMid(mid);
-        memberDto.setPass(pass);
-
+    public Map login_proc(MemberDto memberDto, HttpSession session, HttpServletResponse response){
         Map map = new HashMap();
         SessionDto sessionDto = memberService.login(memberDto);
         if(sessionDto != null) {
@@ -319,7 +315,7 @@ public class ProjectRestController {
                 session.setAttribute("svo", sessionDto);
 
                 Cookie cookie = new Cookie("user_check", sessionDto.getMid());
-                if(rememberMid.equals("true")){
+                if(memberDto.getRememberMid().equals("true")){
                     response.addHeader("result", "true");
                     response.addCookie(cookie);
                 } else {
