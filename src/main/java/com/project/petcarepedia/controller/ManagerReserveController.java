@@ -23,14 +23,13 @@ public class ManagerReserveController {
     @GetMapping("manager_reserve_msearch/{page}/{hid}/{mid}")
     public String hospital_reserve_msearch(HttpSession session , @PathVariable String page, @PathVariable String hid, @PathVariable String mid, Model model){
         SessionDto svo =  (SessionDto) session.getAttribute("svo");
-        PageDto pageDto = new PageDto(page, mid);
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, mid));
 
         pageDto.setHid(hid);
         pageDto.setMid(mid);
         System.out.println(pageDto.getHid());
         System.out.println(pageDto.getMid());
 
-        pageDto = pageService.getPageResult(pageDto);
         model.addAttribute("list", bookingService.HBslist(pageDto));
         model.addAttribute("page", pageDto);
 
