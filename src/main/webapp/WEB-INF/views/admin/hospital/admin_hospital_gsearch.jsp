@@ -116,7 +116,7 @@
 					<c:forEach var="hospital" items="${list}">
 						<tr>
 							<td>${hospital.rno}</td>
-							<td><a href="admin/hospital_content/${hospital.hid}/${page.reqPage}/">${hospital.hname}</a></td>
+							<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/">${hospital.hname}</a></td>
 							<td>${hospital.animal}</td>
 							<td>${hospital.ntime}</td>
 							<td>${hospital.holiday}</td>

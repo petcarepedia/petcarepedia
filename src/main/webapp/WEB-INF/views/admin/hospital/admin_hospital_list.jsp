@@ -99,14 +99,15 @@
 							</a>
 						</td>
 					</tr>
-					<!-- <tr>
+					<tr>
 						<td colspan="5" >
 							<select>
-								<option name="table" id="new"> 최신 순</option>
-								<option name="table"  id="old"> 오래된 순</option>		
+								<option name="table" id="yes"> 승인</option>
+								<option name="table"  id="no"> 비승인</option>
+								<option name="table"  id=""> 승인 거부</option>
 							</select>
 						</td>
-					</tr> -->
+					</tr>
 					<tr>
 						<th>번호</th>
 						<th>병원명</th>
@@ -120,7 +121,7 @@
 						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/">${hospital.hname}</a></td>
 						<td>${hospital.animal}</td>
 						<td>${hospital.ntime}</td>
-						<td><a href="/admin/manager/reserve_list/1/${hospital.hid}/"> ${hospital.hname}</a></td>
+						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/"> ${hospital.hname}</a></td>
 						
 					</tr>
 					</c:forEach>
