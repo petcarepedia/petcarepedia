@@ -94,7 +94,8 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td >
-										<input type="file" name="file1" id="file1">
+										<input type="file" name="hfile1" id="hfile1">
+										<input type="file" name="hfile2" id="hfile2">
 									</td>
 								</tr>
 								<tr>

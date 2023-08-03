@@ -78,6 +78,9 @@ public class PageService {
         }else if(pageDto.getGloc() != null && pageDto.getGloc() != "") {
             pageSize = 10;
             dbCount = pageMapper.Hscount2(pageDto);
+        } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
+            pageSize = 10;
+            dbCount = pageMapper.HBscount(pageDto);
         }
 
         //총 페이지 수 계산
