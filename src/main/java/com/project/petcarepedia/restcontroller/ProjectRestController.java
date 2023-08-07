@@ -354,4 +354,9 @@ public class ProjectRestController {
         int result = reviewService.reportReview(rid);
         return String.valueOf(result);
     }
+
+    @GetMapping("/hospital_check/{mid}")
+    public String hospital_check(@PathVariable String mid) {
+        return String.valueOf(hospitalService.hospitalCheck(mid));
+    }
 }

@@ -58,4 +58,6 @@ public interface HospitalMapper {
 
     HospitalDto selectMh(String mid);
     int updateMid(String mid);
+
+    int hospitalCheck(String mid);
 }
