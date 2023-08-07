@@ -122,6 +122,9 @@
 							<input type="hidden" name="rid" id="rid" value="${rvo.rid }">
 							<input type="hidden" name="page"  value="${page.page }">
 							<input type="hidden" name="gloc"  value="${page.gloc }">
+							<input type="hidden" name="mid" value="${rvo.mid}">
+							<input type="hidden" name="rid" value="${rvo.rid}">
+							<input type="hidden" name="hid" value="${rvo.hid}">
 						</c:otherwise>
 					</c:choose>
 				</form>	
