@@ -69,8 +69,8 @@ const autoHyphen = (target) => {
 						<ul>
 							<li>마이페이지</li>
 							<li><a href = "/manager_hospital_list" style = "font-weight : 500">병원 정보 관리</a></li>
-							<li><a href = "/manager_reserve_list">예약 관리</a></li>
-							<li><a href = "/mypage_my_review/1/">리뷰 관리</a></li>
+							<li><a href = "/manager_reserve_list/1/H_0169">예약 관리</a></li>
+							<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
 							<li><a href = "/manager_information" style = "font-weight:bold;">회원 정보</a></li>
 							<li><a href = "/mypage_signout">회원 탈퇴</a></li>
 						</ul>
