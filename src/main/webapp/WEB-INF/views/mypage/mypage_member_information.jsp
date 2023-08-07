@@ -29,6 +29,25 @@ const autoHyphen = (target) => {
 	    
 	}
 </script>
+<script>
+	$(document).ready(function(){
+		$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+	})
+	.ajaxStart(function(){
+		$('#loading').show(); //ajax실행시 로딩바를 보여준다.
+	})
+	.ajaxStop(function(){
+		$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
+	});
+</script>
+<style>
+	#loading {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 30;
+	}
+</style>
 </head>
 <body>
 <div id="pageOverlay" class="page-overlay"></div>
@@ -39,7 +58,7 @@ const autoHyphen = (target) => {
 	    <input type = "text" placeholder = "변경하실 이메일을 입력해주세요!" name = "email" id = "confirm_email" class = "email">
 		<button type="button" class="btn-short" id="btnAuthEmail">인증번호 전송</button>
 	    <span id="emailcheck_msg"></span>
-		
+	  <img src="http://localhost:9000/images/loading.gif" id="loading">
 		<input type="hidden" id="data">
 		
 		<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short" style = "display:none">
@@ -121,6 +140,7 @@ const autoHyphen = (target) => {
 								</li>
 								<li>
 									<label>이메일</label>
+									<input type="hidden" value="${member.grade}" id="grade">
 									<input type = "text" value = "${member.email}" name = "email" id = "email" disabled>
 									<button type = "button" id = "update_email"><img id = "img3" src = "http://localhost:9000/images/편집2.png"></button>
 									<!-- <span id="emailcheck_msg"></span>

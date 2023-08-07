@@ -15,6 +15,10 @@ public class HospitalService {
     HospitalMapper hospitalMapper;
 
     public int manager_insert(HospitalDto hospitalDto){
+        if(hospitalDto.getHfile1() == null) {
+            hospitalDto.setHfile1("hos.png");
+            hospitalDto.setHsfile1("hos.png");
+        }
         return hospitalMapper.manager_insert(hospitalDto);
     }
 
@@ -42,4 +46,6 @@ public class HospitalService {
         return hospitalMapper.manager_update(hospitalDto);
     }
     public int updateMid(String mid){return hospitalMapper.updateMid(mid);}
+    public int hospitalCheck(String mid){return hospitalMapper.hospitalCheck(mid);}
+
 }
