@@ -60,6 +60,10 @@ html {
 		margin: 0 auto;
 		z-index:1;
 	}
+	.mhm {
+		background:#FFB3BD;
+	}
+
 	.header-content {
 		width:1000px; height:100px;
 		margin:auto;
@@ -141,6 +145,9 @@ html {
 	.footer-menu {
 		height:350px;
 		background:#F7FCFE;
+	}
+	.mfm {
+		background:#FFF2F4;
 	}
 	
 	.footer-content {

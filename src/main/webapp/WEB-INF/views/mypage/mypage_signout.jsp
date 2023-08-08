@@ -14,10 +14,6 @@
 	<script>
 		$(document).ready(function () {
 			if($("#grade").val()=='manager'){
-				$(".header-menu").css('background', '#FFB3BD');
-				$(".footer-menu").css('background', '#FFF2F4');
-				$("#btnMainSearch-header > img").attr("src", 'http://localhost:9000/images/foot_pink.png');
-
 				$(".manager-menu > ul > li:first-child").css('color','#FFB3BD').css('border-color','#FFB3BD');
 				$(".manager-menu > ul > li > a").mouseover(function (){$(this).css('color','#FFB3BD');});
 				$(".manager-menu > ul > li > a").mouseleave(function (){$(this).css('color','#3d3d3d');});
@@ -26,7 +22,6 @@
 		})
 	</script>
 	<style>
-		/** {border: 1px solid red}*/
 		.outbox {
 			width: 777px;
 			margin: 50px 0 80px 50px;
@@ -116,8 +111,15 @@
 	</style>
 </head>
 <body>
-		<!-- header -->
-	 <jsp:include page="../header.jsp"></jsp:include>
+	<!-- header -->
+	<c:choose>
+		<c:when test="${sessionScope.svo.grade=='manager'}">
+	 		<jsp:include page="../header_manager.jsp"></jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="../header.jsp"></jsp:include>
+		</c:otherwise>
+	</c:choose>
 	<div id = "content2" style="margin-top: 140px;">
 		<section id = "signout">
 			<h1 id = "title">회원 탈퇴하기</h1>
@@ -205,6 +207,13 @@
 			</form>
 		</section>
 	</div>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<c:choose>
+		<c:when test="${sessionScope.svo.grade=='manager'}">
+			<jsp:include page="../footer_manager.jsp"></jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="../footer.jsp"></jsp:include>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

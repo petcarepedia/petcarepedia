@@ -18,10 +18,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 <script>
 	$(document).ready(function () {
-		$(".header-menu").css('background','#FFB3BD');
-		$(".footer-menu").css('background','#FFF2F4');
-		$("#btnMainSearch-header > img").attr("src",'http://localhost:9000/images/foot_pink.png');
-
 		$(".manager-menu > ul > li:first-child").css('color','#FFB3BD').css('border-color','#FFB3BD');
 		$(".manager-menu > ul > li > a").mouseover(function (){$(this).css('color','#FFB3BD');});
 		$(".manager-menu > ul > li > a").mouseleave(function (){$(this).css('color','#3d3d3d');});
@@ -126,7 +122,7 @@
 </style>
 <body>
 	<!-- header -->
-	 <jsp:include page="../header.jsp"></jsp:include>
+	 <jsp:include page="../header_manager.jsp"></jsp:include>
 	<div id = "content2" style="margin-top: 140px;">
 		<section id = "reservation">
 			<div id = "btn_box">
@@ -210,6 +206,6 @@
 			</div>
 		</section>
 	</div>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../footer_manager.jsp"></jsp:include>
 </body>
 </html>
