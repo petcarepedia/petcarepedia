@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://webfontworld.github.io/BMJua/BMJua.css');
 /***************************************
 	common
 ***************************************/
@@ -186,6 +187,31 @@
 td.state {
     color: red;
     font-weight: bold;
+}
+
+div.review_no {
+    background: #FFF2F4;
+    border-radius: 5px;
+    text-align: center;
+}
+
+div.review_no_img {
+    height: 200px;
+    text-align: center;
+}
+
+div.review_no img#review_no_img {
+    width: 30%;
+    display: block;
+    margin: auto;
+    padding: 50px 0 10px 20px;
+}
+
+div.review_no p {
+    /* border: 1px solid #98DFFF; */
+    font-size: 18px;
+    padding: 0px 0px 30px 0px;
+    font-family: 'BMJua';
 }
 
 /****************************
