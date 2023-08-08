@@ -9,106 +9,17 @@
 <title>펫캐어피디아 | 회원탈퇴</title>
 <link rel="stylesheet" href="http://localhost:9000/css/mypage.css">
 <link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song_manager.css">
 <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
 	<script>
 		$(document).ready(function () {
 			if($("#grade").val()=='manager'){
-				$(".manager-menu > ul > li:first-child").css('color','#FFB3BD').css('border-color','#FFB3BD');
 				$(".manager-menu > ul > li > a").mouseover(function (){$(this).css('color','#FFB3BD');});
 				$(".manager-menu > ul > li > a").mouseleave(function (){$(this).css('color','#3d3d3d');});
 			}
-
 		})
 	</script>
-	<style>
-		.outbox {
-			width: 777px;
-			margin: 50px 0 80px 50px;
-			float: left;
-		}
-		.outexbox {
-			width: 737px;
-			margin-bottom: 60px;
-			border-radius: 5px;
-			background: #F7FCFE;
-			padding: 30px 20px;
-		}
-		.outtitle {
-			font-size: 20px;
-			font-weight: bold;
-			margin-bottom: 20px;
-			color: #3D3D3D;
-		}
-		.subtitle {
-			font-size: 18px;
-		}
-
-		.outex {
-			margin-left: 70px;
-			color: #3D3D3D;
-			line-height: 25px;
-			font-size: 15px;
-		}
-		.outex span {
-			font-weight: bold;
-			color: #636363;
-		}
-
-		.outdelhos {margin-left: 50px; margin-top: 20px;}
-		.outradio {
-			margin-left: 30px;
-			list-style: none;
-			font-size: 15px;
-			font-weight: bold;
-			color: #636363;
-		}
-		.outradio li:first-child {
-			margin-bottom: 10px;
-		}
-		.outradio input {
-			width: 18px;
-			height: 18px;
-			float: left;
-			margin-right: 10px;
-		}
-
-		.outpwbox {
-			width: 400px;
-			margin: auto;
-			text-align: center;
-		}
-		.outpw p {
-			font-size: 15px;
-			font-weight: bold;
-			color: #636363;
-			margin-bottom: 20px;
-			display: inline-block;
-		}
-		.outpw input {
-			width:258px; height:50px;
-			padding: 0px 20px;
-			border-radius: 5px;
-			border: 1px solid lightgray;
-		}
-		.outpw input:focus {
-			outline: 1px solid #7ab2cc;
-		}
-		.outpw button {
-			width:300px; height:50px;
-			border:none;
-			border-radius: 5px;
-			background:#7AB2CC; color:white;
-			font-size:15px; font-weight:bold;
-			cursor:pointer;
-			margin-top: 20px;
-		}
-
-		#section1 {
-			float: left;
-		}
-
-	</style>
 </head>
 <body>
 	<!-- header -->
@@ -132,7 +43,7 @@
 							<c:when test="${sessionScope.svo.grade=='manager'}">
 								<nav class="manager-menu">
 									<ul>
-										<li>마이페이지</li>
+										<li style = "color: #ffb3bd; border-color: #ffb3bd">마이페이지</li>
 										<li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
 										<li><a href = "/manager_reserve_list/1/${sessionScope.svo.hid}">예약 관리</a></li>
 										<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>

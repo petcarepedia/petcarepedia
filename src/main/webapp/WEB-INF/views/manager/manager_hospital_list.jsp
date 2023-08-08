@@ -11,115 +11,13 @@
 </head>
 <link rel="stylesheet" href="http://localhost:9000/css/mypage.css">
 <link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/css/petcarepedia_song_manager.css">
 <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/js/petcarepedia_jquery_song.js"></script>
+<script src="http://localhost:9000/js/petcarepedia_jquery_song_manager.js"></script>
 <script src="http://localhost:9000/js/petcarepedia_jquery_yeol.js"></script>
 <script src="https://kit.fontawesome.com/4ed285928f.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
-<script>
-	$(document).ready(function () {
-		$(".manager-menu > ul > li:first-child").css('color','#FFB3BD').css('border-color','#FFB3BD');
-		$(".manager-menu > ul > li > a").mouseover(function (){$(this).css('color','#FFB3BD');});
-		$(".manager-menu > ul > li > a").mouseleave(function (){$(this).css('color','#3d3d3d');});
-
-		$(".manager-menu > ul > li:nth-child(2) > a").css('font-weight','bold');
-		$(".manager-menu > ul > li:nth-child(3) > a").css('font-weight','normal');
-
-		$("#aside1").css("border","1px solid #d8d8d8");
-		$("#aside1 > div > a > span").mouseover(function (){$(this).css('color','#FFB3BD');});
-		$("#aside1 > div > a > span").mouseleave(function (){$(this).css('color','#3d3d3d');});
-
-		$("#btnMhWrite").click(function () {
-			location.href = "/manager_hospital_write";
-		});
-		$(".btnMhUpdate").click(function () {
-			location.href = "/manager_hospital_update";
-		});
-
-		var text = "";
-		var mhauth = $("#mhAuth").val();
-
-		if(mhauth=="r1") text="중복 또는 부적절한 병원명을 사용하였습니다.";
-		else if(mhauth=="r2") text="병원 위치 정보가 부적절하거나, 지역구가 일치하지 않습니다.";
-		else if(mhauth=="r3") text="병원 소개글에 부적절한 내용이 포함되어있습니다.";
-		else if(mhauth=="r4") text="부적절한 병원 이미지를 사용하였습니다.";
-		else if(mhauth=="r5") text="기타 사유입니다. 문의 바랍니다.";
-
-		$("#btnReject").click(function () {
-			Swal.fire({
-				icon: 'warning',
-				title: '승인 거부 사유',
-				text: text,
-				confirmButtonColor:'#98dfff',
-				confirmButtonText:'확인'
-			});
-		});
-	});
-</script>
-<style>
-	.mhbox {
-		background: #F2F2F2;
-		padding: 30px;
-		border-radius: 10px;
-		width: 717px; height: 90px;
-		display: flex; align-items: center;
-	}
-	.unauth {
-		background: #FFF4F6;
-	}
-	.reject {
-		background: #FFF4F3;
-	}
-	.null:hover {
-		opacity: 0.7;
-		cursor: pointer;
-	}
-	.mhbox > i {
-		margin-right: 30px;
-	}
-	.mhbox > p {
-		font-weight: bold; font-size: 20px;
-		color: #3D3D3D;
-		flex: 2;
-	}
-
-	.mhex {
-		padding: 10px 20px; width: 717px;
-		font-size: 14px;
-		color: #989898; line-height: 20px;
-		margin-bottom: 30px;
-	}
-	.mhexreject {
-		color:red;
-	}
-
-	.btn-mh {
-		background: #ffb3bd;
-		color: white;
-		font-size: 14px; font-weight: bold;
-		text-align: center;
-		padding: 10px;
-		border-radius: 5px;
-	}
-	.btn-mh:hover {
-		cursor: pointer;
-		opacity: 0.7;
-	}
-	.bre {
-		background: #f95f5c;
-	}
-	#btnReject {
-		color:#45C5EE;
-		text-decoration: underline;
-		font-weight: bold;
-	}
-	#btnReject:hover {
-		cursor: pointer;
-		opacity: 0.7;
-	}
-
-	#aside, #section2 {width: 777px}
-</style>
 <body>
 	<!-- header -->
 	 <jsp:include page="../header_manager.jsp"></jsp:include>
@@ -133,9 +31,9 @@
 				<div>
 					<nav class="manager-menu">
 						<ul>
-							<li>마이페이지</li>
-							<li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
-							<li><a href = "/manager_reserve_list/1/${sessionScope.svo.hid}">예약 관리</a></li>
+							<li style = "color: #ffb3bd; border-color: #ffb3bd">마이페이지</li>
+							<li><a href = "/manager_hospital_list" style = "font-weight:bold;">병원 정보 관리</a></li>
+							<li><a href = "/manager_reserve_list/1/${sessionScope.svo.hid}" style = "font-weight:500;">예약 관리</a></li>
 							<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
 							<li><a href = "/manager_information">회원 정보</a></li>
 							<li><a href = "/mypage_signout">회원 탈퇴</a></li>
@@ -169,7 +67,7 @@
 							</ul>
 						</c:when>
 						<c:when test="${hospital.auth == 'auth'}">
-							<div id = "aside1">
+							<div id = "aside1" style = "border: 1px solid #d8d8d8;">
 								<img src = "http://localhost:9000/upload/${hospital.hsfile1}">
 								<div>
 									<span>서울시 > ${hospital.gloc}</span>

@@ -1,0 +1,150 @@
+.mhbox {
+    background: #F2F2F2;
+    padding: 30px;
+    border-radius: 10px;
+    width: 717px; height: 90px;
+    display: flex; align-items: center;
+}
+.unauth {
+    background: #FFF4F6;
+}
+.reject {
+    background: #FFF4F3;
+}
+.null:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+.mhbox > i {
+    margin-right: 30px;
+}
+.mhbox > p {
+    font-weight: bold; font-size: 20px;
+    color: #3D3D3D;
+    flex: 2;
+}
+
+.mhex {
+    padding: 10px 20px; width: 717px;
+    font-size: 14px;
+    color: #989898; line-height: 20px;
+    margin-bottom: 30px;
+}
+.mhexreject {
+    color:red;
+}
+
+.btn-mh {
+    background: #ffb3bd;
+    color: white;
+    font-size: 14px; font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+.btn-mh:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+.bre {
+    background: #f95f5c;
+}
+#btnReject {
+    color:#45C5EE;
+    text-decoration: underline;
+    font-weight: bold;
+}
+#btnReject:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#aside, #section2 {width: 777px}
+
+
+
+.outbox {
+    width: 777px;
+    margin: 50px 0 80px 50px;
+    float: left;
+}
+.outexbox {
+    width: 737px;
+    margin-bottom: 60px;
+    border-radius: 5px;
+    background: #F7FCFE;
+    padding: 30px 20px;
+}
+.outtitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #3D3D3D;
+}
+.subtitle {
+    font-size: 18px;
+}
+
+.outex {
+    margin-left: 70px;
+    color: #3D3D3D;
+    line-height: 25px;
+    font-size: 15px;
+}
+.outex span {
+    font-weight: bold;
+    color: #636363;
+}
+
+.outdelhos {margin-left: 50px; margin-top: 20px;}
+.outradio {
+    margin-left: 30px;
+    list-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #636363;
+}
+.outradio li:first-child {
+    margin-bottom: 10px;
+}
+.outradio input {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 10px;
+}
+
+.outpwbox {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+.outpw p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #636363;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.outpw input {
+    width:258px; height:50px;
+    padding: 0px 20px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+.outpw input:focus {
+    outline: 1px solid #7ab2cc;
+}
+.outpw button {
+    width:300px; height:50px;
+    border:none;
+    border-radius: 5px;
+    background:#7AB2CC; color:white;
+    font-size:15px; font-weight:bold;
+    cursor:pointer;
+    margin-top: 20px;
+}
+
+#section1 {
+    float: left;
+}
