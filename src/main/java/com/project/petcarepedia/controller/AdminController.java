@@ -92,7 +92,7 @@ public class AdminController {
     /* 예약 검색 결과 페이지 */
     @GetMapping("reserve_msearch/{page}/{mid}")
     public String reserve_msearch(@PathVariable String page, @PathVariable String mid, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, mid));
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "booking_mid"));
         pageDto.setMid(mid);
         model.addAttribute("list", bookingService.Bslist(pageDto));
         model.addAttribute("page", pageDto);
@@ -121,7 +121,7 @@ public class AdminController {
     /* 회원 검색 결과 페이지 */
     @GetMapping("member_msearch/{page}/{mid}")
     public String member_msearch(@PathVariable String page, @PathVariable String mid,Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, mid));
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "member_mid"));
         pageDto.setMid(mid);
         model.addAttribute("list", memberService.mslist(pageDto));
         model.addAttribute("page", pageDto);
@@ -210,7 +210,7 @@ public class AdminController {
     /* 지역구 검색 페이지 */
     @GetMapping("hospital_gsearch/{page}/{gloc}")
     public String hospital_list_gloc(@PathVariable String page, @PathVariable String gloc, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, gloc));
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_gloc"));
         pageDto.setGloc(gloc);
         model.addAttribute("list", hospitalService.Hslist2(pageDto));
         model.addAttribute("page", pageDto);
@@ -219,11 +219,21 @@ public class AdminController {
 
 
     /* 병원명 검색 페이지 */
-    @GetMapping("hospital_hsearch/{page}/{hname}")
-    public String hospital_list_hname(@PathVariable String page, @PathVariable String hname, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, hname));
+    @GetMapping("hospital_hsearch/{page}/")
+    public String hospital_list_hname(@PathVariable String page, Model model){
+        String hname = "";
+
+        PageDto pageDto = new PageDto(page, "hospital_hname");
         pageDto.setHname(hname);
-        model.addAttribute("list", hospitalService.Hslist(pageDto));
+        pageDto = pageService.getPageResult(pageDto);
+        List<HospitalDto> list = hospitalService.Hslist(pageDto);
+
+        /*PageDto pageDto = new PageDto(page, "manager_review");
+        pageDto.setHid(hid);
+        pageDto = pageService.getPageResult(pageDto);
+        List<ReviewDto> list = reviewService.MRlist(pageDto);*/
+
+        model.addAttribute("list", list);
         model.addAttribute("page", pageDto);
         return "admin/hospital/admin_hospital_hsearch";
     }

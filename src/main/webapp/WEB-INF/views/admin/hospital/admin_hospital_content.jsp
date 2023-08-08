@@ -89,8 +89,11 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td colspan ="2">
-										<input type="hidden" name="hfile" value="${hospital.hfile}">
+										<input type="hidden" name="hfile" value="${hospital.hfiles}">
 										<input type="hidden" name="hsfile" value="${hospital.hsfile}">
+										<input type="file" name="hfile1" id="hfile1" value>
+										<input type="file" name="hfile2" id="hfile2">
+
 										<input type="file" name="file1" id ="file1" disabled>
 										<c:choose>
 											<c:when test="${hospital.hfile != null}">

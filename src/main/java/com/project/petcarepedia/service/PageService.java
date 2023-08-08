@@ -18,6 +18,8 @@ public class PageService {
     public PageDto getPageResult(PageDto pageDto) {
         String gloc = "";
         String hid = "";
+        String hname = "";
+        String mid= "";
         //페이징 처리 - startCount, endCount 구하기
         int startCount = 0;
         int endCount = 0;
@@ -60,27 +62,25 @@ public class PageService {
             pageSize = 10;
             dbCount = pageMapper.MRScount(pageDto);
             hid = pageDto.getHid();
-        }else if(pageDto.getHid() != null && pageDto.getHid() != ""){
-            pageSize=10;
-            dbCount = pageMapper.HBcount(pageDto);
-        }else if(pageDto.getMid() != null && pageDto.getMid() != "") {
+        }else if(pageDto.getServiceName().equals("member_mid")) {
             pageSize = 10;
             dbCount = pageMapper.Mscount(pageDto);
+            mid = pageDto.getMid();
         }else if(pageDto.getServiceName().equals("reserve")){
             pageSize = 10;
             dbCount = pageMapper.Bcount();
-        } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
+        } else if (pageDto.getServiceName().equals("booking_mid")) {
             pageSize = 10;
             dbCount = pageMapper.Bscount(pageDto);
-        }else if(pageDto.getHname() != null && pageDto.getHname() != "") {
+            mid = pageDto.getMid();
+        }else if(pageDto.getServiceName().equals("hospital_hname")) {
             pageSize = 10;
             dbCount = pageMapper.Hscount(pageDto);
-        }else if(pageDto.getGloc() != null && pageDto.getGloc() != "") {
+            hname = pageDto.getHname();
+        }else if(pageDto.getServiceName().equals("hospital_gloc")) {
             pageSize = 10;
             dbCount = pageMapper.Hscount2(pageDto);
-        } else if (pageDto.getMid() != null && pageDto.getMid() != "") {
-            pageSize = 10;
-            dbCount = pageMapper.HBscount(pageDto);
+            gloc = pageDto.getGloc();
         }
 
         //총 페이지 수 계산
@@ -100,6 +100,8 @@ public class PageService {
             endCount = pageSize;
         }
 
+        pageDto.setHname(hname);
+        pageDto.setMid(mid);
         pageDto.setGloc(gloc);
         pageDto.setStartCount(startCount);
         pageDto.setEndCount(endCount);
