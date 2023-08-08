@@ -74,7 +74,7 @@
                         <ul>
                             <li>마이페이지</li>
                             <li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
-                            <li><a href = "http://localhost:9000/manager_reserve_list/1/${page.hid}">예약 관리</a></li>
+                            <li><a href = "http://localhost:9000/manager_reserve_list/1/">예약 관리</a></li>
                             <li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
                             <li><a href = "/manager_information">회원 정보</a></li>
                             <li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
@@ -86,7 +86,9 @@
             <section id="section2">
                     <c:choose>
                         <c:when test="${auth eq 'auth'}">
-                            <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
+                            <c:if test="${fn:length(list) != 0}">
+                                <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
+                            </c:if>
                             <table class="reviewTable">
                                 <tr>
                                     <th>번호</th>
