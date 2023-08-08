@@ -21,7 +21,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<!-- content -->
-	<div id = "content2">
+	<div id = "content2" style = "margin-top:140px">
 		<section id = "reservation">
 			<h1 id = "title">내가 쓴 리뷰</h1>
 			<hr>

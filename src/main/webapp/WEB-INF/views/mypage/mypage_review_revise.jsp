@@ -27,7 +27,7 @@
 <body>
 		<!-- header -->
 	 <jsp:include page="../header.jsp"></jsp:include>
-	<div id = "content">
+	<div id = "content" style = "margin-top:140px">
 		<section id = "review_revise">
 			<h1 id = "title">리뷰수정</h1>
 			<hr>
