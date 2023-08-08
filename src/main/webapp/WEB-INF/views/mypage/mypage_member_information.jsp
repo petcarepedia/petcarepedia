@@ -71,7 +71,7 @@ const autoHyphen = (target) => {
 
 	<!-- header -->
 	 <jsp:include page="../header.jsp"></jsp:include>
-	<div id = "content">
+	<div id = "content" style = "margin-top:140px">
 		<section id = "information">
 			<h1 id = "title">나의 회원정보</h1>
 			<hr>
