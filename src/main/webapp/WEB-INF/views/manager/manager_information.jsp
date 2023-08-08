@@ -19,13 +19,6 @@ const autoHyphen = (target) => {
 	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
 	}
 </script>
-	<script>
-		$(document).ready(function () {
-			$(".header-menu").css('background','#FFB3BD');
-			$(".footer-menu").css('background','#FFF2F4');
-			$("#btnMainSearch-header > img").attr("src",'http://localhost:9000/images/foot_pink.png');
-		});
-	</script>
 <script>
 	function readURL(input) {
 	    var reader = new FileReader();
@@ -78,7 +71,7 @@ const autoHyphen = (target) => {
 	</div>
 
 	<!-- header -->
-	 <jsp:include page="../header.jsp"></jsp:include>
+	 <jsp:include page="../header_manager.jsp"></jsp:include>
 	<div id = "content" style = "margin-top: 140px;">
 		<section class = "hospital_info" id = "information" >
 			<h1 id = "title">나의 회원정보</h1>
