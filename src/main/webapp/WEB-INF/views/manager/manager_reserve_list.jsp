@@ -36,9 +36,9 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 			   if(mid!=null && mid!=""){
-				   $(location).attr('href', "http://localhost:9000/manager_reserve_msearch/"+e.page+"/"+hid+"/"+mid);
+				   $(location).attr('href', "http://localhost:9000/manager_reserve_msearch/"+e.page+"/"+mid+"/");
 			   } else {
-				   $(location).attr('href', "http://localhost:9000/manager_reserve_list/"+e.page+"/"+hid);
+				   $(location).attr('href', "http://localhost:9000/manager_reserve_list/"+e.page+"/");
 			   }
 	                    
 	    });
@@ -63,16 +63,17 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/manager_hospital_list">병원 정보 관리</a></li>
-							<li><a href = "http://localhost:9000/manager/reserve_list/1/">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/manager_review_list/1/">리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/mypage_member_information">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/mypage_signout">회원 탈퇴</a></li>
+							<li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
+							<li><a href = "/manager_reserve_list/1/${sessionScope.svo.hid}">예약 관리</a></li>
+							<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
+							<li><a href = "/manager_information">회원 정보</a></li>
+							<li><a href = "/mypage_signout">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
 			<section id="section2">
+				<input type="hidden" name="hid" id="hid" value="${booking.hid}" >
 				<h2>예약 관리</h2>
 				<p id="p"></p>
 				<div class="d2" id = "d2">

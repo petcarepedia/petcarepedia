@@ -103,7 +103,7 @@
 						<td colspan="5" >
 							<select>
 								<option name="table" id="yes"> 승인</option>
-								<option name="table"  id="no"> 비승인</option>
+								<option name="table"  id="no"> 미승인</option>
 								<option name="table"  id=""> 승인 거부</option>
 							</select>
 						</td>
@@ -121,7 +121,7 @@
 						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/">${hospital.hname}</a></td>
 						<td>${hospital.animal}</td>
 						<td>${hospital.ntime}</td>
-						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/"> ${hospital.hname}</a></td>
+						<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/"> ${hospital.auth}</a></td>
 						
 					</tr>
 					</c:forEach>
