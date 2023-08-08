@@ -38,9 +38,9 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 			   if(hname!=null && hname!="" ){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/"+hname+"/");
+				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/");
 			   }else if(gloc!=null && gloc!=""){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_gsearch/"+e.page+"/"+gloc+"/");
+				   $(location).attr('href', "http://localhost:9000/admin/hospital_gsearch/"+e.page+"/");
 			   }else {
 				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/");
 			   }
@@ -79,13 +79,13 @@
 						<option value="gloc" >지역구</option>
 					</select>
 					<div class="d2" id = "d6" >
-						<input type="text"  class="search_bar" id ="search_hname" placeholder="병원명 입력" value="${hname}" >
+						<input type="text"  class="search_bar" id ="search_hname" placeholder="병원명 입력" name="hname" value="${hospital.hname}" >
 						<button type="submit" class="button1" id="btn_hname" >
 							<img src="http://localhost:9000/images/foot_sky.png">
 						</button>
 					</div>
 					<div class="d2" id = "d7" style="display:none;">
-						<input type="text"  class="search_bar" id ="search_gloc" placeholder="지역구 입력" value="${gloc}" >
+						<input type="text"  class="search_bar" id ="search_gloc" placeholder="지역구 입력" name="gloc" value="${hospital.gloc}" >
 						<button type="submit" class="button1" id="btn_gloc" >
 							<img src="http://localhost:9000/images/foot_sky.png">
 						</button>

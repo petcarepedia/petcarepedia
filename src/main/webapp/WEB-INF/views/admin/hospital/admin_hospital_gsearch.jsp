@@ -72,19 +72,20 @@
 				</div>
 			</section>
 			<section id="section2">
+				<input type="hidden" name="hname" id="hname" value="${hospital.hname}">
 				<div id="d5">
 					<select id="search" name="search">
 						<option value="hname" selected>병원명</option>
 						<option value="gloc" >지역구</option>
 					</select>
 					<div class="d2" id = "d6" >
-						<input type="text"  class="search_bar" id ="search_hname" placeholder="병원명 입력" value="${hname}" >
+						<input type="text"  class="search_bar" id ="search_hname" placeholder="병원명 입력" name="hname" value="${hname}" >
 						<button type="submit" class="button1" id="btn_hname" >
 							<img src="http://localhost:9000/images/foot_sky.png">
 						</button>
 					</div>
 					<div class="d2" id = "d7" style="display:none;">
-						<input type="text"  class="search_bar" id ="search_gloc" placeholder="지역구 입력" value="${gloc}" >
+						<input type="text"  class="search_bar" id ="search_gloc" placeholder="지역구 입력" name="gloc"  value="${gloc}" >
 						<button type="submit" class="button1" id="btn_gloc" >
 							<img src="http://localhost:9000/images/foot_sky.png">
 						</button>
