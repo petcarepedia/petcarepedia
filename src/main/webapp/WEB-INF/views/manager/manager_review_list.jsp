@@ -62,7 +62,7 @@
 </head>
 <body>
 <!-- header -->
-    <jsp:include page="../header.jsp"></jsp:include>
+    <jsp:include page="../header_manager.jsp"></jsp:include>
 
     <div id = "content">
         <section id = "information">
@@ -155,7 +155,7 @@
     </div>
 
     <!-- footer -->
-    <jsp:include page="../footer.jsp"></jsp:include>
+    <jsp:include page="../footer_manager.jsp"></jsp:include>
 
 </body>
 </html>
