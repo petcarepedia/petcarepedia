@@ -44,7 +44,7 @@
 </head>
 <body>
 	 <jsp:include page="../header.jsp"></jsp:include>
-	<div id = "content2">
+	<div id = "content2" style = "margin-top:140px">
 		<section id = "my_review">
 			<h1 id = "title">내가 쓴 리뷰</h1>
 			<hr>

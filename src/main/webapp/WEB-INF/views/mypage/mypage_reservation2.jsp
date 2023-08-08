@@ -41,7 +41,7 @@
 <body>
 	<!-- header -->
 	 <jsp:include page="../header.jsp"></jsp:include>
-	<div id = "content2">
+	<div id = "content2" style = "margin-top:140px">
 		<section id = "reservation">
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>

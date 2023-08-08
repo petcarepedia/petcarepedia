@@ -42,7 +42,7 @@ function bookmark(bmid) {
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
-	<div id = "content2">
+	<div id = "content2" style = "margin-top:140px" >
 		<section id = "bookmark">
 			<h1 id = "title">즐겨찾기</h1>
 			<hr>
