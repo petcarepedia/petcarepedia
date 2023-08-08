@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
     <link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
@@ -61,7 +62,7 @@
 </head>
 <body>
 <!-- header -->
-    <jsp:include page="../header.jsp"></jsp:include>
+    <jsp:include page="../header_manager.jsp"></jsp:include>
 
     <div id = "content">
         <section id = "information">
@@ -85,37 +86,54 @@
             <section id="section2">
                     <c:choose>
                         <c:when test="${auth eq 'auth'}">
-                        <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
-                        <table class="reviewTable">
-                            <tr>
-                                <th>번호</th>
-                                <th>아이디</th>
-                                <th>내용</th>
-                                <th>작성일</th>
-                                <th>신고여부</th>
-                            </tr>
-                            <c:forEach var="reivew" items="${list}">
+                            <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
+                            <table class="reviewTable">
                                 <tr>
-                                    <td>${reivew.rno}</td>
-                                    <td title="${reivew.mid}">${reivew.mid}</td>
-                                    <td><a href="/manager_review_content/${page.reqPage}/${reivew.rid}/">${reivew.rcontent}</a></td>
-                                    <td>${reivew.rdate}</td>
-
-                                    <c:choose>
-                                        <c:when test="${reivew.likeresult == 0}">
-                                            <td></td>
-                                        </c:when>
-                                        <c:when test="${reivew.likeresult != 0}">
-                                            <td class="state">신고 접수 중</td>
-                                        </c:when>
-                                    </c:choose>
+                                    <th>번호</th>
+                                    <th>아이디</th>
+                                    <th>내용</th>
+                                    <th>작성일</th>
+                                    <th>신고여부</th>
                                 </tr>
-                            </c:forEach>
-                            <tr>
-                                <td colspan="5">
-                                    <div id="ampaginationsm"></div>
-                                </td>
-                            </tr>
+
+                            <c:choose>
+                                <c:when test="${fn:length(list) != 0}">
+                                    <c:forEach var="reivew" items="${list}">
+                                        <tr>
+                                            <td>${reivew.rno}</td>
+                                            <td title="${reivew.mid}">${reivew.mid}</td>
+                                            <td><a href="/manager_review_content/${page.reqPage}/${reivew.rid}/">${reivew.rcontent}</a></td>
+                                            <td>${reivew.rdate}</td>
+
+                                            <c:choose>
+                                                <c:when test="${reivew.likeresult == 0}">
+                                                    <td></td>
+                                                </c:when>
+                                                <c:when test="${reivew.likeresult != 0}">
+                                                    <td class="state">신고 접수 중</td>
+                                                </c:when>
+                                            </c:choose>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div id="ampaginationsm"></div>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="review_no">
+                                                <div class="review_no_img">
+                                                    <img id="review_no_img" src="http://localhost:9000/images/walkingCat.gif">
+                                                </div>
+                                                <p>등록된 리뷰가 없습니다.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
                         <c:otherwise>
                             <div id = "aside">
@@ -137,7 +155,7 @@
     </div>
 
     <!-- footer -->
-    <jsp:include page="../footer.jsp"></jsp:include>
+    <jsp:include page="../footer_manager.jsp"></jsp:include>
 
 </body>
 </html>
