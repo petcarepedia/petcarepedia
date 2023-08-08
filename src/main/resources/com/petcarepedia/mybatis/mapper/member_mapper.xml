@@ -90,7 +90,7 @@
 	</select>
 
 	<select id = "manager_select" parameterType="String" resultType="com.project.petcarepedia.dto.MemberDto">
-		select name, hname, phone, email, to_char(mdate,'yyyy-mm-dd') mdate ,hfile1, hsfile1, loc from pcp_member m, pcp_hospital h where m.mid = h.mid and h.mid = #{mid}
+		select name, hname, phone, email, to_char(mdate,'yyyy-mm-dd') mdate ,hfile1, hsfile1, loc, grade from pcp_member m, pcp_hospital h where m.mid = h.mid and h.mid = #{mid}
 	</select>
 
 	<update id = "manager_update" parameterType="com.project.petcarepedia.dto.MemberDto">

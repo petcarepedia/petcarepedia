@@ -72,7 +72,7 @@
 	<update id = "manager_update" parameterType="com.project.petcarepedia.dto.HospitalDto">
 		UPDATE PCP_HOSPITAL SET HNAME = #{hname}, GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel},
 								HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal},
-								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1} , hsfile1=#{hsfile1}, hfile2=#{hfile2}, hsfile2=#{hsfile2}
+								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1, jdbcType=VARCHAR} , hsfile1=#{hsfile1, jdbcType=VARCHAR}, hfile2=#{hfile2, jdbcType=VARCHAR}, hsfile2=#{hsfile2, jdbcType=VARCHAR}
 		WHERE HID = #{hid}
 	</update>
 
@@ -123,4 +123,8 @@
 	<update id="updateMid" parameterType="String">
 		update pcp_hospital set mid=null where mid=#{mid}
 	</update>
+
+	<select id = "hospitalCheck" parameterType="String" resultType="int">
+		select count(*) from pcp_hospital where mid = #{mid}
+	</select>
 </mapper>

@@ -68,8 +68,8 @@ public class MypageController {
     }
     
     // 예약내역 삭제하기 폼
-    @GetMapping("mypage_reservation_delete/{bid}/{page}")
-    public String mypage_reservation_delete(@PathVariable String bid, @PathVariable String page, Model model) {
+    @GetMapping("mypage_reservation_delete/{bid}")
+    public String mypage_reservation_delete(@PathVariable String bid, Model model) {
         model.addAttribute("booking", bookingService.select2(bid));
         return "/mypage/mypage_reservation_delete";
     }
@@ -329,4 +329,6 @@ public class MypageController {
         }
         return viewName;
     }
+
+    //
 }

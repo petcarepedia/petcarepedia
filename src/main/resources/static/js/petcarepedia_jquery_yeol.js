@@ -31,20 +31,7 @@ $("#update_birth").click(function(){
 	count2++;
 })
 
-//이메일
-/* $("#update_email").click(function(){
-	if(count3 % 2 == 1) {
-		$("#img3").attr("src", "http://localhost:9000/images/finish.png");
-		$("#email").attr("disabled", false);
-		$("#btnAuthEmail").css("display", "block");
-		$("#btnAuthEmail").attr("disabled",true).css("background", "#D9D9D9").css("cursor", "not-allowed");
-		//$("#btnAuthEmail").attr("disabled", true);
-	} else {
-		$("#img3").attr("src", "http://localhost:9000/images/편집2.png");
-		$("#email").attr("disabled", true);
-	}
-	count3++;
-}) */
+
 /***************************************************************************
 				이메일 인증 모달
 ***************************************************************************/
@@ -55,6 +42,8 @@ $("#update_email").click(function(){
 		$("#btnConfirm").css("background", "#98dfff").css("cursor", "pointer");
 	} else if($("#btnAuthEmail").css("disabled") == false){
 		$("#btnConfirm").css("background", "#D9D9D9").css("cursor", "not-allowed");
+	} else if($("#confirm_email").val() == "") {
+		$("#btnAuthEmail").css("background", "#D9D9D9").css("cursor", "not-allowed");
 	}
 });
 	$("#btnConfirm").click(function(){
@@ -157,17 +146,37 @@ $("#confirm_email").keyup(function(){
 	if(!reg_email.test($("#confirm_email").val())){
 		$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
 		.css("font-size","12px").css("display","block").css("clear","both")
-		.css("padding-top","5px").css("float", "left")
+		.css("padding-top","5px").css("float", "left").css("margin-left", "10px")
 		.prepend("<img src='http://localhost:9000/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 		$("#update_email").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
 		$("#btnAuthEmail").attr("disabled",true).css("background", "#D9D9D9").css("cursor", "not-allowed");
 	} else {
-		$("#emailcheck_msg").text("").css("display","none");
-		$("#update_email").attr("disabled",false).css("background","#98dfff").css("cursor","pointer");
-		$("#btnAuthEmail").attr("disabled",false).css("background", "#98dfff").css("cursor", "pointer");
-		
+		$.ajax({
+			url : "/mail_mulcheck/"+$("#confirm_email").val()+"/"+$("#grade").val(),
+			success : function(result){
+				if(result >= 1){
+					$("#emailcheck_msg").text("중복된 이메일입니다.").css("color","red")
+						.css("font-size","12px").css("display","block").css("clear","both").css("margin-left", "10px")
+						.css("padding-top","5px")
+						.prepend("<img src='http://localhost:9000/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+					$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").text("인증번호 전송");
+					$('#cemail').hide();
+					$('#btnCheckEmail').hide();
+					$("#emailauthcheck_msg").text("").css("display","none");
+				}else if(result == 0){
+					$('#cemail').hide();
+					$('#btnCheckEmail').hide();
+					$("#emailauthcheck_msg").text("").css("display","none");
+					$("#btnAuthEmail").attr("disabled",false).css("background","#98dfff").css("cursor","pointer").text("인증번호 전송");
+					$("#emailcheck_msg").text("").css("display","none");
+					$("#update_email").attr("disabled",false).css("background","#98dfff").css("cursor","pointer");
+				}
+			}
+		});
 	}
 });
+
+
 
 //정보 수정 버튼 활성화
 $.updateValidationCheck = function() {
@@ -481,6 +490,7 @@ $("#btnReservationDelete").click(function(){
 			oncomplete: function(data) {
 				$("#loc").val("(" + data.zonecode + ") " + data.address);
 				$("#loc").focus();
+				$("#gloc").val(data.sigungu);
 				searchAddressToCoordinate(data.address);
 				//data = {zonecode:"12345", address:"서울시 강남구...,}
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
@@ -569,7 +579,7 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		}
-		else if($("#ntime").val() == "") {
+		else if($("#ntime").val() == "default") {
 			Swal.fire({
 				icon: 'error',
 				title: '야간진료 여부를 선택해주세요',
@@ -578,7 +588,7 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		}
-		else if($("#holiday").val() == "") {
+		else if($("#holiday").val() == "default") {
 			Swal.fire({
 				icon: 'error',
 				title: '휴일진료 여부를 선택해주세요',
@@ -587,7 +597,7 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		}
-		else if($("#animal").val() == "") {
+		else if($("#animal").val() == "default") {
 			Swal.fire({
 				icon: 'error',
 				title: '특수동물 취급 여부를 선택해주세요',
@@ -596,16 +606,31 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		} else {
-			Swal.fire({
-				icon: 'success',
-				title: '등록 완료',
-				confirmButtonColor:'#98dfff',
-				confirmButtonText:'확인'
-			}).then(function() {
-				writeForm.submit();
-			});
-			
-		}
+			$.ajax({
+				url : "hospital_check/" + $("#mid").val() + "/",
+				success : function(result) {
+					if(result == 0) {
+						Swal.fire({
+							icon: 'success',
+							title: '등록 완료',
+							confirmButtonColor:'#98dfff',
+							confirmButtonText:'확인'
+						}).then(function() {
+							writeForm.submit();
+						});
+					} else {
+						Swal.fire({
+							icon: 'error',
+							title: '이미 등록한 병원이 존재합니다.',
+							confirmButtonColor:'#98dfff',
+							confirmButtonText:'확인'
+						}).then(function() {
+							return false;
+						});
+					}
+				}//success
+			}) // ajax
+		} // else
 	})
 
 
@@ -661,7 +686,7 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		}
-		else if($("#ntime").val() == "") {
+		else if($("#ntime").val() == "default") {
 			Swal.fire({
 				icon: 'error',
 				title: '야간진료 여부를 선택해주세요',
@@ -670,7 +695,7 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		}
-		else if($("#holiday").val() == "") {
+		else if($("#holiday").val() == "default") {
 			Swal.fire({
 				icon: 'error',
 				title: '휴일진료 여부를 선택해주세요',
@@ -679,7 +704,7 @@ $("#btnReservationDelete").click(function(){
 			})
 			return false;
 		}
-		else if($("#animal").val() == "") {
+		else if($("#animal").val() == "default") {
 			Swal.fire({
 				icon: 'error',
 				title: '특수동물 취급 여부를 선택해주세요',
