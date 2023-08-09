@@ -206,6 +206,15 @@ public class AdminController {
         return "admin/hospital/admin_hospital_detail";
     }
 
+    /* 병원 신고 상세 페이지 */
+    @GetMapping("hospital_content2/{page}/{hid}")
+    public String hospital_content2(@PathVariable String hid, @PathVariable String page, Model model){
+        model.addAttribute("hospital", hospitalService.content(hid));
+        model.addAttribute("page", page);
+
+        return "admin/hospital/admin_hospital_content2";
+    }
+
     /* 병원 상세 페이지 */
     @GetMapping("hospital_content/{page}/{hid}")
     public String hospital_content(@PathVariable String hid, @PathVariable String page, Model model){

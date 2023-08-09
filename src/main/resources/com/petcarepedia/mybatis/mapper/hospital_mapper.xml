@@ -7,27 +7,28 @@
 <mapper namespace="com.project.petcarepedia.repository.HospitalMapper">
 
 	<select id = "Hslist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
-		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
-			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,HRINK, ,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,  IMG, HRINK,gloc , HRINK, hsfile1, hsfile2, auth, htime
+			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime FROM PCP_HOSPITAL
 					where hname like '%'||#{hname}||'%'
 					ORDER BY HID))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
 	<select id = "Hslist2" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
-		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
-			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,IMG, HRINK, gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,  gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
+			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,  IMG, HRINK,gloc ,IMG, HRINK, hsfile1, hsfile2, auth , htime FROM PCP_HOSPITAL
 					where gloc like '%'||#{gloc}||'%'
 					ORDER BY HID))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
 	<select id = "Hlist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
-		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY
-			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID desc))
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY, IMG, gloc, HRINK, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
+			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,gloc ,IMG, HRINK,  hsfile1, hsfile2, auth, htime FROM PCP_HOSPITAL
+			                                                                                                             ORDER BY HID desc))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
@@ -77,7 +78,7 @@
 
 
 	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hsfile, hfile1, hfile2, hsfile1, hsfile2 ,auth
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hfile1, hfile2, hsfile1, hsfile2 , auth
 		FROM PCP_HOSPITAL WHERE HID = #{hid}
 	</select>
 
