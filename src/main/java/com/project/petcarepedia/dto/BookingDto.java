@@ -8,7 +8,7 @@ public class BookingDto {
     int rno;
 
     /** 추가 **/
-    String hname, loc, gloc, tel, hrink;
+    String hname, loc, gloc, tel, hrink, name, phone;
     String start, end;
     String img, hsfile;
     int count;
