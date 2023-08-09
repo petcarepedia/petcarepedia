@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
@@ -92,8 +93,10 @@ public class AdminController {
     /* 예약 검색 결과 페이지 */
     @GetMapping("reserve_msearch/{page}/{mid}")
     public String reserve_msearch(@PathVariable String page, @PathVariable String mid, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "booking_mid"));
+        PageDto pageDto = new PageDto(page, "booking_mid");
         pageDto.setMid(mid);
+        pageDto = pageService.getPageResult(pageDto);
+
         model.addAttribute("list", bookingService.Bslist(pageDto));
         model.addAttribute("page", pageDto);
 
@@ -121,7 +124,10 @@ public class AdminController {
     /* 회원 검색 결과 페이지 */
     @GetMapping("member_msearch/{page}/{mid}")
     public String member_msearch(@PathVariable String page, @PathVariable String mid,Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "member_mid"));
+        PageDto pageDto = new PageDto(page, "member_mid");
+        pageDto.setMid(mid);
+        pageDto = pageService.getPageResult(pageDto);
+
         pageDto.setMid(mid);
         model.addAttribute("list", memberService.mslist(pageDto));
         model.addAttribute("page", pageDto);
@@ -141,13 +147,14 @@ public class AdminController {
     /* 병원 삭제 처리 */
     @PostMapping("hospital_delete")
     public String hospital_delete_proc(HospitalDto hospitalDto) throws Exception{
-        String oldFileName = hospitalDto.getHsfile();
+        String[] oldFileName = {hospitalDto.getHsfile1(), hospitalDto.getHsfile2()};
         int result = hospitalService.delete(hospitalDto.getHid());
         if(result == 1){
-            fileUploadService.fileDelete(oldFileName);
+            fileUploadService.hospitalMultiFileDelete2(oldFileName);
         }
         return "redirect:/admin/hospital_list/1/";
     }
+
 
     /* 병원 삭제 페이지 */
     @GetMapping("hospital_delete/{page}/{hid}/")
@@ -161,12 +168,12 @@ public class AdminController {
     /* 병원 수정 처리 */
     @PostMapping("hospital_update")
     public String hospital_update_proc(HospitalDto hospitalDto) throws Exception{
-        String oldFileName = hospitalDto.getHsfile();
-        hospitalDto = fileUploadService.fileCheck(hospitalDto);
+        String[] oldFileName = {hospitalDto.getHsfile1(), hospitalDto.getHsfile2()};
+        hospitalDto = fileUploadService.hospitalMultiFileCheck(hospitalDto);
         int result = hospitalService.update(hospitalDto);
         if(result == 1){
-            fileUploadService.fileDelete2(hospitalDto, oldFileName);
-            fileUploadService.fileSave(hospitalDto);
+            fileUploadService.hospitalMultiFileDelete(hospitalDto,oldFileName);
+            fileUploadService.hospitalFileSave(hospitalDto);
         }
         return "redirect:/admin/hospital_list/1/";
 
@@ -184,10 +191,11 @@ public class AdminController {
     /* 병원 등록 처리 */
     @PostMapping("/hospital_detail")
     public String hospital_write_proc(HospitalDto hospitalDto) throws Exception{
-        hospitalDto = fileUploadService.fileCheck(hospitalDto);
-        int result = hospitalService.insert(hospitalDto);
+        int result = hospitalService.insert(fileUploadService.hospitalMultiFileCheck(hospitalDto));
         if(result == 1){
-            fileUploadService.fileSave(hospitalDto);
+            if(hospitalDto.getFiles()[0].getOriginalFilename() != null) {
+                fileUploadService.hospitalFileSave(hospitalDto);
+            }
         }
         return "redirect:/admin/hospital_list/1/";
     }
@@ -210,8 +218,10 @@ public class AdminController {
     /* 지역구 검색 페이지 */
     @GetMapping("hospital_gsearch/{page}/{gloc}")
     public String hospital_list_gloc(@PathVariable String page, @PathVariable String gloc, Model model){
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_gloc"));
+        PageDto pageDto = new PageDto(page, "hospital_gloc");
         pageDto.setGloc(gloc);
+        pageDto = pageService.getPageResult(pageDto);
+
         model.addAttribute("list", hospitalService.Hslist2(pageDto));
         model.addAttribute("page", pageDto);
         return "admin/hospital/admin_hospital_gsearch";
@@ -219,19 +229,12 @@ public class AdminController {
 
 
     /* 병원명 검색 페이지 */
-    @GetMapping("hospital_hsearch/{page}/")
-    public String hospital_list_hname(@PathVariable String page, Model model){
-        String hname = "";
-
+    @GetMapping("hospital_hsearch/{page}/{hname}")
+    public String hospital_list_hname(@PathVariable String page, @PathVariable String hname, Model model){
         PageDto pageDto = new PageDto(page, "hospital_hname");
         pageDto.setHname(hname);
         pageDto = pageService.getPageResult(pageDto);
         List<HospitalDto> list = hospitalService.Hslist(pageDto);
-
-        /*PageDto pageDto = new PageDto(page, "manager_review");
-        pageDto.setHid(hid);
-        pageDto = pageService.getPageResult(pageDto);
-        List<ReviewDto> list = reviewService.MRlist(pageDto);*/
 
         model.addAttribute("list", list);
         model.addAttribute("page", pageDto);

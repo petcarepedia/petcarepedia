@@ -12,24 +12,44 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
-    /*
-     * hospitalMultiFileDelete - 병원 멀티파일 삭제
-     */
-    public void hospitalMultiFileDelete(HospitalDto hospitalDto, String[] oldFileName) throws Exception{
-        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 
+    /*
+     * MultiFileDelete - 병원 멀티 파일 삭제
+     */
+    public void hospitalMultiFileDelete2(String[] oldFileName){
+        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
         int count = 0;
-        for(MultipartFile file : hospitalDto.getFiles()) {
-            if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
-                File deleteFile = new File(root_path +  oldFileName[count]);
-                System.out.println(root_path + oldFileName[count]);
-                if(deleteFile.exists()) {
+
+        for(String file : oldFileName) {
+            if (file != null && !file.equals("")) {
+                File deleteFile = new File(root_path + oldFileName[count]);
+                if (deleteFile.exists()) {
                     deleteFile.delete();
                 }
             }
             count++;
         }
     }
+
+    /*
+     * hospitalMultiFileDelete - 병원 멀티파일 삭제 (수정 시)
+     */
+    public void hospitalMultiFileDelete(HospitalDto hospitalDto, String[] oldFileName) {
+        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
+        int count = 0;
+
+        for(MultipartFile file : hospitalDto.getFiles()) {
+            if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
+                File deleteFile = new File(root_path +  oldFileName[count]);
+                System.out.println(root_path + oldFileName[count]);
+                if(deleteFile.exists()) {
+                    deleteFile.delete();
+                 }
+                }
+            count++;
+            }
+
+        }
 
     //병원 멀티파일 등록
     public void hospitalFileSave(HospitalDto hospitalDto) throws Exception {
@@ -169,8 +189,7 @@ public class FileUploadService {
     /**
      * fileDelete- 파일 삭제
      */
-    public void fileDelete(String oldFileName)
-            throws Exception{
+    public void fileDelete(String oldFileName) throws Exception{
 
         String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
 

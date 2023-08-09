@@ -31,6 +31,8 @@ public class HospitalService {
     public List<HospitalDto> list(PageDto pageDto){return  hospitalMapper.list(pageDto);}
 
     public int totalRowCount(){return hospitalMapper.totalRowCount();}
+
+    public String Hsfiles(String hid){return hospitalMapper.Hsfiles(hid);}
     public HospitalDto selectStar(String hid){return hospitalMapper.selectStar(hid);}
     public ArrayList<HospitalDto> searchGloc(String gloc){return hospitalMapper.searchGloc(gloc);}
     public List<Object> search(String hname) {return hospitalMapper.search(hname);}

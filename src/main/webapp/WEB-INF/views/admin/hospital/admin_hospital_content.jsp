@@ -16,7 +16,7 @@
 <!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="d1">
-		<section id="hospital_update">
+		<section id="hospital_content">
 				<section id = "section1">
 					<div id="d2">
 						<nav>
@@ -89,18 +89,25 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td colspan ="2">
-										<input type="hidden" name="hfile" value="${hospital.hfiles}">
-										<input type="hidden" name="hsfile" value="${hospital.hsfile}">
-										<input type="file" name="hfile1" id="hfile1" value>
-										<input type="file" name="hfile2" id="hfile2">
-
-										<input type="file" name="file1" id ="file1" disabled>
+										<input type="hidden" name="hfile1" value="${hospital.hfile1}">
+										<input type="hidden" name="hfile2" value="${hospital.hfile2}">
+										<input type="file" name="files" id ="files" disabled>
 										<c:choose>
-											<c:when test="${hospital.hfile != null}">
-												<span id="update_file">${hospital.hfile}</span>
+											<c:when test="${hospital.hfile1 != null}">
+												<span id="update_file1">${hospital.hfile1}</span>
 											</c:when>
 											<c:otherwise>
-												<span id="update_file"></span>
+												<span id="update_file1"></span>
+											</c:otherwise>
+										</c:choose>
+
+										<input type="file" name="files" id ="files2" disabled>
+										<c:choose>
+											<c:when test="${hospital.hfile2 != null}">
+												<span id="update_file2">${hospital.hfile2}</span>
+											</c:when>
+											<c:otherwise>
+												<span id="update_file2"></span>
 											</c:otherwise>
 										</c:choose>
 									</td>

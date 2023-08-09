@@ -26,6 +26,8 @@ public interface HospitalMapper {
     int totalRowCount();
 
     List<HospitalDto> list(PageDto pageDto);
+
+    String Hsfiles(String hid);
     
     /* 병원 별점 */
     HospitalDto selectStar(String hid);

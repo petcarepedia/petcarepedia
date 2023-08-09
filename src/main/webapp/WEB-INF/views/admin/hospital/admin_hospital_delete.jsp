@@ -47,7 +47,7 @@
 <!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="d1">
-		<section id="hospital_update">
+		<section id="hospital_delete">
 				<section id = "section1">
 					<div id="d2">
 						<nav>
@@ -64,9 +64,10 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="delete`	Form" action="/admin/hospital_delete" method="post">
+						<form name="deleteForm" action="/admin/hospital_delete" method="post" >
 						<input type = "hidden" name = "hid" value = "${hospital.hid}">
-						<%--<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">--%>
+							<input type="hidden" name ="hsfile1" value="${hospital.hsfile1}">
+							<input type="hidden" name ="hsfile2" value="${hospital.hsfile2}">
 							<table class="table">
 								<tr>
 									<th>병원명</th>

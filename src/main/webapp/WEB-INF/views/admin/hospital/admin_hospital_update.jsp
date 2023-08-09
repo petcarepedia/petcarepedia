@@ -103,16 +103,30 @@
 								</tr>
 								<tr>
 									<th>파일 업로드</th>
-									<td>
-										<input type="hidden" name="hfile" value="${hospital.hfile}">
-										<input type="hidden" name="hsfile" value="${hospital.hsfile}">
-										<input type="file" name="file1" id ="file1">
+									<td colspan ="2">
+
 										<c:choose>
-											<c:when test="${hospital.hfile != null}">
-												<span id="update_file">${hospital.hfile}</span>
+											<c:when test="${hospital.hfile1 != null}">
+												<input type="hidden" name="hfile1" value="${hospital.hfile1}">
+												<input type="hidden" name="hsfile1" value="${hospital.hsfile1}">
+												<span id="update_file1">${hospital.hfile1}</span>
+												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
 											</c:when>
 											<c:otherwise>
-												<span id="update_file">선택된 파일 없음</span>
+												<span id="update_file1"> 선택된 파일 없음</span>
+												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+											</c:otherwise>
+										</c:choose>
+										<c:choose>
+											<c:when test="${hospital.hfile2 != null}">
+												<input type="hidden" name="hfile2" value="${hospital.hfile2}">
+												<input type="hidden" name="hsfile2" value="${hospital.hsfile2}">
+												<span id="update_file2">${hospital.hfile2}</span>
+												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*" >
+											</c:when>
+											<c:otherwise>
+												<span id="update_file2">선택된 파일 없음</span>
+												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
 											</c:otherwise>
 										</c:choose>
 									</td>
