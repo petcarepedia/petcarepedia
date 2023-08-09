@@ -67,12 +67,6 @@ public class AdminController {
     }
 
     /* 신고 리뷰 상세 페이지 */
-    /*@GetMapping("review_detail/{page}/{rid}/")
-    public String review_detail(@PathVariable String rid, @PathVariable String page, Model model){
-        model.addAttribute("review", reviewService.content(rid));
-        model.addAttribute("page", page);
-        return "admin/review/admin_review_detail";
-    }*/
     @GetMapping("review_detail/{page}/{rrid}")
     public String review_detail(@PathVariable String page, @PathVariable String rrid, Model model){
         model.addAttribute("review_report", reviewReportService.content(rrid));
@@ -206,8 +200,15 @@ public class AdminController {
         return "admin/hospital/admin_hospital_detail";
     }
 
-    /* 병원 신고 상세 페이지 */
-    @GetMapping("hospital_content2/{page}/{hid}")
+    /* 병원 승인 여부 처리 */
+    @PostMapping("/auth_update")
+    public String auth_update(HospitalDto hospitalDto) throws Exception{
+        int result = hospitalService.authUpdate(hospitalDto);
+        return "redirect:/admin/hospital_list/1/";
+    }
+
+    /* 병원 등록 여부 상세 페이지 */
+    @GetMapping("hospital_content2/{page}/{hid}/")
     public String hospital_content2(@PathVariable String hid, @PathVariable String page, Model model){
         model.addAttribute("hospital", hospitalService.content(hid));
         model.addAttribute("page", page);
@@ -252,9 +253,16 @@ public class AdminController {
 
     /* 병원 메인 페이지 */
     @GetMapping("hospital_list/{page}/")
-    public String hospital_list(@PathVariable String page, Model model){
+    public String hospital_list(@PathVariable String page,HospitalDto hospitalDto, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital"));
-        model.addAttribute("list", hospitalService.Hlist(pageDto));
+
+        if(hospitalDto.getAuth() == "auth"){
+            model.addAttribute("list", hospitalService.AuthList(pageDto));
+        } else if (hospitalDto.getAuth() == "unauth") {
+            model.addAttribute("list", hospitalService.unAuthList(pageDto));
+        }else {
+            model.addAttribute("list", hospitalService.Hlist(pageDto));
+        }
         model.addAttribute("page", pageDto);
 
         return "/admin/hospital/admin_hospital_list";

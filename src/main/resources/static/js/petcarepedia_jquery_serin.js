@@ -1,8 +1,5 @@
 $(document).ready(function(){
 
-
-
-
 	/*************************
 	 * 다음 api - 주소 찾기
 	 **************************/
@@ -39,8 +36,7 @@ $(document).ready(function(){
 			})
 		
 		} // searchAddressToCoordinate
-		
-			
+
 		//input입력
 		function insertAddress(address, latitude, longitude) {
 			$('#x').val(longitude);
@@ -287,7 +283,39 @@ $(document).ready(function(){
 		}//else
 					
   	});//function
-  	
+
+	/*************************
+	 * 병원 - 승인 정렬
+	 **************************/
+	/*$("#auth").change(function(){
+		.ajax({
+				url:"http://localhost:9000/petcarepedia/hospital_list/1/",
+				success:function(result){
+				let jdata = JSON.parse(result);
+				//alert(result);
+				let output = "<table class='table'>";
+					output += "<tr><th>아이디</th><th>성명</th><th>이메일</th><th>전화번호</th><th>가입일자</th></tr>";
+					for(obj of jdata.jlist){
+						output += "<tr>";
+						output += "<td>"+ obj.mid +"</td>";
+						output += "<td>"+ obj.name +"</td>";
+						output += "<td>"+ obj.email +"</td>";
+						output += "<td>"+ obj.phone +"</td>";
+						output += "<td>"+ obj.mdate +"</td>"
+						output += "</tr>";
+						}//for
+
+					output +="<tr><td colspan='5'><div id='ampaginationsm'></div></tr>";
+					output +="</table>";
+
+					$("table.table").remove();
+					$("#d2").after(output);
+
+				}//success
+
+			});//ajax
+	});*/
+
 	/*************************
 	 * 병원 - 검색창 변환
 	 **************************/

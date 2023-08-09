@@ -62,4 +62,13 @@ public interface HospitalMapper {
     int updateMid(String mid);
 
     int hospitalCheck(String mid);
+
+
+    /* auth 사용 */
+    int authUpdate(HospitalDto hospitalDto);
+
+    List<HospitalDto> AuthList(PageDto pageDto);
+
+    List<HospitalDto> unAuthList(PageDto pageDto);
+
 }

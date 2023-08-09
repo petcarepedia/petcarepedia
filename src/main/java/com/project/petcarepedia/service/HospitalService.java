@@ -23,9 +23,7 @@ public class HospitalService {
     }
 
     public List<HospitalDto> Hslist2(PageDto pageDto){return hospitalMapper.Hslist2(pageDto);}
-
     public List<HospitalDto> Hslist(PageDto pageDto){return hospitalMapper.Hslist(pageDto);}
-
     public List<HospitalDto> Hlist(PageDto pageDto){return hospitalMapper.Hlist(pageDto);}
 
     public List<HospitalDto> list(PageDto pageDto){return  hospitalMapper.list(pageDto);}
@@ -49,5 +47,10 @@ public class HospitalService {
     }
     public int updateMid(String mid){return hospitalMapper.updateMid(mid);}
     public int hospitalCheck(String mid){return hospitalMapper.hospitalCheck(mid);}
+
+    /* auth */
+    public int authUpdate(HospitalDto hospitalDto){return hospitalMapper.authUpdate(hospitalDto);}
+    public List<HospitalDto> AuthList(PageDto pageDto){return  hospitalMapper.AuthList(pageDto);}
+    public List<HospitalDto> unAuthList(PageDto pageDto){return  hospitalMapper.unAuthList(pageDto);}
 
 }

@@ -136,4 +136,26 @@
 	<select id = "hospitalCheck" parameterType="String" resultType="int">
 		select count(*) from pcp_hospital where mid = #{mid}
 	</select>
+
+
+	<!--  auth 추가  -->
+	<update id="authUpdate" parameterType="com.project.petcarepedia.dto.HospitalDto">
+		update pcp_hospital set auth = 'auth' where hid = #{hid}
+	</update>
+
+	<select id="AuthList" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.PageDto">
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY, IMG, gloc, HRINK, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
+			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,gloc ,IMG, HRINK,  hsfile1, hsfile2, auth, htime FROM PCP_HOSPITAL
+					ORDER BY auth))
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<select id="unAuthList" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.PageDto">
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY, IMG, gloc, HRINK, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
+			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,gloc ,IMG, HRINK,  hsfile1, hsfile2, auth, htime FROM PCP_HOSPITAL
+					ORDER BY auth desc))
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
 </mapper>
