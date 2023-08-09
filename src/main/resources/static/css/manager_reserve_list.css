@@ -131,6 +131,25 @@ div.d2 .search_bar {
 }
 
 /*** table ***/
+select.filter {
+    border: 1px solid #FFB3BD;
+    border-radius: 5px;
+    width: 90px;
+    height: 28px;
+    float: right;
+    margin: 25px 23px 10px 0;
+    padding-left: 2px;
+}
+
+select.filter option:first-child {
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+select.filter option {
+    padding-left: 5px;
+}
+
 .reserve_table {
     border: 1px solid #FFB3BD;
     border-collapse: collapse;

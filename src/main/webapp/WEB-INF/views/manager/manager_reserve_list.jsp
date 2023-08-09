@@ -96,11 +96,11 @@
 				</div>
 
 				<select name="filter" id="filter" class="filter">
-					<option value="basic" selected>리뷰 정렬</option>
-					<option value="basic">기본 정렬</option>
-					<option value="like">좋아요 많은 순서</option>
-					<option value="totalUp">별점 높은 순서</option>
-					<option value="totalDown">별점 낮은 순서</option>
+					<option value="basic" selected>예약 상태</option>
+					<option value="basic">전체보기</option>
+					<option value="like">예약중</option>
+					<option value="totalUp">예약취소</option>
+					<option value="totalDown">진료완료</option>
 				</select>
 
 				<table class="reserve_table">
