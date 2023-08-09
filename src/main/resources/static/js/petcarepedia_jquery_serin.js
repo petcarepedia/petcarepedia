@@ -211,7 +211,7 @@ $(document).ready(function(){
 			$("#reserve_bar").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/admin/reserve_msearch/"+$("#reserve_bar").val();
+			location.href = "http://localhost:9000/admin/reserve_msearch/1/"+$("#reserve_bar").val();
 				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?mid="+$("#reserve_bar").val(), 
 					success:function(result){

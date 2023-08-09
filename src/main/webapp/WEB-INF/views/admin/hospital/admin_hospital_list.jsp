@@ -38,7 +38,7 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 			   if(hname!=null && hname!="" ){
-				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/");
+				   $(location).attr('href', "http://localhost:9000/admin/hospital_hsearch/"+e.page+"/" + hname + "/");
 			   }else if(gloc!=null && gloc!=""){
 				   $(location).attr('href', "http://localhost:9000/admin/hospital_gsearch/"+e.page+"/");
 			   }else {

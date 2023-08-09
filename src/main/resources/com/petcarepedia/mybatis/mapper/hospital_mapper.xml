@@ -35,7 +35,12 @@
 	<select id="count" resultType="int">
 		select count(*) from pcp_hospital
 	</select>
-	
+
+	<select id="Hsfiles" parameterType="String" resultType="String">
+		SELECT hsfile1, hsfile2 from pcp_hospital where hid = #{hid}
+
+	</select>
+
 	<select id="list" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
@@ -65,20 +70,14 @@
 	<update id="update" parameterType="com.project.petcarepedia.dto.HospitalDto">
 		UPDATE PCP_HOSPITAL SET HNAME=#{hname} , GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel}, 
 					  HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal}, 
-					  INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile=#{hfile} , hsfile=#{hsfile}
+					  INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},
+					  hfile1=#{hfile1} , hsfile1=#{hsfile1}, hfile2=#{hfile2}, hsfile2=#{hsfile2}
 					   WHERE HID = #{hid}
-	</update>
-
-	<update id = "manager_update" parameterType="com.project.petcarepedia.dto.HospitalDto">
-		UPDATE PCP_HOSPITAL SET HNAME = #{hname}, GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel},
-								HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal},
-								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1, jdbcType=VARCHAR} , hsfile1=#{hsfile1, jdbcType=VARCHAR}, hfile2=#{hfile2, jdbcType=VARCHAR}, hsfile2=#{hsfile2, jdbcType=VARCHAR}
-		WHERE HID = #{hid}
 	</update>
 
 
 	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hfile, hsfile, hsfile1, hsfile2, auth
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, hsfile, hfile1, hfile2, hsfile1, hsfile2 ,auth
 		FROM PCP_HOSPITAL WHERE HID = #{hid}
 	</select>
 
@@ -100,9 +99,11 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.project.petcarepedia.dto.HospitalDto">
-		INSERT INTO PCP_HOSPITAL (HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, HRINK, X, Y,HFILE, HSFILE) VALUES
+		INSERT INTO PCP_HOSPITAL (HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, HRINK, X, Y, HFILE1, HSFILE1, HFILE2, HSFILE2) VALUES
 					   ('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')), #{hname}, #{gloc}, #{loc}, #{tel}, #{htime}, #{ntime},
-					   	 #{holiday}, #{animal}, #{intro}, #{hrink}, #{x}, #{y}, #{hfile, jdbcType=VARCHAR}, #{hsfile , jdbcType=VARCHAR})
+					   	 #{holiday}, #{animal}, #{intro}, #{hrink}, #{x}, #{y}, #{hfile1, jdbcType=VARCHAR}, #{hsfile1, jdbcType=VARCHAR},
+						#{hfile2, jdbcType=VARCHAR},#{hsfile2, jdbcType=VARCHAR}
+					   )
 	</insert>
 
 	<!--  manager 추가  -->
@@ -113,6 +114,13 @@
 		    	#{hfile2, jdbcType=VARCHAR}, #{hsfile2 , jdbcType=VARCHAR}, #{mid}, 'unauth')
 
 	</insert>
+
+	<update id = "manager_update" parameterType="com.project.petcarepedia.dto.HospitalDto">
+		UPDATE PCP_HOSPITAL SET HNAME = #{hname}, GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel},
+								HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal},
+								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1, jdbcType=VARCHAR} , hsfile1=#{hsfile1, jdbcType=VARCHAR}, hfile2=#{hfile2, jdbcType=VARCHAR}, hsfile2=#{hsfile2, jdbcType=VARCHAR}
+		WHERE HID = #{hid}
+	</update>
 
 	<select id="selectMh" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
 		select hid, hname, loc, gloc, tel, htime, ntime, holiday, animal, intro, img, hrink, x, y, hfile1, hsfile1, hfile2, hsfile2, m.mid, auth
