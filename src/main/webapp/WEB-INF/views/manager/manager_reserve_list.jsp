@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="http://localhost:9000/css/manager_reserve_list.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
-	<%--<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>--%>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="http://localhost:9000/js/manager_reserve_list.js"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 예약 관리</title>
 	<script>
@@ -89,7 +89,7 @@
 				<input type="hidden" name="hid" id="hid" value="${booking.hid}" >
 
 				<div class="d2" id = "d2">
-					<input type="text"  class="search_bar" id ="Hreserve_bar"placeholder="회원아이디 입력">
+					<input type="text"  class="search_bar" id ="Hreserve_bar" placeholder="회원아이디 입력">
 					<button type="submit" class="button1" id="Hreserve_btn">
 						<img src="http://localhost:9000/images/foot_pink.png">
 					</button>
@@ -97,10 +97,10 @@
 
 				<select name="filter" id="filter" class="filter">
 					<option value="basic" selected>예약 상태</option>
-					<option value="basic">전체보기</option>
-					<option value="like">예약중</option>
-					<option value="totalUp">예약취소</option>
-					<option value="totalDown">진료완료</option>
+					<option value="all">전체보기</option>
+					<option value="booking">예약중</option>
+					<option value="cancel">예약취소</option>
+					<option value="completed">진료완료</option>
 				</select>
 
 				<table class="reserve_table">
