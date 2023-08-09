@@ -14,22 +14,20 @@
 	<title>펫캐어피디아 | 예약 관리</title>
 	<script>
 	$(document).ready(function(){
-		var mid = "${mid}";
-		var hid = "${hid}";
 		var pager = jQuery('#ampaginationsm').pagination({
 
-			maxSize: '${page.pageCount}',	    		// max page size
+			maxSize: '${page.pageCount}', // max page size
 			totals: '${page.dbCount}',	// total pages
-			page: '${page.reqPage}',		// initial page
-			pageSize: '${page.pageSize}',				// max number items per page
-		
-		    // custom labels		
-		    lastText: '&raquo;&raquo;', 		
-		    firstText: '&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
-				     
-		    btnSize:'sm'	// 'sm'  or 'lg'		
+			page: '${page.reqPage}', // initial page
+			pageSize: '${page.pageSize}', // max number items per page
+
+			// custom labels
+			lastText: '&raquo;&raquo;',
+			firstText: '&laquo;&laquo;',
+			prevText: '&laquo;',
+			nextText: '&raquo;',
+
+			btnSize:'sm'	// 'sm'  or 'lg'
 		});
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
@@ -39,7 +37,6 @@
 			   } else {
 				   $(location).attr('href', "http://localhost:9000/manager_reserve_list/"+e.page+"/");
 			   }
-	                    
 	    });
 
 		/*호버 효과*/
@@ -58,7 +55,6 @@
 			// 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
 			row.find('td, th').css({ "background": "", "color": "" });
 		});
-		
  	});
 	</script>
 </head>
@@ -86,7 +82,7 @@
 			</section>
 
 			<section id="section2">
-				<input type="hidden" name="hid" id="hid" value="${booking.hid}" >
+				<input type="text" name="hid" id="hid" value="${svo.hid}" >
 
 				<div class="d2" id = "d2">
 					<input type="text"  class="search_bar" id ="Hreserve_bar" placeholder="회원아이디 입력">
@@ -120,7 +116,7 @@
 							<td title="${booking.mid}">${booking.mid}</td>
 							<td>${booking.phone}</td>
 							<td>${booking.vdate}</td>
-							<td class="date">${booking.vtime}</td>
+							<td>${booking.vtime}</td>
 							<td class="state">${booking.bstate}</td>
 					    </tr>
 					</c:forEach>
