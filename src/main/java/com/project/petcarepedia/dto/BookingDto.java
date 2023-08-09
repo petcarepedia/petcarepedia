@@ -12,4 +12,5 @@ public class BookingDto {
     String start, end;
     String img, hsfile;
     int count;
+    String hfile1, hsfile1;
 }

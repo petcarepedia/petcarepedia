@@ -39,8 +39,8 @@
 	</select>
 
 	<select id="search1" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
-		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, HSFILE
-		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname,H.HSFILE HSFILE,
+		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, HSFILE1, HSFILE
+		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname,H.HSFILE1 HSFILE1,H.HSFILE HSFILE,
 					h.loc loc, h.gloc gloc, h.tel tel, h.hrink hrink, h.img img
 			 from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m
 			 where r.bid(+) = b.bid
@@ -50,16 +50,17 @@
 	</select>
 
 	<select id="search2" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
-		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG, HSFILE
-		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, B.MID MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG, H.HSFILE HSFILE
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG, HSFILE1, HSFILE
+		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, B.MID MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK,
+		             H.IMG IMG, H.HSFILE1 HSFILE1, H.HSFILE HSFILE
 			  FROM PCP_BOOKING B, PCP_HOSPITAL H
 			  WHERE B.HID = H.HID AND B.MID = #{mid} AND VDATE = TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 		WHERE VTIME >= TO_CHAR(SYSDATE,'HH24:MI') order by bid desc
 	</select>
 
 	<select id="search3" parameterType="String" resultType="com.project.petcarepedia.dto.BookingReviewDto">
-		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid, HSFILE
-		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname,H.HSFILE HSFILE,
+		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid, HSFILE1, HSFILE
+		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname,H.HSFILE1 HSFILE1, H.HSFILE HSFILE,
 					h.loc loc, h.gloc gloc, h.tel tel, h.hrink hrink, h.img img, r.rid rid
 			 from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m
 			 where b.hid = h.hid and b.mid = m.mid and b.mid = #{mid} and b.bid = r.bid)
@@ -67,8 +68,9 @@
 	</select>
 
 	<select id="search4" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
-		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG, HSFILE
-		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, B.MID MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG, H.HSFILE HSFILE
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG, HSFILE1, HSFILE
+		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, B.MID MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC,
+		             H.TEL TEL, H.HRINK HRINK, H.IMG IMG, H.HSFILE1 HSFILE1, H.HSFILE HSFILE
 			  FROM PCP_BOOKING B, PCP_HOSPITAL H
 			  WHERE B.HID = H.HID AND B.MID = #{mid} AND VDATE > TO_CHAR(SYSDATE,'YYYY-MM-DD')) order by bid desc
 	</select>

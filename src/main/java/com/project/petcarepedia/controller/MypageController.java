@@ -262,12 +262,10 @@ public class MypageController {
         String viewName = "";
         int result = hospitalService.manager_insert(fileService.hospitalMultiFileCheck(hospitalDto));
         if(result == 1) {
-            if(result == 1) {
-                if(hospitalDto.getFiles()[0].getOriginalFilename() != null) {
-                    fileService.hospitalFileSave(hospitalDto);
-                }
-                viewName = "redirect:/manager_hospital_list";
+            if(hospitalDto.getFiles()[0].getOriginalFilename() != null) {
+                fileService.hospitalFileSave(hospitalDto);
             }
+            viewName = "redirect:/manager_hospital_list";
         }
         return viewName;
     }
