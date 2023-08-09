@@ -9,8 +9,70 @@
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
+	<script>
+		$(document).ready(function(){
+			$("#btn_auth").click(function(){
+				event.preventDefault(); // 폼 전송을 막음
+				Swal.fire({
+					icon: 'warning',
+					title: '승인을 완료하시겠습니까?',
+					showCancelButton: true,
+					confirmButtonColor: '#FFB3BD',
+					cancelButtonColor: '#98DFFF',
+					confirmButtonText: '확인',
+					cancelButtonText: '취소'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						// 확인 버튼을 눌렀을 경우 삭제 처리
+						Swal.fire({
+							icon: 'success',
+							title:'승인이 완료되었습니다.'
+						}).then(() => {
+							document.authForm.submit();
+						});
+						// 폼 전송
+						// 삭제 처리를 위한 코드 작성
+					}
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("#btn_noAuth").click(function(){
+				Swal.fire({
+					icon: 'warning',
+					title: '승인을 거부하시겠습니까?',
+					html: '	 <input type="radio" class="reject" name="reject1" value="병원명 중복 또는 부적절" /> <span class="reject">병원명 중복 또는 부적절<span><br> ' +
+							'<input type="radio" class="reject" name="reject2" value="부적절한 주소 및 지역구 불일치/" /> <span class="reject">부적절한 주소 및 지역구 불일치<span> <br> ' +
+							'<input type="radio" class="reject" name="reject3" value="병원 소개 부적절" /> <span class="reject">병원 소개 부적절<span> <br>' +
+							'<input type="radio" class="reject" name="reject4" value="병원 이미지 부적절" /> <span class="reject">병원 이미지 부적절<span> <br>' +
+							'<input type="radio" class="reject" name="reject5" value="기타 사유, 문의 바람" /> <span class="reject">기타 사유, 문의 바람<span>',
+					showCancelButton: true,
+					confirmButtonColor: '#FFB3BD',
+					cancelButtonColor: '#98DFFF',
+					confirmButtonText: '확인',
+					cancelButtonText: '취소'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						// 확인 버튼을 눌렀을 경우 삭제 처리
+						Swal.fire({
+							icon: 'success',
+							title:'승인이 거부되었습니다.'
+						}).then(() => {
+							document.authDelete.submit();
+						});
+						// 폼 전송
+						// 삭제 처리를 위한 코드 작성
+					}
+				});
+			});
+		});
+	</script>
+
 </head>
 <body>
 <!-- header -->
@@ -33,9 +95,11 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="updateForm" action="/hospital_update" method="post">
-						<input type = "hidden" name = "hid" value = "${hospital.hid}">
-						<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
+						<form name="authForm" action="/admin/auth_update" method="post">
+							<input type = "hidden" name = "hid" value = "${hospital.hid}">
+							<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
+							<input type = "hidden" name = "auth" value = "${hospital.auth}">
+
 							<table class="table">
 								<tr>
 									<th>병원명</th>
@@ -85,8 +149,14 @@
 								<tr>
 									<th>승인 여부</th>
 									<td>
-										<input type="radio" name="auth" value="#{hospital.auth}">
-										<input type="radio" name="unauth" value="#{hospital.auth}">
+										<c:choose>
+											<c:when test="${hospital.auth == 'auth'}">
+												<input type="text" name="auth" id="auth" value="승인">
+											</c:when>
+											<c:otherwise>
+												<input type="text" name="auth" id="auth" value="미승인">
+											</c:otherwise>
+										</c:choose>
 									</td>
 								</tr>
 								<tr>
@@ -121,8 +191,8 @@
 								</tr>
 								<tr>
 									<td colspan="2"> 
-										<button type="button" class="button5" id="btn_content">승인 완료</button>
-										<button type="button" class="button5" id="btn_delete">승인 거부</button>
+										<button type="submit" class="button5" id="btn_auth">승인 완료</button>
+										<button type="button" class="button5" id="btn_noAuth">승인 거부</button>
 									</td>
 								</tr>
 							</table>

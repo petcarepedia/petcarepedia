@@ -37,6 +37,8 @@ public class ProjectRestController {
     @Autowired
     PageService pageService;
 
+
+
     @GetMapping("pass_check/{mid}/{pass}")
     public String pass_check(@PathVariable String mid, @PathVariable String pass) {
         MemberDto memberDto = new MemberDto();
