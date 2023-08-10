@@ -37,7 +37,27 @@ public class ProjectRestController {
     @Autowired
     PageService pageService;
 
+    /* 승인 거부 사유 */
+    /*@GetMapping("reject_reson")
+    public String reject_reson(HospitalDto hospitalDto){
+        // 신고 거부 중복 체크
 
+    }*/
+
+
+   /* @GetMapping("rstate")
+    public String rstateProc(ReviewReportDto reviewReportDto) {
+        //중복신고 체크
+        int result = reviewReportService.reviewReportCheck(reviewReportDto);
+
+        if(result == 0) { //신고 없음
+            reviewReportService.reviewReport(reviewReportDto);
+            return "success";
+        } else if (result == 1) { //신고 있음
+            return "fail";
+        }
+        return "error";
+    }*/
 
     @GetMapping("pass_check/{mid}/{pass}")
     public String pass_check(@PathVariable String mid, @PathVariable String pass) {

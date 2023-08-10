@@ -1,6 +1,35 @@
 $(document).ready(function(){
 
 	/*************************
+	 * 승인 완료 버튼
+	 **************************/
+	$("#btn_auth").click(function(){
+		event.preventDefault(); // 폼 전송을 막음
+		Swal.fire({
+			icon: 'warning',
+			title: '승인을 완료하시겠습니까?',
+			showCancelButton: true,
+			confirmButtonColor: '#FFB3BD',
+			cancelButtonColor: '#98DFFF',
+			confirmButtonText: '확인',
+			cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				// 확인 버튼을 눌렀을 경우 삭제 처리
+				Swal.fire({
+					icon: 'success',
+					title:'승인이 완료되었습니다.'
+				}).then(() => {
+					document.authForm.submit();
+				});
+				// 폼 전송
+				// 삭제 처리를 위한 코드 작성
+			}
+		});
+	});
+
+
+	/*************************
 	 * 다음 api - 주소 찾기
 	 **************************/
 	$("#search_loc").click(function(){
