@@ -14,43 +14,15 @@
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
 		$(document).ready(function(){
-			$("#btn_auth").click(function(){
-				event.preventDefault(); // 폼 전송을 막음
-				Swal.fire({
-					icon: 'warning',
-					title: '승인을 완료하시겠습니까?',
-					showCancelButton: true,
-					confirmButtonColor: '#FFB3BD',
-					cancelButtonColor: '#98DFFF',
-					confirmButtonText: '확인',
-					cancelButtonText: '취소'
-				}).then((result) => {
-					if (result.isConfirmed) {
-						// 확인 버튼을 눌렀을 경우 삭제 처리
-						Swal.fire({
-							icon: 'success',
-							title:'승인이 완료되었습니다.'
-						}).then(() => {
-							document.authForm.submit();
-						});
-						// 폼 전송
-						// 삭제 처리를 위한 코드 작성
-					}
-				});
-			});
-		});
-	</script>
-	<script>
-		$(document).ready(function(){
 			$("#btn_noAuth").click(function(){
 				Swal.fire({
 					icon: 'warning',
 					title: '승인을 거부하시겠습니까?',
-					html: '	 <input type="radio" class="reject" name="reject1" value="병원명 중복 또는 부적절" /> <span class="reject">병원명 중복 또는 부적절<span><br> ' +
-							'<input type="radio" class="reject" name="reject2" value="부적절한 주소 및 지역구 불일치/" /> <span class="reject">부적절한 주소 및 지역구 불일치<span> <br> ' +
-							'<input type="radio" class="reject" name="reject3" value="병원 소개 부적절" /> <span class="reject">병원 소개 부적절<span> <br>' +
-							'<input type="radio" class="reject" name="reject4" value="병원 이미지 부적절" /> <span class="reject">병원 이미지 부적절<span> <br>' +
-							'<input type="radio" class="reject" name="reject5" value="기타 사유, 문의 바람" /> <span class="reject">기타 사유, 문의 바람<span>',
+					html: '	 <input type="radio" name="reject" value="병원명 중복 또는 부적절" value="r1"/> <span>병원명 중복 또는 부적절<span><br> ' +
+							'<input type="radio" name="reject" value="부적절한 주소 및 지역구 불일치/" value="r2"/> <span >부적절한 주소 및 지역구 불일치<span> <br> ' +
+							'<input type="radio" name="reject" value="병원 소개 부적절" value="r3"/> <span>병원 소개 부적절<span> <br>' +
+							'<input type="radio" name="reject" value="병원 이미지 부적절" value="r4"/> <span>병원 이미지 부적절<span> <br>' +
+							'<input type="radio" name="reject" value="기타 사유, 문의 바람" value="r5"/> <span>기타 사유, 문의 바람<span>',
 					showCancelButton: true,
 					confirmButtonColor: '#FFB3BD',
 					cancelButtonColor: '#98DFFF',
@@ -58,15 +30,50 @@
 					cancelButtonText: '취소'
 				}).then((result) => {
 					if (result.isConfirmed) {
-						// 확인 버튼을 눌렀을 경우 삭제 처리
-						Swal.fire({
-							icon: 'success',
-							title:'승인이 거부되었습니다.'
-						}).then(() => {
-							document.authDelete.submit();
-						});
-						// 폼 전송
-						// 삭제 처리를 위한 코드 작성
+						var reject = $("input[name='reject']:checked").val(); //라디오의 선택된 값을 가져옴
+						if(reject == null){
+							Swal.fire({
+								icon: 'error',
+								title: '승인 거부 사유를 선택해주세요',
+								showConfirmButton: true,
+								confirmButtonColor: '#98DFFF',
+								confirmButtonText: '확인'
+							}).then(() => {
+								$("#reject").click(); // 거부 사유 재선택 창 다시 띄우기
+							});
+						}else{
+							$.ajax({
+								url: "http://localhost:9000/manager_hospital_list",
+								type: "GET",
+								data: {
+									hid: hid,
+									reject: reject
+								},
+								success:function(result){
+									if (result === "fail") {
+										Swal.fire({
+											icon: 'error',
+											title: '승인 거부된 상태입니다',
+											showConfirmButton: true,
+											confirmButtonText: '확인',
+											confirmButtonColor: '#98dfff'
+										}).then(function() {
+											location.reload();
+										});
+									} else if (result === "success") {
+										Swal.fire({
+											icon: 'success',
+											title: '신고 거부가 완료되었습니다',
+											showConfirmButton: true,
+											confirmButtonText: '확인',
+											confirmButtonColor: '#98dfff'
+										}).then(function() {
+											location.reload();
+										});
+									}
+								}
+							});//ajax
+						}//else
 					}
 				});
 			});

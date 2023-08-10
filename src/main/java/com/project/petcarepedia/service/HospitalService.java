@@ -52,5 +52,10 @@ public class HospitalService {
     public int authUpdate(HospitalDto hospitalDto){return hospitalMapper.authUpdate(hospitalDto);}
     public List<HospitalDto> AuthList(PageDto pageDto){return  hospitalMapper.AuthList(pageDto);}
     public List<HospitalDto> unAuthList(PageDto pageDto){return  hospitalMapper.unAuthList(pageDto);}
+    public int r1(String hid){return  hospitalMapper.r1(hid);}
+    public int r2(String hid){return  hospitalMapper.r2(hid);}
+    public int r3(String hid){return  hospitalMapper.r3(hid);}
+    public int r4(String hid){return  hospitalMapper.r4(hid);}
+    public int r5(String hid){return  hospitalMapper.r5(hid);}
 
 }

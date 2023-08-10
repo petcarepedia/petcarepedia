@@ -71,4 +71,10 @@ public interface HospitalMapper {
 
     List<HospitalDto> unAuthList(PageDto pageDto);
 
+    int r1(String hid);
+    int r2(String hid);
+    int r3(String hid);
+    int r4(String hid);
+    int r5(String hid);
+
 }
