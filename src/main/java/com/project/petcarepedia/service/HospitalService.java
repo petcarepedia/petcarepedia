@@ -57,5 +57,6 @@ public class HospitalService {
     public int r3(String hid){return  hospitalMapper.r3(hid);}
     public int r4(String hid){return  hospitalMapper.r4(hid);}
     public int r5(String hid){return  hospitalMapper.r5(hid);}
-
+    public int authCheck(String hid){return hospitalMapper.authCheck(hid);}
+    public int unauthCheck(String hid){return hospitalMapper.unauthCheck(hid);}
 }

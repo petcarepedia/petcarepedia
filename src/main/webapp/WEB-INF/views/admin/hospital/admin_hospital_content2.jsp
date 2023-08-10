@@ -18,11 +18,11 @@
 				Swal.fire({
 					icon: 'warning',
 					title: '승인을 거부하시겠습니까?',
-					html: '	 <input type="radio" name="reject" value="병원명 중복 또는 부적절" value="r1"/> <span>병원명 중복 또는 부적절<span><br> ' +
-							'<input type="radio" name="reject" value="부적절한 주소 및 지역구 불일치/" value="r2"/> <span >부적절한 주소 및 지역구 불일치<span> <br> ' +
-							'<input type="radio" name="reject" value="병원 소개 부적절" value="r3"/> <span>병원 소개 부적절<span> <br>' +
-							'<input type="radio" name="reject" value="병원 이미지 부적절" value="r4"/> <span>병원 이미지 부적절<span> <br>' +
-							'<input type="radio" name="reject" value="기타 사유, 문의 바람" value="r5"/> <span>기타 사유, 문의 바람<span>',
+					html: '	 <input type="radio" name="reject" value="r1"/> <span>병원명 중복 또는 부적절<span><br> ' +
+							'<input type="radio" name="reject" value="r2"/> <span >부적절한 주소 및 지역구 불일치<span> <br> ' +
+							'<input type="radio" name="reject" value="r3"/> <span>병원 소개 부적절<span> <br>' +
+							'<input type="radio" name="reject" value="r4"/> <span>병원 이미지 부적절<span> <br>' +
+							'<input type="radio" name="reject" value="r5"/> <span>기타 사유, 문의 바람<span>',
 					showCancelButton: true,
 					confirmButtonColor: '#FFB3BD',
 					cancelButtonColor: '#98DFFF',
@@ -38,19 +38,13 @@
 								showConfirmButton: true,
 								confirmButtonColor: '#98DFFF',
 								confirmButtonText: '확인'
-							}).then(() => {
-								$("#reject").click(); // 거부 사유 재선택 창 다시 띄우기
 							});
 						}else{
 							$.ajax({
-								url: "http://localhost:9000/manager_hospital_list",
+								url: "/reject_reson/${hospital.hid}",
 								type: "GET",
-								data: {
-									hid: hid,
-									reject: reject
-								},
 								success:function(result){
-									if (result === "fail") {
+									if (result == "fail") {
 										Swal.fire({
 											icon: 'error',
 											title: '승인 거부된 상태입니다',
@@ -60,15 +54,15 @@
 										}).then(function() {
 											location.reload();
 										});
-									} else if (result === "success") {
+									} else if (result == "success") {
 										Swal.fire({
 											icon: 'success',
-											title: '신고 거부가 완료되었습니다',
+											title: '승인 거부가 완료되었습니다',
 											showConfirmButton: true,
 											confirmButtonText: '확인',
 											confirmButtonColor: '#98dfff'
-										}).then(function() {
-											location.reload();
+										}).then(function () {
+
 										});
 									}
 								}

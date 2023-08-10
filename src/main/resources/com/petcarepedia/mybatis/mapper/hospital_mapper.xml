@@ -124,7 +124,7 @@
 	</update>
 
 	<select id="selectMh" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		select hid, hname, loc, gloc, tel, htime, ntime, holiday, animal, intro, img, hrink, x, y, hfile1, hsfile1, hfile2, hsfile2, m.mid, auth
+		select hid, hname, loc, gloc, tel, htime, ntime, holiday, animal, intro, m.img, hrink, x, y, hfile1, hsfile1, hfile2, hsfile2, m.mid, auth
 		from pcp_hospital h, pcp_member m
 		where h.mid = m.mid and m.mid=#{mid}
 	</select>
@@ -179,4 +179,11 @@
 		update pcp_hospital set auth='r5' where hid = #{hid}
 	</update>
 
+	<select id="authCheck" parameterType="String" resultType="int">
+		select count(*) from pcp_hospital where auth like #{auth}||'%' and hid=#{hid}
+	</select>
+
+	<select id = "unauthCheck" parameterType="String" resultType="int">
+		select count(*) from pcp_hospital where auth = 'unauth' and hid=#{hid}
+	</select>
 </mapper>
