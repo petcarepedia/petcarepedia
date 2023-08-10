@@ -37,23 +37,52 @@ public class ProjectRestController {
     @Autowired
     PageService pageService;
 
+    /* 기본 정렬 */
+    @GetMapping("list/{page}")
+    public Map list(PageDto pageDto) {
+        Map map = new HashMap();
+        map.put("list", hospitalService.Hlist(pageDto));
+
+        return map;
+    }
+
+    /* 미승인 정렬 */
+    @GetMapping("unauth/{page}")
+    public Map unauth(PageDto pageDto) {
+        Map map = new HashMap();
+        map.put("list", hospitalService.unAuthList(pageDto));
+
+        return map;
+    }
+
+    /* 승인 정렬 */
+    @GetMapping("auth/{page}")
+    public Map auth(PageDto pageDto) {
+        Map map = new HashMap();
+        map.put("list", hospitalService.AuthList(pageDto));
+
+        return map;
+    }
+
     /* 승인 거부 사유 중복 체크 */
-    @GetMapping("reject_reson/{hid}")
+    @GetMapping("reject_reson/{hid}/{auth}")
     public String reject_reson(HospitalDto hospitalDto){
         // 신고 거부 중복 체크
         int result = hospitalService.authCheck(hospitalDto.getHid());
 
         if(result == 0 && hospitalService.unauthCheck(hospitalDto.getHid()) == 1){
-            if(hospitalDto.getAuth() == "r1"){
+            if(hospitalDto.getAuth().equals("r1")){
                 hospitalService.r1(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth() == "r2") {
+            } else if (hospitalDto.getAuth().equals("r2")) {
                 hospitalService.r2(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth() == "r3") {
+            } else if (hospitalDto.getAuth().equals("r3")) {
                 hospitalService.r3(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth() == "r4"){
+            } else if (hospitalDto.getAuth().equals("r4")){
                 hospitalService.r4(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth() == "r5") {
+            } else if (hospitalDto.getAuth().equals("r5")) {
                 hospitalService.r5(hospitalDto.getHid());
+            } else {
+                System.out.println("오류");
             }
             return "success";
 

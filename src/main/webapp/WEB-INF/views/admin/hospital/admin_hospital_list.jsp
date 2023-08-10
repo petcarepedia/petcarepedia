@@ -101,10 +101,10 @@
 					</tr>
 					<tr>
 						<td colspan="5" >
-							<select id="auth">
-								<option value="list" selected> 전체 </option>
-								<option value="auth"> 승인</option>
-								<option value="unauth"> 미승인</option>
+							<select id="authList">
+								<option id="list" value="list" selected> 전체 </option>
+								<option id ="auth" value="auth"> 승인</option>
+								<option id="unauth" value="unauth"> 미승인</option>
 							</select>
 						</td>
 					</tr>
@@ -123,12 +123,13 @@
 						<td>${hospital.htime}</td>
 						<td><a href="/admin/hospital_content2/${page.reqPage}/${hospital.hid}/">
 							<c:choose>
-								<c:when test="${hospital.auth == 'auth'}">
-									승인
-								</c:when>
-								<c:otherwise>
-									미승인
-								</c:otherwise>
+								<c:when test="${hospital.auth == 'auth'}">승인</c:when>
+								<c:when test="${hospital.auth == 'r1'}">승인거부</c:when>
+								<c:when test="${hospital.auth == 'r2'}">승인거부</c:when>
+								<c:when test="${hospital.auth == 'r3'}">승인거부</c:when>
+								<c:when test="${hospital.auth == 'r4'}">승인거부</c:when>
+								<c:when test="${hospital.auth == 'r5'}">승인거부</c:when>
+								<c:otherwise>미승인</c:otherwise>
 							</c:choose>
 							</a>
 						</td>
