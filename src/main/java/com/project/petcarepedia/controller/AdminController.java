@@ -256,13 +256,7 @@ public class AdminController {
     public String hospital_list(@PathVariable String page,HospitalDto hospitalDto, Model model){
         PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital"));
 
-        if(hospitalDto.getAuth() == "auth"){
-            model.addAttribute("list", hospitalService.AuthList(pageDto));
-        } else if (hospitalDto.getAuth() == "unauth") {
-            model.addAttribute("list", hospitalService.unAuthList(pageDto));
-        }else {
-            model.addAttribute("list", hospitalService.Hlist(pageDto));
-        }
+        model.addAttribute("list", hospitalService.Hlist(pageDto));
         model.addAttribute("page", pageDto);
 
         return "/admin/hospital/admin_hospital_list";

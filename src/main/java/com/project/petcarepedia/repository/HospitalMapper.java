@@ -77,4 +77,6 @@ public interface HospitalMapper {
     int r4(String hid);
     int r5(String hid);
 
+    int authCheck(String hid);
+    int unauthCheck(String hid);
 }

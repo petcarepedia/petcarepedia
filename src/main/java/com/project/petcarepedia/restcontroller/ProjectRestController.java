@@ -37,27 +37,32 @@ public class ProjectRestController {
     @Autowired
     PageService pageService;
 
-    /* 승인 거부 사유 */
-    /*@GetMapping("reject_reson")
+    /* 승인 거부 사유 중복 체크 */
+    @GetMapping("reject_reson/{hid}")
     public String reject_reson(HospitalDto hospitalDto){
         // 신고 거부 중복 체크
+        int result = hospitalService.authCheck(hospitalDto.getHid());
 
-    }*/
-
-
-   /* @GetMapping("rstate")
-    public String rstateProc(ReviewReportDto reviewReportDto) {
-        //중복신고 체크
-        int result = reviewReportService.reviewReportCheck(reviewReportDto);
-
-        if(result == 0) { //신고 없음
-            reviewReportService.reviewReport(reviewReportDto);
+        if(result == 0 && hospitalService.unauthCheck(hospitalDto.getHid()) == 1){
+            if(hospitalDto.getAuth() == "r1"){
+                hospitalService.r1(hospitalDto.getHid());
+            } else if (hospitalDto.getAuth() == "r2") {
+                hospitalService.r2(hospitalDto.getHid());
+            } else if (hospitalDto.getAuth() == "r3") {
+                hospitalService.r3(hospitalDto.getHid());
+            } else if (hospitalDto.getAuth() == "r4"){
+                hospitalService.r4(hospitalDto.getHid());
+            } else if (hospitalDto.getAuth() == "r5") {
+                hospitalService.r5(hospitalDto.getHid());
+            }
             return "success";
-        } else if (result == 1) { //신고 있음
+
+        } else if ( result == 1) {
             return "fail";
         }
         return "error";
-    }*/
+    }
+
 
     @GetMapping("pass_check/{mid}/{pass}")
     public String pass_check(@PathVariable String mid, @PathVariable String pass) {
