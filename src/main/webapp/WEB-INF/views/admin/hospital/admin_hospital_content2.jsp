@@ -30,8 +30,8 @@
 					cancelButtonText: '취소'
 				}).then((result) => {
 					if (result.isConfirmed) {
-						var reject = $("input[name='reject']:checked").val(); //라디오의 선택된 값을 가져옴
-						if(reject == null){
+						var auth = $("input[name='reject']:checked").val(); //라디오의 선택된 값을 가져옴
+						if(auth == null){
 							Swal.fire({
 								icon: 'error',
 								title: '승인 거부 사유를 선택해주세요',
@@ -41,7 +41,7 @@
 							});
 						}else{
 							$.ajax({
-								url: "/reject_reson/${hospital.hid}",
+								url: "/reject_reson/${hospital.hid}/"+ auth,
 								type: "GET",
 								success:function(result){
 									if (result == "fail") {
@@ -62,7 +62,7 @@
 											confirmButtonText: '확인',
 											confirmButtonColor: '#98dfff'
 										}).then(function () {
-
+											location.reload();
 										});
 									}
 								}
@@ -153,6 +153,21 @@
 										<c:choose>
 											<c:when test="${hospital.auth == 'auth'}">
 												<input type="text" name="auth" id="auth" value="승인">
+											</c:when>
+											<c:when test="${hospital.auth == 'r1'}">
+												<input type="text" name="auth" id="auth" value="승인거부">
+											</c:when>
+											<c:when test="${hospital.auth == 'r2'}">
+												<input type="text" name="auth" id="auth" value="승인거부">
+											</c:when>
+											<c:when test="${hospital.auth == 'r3'}">
+												<input type="text" name="auth" id="auth" value="승인거부">
+											</c:when>
+											<c:when test="${hospital.auth == 'r4'}">
+												<input type="text" name="auth" id="auth" value="승인거부">
+											</c:when>
+											<c:when test="${hospital.auth == 'r5'}">
+												<input type="text" name="auth" id="auth" value="승인거부">
 											</c:when>
 											<c:otherwise>
 												<input type="text" name="auth" id="auth" value="미승인">

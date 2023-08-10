@@ -316,7 +316,53 @@ $(document).ready(function(){
 	/*************************
 	 * 병원 - 승인 정렬
 	 **************************/
-	/*$("#auth").change(function(){
+	$("#authList").change(function(){
+		var selectVal = $(this).val();
+
+		if (selectVal == "auth"){
+			$.ajax({
+				url:"auth/1/",
+				data_type:'json',
+				success:function (data){
+					alert(data);
+					let output = '<table class="table">';
+					output += '<tr><td colspan="5">';
+					output += '<a href="http://localhost:9000/admin/hospital_detail">';
+					output += '<button type="button" class="button4">등록하기</button>';
+					output += '</a></td></tr>';
+
+					output += '<tr><td colspan="5" >';
+					output += '<select id="authList">';
+					output += '<option id="list" value="list" selected> 전체 </option>';
+					output += '<option id ="auth" value="auth"> 승인</option>';
+					output += '<option id="unauth" value="unauth"> 미승인</option>';
+					output += '</select></td></tr>';
+
+					output += '<tr><th>번호</th>';
+					output += '<th>병원명</th>';
+					output += '<th>지역구</th>';
+					output += '<th>영업 시간</th>';
+					output += '<th>승인 여부</th></tr>';
+
+					output += '';
+					output += '';
+					output += '';
+					output += '';
+					output += '';
+					output += '';
+					output += '';
+
+					output += '<tr><td colspan="5"><div id="ampaginationsm"></div></td></tr>';
+					output += '</table>';
+
+					$("table.table").remove();
+					$("#d5").after(output);
+				}
+			});
+		}
+
+	});
+	/*$("#auth").change(function() => {
 		.ajax({
 				url:"http://localhost:9000/petcarepedia/hospital_list/1/",
 				success:function(result){
@@ -344,6 +390,7 @@ $(document).ready(function(){
 
 			});//ajax
 	});*/
+
 
 	/*************************
 	 * 병원 - 검색창 변환
