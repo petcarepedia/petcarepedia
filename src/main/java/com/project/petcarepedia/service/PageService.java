@@ -90,8 +90,14 @@ public class PageService {
         } else if(serviceName.equals("manager_reserve_mid")) {
             dbCount = pageMapper.Myscount(pageDto);
             mid = pageDto.getMid();
+        } else if (serviceName.equals("hospital_list")) {
+            dbCount = pageMapper.Hcount();
+        } else if (serviceName.equals("hospital_auth")) {
+            dbCount = pageMapper.Hcount();
+        } else if (serviceName.equals("hospital_unAuth")) {
+            dbCount = pageMapper.Hcount();
         }
-        System.out.println(mid);
+
 
         //총 페이지 수 계산
         if(dbCount % pageSize == 0){
