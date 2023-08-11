@@ -116,7 +116,7 @@
 						<tr>
 							<td>${booking.rno}</td>
 							<td>${booking.name}</td>
-							<td title="${booking.mid}">${booking.mid}</td>
+							<td title="${booking.mid}"><a href="/manager_reserve_content/${page.reqPage}/${booking.bid}/${booking.mid}">${booking.mid}</a></td>
 							<td>${booking.phone}</td>
 							<td>${booking.vdate}</td>
 							<td>${booking.vtime}</td>

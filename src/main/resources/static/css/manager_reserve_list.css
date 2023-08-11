@@ -213,6 +213,7 @@ select.filter option {
     padding: 8px 10px;
     text-align: left;
     text-decoration: none;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -241,22 +242,119 @@ select.filter option {
     border:1px solid white;
 }
 
+.reserve_table td:last-child {
+    color: red;
+    font-weight: bold;
+}
 
 
+/****************************
+    section3
+*****************************/
+#section3 div.infoBox {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    background: #FFF2F4;
+    width: 777px;
+    margin-left: 200px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 5px 0px 10px 5px;
+    font-size: 15px;
+}
+
+#profileBox {
+    width: 100px;
+    height: 100px;
+    border-radius: 70%;
+    border : 2px solid #FFB3BD;
+    overflow: hidden;
+    margin: 15px;
+    float : left;
+}
+
+#profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 
+#info {
+    display: inline-block;
+    flex-direction: column;
+    width: 500px;
+    margin-left: 20px;
+}
 
+#info p {
+    font-weight: bold;
+    font-size: 23px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
 
+#infoName, #infoProfile {
+    padding-bottom: 15px;
+}
 
+#info #infoName span:nth-child(2) {
+    margin-left: 150px;
+}
 
+#info #infoProfile span:nth-child(2) {
+    margin-left: 68px;
+}
 
+/****************************
+    section4
+*****************************/
+.reserveBox {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    background: #FFF2F4;
+    width: 777px;
+    margin-left: 200px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 20px 0;
+    font-size: 15px;
+}
 
+.mhbox i {
+    padding: 20px 5px 20px 30px;
+}
 
+.reserveBox span {
+    padding: 10px;
+    margin-left: 20px;
+}
 
+.visitDate {
+    display: flex;
+    flex-direction: column;
+}
 
+.visitDate span {
+    font-size: 16px;
+    font-weight: bold;
+}
 
+.reserveDate {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    margin-left: 50px;
+}
 
-
+.change {
+    display: flex;
+    flex-direction: column;
+}
 
 .stateBtn {
     background: #FFB3BD;
@@ -265,103 +363,53 @@ select.filter option {
     font-weight: bold;
     width: 100px;
     height: 35px;
-    position: relative;
-    top: 35px;
-    left: 728px;
     cursor: pointer;
+    margin-bottom: 5px;
+    margin-left: 20px;
 }
-
-
-
-td.state {
-    color: red;
-    font-weight: bold;
-}
-
-div.review_no {
-    background: #FFF2F4;
-    border-radius: 5px;
-    text-align: center;
-}
-
-div.review_no_img {
-    height: 200px;
-    text-align: center;
-}
-
-div.review_no img#review_no_img {
-    width: 30%;
-    display: block;
-    margin: auto;
-    padding: 50px 0 10px 20px;
-}
-
-div.review_no p {
-    /* border: 1px solid #98DFFF; */
-    font-size: 18px;
-    padding: 0px 0px 30px 0px;
-    font-family: 'BMJua';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /****************************
-    section3
+    section5
 *****************************/
-#aside {
-    float: left;
-    margin-left: 50px;
+#section5 .booking_table {
+    margin-bottom: 40px;
 }
 
-#section3 {
-    width: 614px;
-    padding-top: 47px;
+/*** table ***/
+
+.booking_table {
+    border: 1px solid #FFB3BD;
+    border-collapse: collapse;
+    border-radius: 5px;
+    table-layout: fixed;
+    width: 777px;
+    height: 10px;
+    margin-left: 200px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
 }
 
-.mhbox {
-    background: #F2F2F2;
-    padding: 30px;
-    border-radius: 10px;
-    width: 717px; height: 90px;
-    display: flex; align-items: center;
+.booking_table th, .booking_table td {
+    border: 1px solid #FFB3BD;
+    padding: 5px 0;
 }
 
-.unauth {
-    background: #FFF4F6;
+.booking_table th {
+    background: #FFB3BD;
 }
 
-.mhbox > i {
-    margin-right: 30px;
+.booking_table tr th:nth-child(1) {
+    width: 80px;
 }
 
-.mhbox > p {
-    font-weight: bold; font-size: 20px;
-    color: #3D3D3D;
-    flex: 2;
-    line-height : 2;
+.booking_table tr:last-child td {
+    border:1px solid white;
+}
+
+.booking_table td:last-child {
+    color: red;
+    font-weight: bold;
 }
 
 /****************************

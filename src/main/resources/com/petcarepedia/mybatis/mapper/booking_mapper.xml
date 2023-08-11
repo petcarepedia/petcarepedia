@@ -191,5 +191,19 @@
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
+	<!--예약검색-->
+	<select id="nowBooking" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT BID, MID, HID, TO_CHAR(BDATE, 'YYYY.MM.DD.HH24:MI:SS') AS BDATE, TO_CHAR(TO_DATE(VDATE), 'YYYY.MM.DD.') AS VDATE, VTIME
+		FROM PCP_BOOKING WHERE BID=#{bid}
+	</select>
+
+	<select id="bookingList" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+		FROM (SELECT ROWNUM RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+			  FROM (SELECT B.BID, B.BDATE, B.BSTATE, B.VDATE, B.VTIME, B.HID, M.MID, M.NAME, M.PHONE
+					FROM PCP_BOOKING B, PCP_MEMBER M WHERE M.MID = B.MID AND M.MID=#{mid}
+					ORDER BY VDATE DESC, VTIME DESC))
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
 
 </mapper>

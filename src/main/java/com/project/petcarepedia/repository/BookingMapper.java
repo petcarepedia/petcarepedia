@@ -38,5 +38,7 @@ public interface BookingMapper {
     List<BookingDto> HBlist4(PageDto pageDto);
     List<BookingDto> HBslist(PageDto pageDto);
 
+    BookingDto nowBooking(String bid);
+    List<BookingDto> bookingList(PageDto pageDto);
 
 }
