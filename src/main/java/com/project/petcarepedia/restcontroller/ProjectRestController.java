@@ -37,7 +37,7 @@ public class ProjectRestController {
     @Autowired
     PageService pageService;
 
-    /*@GetMapping("cancel")
+    @GetMapping("cancel")
     public String cancelProc(@RequestParam("bid") String bid) {
         int result = bookingService.cancel(bid);
         if(result == 1) {
@@ -45,13 +45,13 @@ public class ProjectRestController {
         } else {
             return "fail";
         }
-    }*/
+    }
 
-    /*@GetMapping("booking_update")
+    @GetMapping("booking_update")
     public String booking_update() {
         bookingService.bookingUpdate();
         return "manager/manager_reserve_list";
-    }*/
+    }
 
     /* 병원 승인 여부 상세보기 */
     @GetMapping("content2/{hid}/")
@@ -462,7 +462,7 @@ public class ProjectRestController {
                 HospitalDto mh = hospitalService.selectMh(memberDto.getMid());
                 if(mh != null) {
                     sessionDto.setHid(mh.getHid());
-                    //bookingService.bookingUpdate();
+                    bookingService.bookingUpdate();
                     map.put("mhid", sessionDto.getHid());
                 }
 
