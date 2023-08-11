@@ -33,6 +33,9 @@ public interface BookingMapper {
 
     /*7.26*/
     List<BookingDto> HBlist(PageDto pageDto);
+    List<BookingDto> HBlist2(PageDto pageDto);
+    List<BookingDto> HBlist3(PageDto pageDto);
+    List<BookingDto> HBlist4(PageDto pageDto);
     List<BookingDto> HBslist(PageDto pageDto);
 
 

@@ -115,6 +115,21 @@
 		select count(*) from pcp_booking where hid = #{hid}
 	</select>
 
+	<!--예약 상태 모아보기-->
+	<select id = "HBcount2" parameterType="com.project.petcarepedia.dto.PageDto" resultType = "int">
+		SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=#{hid} AND BSTATE='예약중'
+	</select>
+
+
+	<select id = "HBcount3" parameterType="com.project.petcarepedia.dto.PageDto" resultType = "int">
+		SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=#{hid} AND BSTATE='예약취소'
+	</select>
+
+
+	<select id = "HBcount4" parameterType="com.project.petcarepedia.dto.PageDto" resultType = "int">
+		SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=#{hid} AND BSTATE='진료완료'
+	</select>
+
 	<select id="RRcount" resultType="int">
 		select count(*) from pcp_review_report
 	</select>

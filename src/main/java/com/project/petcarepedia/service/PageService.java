@@ -78,6 +78,15 @@ public class PageService {
         }else if(serviceName.equals("manager_reserve_search")){
             dbCount = pageMapper.HBscount(pageDto);
             hid = pageDto.getHid();
+        } else if(serviceName.equals("manager_reserve_booking")) {
+            dbCount = pageMapper.HBcount2(pageDto);
+            hid = pageDto.getHid();
+        } else if(serviceName.equals("manager_reserve_cancel")) {
+            dbCount = pageMapper.HBcount3(pageDto);
+            hid = pageDto.getHid();
+        } else if(serviceName.equals("manager_reserve_completed")) {
+            dbCount = pageMapper.HBcount4(pageDto);
+            hid = pageDto.getHid();
         }
 
         //총 페이지 수 계산

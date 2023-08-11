@@ -14,6 +14,9 @@
 	<title>펫캐어피디아 | 예약 관리</title>
 	<script>
 	$(document).ready(function(){
+		var mid = "${mid}";
+		var hid = "${hid}";
+
 		var pager = jQuery('#ampaginationsm').pagination({
 
 			maxSize: '${page.pageCount}', // max page size
@@ -82,7 +85,7 @@
 			</section>
 
 			<section id="section2">
-				<input type="text" name="hid" id="hid" value="${svo.hid}" >
+				<input type="hidden" name="hid" id="hid" value="${svo.hid}" >
 
 				<div class="d2" id = "d2">
 					<input type="text"  class="search_bar" id ="Hreserve_bar" placeholder="회원아이디 입력">

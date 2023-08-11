@@ -90,7 +90,9 @@ public class BookingService {
 
     /*07.26*/
     public List<BookingDto> HBlist(PageDto pageDto) {return bookingMapper.HBlist(pageDto);}
-
+    public List<BookingDto> HBlist2(PageDto pageDto) {return bookingMapper.HBlist2(pageDto);}
+    public List<BookingDto> HBlist3(PageDto pageDto) {return bookingMapper.HBlist3(pageDto);}
+    public List<BookingDto> HBlist4(PageDto pageDto) {return bookingMapper.HBlist4(pageDto);}
     public List<BookingDto> HBslist(PageDto pageDto){return bookingMapper.HBslist(pageDto);}
 
 

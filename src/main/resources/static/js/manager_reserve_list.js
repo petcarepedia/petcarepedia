@@ -38,7 +38,7 @@ $(document).ready(function() {
             url: "http://localhost:9000/manager_reserve_list/" + page + "/" + filter + "/",
             dataType : 'json',
             success: function(result) {
-                $('.reserve_table').remove();
+
 
                 var code = "";
                 code += '<table class="reserve_table">';
@@ -56,56 +56,58 @@ $(document).ready(function() {
 
                 code += '<tr><td colspan="7">';
                 code += '<div id="ampaginationsm"></div></td></tr></table>';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
-                code += '';
 
+                $('.reserve_table').remove();
                 $('.filter').after(code);
+
+                /*호버 효과*/
+                var allCells = $("td:nth-child(3)");
+
+                allCells.on("mouseover", function() {
+                    var el = $(this);
+                    var row = el.closest('tr');
+
+                    // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
+                    row.find('td, th').css({ "background": "#FFF2F4"});
+                }).on("mouseout", function() {
+                    var el = $(this);
+                    var row = el.closest('tr');
+
+                    // 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
+                    row.find('td, th').css({ "background": "", "color": "" });
+                });
+
+                // 페이징 처리 함수 호출
+                pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
+
+                // 페이지 번호 클릭 이벤트 처리
+                jQuery('#ampaginationsm').on('am.pagination.change',function(e) {
+                    jQuery('.showlabelsm').text('The selected page no: ' + e.page);
+                    filterAjax(filter, e.page);
+                });
             } // success: function
-
-
-
         }); // ajax
     } // stateAjax
 
+    /* 페이징 처리 함수 */
+    function pager(totals, maxSize, pageSize, page) {
 
+        var pager = jQuery('#ampaginationsm').pagination({
 
+            maxSize: maxSize,	    		// max page size
+            totals: totals,	// total pages
+            page: page,		// initial page
+            pageSize: pageSize,			// max number items per page
 
+            // custom labels
+            lastText: '&raquo;&raquo;',
+            firstText: '&laquo;&laquo;',
+            prevText: '&laquo;',
+            nextText: '&raquo;',
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            btnSize:'sm'	// 'sm'  or 'lg'
+        });
+    } // pager
 
 
 }); // document
