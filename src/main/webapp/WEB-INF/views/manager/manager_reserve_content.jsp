@@ -98,13 +98,13 @@
 					</div>
 
 					<div class="reserveDate">
-						<span></span>
+						<span>예약상태 : ${booking.bstate}</span>
 						<span>접수일 : ${booking.bdate}</span>
 					</div>
 
 					<div class="change">
-						<button class="stateBtn">예약 변경</button>
-						<button class="stateBtn">예약 취소</button>
+						<button class="stateBtn" id="change">예약 변경</button>
+						<button class="stateBtn" id="cancel" value="${booking.bid}">예약 취소</button>
 					</div>
 				</div>
 			</section>

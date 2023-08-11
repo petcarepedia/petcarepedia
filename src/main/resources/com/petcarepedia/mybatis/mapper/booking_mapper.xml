@@ -193,7 +193,7 @@
 
 	<!--예약검색-->
 	<select id="nowBooking" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
-		SELECT BID, MID, HID, TO_CHAR(BDATE, 'YYYY.MM.DD.HH24:MI:SS') AS BDATE, TO_CHAR(TO_DATE(VDATE), 'YYYY.MM.DD.') AS VDATE, VTIME
+		SELECT BID, MID, HID, TO_CHAR(BDATE, 'YYYY.MM.DD.HH24:MI:SS') AS BDATE, TO_CHAR(TO_DATE(VDATE), 'YYYY.MM.DD.') AS VDATE, VTIME, BSTATE
 		FROM PCP_BOOKING WHERE BID=#{bid}
 	</select>
 
@@ -205,5 +205,16 @@
 					ORDER BY VDATE DESC, VTIME DESC))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
+
+	<!--예약취소-->
+	<update id="cancel" parameterType="String">
+		update PCP_BOOKING SET BSTATE='예약취소' WHERE BID=#{bid}
+	</update>
+
+	<!--예약상태 업데이트-->
+	<update id="bookingUpdate">
+		UPDATE PCP_BOOKING SET BSTATE='진료완료'
+		WHERE SYSDATE > TO_DATE(VDATE || ' ' || VTIME, 'YYYY-MM-DD HH24:MI:SS') AND BSTATE='예약중'
+	</update>
 
 </mapper>

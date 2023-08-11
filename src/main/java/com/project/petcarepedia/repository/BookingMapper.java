@@ -5,6 +5,7 @@ import com.project.petcarepedia.dto.BookingReviewDto;
 import com.project.petcarepedia.dto.PageDto;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,5 +41,7 @@ public interface BookingMapper {
 
     BookingDto nowBooking(String bid);
     List<BookingDto> bookingList(PageDto pageDto);
+    int cancel(String bid);
+    int bookingUpdate();
 
 }

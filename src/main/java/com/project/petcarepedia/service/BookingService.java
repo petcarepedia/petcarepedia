@@ -102,4 +102,13 @@ public class BookingService {
     public List<BookingDto> bookingList(PageDto pageDto) {
         return bookingMapper.bookingList(pageDto);
     }
+
+    public int cancel(String bid){
+        return bookingMapper.cancel(bid);
+    }
+
+    public int bookingUpdate() {
+        return bookingMapper.bookingUpdate();
+    }
+
 }

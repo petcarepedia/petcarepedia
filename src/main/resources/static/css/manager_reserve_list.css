@@ -131,6 +131,20 @@ div.d2 .search_bar {
 }
 
 /*** table ***/
+button.bookingChange {
+    display: inline-block;
+    position: relative;
+    top: 18px;
+    left: 52px;
+    background: #FFB3BD;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
 select.filter {
     border: 1px solid #FFB3BD;
     border-radius: 5px;

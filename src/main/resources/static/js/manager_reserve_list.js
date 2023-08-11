@@ -29,6 +29,75 @@ $(document).ready(function() {
 
 
     /**********************************
+         예약 취소 버튼
+     ***********************************/
+    $('#cancel').click(function () {
+        var bid = $('#cancel').val();
+        console.log(bid);
+
+        Swal.fire({
+            icon: 'warning',
+            title: '예약취소',
+            html: '<div style="color: red;">회원님께 연락을 드리셨나요?</div>',
+            showCancelButton: true,
+            confirmButtonColor: '#FFB3BD',
+            cancelButtonColor: '#98DFFF',
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "http://localhost:9000/cancel",
+                    type: "GET",
+                    data: {
+                        bid: bid
+                    },
+                    success: function(result) {
+                        if (result === "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '예약취소',
+                                text: '예약이 취소되었습니다',
+                                showConfirmButton: true,
+                                confirmButtonColor:'#FFB3BD',
+                                confirmButtonText: '확인'
+                            }).then(function() {
+                                location.reload();
+                            });
+                        } else if (result === "fail") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: '오류',
+                                text: '오류가 발생하였습니다. 다시 시도해주세요',
+                                showConfirmButton: true,
+                                confirmButtonColor:'#FFB3BD',
+                                confirmButtonText: '확인'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    /**********************************
+        bookingChange
+     ***********************************/
+    $('.bookingChange').click(function () {
+        alert("1");
+
+        $.ajax({
+            url: "http://localhost:9000/booking_update",
+            type: "GET",
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
+
+
+
+    /**********************************
                     함수
      ***********************************/
     /* 필터 함수 */
