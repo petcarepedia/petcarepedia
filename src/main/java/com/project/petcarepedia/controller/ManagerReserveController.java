@@ -68,4 +68,12 @@ public class ManagerReserveController {
         model.addAttribute("page", pageDto);
         return "manager/manager_reserve_list";
     }
+
+    /*병원 관리 예약하기 - 상세보기*/
+    @GetMapping("manager_reserve_content")
+    public String reserve_content(Model model){
+        return "manager_reserve_content";
+    }
+
+
 }
