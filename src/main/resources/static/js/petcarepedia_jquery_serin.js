@@ -220,6 +220,7 @@ $(document).ready(function(){
 		}//else
 
 	});//function
+
 	/*************************
 	 * 예약 - 회원 아이디 검색창
 	 **************************/
@@ -237,35 +238,9 @@ $(document).ready(function(){
 			return false;
 		}else{	
 			location.href = "http://localhost:9000/admin/reserve_msearch/1/"+$("#reserve_bar").val();
-				/*$.ajax({
-					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?mid="+$("#reserve_bar").val(), 
-					success:function(result){
-					let jdata = JSON.parse(result);
-					alert(result);
-					let output = "<table class='table'>";						
-						output += "<tr><th>번호</th><th>병원명</th><th>아이디</th><th>예약일</th><th>상태</th></tr>";						
-						for(obj of jdata.jlist){
-							output += "<tr>";
-							output += "<td>"+ obj.bid +"</td>";
-							output += "<td>"+ obj.hname +"</td>";
-							output += "<td>"+ obj.mid +"</td>";
-							output += "<td>"+ obj.vdate +"</td>";
-							output += "<td>"+ obj.bstate +"</td>";
-							output += "</tr>";						
-							}//for
-							
-						output +="<tr><td colspan='5'><div id='ampaginationsm'></div></</td></tr>";
-						output +="</table>";
-						
-						$("table.table").remove();
-						$("#d2").after(output);
-						
-					}//success
-					
-				});//ajax*/
 		}//else
-					
   	});//function
+
 	/*************************
 	 * 회원 - 회원 아이디 검색창
 	 **************************/
@@ -283,114 +258,436 @@ $(document).ready(function(){
 			return false;
 		}else{	
 			location.href = "http://localhost:9000/admin/member_msearch/1/"+$("#member_search_bar").val();
-				/*$.ajax({
-					url:"http://localhost:9000/petcarepedia/member_list_data.do?mid="+$("#member_search_bar").val(), 
-					success:function(result){
-					let jdata = JSON.parse(result);
-					//alert(result);
-					let output = "<table class='table'>";					
-						output += "<tr><th>아이디</th><th>성명</th><th>이메일</th><th>전화번호</th><th>가입일자</th></tr>";						
-						for(obj of jdata.jlist){
-							output += "<tr>";
-							output += "<td>"+ obj.mid +"</td>";
-							output += "<td>"+ obj.name +"</td>";
-							output += "<td>"+ obj.email +"</td>";
-							output += "<td>"+ obj.phone +"</td>";
-							output += "<td>"+ obj.mdate +"</td>"
-							output += "</tr>";						
-							}//for
-							
-						output +="<tr><td colspan='5'><div id='ampaginationsm'></div></tr>";
-						output +="</table>";
-						
-						$("table.table").remove();
-						$("#d2").after(output);
-						
-					}//success
-					
-				});//ajax*/
 		}//else
 					
   	});//function
 
 	/*************************
+	 * 병원 - 전체 정렬
+	 **************************/
+	listAjax(1);
+
+	function listAjax(page){
+		$("#authList").change(function(){
+			var selectVal = $(this).val();
+
+			if (selectVal == "list"){
+				$.ajax({
+					url:"/list/"+ page +"/",
+					dataType:'json',
+					success:function (result){
+						let output = '<table class="table">';
+						output += '<tr><td colspan="5">';
+						output += '<a href="http://localhost:9000/admin/hospital_detail">';
+						output += '<button type="button" class="button4">등록하기</button>';
+						output += '</a></td></tr>';
+
+						output += '<tr><td colspan="5" >';
+						output += '<select id="authList">';
+						output += '<option id="list" value="list" selected> 전체 </option>';
+						output += '<option id="auth"  value="auth"> 승인</option>';
+						output += '<option id="unauth"value="unauth"> 미승인</option>';
+						output += '</select></td></tr>';
+
+						output += '<tr><th>번호</th>';
+						output += '<th>병원명</th>';
+						output += '<th>지역구</th>';
+						output += '<th>영업 시간</th>';
+						output += '<th>승인 여부</th></tr>';
+
+						for(obj of result.list){
+							output += '<tr>';
+							output += '<td>' + obj.rno + '</td>';
+							output += '<td><a href="/admin/hospital_content/"+obj.page +"/"+obj.hid+"/">'+ obj.hname+'</a></td>';
+							output += '<td>' + obj.gloc + '</td>';
+							output += '<td>' + obj.htime + '</td>';
+							output += '<td><a href="/admin/hospital_content2/"+ obj.page+"/"+obj.hid+"/">';
+
+							output += obj.auth == 'auth' ? '승인' :
+										obj.auth == 'r1' ? '승인거부' :
+										obj.auth == 'r2' ? '승인거부' :
+										obj.auth == 'r3' ? '승인거부' :
+										obj.auth == 'r4' ? '승인거부' :
+										obj.auth == 'r5' ? '승인거부' :
+															'미승인';
+
+							output += '</a></td>';
+							output += '</tr>';
+						}
+
+						output += "<tr>";
+						output += "<td colspan='5'><div id='ampaginationsm'></td>";
+						output += "</tr>";
+						output += '</table>';
+
+						$("table.table").remove();
+						$("#d5").after(output);
+
+
+						pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
+
+						//페이지 번호 클릭 이벤트 처리
+						jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+							jQuery('.showlabelsm').text('The selected page no: '+e.page);
+
+							listAjax(e.page);
+						});
+					}
+				});
+			}
+
+		});
+	}
+
+	/*************************
+	 * 병원 - 미승인 정렬
+	 **************************/
+	unAuthAjax(1);
+
+	function unAuthAjax(page){
+		$("#authList").change(function(){
+			var selectVal = $(this).val();
+
+			if (selectVal == "unauth"){
+				$.ajax({
+					url:"/unauth/"+ page +"/",
+					dataType:'json',
+					success:function (result){
+						let output = '<table class="table">';
+						output += '<tr><td colspan="5">';
+						output += '<a href="http://localhost:9000/admin/hospital_detail">';
+						output += '<button type="button" class="button4">등록하기</button>';
+						output += '</a></td></tr>';
+
+						output += '<tr><td colspan="5" >';
+						output += '<select id="authList">';
+						output += '<option id="list" value="list" selected> 전체 </option>';
+						output += '<option id="auth"  value="auth"> 승인</option>';
+						output += '<option id="unauth"value="unauth"> 미승인</option>';
+						output += '</select></td></tr>';
+
+						output += '<tr><th>번호</th>';
+						output += '<th>병원명</th>';
+						output += '<th>지역구</th>';
+						output += '<th>영업 시간</th>';
+						output += '<th>승인 여부</th></tr>';
+
+						for(obj of result.list){
+							output += '<tr>';
+							output += '<td>' + obj.rno + '</td>';
+							output += '<td><a href="/admin/hospital_content/1/"+obj.hid+"/">'+ obj.hname+'</a></td>';
+							output += '<td>' + obj.gloc + '</td>';
+							output += '<td>' + obj.htime + '</td>';
+							output += '<td><a href="/admin/hospital_content/1/"+obj.hid+"/">';
+
+							output += obj.auth == 'auth' ? '승인' :
+										obj.auth == 'r1' ? '승인거부' :
+										obj.auth == 'r2' ? '승인거부' :
+										obj.auth == 'r3' ? '승인거부' :
+										obj.auth == 'r4' ? '승인거부' :
+										obj.auth == 'r5' ? '승인거부' :
+															'미승인';
+
+							output += '</a></td>';
+							output += '</tr>';
+						}
+
+						output += "<tr>";
+						output += "<td colspan='5'><div id='ampaginationsm'></td>";
+						output += "</tr>";
+						output += '</table>';
+
+						$("table.table").remove();
+						$("#d5").after(output);
+
+
+						pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
+
+						//페이지 번호 클릭 이벤트 처리
+						jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+							jQuery('.showlabelsm').text('The selected page no: '+e.page);
+
+							unAuthAjax(e.page);
+						});
+					}
+				});
+			}
+
+		});
+	}
+
+	/*************************
 	 * 병원 - 승인 정렬
 	 **************************/
-	$("#authList").change(function(){
-		var selectVal = $(this).val();
+	AuthAjax(1);
 
-		if (selectVal == "auth"){
-			$.ajax({
-				url:"auth/1/",
-				data_type:'json',
-				success:function (data){
-					alert(data);
-					let output = '<table class="table">';
-					output += '<tr><td colspan="5">';
-					output += '<a href="http://localhost:9000/admin/hospital_detail">';
-					output += '<button type="button" class="button4">등록하기</button>';
-					output += '</a></td></tr>';
+	function AuthAjax(page){
+		$("#authList").change(function(){
+			var selectVal = $(this).val();
 
-					output += '<tr><td colspan="5" >';
-					output += '<select id="authList">';
-					output += '<option id="list" value="list" selected> 전체 </option>';
-					output += '<option id ="auth" value="auth"> 승인</option>';
-					output += '<option id="unauth" value="unauth"> 미승인</option>';
-					output += '</select></td></tr>';
+			if (selectVal == "auth"){
+				$.ajax({
+					url:"/auth/"+ page +"/",
+					dataType:'json',
+					success:function (result){
+						let output = '<table class="table">';
+						output += '<tr><td colspan="5">';
+						output += '<a href="http://localhost:9000/admin/hospital_detail">';
+						output += '<button type="button" class="button4">등록하기</button>';
+						output += '</a></td></tr>';
 
-					output += '<tr><th>번호</th>';
-					output += '<th>병원명</th>';
-					output += '<th>지역구</th>';
-					output += '<th>영업 시간</th>';
-					output += '<th>승인 여부</th></tr>';
+						output += '<tr><td colspan="5" >';
+						output += '<select id="authList">';
+						output += '<option id="list" value="list" selected> 전체 </option>';
+						output += '<option id="auth"  value="auth"> 승인</option>';
+						output += '<option id="unauth"value="unauth"> 미승인</option>';
+						output += '</select></td></tr>';
 
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-					output += '';
+						output += '<tr><th>번호</th>';
+						output += '<th>병원명</th>';
+						output += '<th>지역구</th>';
+						output += '<th>영업 시간</th>';
+						output += `<th>승인 여부</th></tr>`;
 
-					output += '<tr><td colspan="5"><div id="ampaginationsm"></div></td></tr>';
-					output += '</table>';
+						for(obj of result.list){
+							output += '<tr>';
+							output += '<td>' + obj.rno + '</td>';
+							output += '<td class="hname"  id="'+obj.hid+'"<a>'+ obj.hname+'</a></td>';
+							output += '<td>' + obj.gloc + '</td>';
+							output += '<td>' + obj.htime + '</td>';
+							output += '<td class ="auth" id="'+obj.hid+'" ><a>';
 
-					$("table.table").remove();
-					$("#d5").after(output);
-				}
-			});
-		}
+							output += obj.auth == 'auth' ? '승인' :
+								      obj.auth == 'r1' ? '승인거부' :
+									  obj.auth == 'r2' ? '승인거부' :
+									  obj.auth == 'r3' ? '승인거부' :
+									  obj.auth == 'r4' ? '승인거부' :
+									  obj.auth == 'r5' ? '승인거부' :
+									  						'미승인';
 
-	});
-	/*$("#auth").change(function() => {
-		.ajax({
-				url:"http://localhost:9000/petcarepedia/hospital_list/1/",
-				success:function(result){
-				let jdata = JSON.parse(result);
-				//alert(result);
-				let output = "<table class='table'>";
-					output += "<tr><th>아이디</th><th>성명</th><th>이메일</th><th>전화번호</th><th>가입일자</th></tr>";
-					for(obj of jdata.jlist){
+							output += '</a></td>';
+							output += '</tr>';
+						}
+
 						output += "<tr>";
-						output += "<td>"+ obj.mid +"</td>";
-						output += "<td>"+ obj.name +"</td>";
-						output += "<td>"+ obj.email +"</td>";
-						output += "<td>"+ obj.phone +"</td>";
-						output += "<td>"+ obj.mdate +"</td>"
+						output += "<td colspan='5'><div id='ampaginationsm'></td>";
 						output += "</tr>";
-						}//for
+						output += '</table>';
 
-					output +="<tr><td colspan='5'><div id='ampaginationsm'></div></tr>";
-					output +="</table>";
+						$("table.table").remove();
+						$("#d5").after(output);
 
-					$("table.table").remove();
-					$("#d2").after(output);
+						//output을 출력 이후에 이벤트 처리를 해야한다.
+						//content(상세보기) 이벤트
+						$(".hname").click(function (){
+							contentAjax($(this).attr("id"),page);
+						});
 
-				}//success
+						$(".auth").click(function (){
+							content2Ajax($(this).attr("id"),page);
+						});
 
-			});//ajax
-	});*/
+						pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
 
+						//페이지 번호 클릭 이벤트 처리
+						jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+							jQuery('.showlabelsm').text('The selected page no: '+e.page);
+
+							AuthAjax(e.page);
+						});
+					}
+				});
+			}
+
+		});
+	}
+
+	function pager(totals, maxSize, pageSize, page){
+		//alert(totals+","+maxSize+","+pageSize+","+page);
+
+		var pager = jQuery('#ampaginationsm').pagination({
+
+			maxSize: maxSize,	    		// max page size
+			totals: totals,	// total pages
+			page: page,		// initial page
+			pageSize: pageSize,			// max number items per page
+
+			// custom labels
+			lastText: '&raquo;&raquo;',
+			firstText: '&laquo;&laquo;',
+			prevText: '&laquo;',
+			nextText: '&raquo;',
+
+			btnSize:'sm'	// 'sm'  or 'lg'
+		});
+	}
+
+	function contentAjax(hid,page){
+
+		$.ajax({
+			url:"/content/"+hid+"/",
+			success :function (hospital){
+
+				let output = '<table class="table">';
+				output += '<tr><th>병원명</th>';
+				output += '<td><input type="text" name="hname" id = "hname" value="'+ hospital.hname +'" disabled> </td></tr>';
+				output += '<tr><th>주소</th>';
+				output += '<td><input type="text" name="loc" id="loc" value="'+ hospital.loc +'" disabled></td></tr>';
+				output += '<tr><th>좌표</th>';
+				output += '<td><input type="text" name="x" id="x" value="'+ hospital.x +'" placeholder="위도" disabled>';
+				output += '<input type="text" name="y" id="y" value="'+ hospital.y +'" placeholder="경도" disabled></td></tr>';
+				output += '<tr><th>지역구</th>';
+				output += '<td><input type="text" name="gloc" id="gloc" value="'+ hospital.gloc +'" disabled></td></tr>';
+				output += '<tr><th>전화번호</th>';
+				output += '<td><input type="text" name="tel" id="tel" value="'+ hospital.tel +'" disabled></td></tr>';
+				output += '<tr><th>영업시간</th>';
+				output += '<td><input type="text" name="htime" id="htime" placeholder="영업시간 : 00:00 ~ 00:00" value="'+ hospital.htime +'" disabled></td></tr>';
+				output += '<tr><th>특수동물 진료 여부</th>';
+				output += '<td><input type="text" name="animal" id="animal" placeholder="O / X " value="'+ hospital.animal +'" disabled> </td></tr>';
+				output += '<tr><th>야간 근무 여부</th>';
+				output += '<td><input type="text" name="ntime" id="ntime" placeholder="O / X " value="'+ hospital.ntime +'" disabled> </td></tr>';
+				output += '<tr><th>공휴일 진료 여부</th>';
+				output += '<td><input type="text" name="holiday" id="holiday" placeholder="O / X " value="'+ hospital.holiday +'" disabled> </td></tr>';
+				output += '<tr><th>홈페이지 링크</th>';
+				output += '<td><input type="text" name="hrink" id="hrink" placeholder="O / X " value="'+ hospital.hrink +'" disabled> </td></tr>';
+				output += '<tr><th>강조사항(선택)</th>';
+				output += '<td><textarea name="intro" id="intro" value="'+ hospital.intro +'" disabled></textarea></td></tr>';
+
+				output += '<tr><th>파일 업로드</th>';
+				output += '<td colspan ="2">';
+				output += '<input type="hidden" name="hfile1" value="'+ hospital.hfile1 +'">';
+				output += '<input type="hidden" name="hfile2" value="'+ hospital.hfile2 +'">';
+				output += '<input type="file" name="files" id ="files" disabled>';
+
+				output += '<c:when test="hospital.hfile1 != null">';
+				output += '<span id="update_file1">' + hospital.hfile1 + '</span>';
+				output += '</c:when>';
+				output += '<c:otherwise>';
+				output += '<span id="update_file1"></span>';
+				output += '</c:otherwise>';
+				output += '</c:choose>';
+
+				output += '<input type="file" name="files" id ="files2" disabled>';
+				output += '<c:choose>';
+				output += '<c:when test="hospital.hfile2 != null">';
+				output += '<span id="update_file2">' + hospital.hfile1 + '</span>';
+				output += '</c:when>';
+				output += '<c:otherwise>';
+				output += '<span id="update_file2"></span>';
+				output += '</c:otherwise>';
+				output += '</c:choose>';
+				output += '</td></tr>';
+
+				output += '<tr><td colspan="2"> ';
+				output += '<a href="/admin/hospital_update/' + page + '/' + hospital.hid + '/">';
+				output += '<button type="button" class="button5" id="btn_content">수정하기</button>';
+				output += '</a>';
+				output += '<a href="/admin/hospital_delete/' + page + '/' + hospital.hid + '/">';
+				output += '<button type="button" class="button5" id="btn_delete">삭제하기</button>';
+				output += '</a>';
+				output += '</td></tr></table>';
+
+				//output을 출력
+				$(".table").remove();
+				$("#div5").remove();
+				$("#section1").after(output);
+
+			}//success
+		});
+
+	}
+
+	function content2Ajax(hid,page){
+
+		$.ajax({
+			url:"/content2/"+hid+"/",
+			success :function (hospital){
+
+				let output = '<table class="table">';
+				output += '<tr><th>병원명</th>';
+				output += '<td><input type="text" name="hname" id = "hname" value="'+ hospital.hname +'" disabled> </td></tr>';
+				output += '<tr><th>주소</th>';
+				output += '<td><input type="text" name="loc" id="loc" value="'+ hospital.loc +'" disabled></td></tr>';
+				output += '<tr><th>좌표</th>';
+				output += '<td><input type="text" name="x" id="x" value="'+ hospital.x +'" placeholder="위도" disabled>';
+				output += '<input type="text" name="y" id="y" value="'+ hospital.y +'" placeholder="경도" disabled></td></tr>';
+				output += '<tr><th>지역구</th>';
+				output += '<td><input type="text" name="gloc" id="gloc" value="'+ hospital.gloc +'" disabled></td></tr>';
+				output += '<tr><th>전화번호</th>';
+				output += '<td><input type="text" name="tel" id="tel" value="'+ hospital.tel +'" disabled></td></tr>';
+				output += '<tr><th>영업시간</th>';
+				output += '<td><input type="text" name="htime" id="htime" placeholder="영업시간 : 00:00 ~ 00:00" value="'+ hospital.htime +'" disabled></td></tr>';
+				output += '<tr><th>특수동물 진료 여부</th>';
+				output += '<td><input type="text" name="animal" id="animal" placeholder="O / X " value="'+ hospital.animal +'" disabled> </td></tr>';
+				output += '<tr><th>야간 근무 여부</th>';
+				output += '<td><input type="text" name="ntime" id="ntime" placeholder="O / X " value="'+ hospital.ntime +'" disabled> </td></tr>';
+				output += '<tr><th>공휴일 진료 여부</th>';
+				output += '<td><input type="text" name="holiday" id="holiday" placeholder="O / X " value="'+ hospital.holiday +'" disabled> </td></tr>';
+				output += '<tr><th>홈페이지 링크</th>';
+				output += '<td><input type="text" name="hrink" id="hrink" placeholder="O / X " value="'+ hospital.hrink +'" disabled> </td></tr>';
+
+				output += '<tr><th>승인 여부</th><td><c:choose>';
+				output += '<c:when test="${hospital.auth == \'auth\'}">';
+				output += '<input type="text" name="auth" id="auth" value="승인"></c:when>';
+				output += '<c:when test="${hospital.auth == \'r1\'}">';
+				output += '<input type="text" name="auth" id="auth" value="승인거부"></c:when>';
+				output += '<c:when test="${hospital.auth == \'r2\'}">';
+				output += '<input type="text" name="auth" id="auth" value="승인거부"></c:when>';
+				output += '<c:when test="${hospital.auth == \'r3\'}">';
+				output += '<input type="text" name="auth" id="auth" value="승인거부"></c:when>';
+				output += '<c:when test="${hospital.auth == \'r4\'}">';
+				output += '<input type="text" name="auth" id="auth" value="승인거부"></c:when>';
+				output += '<c:when test="${hospital.auth == \'r5\'}">';
+				output += '<input type="text" name="auth" id="auth" value="승인거부"></c:when>';
+				output += '<c:otherwise><input type="text" name="auth" id="auth" value="미승인">';
+				output += '</c:otherwise></c:choose></td></tr>';
+
+				output += '<tr><th>강조사항(선택)</th>';
+				output += '<td><textarea name="intro" id="intro" value="'+ hospital.intro +'" disabled></textarea></td></tr>';
+
+				output += '<tr><th>파일 업로드</th>';
+				output += '<td colspan ="2">';
+				output += '<input type="hidden" name="hfile1" value="'+ hospital.hfile1 +'">';
+				output += '<input type="hidden" name="hfile2" value="'+ hospital.hfile2 +'">';
+				output += '<input type="file" name="files" id ="files" disabled>';
+
+				output += '<c:when test="hospital.hfile1 != null">';
+				output += '<span id="update_file1">' + hospital.hfile1 + '</span>';
+				output += '</c:when>';
+				output += '<c:otherwise>';
+				output += '<span id="update_file1"></span>';
+				output += '</c:otherwise>';
+				output += '</c:choose>';
+
+				output += '<input type="file" name="files" id ="files2" disabled>';
+				output += '<c:choose>';
+				output += '<c:when test="hospital.hfile2 != null">';
+				output += '<span id="update_file2">' + hospital.hfile1 + '</span>';
+				output += '</c:when>';
+				output += '<c:otherwise>';
+				output += '<span id="update_file2"></span>';
+				output += '</c:otherwise>';
+				output += '</c:choose>';
+				output += '</td></tr>';
+
+				output += '<tr><td colspan="2"> ';
+				output += '<a href="/admin/hospital_update/' + page + '/' + hospital.hid + '/">';
+				output += '<button type="button" class="button5" id="btn_content">수정하기</button>';
+				output += '</a>';
+				output += '<a href="/admin/hospital_delete/' + page + '/' + hospital.hid + '/">';
+				output += '<button type="button" class="button5" id="btn_delete">삭제하기</button>';
+				output += '</a>';
+				output += '</td></tr></table>';
+
+				//output을 출력
+				$(".table").remove();
+				$("#div5").remove();
+				$("#section1").after(output);
+
+			}//success
+		});
+
+	}
 
 	/*************************
 	 * 병원 - 검색창 변환
