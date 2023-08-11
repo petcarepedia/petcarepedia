@@ -169,5 +169,5 @@
 	<select id = "Myscount" parameterType="com.project.petcarepedia.dto.PageDto" resultType = "int">
 		select count(*) from pcp_review where mid = #{mid}
 	</select>
-	
+
 </mapper>

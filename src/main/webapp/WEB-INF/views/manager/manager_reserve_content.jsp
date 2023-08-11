@@ -12,6 +12,30 @@
 	<script src="http://localhost:9000/js/manager_reserve_list.js"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 예약 관리</title>
+	<script>
+		$(document).ready(function(){
+			var pager = jQuery('#ampaginationsm').pagination({
+
+				maxSize: '${page.pageCount}', // max page size
+				totals: '${page.dbCount}',	// total pages
+				page: '${page.reqPage}', // initial page
+				pageSize: '${page.pageSize}', // max number items per page
+
+				// custom labels
+				lastText: '&raquo;&raquo;',
+				firstText: '&laquo;&laquo;',
+				prevText: '&laquo;',
+				nextText: '&raquo;',
+
+				btnSize:'sm'	// 'sm'  or 'lg'
+			});
+
+			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+				jQuery('.showlabelsm').text('The selected page no: '+e.page);
+				$(location).attr('href', "http://localhost:9000/manager_reserve_content/"+e.page+"/");
+			});
+		});
+	</script>
 </head>
 <body>
 <!-- header -->
@@ -39,20 +63,20 @@
 			<section id="section3">
 				<div class="infoBox">
 					<div id="profileBox">
-						<img src = "http://localhost:9000/upload/1.png/" id="profile">
+						<img src = "http://localhost:9000/upload/${member.msfile}/" id="profile">
 					</div>
 
 					<div id="info">
-						<p>hong</p>
+						<p>${member.mid}</p>
 
 						<div id="infoName">
-							<span>이름 : 홍길동</span>
-							<span>생년월일 : 2023-06-13</span>
+							<span>이름 : ${member.name}</span>
+							<span>생년월일 : ${member.birth}</span>
 						</div>
 
 						<div id="infoProfile">
-							<span>휴대폰 : 010-1234-1234</span>
-							<span>이메일 : test@naver.com</span>
+							<span>휴대폰 : ${member.phone}</span>
+							<span>이메일 : ${member.email}</span>
 						</div>
 					</div>
 				</div>
@@ -69,13 +93,13 @@
 
 
 					<div class="visitDate">
-						<span>날짜 : 2023-09-09</span>
-						<span>시간 : 18:00</span>
+						<span>날짜 : ${booking.vdate}</span>
+						<span>시간 : ${booking.vtime}</span>
 					</div>
 
 					<div class="reserveDate">
 						<span></span>
-						<span>접수일 : 2023-09-01</span>
+						<span>접수일 : ${booking.bdate}</span>
 					</div>
 
 					<div class="change">
@@ -89,23 +113,26 @@
 			<hr class="bar">
 
 			<section id="section5">
-				<table class="reserve_table">
-				<tr>
-					<th>번호</th>
-					<th>전화번호</th>
-					<th>예약일</th>
-					<th>예약시간</th>
-					<th>상태</th>
-				</tr>
-				<%--<c:forEach var="booking" items="${list}">
+				<table class="booking_table">
 					<tr>
-						<td>${booking.rno}</td>
-						<td>${booking.phone}</td>
-						<td>${booking.vdate}</td>
-						<td>${booking.vtime}</td>
-						<td class="state">${booking.bstate}</td>
+						<th>번호</th>
+						<th>예약일</th>
+						<th>예약시간</th>
+						<th>상태</th>
 					</tr>
-				</c:forEach>--%>
+
+					<c:forEach var="list" items="${list}">
+						<tr>
+							<td>${list.rno}</td>
+							<td>${list.vdate}</td>
+							<td>${list.vtime}</td>
+							<td class="state">${list.bstate}</td>
+						</tr>
+					</c:forEach>
+
+					<tr>
+						<td colspan="4"><div id="ampaginationsm"></div></td>
+					</tr>
 				</table>
 			</section>
 		</section>

@@ -1,10 +1,9 @@
 package com.project.petcarepedia.controller;
 
-import com.project.petcarepedia.dto.HospitalDto;
-import com.project.petcarepedia.dto.PageDto;
-import com.project.petcarepedia.dto.SessionDto;
+import com.project.petcarepedia.dto.*;
 import com.project.petcarepedia.service.BookingService;
 import com.project.petcarepedia.service.HospitalService;
+import com.project.petcarepedia.service.MemberService;
 import com.project.petcarepedia.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.awt.print.Book;
+import java.util.List;
 
 @Controller
 public class ManagerReserveController {
@@ -22,6 +23,8 @@ public class ManagerReserveController {
     BookingService bookingService;
     @Autowired
     HospitalService hospitalService;
+    @Autowired
+    MemberService memberService;
 
     /* 병원 관리 예약 하기 - 회원 아이디 검색 */
     @GetMapping("manager_reserve_msearch/{page}/{mid}")
@@ -70,9 +73,23 @@ public class ManagerReserveController {
     }
 
     /*병원 관리 예약하기 - 상세보기*/
-    @GetMapping("manager_reserve_content")
-    public String reserve_content(Model model){
-        return "manager_reserve_content";
+    @GetMapping("manager_reserve_content/{page}/{bid}/{mid}")
+    public String manager_reserve_content(HttpSession session, @PathVariable String page, @PathVariable String bid, @PathVariable String mid, Model model){
+        SessionDto svo =  (SessionDto) session.getAttribute("svo");
+        PageDto pageDto = new PageDto(page, "manager_reserve_mid");
+        pageDto.setMid(mid);
+        pageDto = pageService.getPageResult(pageDto);
+
+        MemberDto member = memberService.content(mid);
+        BookingDto booking = bookingService.nowBooking(bid);
+        List<BookingDto> list = bookingService.bookingList(pageDto);
+
+        model.addAttribute("member", member);
+        model.addAttribute("booking", booking);
+        model.addAttribute("list", list);
+        model.addAttribute("page", pageDto);
+
+        return "manager/manager_reserve_content";
     }
 
 

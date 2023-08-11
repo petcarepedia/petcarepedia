@@ -95,5 +95,11 @@ public class BookingService {
     public List<BookingDto> HBlist4(PageDto pageDto) {return bookingMapper.HBlist4(pageDto);}
     public List<BookingDto> HBslist(PageDto pageDto){return bookingMapper.HBslist(pageDto);}
 
+    public BookingDto nowBooking(String bid) {
+        return bookingMapper.nowBooking(bid);
+    }
 
+    public List<BookingDto> bookingList(PageDto pageDto) {
+        return bookingMapper.bookingList(pageDto);
+    }
 }

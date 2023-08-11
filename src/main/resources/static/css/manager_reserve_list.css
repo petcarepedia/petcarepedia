@@ -213,6 +213,7 @@ select.filter option {
     padding: 8px 10px;
     text-align: left;
     text-decoration: none;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -239,6 +240,11 @@ select.filter option {
 
 .reserve_table tr:last-child td {
     border:1px solid white;
+}
+
+.reserve_table td:last-child {
+    color: red;
+    font-weight: bold;
 }
 
 
@@ -365,11 +371,46 @@ select.filter option {
 /****************************
     section5
 *****************************/
-#section5 .reserve_table {
+#section5 .booking_table {
     margin-bottom: 40px;
 }
 
+/*** table ***/
 
+.booking_table {
+    border: 1px solid #FFB3BD;
+    border-collapse: collapse;
+    border-radius: 5px;
+    table-layout: fixed;
+    width: 777px;
+    height: 10px;
+    margin-left: 200px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.booking_table th, .booking_table td {
+    border: 1px solid #FFB3BD;
+    padding: 5px 0;
+}
+
+.booking_table th {
+    background: #FFB3BD;
+}
+
+.booking_table tr th:nth-child(1) {
+    width: 80px;
+}
+
+.booking_table tr:last-child td {
+    border:1px solid white;
+}
+
+.booking_table td:last-child {
+    color: red;
+    font-weight: bold;
+}
 
 /****************************
     pagination
