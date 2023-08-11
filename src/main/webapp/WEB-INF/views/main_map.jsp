@@ -138,7 +138,7 @@ $(document).ready(function(){
 	<div class="main-map">
 		<div class="sub">
 			<p>가까운 병원 빠르게 찾고 싶다면? <span>지역구별 병원 검색</span></p>
-			<a href="http://localhost:9000/search_main">검색페이지 전체보기 ></a>
+			<a href="http://localhost:9000/search_main/">검색페이지 전체보기 ></a>
 		</div>
 		
 		<div class="map-content">

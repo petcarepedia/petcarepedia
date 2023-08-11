@@ -15,7 +15,7 @@
 	<div class="main-review">
 		<div class="sub">
 			<p>신뢰도 검증! <span>사용자 추천 리뷰</span></p>
-			<a href="http://localhost:9000/review_main">더 많은 리뷰 보러가기 ></a>
+			<a href="http://localhost:9000/review_main/서울전체/1">더 많은 리뷰 보러가기 ></a>
 		</div>
 		<div class="slide">
 			<c:choose>
