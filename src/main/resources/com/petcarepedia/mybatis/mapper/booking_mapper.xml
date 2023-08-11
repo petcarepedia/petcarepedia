@@ -146,6 +146,39 @@
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
+	<!--예약상태 필터-->
+	<select id="HBlist2" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+		FROM (SELECT ROWNUM RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+			  FROM (SELECT B.BID, B.BDATE, B.BSTATE, B.VDATE, B.VTIME, B.HID, M.MID, M.NAME, M.PHONE
+					FROM PCP_BOOKING B, PCP_MEMBER M WHERE M.MID = B.MID AND B.HID=#{hid}
+					ORDER BY BDATE DESC)
+			  WHERE BSTATE='예약중')
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+
+	<select id="HBlist3" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+		FROM (SELECT ROWNUM RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+			  FROM (SELECT B.BID, B.BDATE, B.BSTATE, B.VDATE, B.VTIME, B.HID, M.MID, M.NAME, M.PHONE
+					FROM PCP_BOOKING B, PCP_MEMBER M WHERE M.MID = B.MID AND B.HID=#{hid}
+					ORDER BY BDATE DESC)
+			  WHERE BSTATE='예약취소')
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+
+	<select id="HBlist4" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
+		SELECT RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+		FROM (SELECT ROWNUM RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
+			  FROM (SELECT B.BID, B.BDATE, B.BSTATE, B.VDATE, B.VTIME, B.HID, M.MID, M.NAME, M.PHONE
+					FROM PCP_BOOKING B, PCP_MEMBER M WHERE M.MID = B.MID AND B.HID=#{hid}
+					ORDER BY BDATE DESC)
+			  WHERE BSTATE='진료완료')
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
 	<select id="HBslist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
 		SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM
 			(SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM

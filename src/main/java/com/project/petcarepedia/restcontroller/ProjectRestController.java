@@ -275,6 +275,54 @@ public class ProjectRestController {
         return map;
     }
 
+    /* 예약 관리 게시판_필터 */
+    @GetMapping("manager_reserve_list/{page}/{filter}")
+    public Map manager_reserve_list(@PathVariable String page, @PathVariable String filter, HttpSession session){
+        Map map = new HashMap();
+        List<BookingDto> list = new ArrayList<>();
+        PageDto pageDto = new PageDto(page, null);
+        SessionDto svo =  (SessionDto) session.getAttribute("svo");
+
+        HospitalDto mh = hospitalService.selectMh(svo.getMid());
+        String hid = "";
+        if(mh != null) { // 병원 등록 시
+            hid = mh.getHid();
+        } else { // 병원 미등록 시
+            hid = "H_0000";
+        }
+
+        if(filter.equals("basic")) {
+            pageDto = new PageDto(page, "manager_reserve");
+            pageDto.setHid(hid);
+            pageDto = pageService.getPageResult(pageDto);
+            list = bookingService.HBlist(pageDto);
+        } else if(filter.equals("all")) {
+            pageDto = new PageDto(page, "manager_reserve");
+            pageDto.setHid(hid);
+            pageDto = pageService.getPageResult(pageDto);
+            list = bookingService.HBlist(pageDto);
+        } else if(filter.equals("booking")){
+            pageDto = new PageDto(page, "manager_reserve_booking");
+            pageDto.setHid(hid);
+            pageDto = pageService.getPageResult(pageDto);
+            list = bookingService.HBlist2(pageDto);
+        } else if(filter.equals("cancel")) {
+            pageDto = new PageDto(page, "manager_reserve_cancel");
+            pageDto.setHid(hid);
+            pageDto = pageService.getPageResult(pageDto);
+            list = bookingService.HBlist3(pageDto);
+        } else if(filter.equals("completed")) {
+            pageDto = new PageDto(page, "manager_reserve_completed");
+            pageDto.setHid(hid);
+            pageDto = pageService.getPageResult(pageDto);
+            list = bookingService.HBlist4(pageDto);
+        }
+
+        map.put("list", list);
+        map.put("page", pageDto);
+
+        return map;
+    }
 
     /**
      * splist_data
