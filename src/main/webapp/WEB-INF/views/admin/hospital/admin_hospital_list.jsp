@@ -101,8 +101,8 @@
 					</tr>
 					<tr>
 						<td colspan="5" >
-							<select id="authList">
-								<option id="list" value="list" selected> 전체 </option>
+							<select id="authList" >
+								<option id="list" value="list" > 전체 </option>
 								<option id ="auth" value="auth"> 승인</option>
 								<option id="unauth" value="unauth"> 미승인</option>
 							</select>

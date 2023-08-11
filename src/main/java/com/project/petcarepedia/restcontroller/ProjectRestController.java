@@ -37,34 +37,68 @@ public class ProjectRestController {
     @Autowired
     PageService pageService;
 
-    /* 기본 정렬 */
+    /*@GetMapping("cancel")
+    public String cancelProc(@RequestParam("bid") String bid) {
+        int result = bookingService.cancel(bid);
+        if(result == 1) {
+            return "success";
+        } else {
+            return "fail";
+        }
+    }*/
+
+    /*@GetMapping("booking_update")
+    public String booking_update() {
+        bookingService.bookingUpdate();
+        return "manager/manager_reserve_list";
+    }*/
+
+    /* 병원 승인 여부 상세보기 */
+    @GetMapping("content2/{hid}/")
+    public HospitalDto content2(@PathVariable String hid){
+        return hospitalService.content(hid);
+    }
+
+    /* 병원 상세보기 */
+    @GetMapping("content/{hid}")
+    public HospitalDto content(@PathVariable String hid){
+        return hospitalService.content(hid);
+    }
+
+    /* 병원 기본 정렬 */
     @GetMapping("list/{page}")
-    public Map list(PageDto pageDto) {
+    public Map list(@PathVariable String page) {
         Map map = new HashMap();
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_list"));
+
         map.put("list", hospitalService.Hlist(pageDto));
-
+        map.put("page", pageDto);
         return map;
     }
 
-    /* 미승인 정렬 */
+    /* 병원 미승인 정렬 */
     @GetMapping("unauth/{page}")
-    public Map unauth(PageDto pageDto) {
+    public Map unauth(@PathVariable String page) {
         Map map = new HashMap();
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_unAuth"));
+
         map.put("list", hospitalService.unAuthList(pageDto));
-
+        map.put("page", pageDto);
         return map;
     }
 
-    /* 승인 정렬 */
+    /* 병원 승인 정렬 */
     @GetMapping("auth/{page}")
-    public Map auth(PageDto pageDto) {
+    public Map auth(@PathVariable String page) {
         Map map = new HashMap();
-        map.put("list", hospitalService.AuthList(pageDto));
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_auth"));
 
+        map.put("list", hospitalService.AuthList(pageDto));
+        map.put("page", pageDto);
         return map;
     }
 
-    /* 승인 거부 사유 중복 체크 */
+    /* 승인 거부 사유 */
     @GetMapping("reject_reson/{hid}/{auth}")
     public String reject_reson(HospitalDto hospitalDto){
         // 신고 거부 중복 체크
@@ -268,8 +302,6 @@ public class ProjectRestController {
 
         }
 
-        System.out.println(list);
-
         map.put("list", list);
         map.put("page", pageDto);
         return map;
@@ -382,6 +414,7 @@ public class ProjectRestController {
                 HospitalDto mh = hospitalService.selectMh(memberDto.getMid());
                 if(mh != null) {
                     sessionDto.setHid(mh.getHid());
+                    //bookingService.bookingUpdate();
                     map.put("mhid", sessionDto.getHid());
                 }
 
