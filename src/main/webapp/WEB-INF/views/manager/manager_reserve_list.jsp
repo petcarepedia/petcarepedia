@@ -94,6 +94,8 @@
 					</button>
 				</div>
 
+				<button class="bookingChange">예약상태 새로고침</button>
+
 				<select name="filter" id="filter" class="filter">
 					<option value="basic" selected>예약 상태</option>
 					<option value="all">전체보기</option>
