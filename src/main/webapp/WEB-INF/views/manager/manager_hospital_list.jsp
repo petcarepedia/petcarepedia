@@ -33,7 +33,7 @@
 						<ul>
 							<li style = "color: #ffb3bd; border-color: #ffb3bd">마이페이지</li>
 							<li><a href = "/manager_hospital_list" style = "font-weight:bold;">병원 정보 관리</a></li>
-							<li><a href = "/manager_reserve_list/1/${sessionScope.svo.hid}" style = "font-weight:500;">예약 관리</a></li>
+							<li><a href = "/manager_reserve_list/1/" style = "font-weight:500;">예약 관리</a></li>
 							<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
 							<li><a href = "/manager_information">회원 정보</a></li>
 							<li><a href = "/mypage_signout">회원 탈퇴</a></li>

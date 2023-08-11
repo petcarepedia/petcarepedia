@@ -20,67 +20,64 @@ public class PageService {
         String hid = "";
         String hname = "";
         String mid= "";
+        String serviceName = pageDto.getServiceName();
         //페이징 처리 - startCount, endCount 구하기
         int startCount = 0;
         int endCount = 0;
-        int pageSize = 5;	//한페이지당 게시물 수
+        int pageSize = 10;	//한페이지당 게시물 수
         int reqPage = 1;	//요청페이지
         int pageCount = 1;	//전체 페이지 수
         int dbCount = 0;	//DB에서 가져온 전체 행수
 
-        if(pageDto.getServiceName().equals("my_review")) {
+        if(serviceName.equals("my_review")) {
             pageSize = 3;
             dbCount = pageMapper.Myscount(pageDto);
-        }else if(pageDto.getServiceName().equals("review")) {
+            mid = pageDto.getMid();
+        }else if(serviceName.equals("review")) {
             pageSize = 7;
             dbCount = reviewMapper.count();
-        }else if(pageDto.getServiceName().equals("reviewSearch")) {
+        }else if(serviceName.equals("reviewSearch")) {
             pageSize = 7;
             gloc = pageDto.getGloc();
             dbCount = reviewMapper.searchCount(pageDto.getGloc());
-        }else if(pageDto.getServiceName().equals("notice")) {
-            pageSize = 10;
+        }else if(serviceName.equals("notice")) {
             dbCount = noticeService.count();
-        }else if(pageDto.getServiceName().equals("best_review")) {
+        }else if(serviceName.equals("best_review")) {
             pageSize = 3;
             dbCount = pageMapper.Rcount();
             if(dbCount>9) dbCount=9;
-        }else if(pageDto.getServiceName().equals("hospital")) {
-            pageSize = 10;
+        }else if(serviceName.equals("hospital")) {
             dbCount = pageMapper.Hcount();
-        }else if(pageDto.getServiceName().equals("member")) {
-            pageSize = 10;
+        }else if(serviceName.equals("member")) {
             dbCount = pageMapper.Mcount();
-        }else if(pageDto.getServiceName().equals("review_report")){
-            pageSize=10;
+        }else if(serviceName.equals("review_report")){
             dbCount= pageMapper.RRcount();
-        }else if(pageDto.getServiceName().equals("manager_review")) {
-            pageSize = 10;
+        }else if(serviceName.equals("manager_review")) {
             dbCount = pageMapper.MRcount(pageDto);
             hid = pageDto.getHid();
-        } else if(pageDto.getServiceName().equals("manager_review_report")) {
-            pageSize = 10;
+        } else if(serviceName.equals("manager_review_report")) {
             dbCount = pageMapper.MRScount(pageDto);
             hid = pageDto.getHid();
-        }else if(pageDto.getServiceName().equals("member_mid")) {
-            pageSize = 10;
+        }else if(serviceName.equals("member_mid")) {
             dbCount = pageMapper.Mscount(pageDto);
             mid = pageDto.getMid();
-        }else if(pageDto.getServiceName().equals("reserve")){
-            pageSize = 10;
+        }else if(serviceName.equals("reserve")){
             dbCount = pageMapper.Bcount();
-        } else if (pageDto.getServiceName().equals("booking_mid")) {
-            pageSize = 10;
+        } else if (serviceName.equals("booking_mid")) {
             dbCount = pageMapper.Bscount(pageDto);
             mid = pageDto.getMid();
-        }else if(pageDto.getServiceName().equals("hospital_hname")) {
-            pageSize = 10;
+        }else if(serviceName.equals("hospital_hname")) {
             dbCount = pageMapper.Hscount(pageDto);
             hname = pageDto.getHname();
-        }else if(pageDto.getServiceName().equals("hospital_gloc")) {
-            pageSize = 10;
+        }else if(serviceName.equals("hospital_gloc")) {
             dbCount = pageMapper.Hscount2(pageDto);
             gloc = pageDto.getGloc();
+        }else if(serviceName.equals("manager_reserve")){
+            dbCount = pageMapper.HBcount(pageDto);
+            hid = pageDto.getHid();
+        }else if(serviceName.equals("manager_reserve_search")){
+            dbCount = pageMapper.HBscount(pageDto);
+            hid = pageDto.getHid();
         }
 
         //총 페이지 수 계산
