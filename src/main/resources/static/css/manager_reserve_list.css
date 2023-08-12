@@ -354,20 +354,28 @@ select.filter option {
 }
 
 .visitDate span {
-    font-size: 16px;
+    height: 20px;
     font-weight: bold;
 }
 
 .reserveDate {
     display: flex;
     flex-direction: column;
-    margin-top: 12px;
-    margin-left: 50px;
+    padding-left: 40px;
+}
+
+.reserveDate span {
+    height: 20px;
 }
 
 .change {
     display: flex;
     flex-direction: column;
+    padding-left: 40px;
+}
+
+.change button:nth-child(1) {
+    margin-bottom: 10px;
 }
 
 .stateBtn {
@@ -378,7 +386,6 @@ select.filter option {
     width: 100px;
     height: 35px;
     cursor: pointer;
-    margin-bottom: 5px;
     margin-left: 20px;
 }
 
