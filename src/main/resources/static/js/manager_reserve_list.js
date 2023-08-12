@@ -1,22 +1,16 @@
 $(document).ready(function() {
+    // 0: 전체보기 // 1: 새로고침
+    var bookingFlag = 1;
     /**********************************
-      병원 관리자 예약 - 회원 아이디 검색창
+     병원 관리자 예약 - 회원 아이디 검색창
      ***********************************/
-    $("#Hreserve_btn").click(function () {
-        if($("#Hreserve_bar").val() ==""){
-            Swal.fire({
-                icon: 'warning',                         // Alert 타입
-                title: '회원아이디를 입력해주세요',  		// Alert 내용
-
-                confirmButtonColor:'#FFB3BD',
-                confirmButtonText:'확인'
-            });
-            $("#Hreserve_bar").focus();
-            return false;
-        }else{
-            location.href = "http://localhost:9000/manager_reserve_msearch/1/"+ $("#Hreserve_bar").val();
-        }//else
-    });//function
+    $("#Hreserve_btn").click(hreserve);
+    $("#Hreserve_bar").keypress(function(event) {
+        if (event.which === 13) {
+            event.preventDefault();
+            hreserve();
+        }
+    });
 
 
     /**********************************
@@ -33,7 +27,6 @@ $(document).ready(function() {
      ***********************************/
     $('#cancel').click(function () {
         var bid = $('#cancel').val();
-        console.log(bid);
 
         Swal.fire({
             icon: 'warning',
@@ -84,22 +77,106 @@ $(document).ready(function() {
         bookingChange
      ***********************************/
     $('.bookingChange').click(function () {
-        alert("1");
-
-        $.ajax({
-            url: "http://localhost:9000/booking_update",
-            type: "GET",
-            success: function (result) {
-                location.reload();
-            }
-        });
+        if(bookingFlag == 1) {
+            $.ajax({
+                url: "http://localhost:9000/booking_update",
+                type: "GET",
+                success: function (result) {
+                    location.reload();
+                }
+            });
+            bookingFlage = 1;
+        } else if (bookingFlag == 0) {
+            window.location.href = "http://localhost:9000/manager_review_list/1/";
+        }
     });
-
 
 
     /**********************************
                     함수
      ***********************************/
+    /* 아이디검색 */
+    function hreserve() {
+        if ($("#Hreserve_bar").val() === "") {
+            Swal.fire({
+                icon: 'warning',
+                title: '회원아이디를 입력해주세요',
+                confirmButtonColor: '#FFB3BD',
+                confirmButtonText: '확인'
+            });
+        } else {
+            var mid = ($("#Hreserve_bar").val());
+            msearchAjax(1, mid);
+        }
+    }
+
+
+    function msearchAjax(page, mid) {
+        $.ajax({
+            type : 'GET',
+            url: "http://localhost:9000/manager_reserve_msearch/" + page + "/" + mid,
+            dataType : 'json',
+            success: function(result) {
+                var code = "";
+
+                code += '<table class="reserve_table">';
+                code += '<tr><th>번호</th><th>이름</th><th>아이디</th><th>전화번호</th><th>예약일</th><th>예약시간</th><th>상태</th></tr>';
+
+                for (var booking of result.list) {
+                    code += '<tr><td>' + booking.rno + '</td>';
+                    code += '<td>' + booking.name + '</td>';
+                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/' +booking.bid + '/'+ booking.mid + '"> ' + booking.mid + '</a></td>';
+                    code += '<td>' + booking.phone + '</td>';
+                    code += '<td>' + booking.vdate + '</td>';
+                    code += '<td>' + booking.vtime + '</td>';
+                    code += '<td class="state">' + booking.bstate + '</td></tr>';
+                } // for
+
+
+                code += '<tr><td colspan="7">';
+                code += '<div id="ampaginationsm"></div></td></tr></table>';
+
+                $('.reserve_table').remove();
+                $('.bookingChange').text("전체  보기");
+                $('.bookingChange').after(code);
+                $('.filter').remove();
+
+                /*호버 효과*/
+                var allCells = $("td:nth-child(3)");
+
+
+                allCells.on("mouseover", function() {
+                    var el = $(this);
+                    var row = el.closest('tr');
+
+
+                    // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
+                    row.find('td, th').css({ "background": "#FFF2F4"});
+                }).on("mouseout", function() {
+                    var el = $(this);
+                    var row = el.closest('tr');
+
+
+                // 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
+                    row.find('td, th').css({ "background": "", "color": "" });
+                });
+
+                // 페이징 처리 함수 호출
+                pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
+
+                jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+                    jQuery('.showlabelsm').text('The selected page no: '+e.page);
+                    if(mid != null && mid != ""){
+                        msearchAjax(e.page, mid);
+                    }
+                });
+
+
+            } // success: function
+        }); // ajax
+    } // msearch
+
+
     /* 필터 함수 */
     function filterAjax(filter, page) {
         $.ajax({
@@ -116,7 +193,7 @@ $(document).ready(function() {
                 for (var booking of result.list) {
                     code += '<tr><td>' + booking.rno + '</td>';
                     code += '<td>' + booking.name + '</td>';
-                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/'  +booking.bid + '/'+ booking.mid + '"> ' + booking.mid + '</a></td>';
+                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/'  + booking.bid + '/'+ booking.mid + '"> ' + booking.mid + '</a></td>';
                     code += '<td>' + booking.phone + '</td>';
                     code += '<td>' + booking.vdate + '</td>';
                     code += '<td>' + booking.vtime + '</td>';
@@ -161,7 +238,7 @@ $(document).ready(function() {
     /* 페이징 처리 함수 */
     function pager(totals, maxSize, pageSize, page) {
 
-        var pager = jQuery('#ampaginationsm').pagination({
+        jQuery('#ampaginationsm').pagination({
 
             maxSize: maxSize,	    		// max page size
             totals: totals,	// total pages
