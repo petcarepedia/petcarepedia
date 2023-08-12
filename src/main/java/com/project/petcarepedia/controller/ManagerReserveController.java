@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
-import java.awt.print.Book;
 import java.util.List;
 
 @Controller
@@ -27,7 +26,7 @@ public class ManagerReserveController {
     MemberService memberService;
 
     /* 병원 관리 예약 하기 - 회원 아이디 검색 */
-    @GetMapping("manager_reserve_msearch/{page}/{mid}")
+    /*@GetMapping("manager_reserve_msearch/{page}/{mid}")
     public String hospital_reserve_msearch(HttpSession session ,@PathVariable String page, @PathVariable String mid, Model model){
         SessionDto svo =  (SessionDto) session.getAttribute("svo");
 
@@ -48,7 +47,7 @@ public class ManagerReserveController {
         model.addAttribute("page", pageDto);
 
         return "manager/manager_reserve_msearch";
-    }
+    }*/
 
     /* 병원 관리 예약하기 */
     @GetMapping("manager_reserve_list/{page}")
@@ -75,7 +74,7 @@ public class ManagerReserveController {
     /*병원 관리 예약하기 - 상세보기*/
     @GetMapping("manager_reserve_content/{page}/{bid}/{mid}")
     public String manager_reserve_content(HttpSession session, @PathVariable String page, @PathVariable String bid, @PathVariable String mid, Model model){
-        SessionDto svo =  (SessionDto) session.getAttribute("svo");
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
         PageDto pageDto = new PageDto(page, "manager_reserve_mid");
         pageDto.setMid(mid);
         pageDto = pageService.getPageResult(pageDto);
@@ -91,6 +90,7 @@ public class ManagerReserveController {
 
         return "manager/manager_reserve_content";
     }
+
 
 
 }
