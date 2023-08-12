@@ -72,17 +72,29 @@ public class ManagerReserveController {
     }
 
     /*병원 관리 예약하기 - 상세보기*/
-    @GetMapping("manager_reserve_content/{page}/{bid}/{mid}")
-    public String manager_reserve_content(HttpSession session, @PathVariable String page, @PathVariable String bid, @PathVariable String mid, Model model){
+    @GetMapping("manager_reserve_content/{page}/{bid}/{mid}/{paging}")
+    public String manager_reserve_content(HttpSession session, @PathVariable String page, @PathVariable String bid, @PathVariable String mid, @PathVariable String paging, Model model){
         SessionDto svo = (SessionDto) session.getAttribute("svo");
-        PageDto pageDto = new PageDto(page, "manager_reserve_mid");
+
+        HospitalDto mh = hospitalService.selectMh(svo.getMid());
+        String hid = "";
+        if(mh != null) { // 병원 등록 시
+            hid = mh.getHid();
+        } else { // 병원 미등록 시
+            hid = "H_0000";
+        }
+
+        PageDto pageDto = new PageDto(paging, "manager_reserve_mid");
         pageDto.setMid(mid);
+        pageDto.setHid(hid);
         pageDto = pageService.getPageResult(pageDto);
 
         MemberDto member = memberService.content(mid);
         BookingDto booking = bookingService.nowBooking(bid);
         List<BookingDto> list = bookingService.bookingList(pageDto);
 
+
+        model.addAttribute("page", page);
         model.addAttribute("member", member);
         model.addAttribute("booking", booking);
         model.addAttribute("list", list);
