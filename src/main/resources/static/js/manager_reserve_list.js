@@ -125,7 +125,7 @@ $(document).ready(function() {
                 for (var booking of result.list) {
                     code += '<tr><td>' + booking.rno + '</td>';
                     code += '<td>' + booking.name + '</td>';
-                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/' +booking.bid + '/'+ booking.mid + '"> ' + booking.mid + '</a></td>';
+                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/' +booking.bid + '/'+ booking.mid + '/1"> ' + booking.mid + '</a></td>';
                     code += '<td>' + booking.phone + '</td>';
                     code += '<td>' + booking.vdate + '</td>';
                     code += '<td>' + booking.vtime + '</td>';
@@ -193,7 +193,7 @@ $(document).ready(function() {
                 for (var booking of result.list) {
                     code += '<tr><td>' + booking.rno + '</td>';
                     code += '<td>' + booking.name + '</td>';
-                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/'  + booking.bid + '/'+ booking.mid + '"> ' + booking.mid + '</a></td>';
+                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/'  + booking.bid + '/'+ booking.mid + '/1"> ' + booking.mid + '</a></td>';
                     code += '<td>' + booking.phone + '</td>';
                     code += '<td>' + booking.vdate + '</td>';
                     code += '<td>' + booking.vtime + '</td>';
