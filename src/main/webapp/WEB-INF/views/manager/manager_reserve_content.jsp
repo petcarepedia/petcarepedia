@@ -105,7 +105,7 @@
 
 					<div class="change">
 						<c:if test="${booking.bstate eq '예약중'}">
-							<button class="stateBtn" id="change">예약 변경</button>
+							<button class="stateBtn" id="change"><a href="/search_reservation/${booking.hid}">예약 변경</a></button>
 							<button class="stateBtn" id="cancel" value="${booking.bid}">예약 취소</button>
 						</c:if>
 					</div>

@@ -388,6 +388,43 @@ select.filter option {
     cursor: pointer;
     margin-left: 20px;
 }
+/****************************
+    reserveBtn
+*****************************/
+div.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+div.modal-content {
+    /* border: 1px solid red; */
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+    weight: 500px;
+}
+
+div.modal-content span.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+div.modal-content span.close:hover {
+    cursor: pointer;
+}
+
 
 /****************************
     section5
