@@ -74,8 +74,8 @@
 				<table class="table">
 					<tr>
 						<th>번호</th>
-						<th>병원명</th>
 						<th>아이디</th>
+						<th>병원명</th>
 						<th>예약일</th>
 						<th>상태</th>
 					</tr>
@@ -83,7 +83,7 @@
 						<tr>
 					      <td>${booking.rno}</td>
 					      <td>${booking.hname}</td>
-					      <td>${booking.mid}</td>
+							<td><a href="/admin/reserve_detail/1/${booking.bid}/">${booking.mid}</a></td>
 					      <td class="date">${booking.vdate}</td>
 					      <td class="state">${booking.bstate}</td>
 					    </tr>

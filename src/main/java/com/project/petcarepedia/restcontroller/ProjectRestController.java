@@ -99,7 +99,7 @@ public class ProjectRestController {
     @GetMapping("auth/{page}")
     public Map auth(@PathVariable String page) {
         Map map = new HashMap();
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_auth"));
+        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital"));
 
         map.put("list", hospitalService.AuthList(pageDto));
         map.put("page", pageDto);
@@ -107,6 +107,7 @@ public class ProjectRestController {
     }
 
     /* 승인 거부 사유 */
+    /* 승인 거부 사유 중복 체크 */
     @GetMapping("reject_reson/{hid}/{auth}")
     public String reject_reson(HospitalDto hospitalDto){
         // 신고 거부 중복 체크

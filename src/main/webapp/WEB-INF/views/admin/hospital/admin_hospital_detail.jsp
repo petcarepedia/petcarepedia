@@ -85,7 +85,7 @@
 								</tr>
 								<tr>
 									<th>홈페이지 링크</th>
-									<td><input type="text" name="hrink" id="hrink" placeholder="O / X "> </td>
+									<td><input type="text" name="hrink" id="hrink" > </td>
 								</tr>
 								<tr>
 									<th>강조사항(선택)</th>

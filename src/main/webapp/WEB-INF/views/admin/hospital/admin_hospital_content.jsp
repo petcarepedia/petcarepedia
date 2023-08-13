@@ -97,7 +97,7 @@
 												<span id="update_file1">${hospital.hfile1}</span>
 											</c:when>
 											<c:otherwise>
-												<span id="update_file1"></span>
+												<span id="update_file1">선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
 
@@ -107,7 +107,7 @@
 												<span id="update_file2">${hospital.hfile2}</span>
 											</c:when>
 											<c:otherwise>
-												<span id="update_file2"></span>
+												<span id="update_file2">선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
 									</td>
