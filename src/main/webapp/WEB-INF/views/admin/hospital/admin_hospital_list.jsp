@@ -6,10 +6,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin_auth.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
@@ -57,7 +58,7 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	
 	<div class="d1">
-		<section class="hospital">
+
 			<section id = "section1">
 				<div>
 					<nav>
@@ -72,6 +73,7 @@
 					</nav>
 				</div>
 			</section>
+		<section class="hospital">
 			<section id="section2">
 				<div id="d5">
 					<select id="search" name="search">

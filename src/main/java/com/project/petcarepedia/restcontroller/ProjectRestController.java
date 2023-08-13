@@ -53,6 +53,14 @@ public class ProjectRestController {
         return "manager/manager_reserve_list";
     }
 
+    /* 병원 승인 완료 이벤트 처리 */
+    @PostMapping("auth_update/{auth}")
+    public Map auth_update(HospitalDto hospitalDto){
+        Map map = new HashMap();
+        map.put("auth_udpate", hospitalService.authUpdate(hospitalDto));
+        return map;
+    }
+
     /* 병원 승인 여부 상세보기 */
     @GetMapping("content2/{hid}/")
     public HospitalDto content2(@PathVariable String hid){
