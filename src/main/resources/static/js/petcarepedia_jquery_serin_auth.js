@@ -37,10 +37,10 @@ $(document).ready(function(){
 						for(obj of result.list){
 							output += '<tr>';
 							output += '<td>' + obj.rno + '</td>';
-							output += '<td><a href="/admin/hospital_content/"+obj.page +"/"+obj.hid+"/">'+ obj.hname+'</a></td>';
+							output += '<td class="hname"  id="'+obj.hid+'"><a>'+ obj.hname+'</a></td>';
 							output += '<td>' + obj.gloc + '</td>';
 							output += '<td>' + obj.htime + '</td>';
-							output += '<td><a href="/admin/hospital_content2/"+ obj.page+"/"+obj.hid+"/">';
+							output += '<td class ="auth" id="'+obj.hid+'" ><a>';
 
 							output += obj.auth == 'auth' ? '승인' :
 										obj.auth == 'r1' ? '승인거부' :
@@ -62,6 +62,14 @@ $(document).ready(function(){
 						$("table.table").remove();
 						$("#d5").after(output);
 
+						//content(상세보기) 이벤트
+						$(".hname").click(function (){
+							contentAjax($(this).attr("id"),page);
+						});
+
+						$(".auth").click(function (){
+							content2Ajax($(this).attr("id"),page);
+						});
 
 						pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
 
@@ -114,10 +122,10 @@ $(document).ready(function(){
 						for(obj of result.list){
 							output += '<tr>';
 							output += '<td>' + obj.rno + '</td>';
-							output += '<td><a href="/admin/hospital_content/1/"+obj.hid+"/">'+ obj.hname+'</a></td>';
+							output += '<td class="hname"  id="'+obj.hid+'"><a>'+ obj.hname+'</a></td>';
 							output += '<td>' + obj.gloc + '</td>';
 							output += '<td>' + obj.htime + '</td>';
-							output += '<td><a href="/admin/hospital_content/1/"+obj.hid+"/">';
+							output += '<td class ="auth" id="'+obj.hid+'" ><a>';
 
 							output += obj.auth == 'auth' ? '승인' :
 										obj.auth == 'r1' ? '승인거부' :
@@ -139,6 +147,14 @@ $(document).ready(function(){
 						$("table.table").remove();
 						$("#d5").after(output);
 
+						//content(상세보기) 이벤트
+						$(".hname").click(function (){
+							contentAjax($(this).attr("id"),page);
+						});
+
+						$(".auth").click(function (){
+							content2Ajax($(this).attr("id"),page);
+						});
 
 						pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
 
@@ -191,7 +207,7 @@ $(document).ready(function(){
 						for(obj of result.list){
 							output += '<tr>';
 							output += '<td>' + obj.rno + '</td>';
-							output += '<td class="hname"  id="'+obj.hid+'"<a>'+ obj.hname+'</a></td>';
+							output += '<td class="hname"  id="'+obj.hid+'"><a>'+ obj.hname+'</a></td>';
 							output += '<td>' + obj.gloc + '</td>';
 							output += '<td>' + obj.htime + '</td>';
 							output += '<td class ="auth" id="'+obj.hid+'" ><a>';
@@ -216,7 +232,6 @@ $(document).ready(function(){
 						$("table.table").remove();
 						$("#d5").after(output);
 
-						//output을 출력 이후에 이벤트 처리를 해야한다.
 						//content(상세보기) 이벤트
 						$(".hname").click(function (){
 							contentAjax($(this).attr("id"),page);
@@ -242,7 +257,6 @@ $(document).ready(function(){
 	}
 
 	function pager(totals, maxSize, pageSize, page){
-		//alert(totals+","+maxSize+","+pageSize+","+page);
 
 		var pager = jQuery('#ampaginationsm').pagination({
 
@@ -300,21 +314,21 @@ $(document).ready(function(){
 				output += '<input type="hidden" name="hfile2" value="'+ hospital.hfile2 +'">';
 				output += '<input type="file" name="files" id ="files" disabled>';
 
-				output += '<c:when test="hospital.hfile1 != null">';
+				output += '<c:when test="'+hospital.hfile1+' != null">';
 				output += '<span id="update_file1">' + hospital.hfile1 + '</span>';
 				output += '</c:when>';
 				output += '<c:otherwise>';
-				output += '<span id="update_file1"></span>';
+				output += '<span id="update_file1">선택된 파일 없음</span>';
 				output += '</c:otherwise>';
 				output += '</c:choose>';
 
 				output += '<input type="file" name="files" id ="files2" disabled>';
 				output += '<c:choose>';
-				output += '<c:when test="hospital.hfile2 != null">';
-				output += '<span id="update_file2">' + hospital.hfile1 + '</span>';
+				output += '<c:when test="'+ hospital.hfile2 +' != null">';
+				output += '<span id="update_file2">' + hospital.hfile2 + '</span>';
 				output += '</c:when>';
 				output += '<c:otherwise>';
-				output += '<span id="update_file2"></span>';
+				output += '<span id="update_file2">선택된 파일 없음</span>';
 				output += '</c:otherwise>';
 				output += '</c:choose>';
 				output += '</td></tr>';
@@ -333,8 +347,6 @@ $(document).ready(function(){
 				//output을 출력
 				$(".hospital").remove();
 				$("#section1").after(output);
-
-
 
 			}//success
 		});
@@ -393,27 +405,27 @@ $(document).ready(function(){
 				output += '<input type="hidden" name="hfile2" value="'+ hospital.hfile2 +'">';
 				output += '<input type="file" name="files" id ="files" disabled>';
 
-				output += '<c:when test="hospital.hfile1 != null">';
+				output += '<c:when test="'+hospital.hfile1+' != null">';
 				output += '<span id="update_file1">' + hospital.hfile1 + '</span>';
 				output += '</c:when>';
 				output += '<c:otherwise>';
-				output += '<span id="update_file1"></span>';
+				output += '<span id="update_file1">선택된 파일 없음</span>';
 				output += '</c:otherwise>';
 				output += '</c:choose>';
 
 				output += '<input type="file" name="files" id ="files2" disabled>';
 				output += '<c:choose>';
-				output += '<c:when test="hospital.hfile2 != null">';
-				output += '<span id="update_file2">' + hospital.hfile1 + '</span>';
+				output += '<c:when test="'+hospital.hfile2+' != null">';
+				output += '<span id="update_file2">' + hospital.hfile2 + '</span>';
 				output += '</c:when>';
 				output += '<c:otherwise>';
-				output += '<span id="update_file2"></span>';
+				output += '<span id="update_file2">선택된 파일 없음</span>';
 				output += '</c:otherwise>';
 				output += '</c:choose>';
 				output += '</td></tr>';
 
 				output += '<tr><td colspan="2"> ';
-				output += '<button type="submit" class="button5" id="btn_auth">승인 완료</button>';
+				output += '<button type="submit" class="button5" id="btn_auth" value="'+hospital.auth+'">승인 완료</button>';
 				output += '<button type="button" class="button5" id="btn_noAuth">승인 거부</button>';
 				output += '</td></tr></table>';
 				output +='</div>';
@@ -423,32 +435,10 @@ $(document).ready(function(){
 				$(".hospital").remove();
 				$("#section1").after(output);
 
+				$("#btn_auth").click(function (){
+					auth_update($(this).val());
+				});
 
-				$("#btn_auth").click(function(){
-					auth_update($(this).attr("id"));
-
-					Swal.fire({
-						icon: 'warning',
-						title: '승인을 완료하시겠습니까?',
-						showCancelButton: true,
-						confirmButtonColor: '#FFB3BD',
-						cancelButtonColor: '#98DFFF',
-						confirmButtonText: '확인',
-						cancelButtonText: '취소'
-					}).then((result) => {
-						if (result.isConfirmed) {
-							// 확인 버튼을 눌렀을 경우 삭제 처리
-							Swal.fire({
-								icon: 'success',
-								title:'승인이 완료되었습니다.'
-							}).then(() => {
-								document.authForm.submit();
-							});
-							// 폼 전송
-							// 삭제 처리를 위한 코드 작성
-						}
-					});
-				});//click
 
 			}//success
 		});
@@ -456,15 +446,7 @@ $(document).ready(function(){
 	}
 
 	function auth_update(auth){
-		alert(auth);
-		/*$.ajax({
-			url:"/auth_update/"+auth+"/",
-			type:"POST",
-			success :function (hospital){
 
-				output += '" > </td></tr>';
-			}
-		});//ajax*/
 	}
 
 });//ready	

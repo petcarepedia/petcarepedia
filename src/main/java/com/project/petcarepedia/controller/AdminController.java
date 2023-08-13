@@ -84,6 +84,14 @@ public class AdminController {
         return "admin/review/admin_review_list";
     }
 
+    /* 예약 상세 페이지 */
+    @GetMapping("reserve_detail/{page}/{bid}/")
+    public String reserve_detail(@PathVariable String bid, @PathVariable String page, Model model){
+        model.addAttribute("booking", bookingService.content(bid));
+        model.addAttribute("page", page);
+        return "admin/reserve/admin_reserve_detail";
+    }
+
     /* 예약 검색 결과 페이지 */
     @GetMapping("reserve_msearch/{page}/{mid}")
     public String reserve_msearch(@PathVariable String page, @PathVariable String mid, Model model){

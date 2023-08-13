@@ -69,11 +69,11 @@ div.d2 .search_bar{
 	margin-top:1px;
 	margin-left:-3px;
 }
-#update_file1 {
+section#hospital_update #update_file1, section#hospital_update #update_file2 {
 	border:1px solid white;
 	position:relative;
 	right:110px;
-	top:-50px;
+	top: 28px;
 	padding:2px;
 	/* backgruond:white;/* 글자가 겹치기 때문/ 파일 선택 버튼 옆에 생성 */
 	background:white;
@@ -82,13 +82,24 @@ div.d2 .search_bar{
 	font-size:10pt;
 }
 
-#update_file2 {
+.content_table #update_file1 {
 	border:1px solid white;
 	position:relative;
 	right:110px;
-	top:-25px;
+	top: -49px;
 	padding:2px;
-	/* backgruond:white;/* 글자가 겹치기 때문/ 파일 선택 버튼 옆에 생성 */
+	background:white;
+	display:inline-block;
+	width:100px; height:20px;
+	font-size:10pt;
+}
+
+.content_table #update_file2 {
+	border:1px solid white;
+	position:relative;
+	right:110px;
+	top: -24px;
+	padding:2px;
 	background:white;
 	display:inline-block;
 	width:100px; height:20px;
@@ -120,6 +131,7 @@ button >a {
 th{
 	background:#D9D9D9;
 	text-align:center;
+	cursor: pointer;
 }
 tr td:nth-child(1) {
 	width:32px;
@@ -133,15 +145,16 @@ button.button4{
 	padding:5px 15px;
 	margin-right:20px;
 }
-button.button5{
-	padding:10px 30px;
+button.button5{padding:10px 30px;
 	margin:25px 10px;
 }
 
 .d1 .table tr td > a ,
 .d1 .content_table tr td > a {
-	color:#3D3D3D;
-	text-decoration:none;
+	color: #9D9D9D;
+	text-decoration: none;
+	font-weight: 600;
+	cursor: pointer;
 }
 
 .content_table tr:last-child td{
@@ -413,15 +426,17 @@ section.hospital .table tr:nth-child(2) td{
 	border: 1px solid white;
 	border-bottom: 1px solid #3D3D3D;
 }
+section#hospital_update table.table tr td input[type="file"]{
+	padding-top: 20px;
+	margin-top:-20px;
+}
 
-section#hospital_update table.table tr td input[type="file"],
 table.content_table tr td input[type="file"]{
-	padding-top: 10px;
-
+	padding-top: 20px;
 }
 section#hospital_update table.table tr td input[id="files2"],
 table.content_table tr td input[id="files2"]{
-	margin-top:-10px;
+	margin-top: -20px;
 	margin-bottom: -25px;
 }
 
@@ -554,8 +569,7 @@ section#hospital_update table.table tr td button#search_loc{
 	padding-top: 13px;
 }
 
-section#hospital_data table.table tr td input[type="file"],
-table.content_table tr td input[type="file"]{
+section#hospital_data table.table tr td input[type="file"]{
 	margin-top:10px ;
 }
 /*************************************

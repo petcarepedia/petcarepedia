@@ -1,6 +1,69 @@
 $(document).ready(function(){
 
 	/*************************
+	 * 승인 거부 버튼
+	 **************************/
+	$("#btn_noAuth").click(function(){
+		var hid = $(this).data("hid");
+		Swal.fire({
+			icon: 'warning',
+			title: '승인을 거부하시겠습니까?',
+			html: '	 <input type="radio" name="reject" value="r1"/> <span>병원명 중복 또는 부적절<span><br> ' +
+				'<input type="radio" name="reject" value="r2"/> <span >부적절한 주소 및 지역구 불일치<span> <br> ' +
+				'<input type="radio" name="reject" value="r3"/> <span>병원 소개 부적절<span> <br>' +
+				'<input type="radio" name="reject" value="r4"/> <span>병원 이미지 부적절<span> <br>' +
+				'<input type="radio" name="reject" value="r5"/> <span>기타 사유, 문의 바람<span>',
+			showCancelButton: true,
+			confirmButtonColor: '#FFB3BD',
+			cancelButtonColor: '#98DFFF',
+			confirmButtonText: '확인',
+			cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				var auth = $("input[name='reject']:checked").val(); //라디오의 선택된 값을 가져옴
+				if(auth == null){
+					Swal.fire({
+						icon: 'error',
+						title: '승인 거부 사유를 선택해주세요',
+						showConfirmButton: true,
+						confirmButtonColor: '#98DFFF',
+						confirmButtonText: '확인'
+					});
+				}else{
+					$.ajax({
+						url: "/reject_reson/"+hid+"/"+ auth,
+						type: "GET",
+						success:function(result){
+							if (result == "fail") {
+								Swal.fire({
+									icon: 'error',
+									title: '승인 거부된 상태입니다',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							} else if (result == "success") {
+								Swal.fire({
+									icon: 'success',
+									title: '승인 거부가 완료되었습니다',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function () {
+									location.reload();
+								});
+							}
+						}
+					});//ajax
+				}//else
+			}
+		});
+	});
+
+
+	/*************************
 	 * 승인 완료 버튼
 	 **************************/
 	$("#btn_auth").click(function(){

@@ -12,7 +12,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-	<script>
+<%--	<script>
 		$(document).ready(function(){
 			$("#btn_noAuth").click(function(){
 				Swal.fire({
@@ -72,7 +72,7 @@
 				});
 			});
 		});
-	</script>
+	</script>--%>
 
 </head>
 <body>
@@ -208,7 +208,7 @@
 								<tr>
 									<td colspan="2"> 
 										<button type="submit" class="button5" id="btn_auth">승인 완료</button>
-										<button type="button" class="button5" id="btn_noAuth">승인 거부</button>
+										<button type="button" class="button5" id="btn_noAuth" data-hid="${hospital.hid}">승인 거부</button>
 									</td>
 								</tr>
 							</table>
