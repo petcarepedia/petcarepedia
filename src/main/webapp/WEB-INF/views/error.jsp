@@ -29,7 +29,7 @@
 			<p>페이지가 존재하지 않거나, 잘못된 경로를 이용하셨습니다. 🐾
 		</div>
 		
-		<a href="http://localhost:9000/index/"><button class="main_home">메인으로</button></a>
+		<a href="http://localhost:9000"><button class="main_home">메인으로</button></a>
 	</div>
 	
 	<!-- footer -->

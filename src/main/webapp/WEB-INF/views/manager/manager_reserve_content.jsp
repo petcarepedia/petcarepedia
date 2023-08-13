@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="http://localhost:9000/css/manager_reserve_list.css">
+	<script src="https://kit.fontawesome.com/4ed285928f.js" crossorigin="anonymous"></script>
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -32,7 +33,7 @@
 
 			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 				jQuery('.showlabelsm').text('The selected page no: '+e.page);
-				$(location).attr('href', "http://localhost:9000/manager_reserve_content/"+e.page+"/");
+				$(location).attr('href', "http://localhost:9000/manager_reserve_content/${page}/${booking.bid}/${member.mid}/"+ e.page);
 			});
 		});
 	</script>
@@ -103,8 +104,10 @@
 					</div>
 
 					<div class="change">
-						<button class="stateBtn" id="change">예약 변경</button>
-						<button class="stateBtn" id="cancel" value="${booking.bid}">예약 취소</button>
+						<c:if test="${booking.bstate eq '예약중'}">
+							<button class="stateBtn" id="change"><a href="/search_reservation/${booking.hid}">예약 변경</a></button>
+							<button class="stateBtn" id="cancel" value="${booking.bid}">예약 취소</button>
+						</c:if>
 					</div>
 				</div>
 			</section>
