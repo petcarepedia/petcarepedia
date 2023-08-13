@@ -101,7 +101,7 @@
 							<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
 							<input type = "hidden" name = "auth" value = "${hospital.auth}">
 
-							<table class="table">
+							<table class="content_table">
 								<tr>
 									<th>병원명</th>
 									<td><input type="text" name="hname" id = "hname" value="${hospital.hname}" disabled></td>
