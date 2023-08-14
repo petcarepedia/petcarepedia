@@ -448,6 +448,13 @@ div.modal-content span.close:hover {
     font-size: 14px;
 }
 
+.booking_table a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+
+
 .booking_table th, .booking_table td {
     border: 1px solid #FFB3BD;
     padding: 5px 0;

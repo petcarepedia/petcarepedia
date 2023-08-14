@@ -35,6 +35,23 @@
 				jQuery('.showlabelsm').text('The selected page no: '+e.page);
 				$(location).attr('href', "http://localhost:9000/manager_reserve_content/${page}/${booking.bid}/${member.mid}/"+ e.page);
 			});
+
+			/*호버 효과*/
+			var allCells = $("td:nth-child(5)");
+
+			allCells.on("mouseover", function() {
+				var el = $(this);
+				var row = el.closest('tr');
+
+				// 해당 행의 모든 td 요소와 th 요소에 스타일 적용
+				row.find('td, th').css({ "background": "#FFF2F4"});
+			}).on("mouseout", function() {
+				var el = $(this);
+				var row = el.closest('tr');
+
+				// 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
+				row.find('td, th').css({ "background": "", "color": "" });
+			});
 		});
 	</script>
 </head>
@@ -128,21 +145,12 @@
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td>${list.rno}</td>
-							<td>
-								<c:choose>
-									<c:when test="${list.count !=0}">
-										<a href="/manager_reserve_review/${list.bid}">${list.vdate}</a>
-									</c:when>
-									<c:otherwise>
-										${list.vdate}
-									</c:otherwise>
-								</c:choose>
-							</td>
+							<td>${list.vdate}</td>
 							<td>${list.vtime}</td>
 							<td class="state">${list.bstate}</td>
 							<c:choose>
 								<c:when test="${list.count !=0}">
-									<td class="state">O</td>
+									<td class="state"><a href="/manager_reserve_review/${list.bid}">O</a></td>
 								</c:when>
 								<c:otherwise>
 									<td></td>
@@ -152,7 +160,7 @@
 					</c:forEach>
 
 					<tr>
-						<td colspan="4"><div id="ampaginationsm"></div></td>
+						<td colspan="5"><div id="ampaginationsm"></div></td>
 					</tr>
 				</table>
 			</section>
