@@ -515,7 +515,7 @@ div.modal-content span.close:hover {
     padding-top: 47px;
 }
 
-#sectionUnauth.mhbox {
+.mhbox {
     background: #F2F2F2;
     padding: 30px;
     border-radius: 10px;
@@ -523,15 +523,15 @@ div.modal-content span.close:hover {
     display: flex; align-items: center;
 }
 
-#sectionUnauth.unauth {
+.unauth {
     background: #FFF4F6;
 }
 
-#sectionUnauth.mhbox > i {
+.mhbox > i {
     margin-right: 30px;
 }
 
-#sectionUnauth.mhbox > p {
+.mhbox > p {
     font-weight: bold; font-size: 20px;
     color: #3D3D3D;
     flex: 2;
