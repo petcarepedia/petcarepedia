@@ -383,8 +383,8 @@ select.filter option {
     border: none;
     border-radius: 5px;
     font-weight: bold;
-    width: 100px;
-    height: 35px;
+    width: 110px;
+    height: 45px;
     cursor: pointer;
     margin-left: 20px;
 }
