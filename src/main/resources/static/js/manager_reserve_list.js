@@ -20,11 +20,6 @@ $(document).ready(function() {
         var filter = ($('.filter').val());
         filterAjax(filter, 1);
     });
-    
-    /**********************************
-        예약버튼
-     ***********************************/
-
 
     /**********************************
          예약 취소 버튼
@@ -121,24 +116,34 @@ $(document).ready(function() {
             url: "http://localhost:9000/manager_reserve_msearch/" + page + "/" + mid,
             dataType : 'json',
             success: function(result) {
+
                 var code = "";
 
                 code += '<table class="reserve_table">';
                 code += '<tr><th>번호</th><th>이름</th><th>아이디</th><th>전화번호</th><th>예약일</th><th>예약시간</th><th>상태</th></tr>';
 
-                for (var booking of result.list) {
-                    code += '<tr><td>' + booking.rno + '</td>';
-                    code += '<td>' + booking.name + '</td>';
-                    code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/' +booking.bid + '/'+ booking.mid + '/1"> ' + booking.mid + '</a></td>';
-                    code += '<td>' + booking.phone + '</td>';
-                    code += '<td>' + booking.vdate + '</td>';
-                    code += '<td>' + booking.vtime + '</td>';
-                    code += '<td class="state">' + booking.bstate + '</td></tr>';
-                } // for
+                if(result.list.length != 0) {
+                    for (var booking of result.list) {
+                        code += '<tr><td>' + booking.rno + '</td>';
+                        code += '<td>' + booking.name + '</td>';
+                        code += '<td title="' + booking.mid + '"><a href="/manager_reserve_content/' + page + '/' +booking.bid + '/'+ booking.mid + '/1"> ' + booking.mid + '</a></td>';
+                        code += '<td>' + booking.phone + '</td>';
+                        code += '<td>' + booking.vdate + '</td>';
+                        code += '<td>' + booking.vtime + '</td>';
+                        code += '<td class="state">' + booking.bstate + '</td></tr>';
+                    } // for
 
 
-                code += '<tr><td colspan="7">';
-                code += '<div id="ampaginationsm"></div></td></tr></table>';
+                    code += '<tr><td colspan="7">';
+                    code += '<div id="ampaginationsm"></div></td></tr></table>';
+                } else {
+                    code += '<tr><td colspan="7">';
+                    code += '<div class="review_no">';
+                    code += '<div class="review_no_img">';
+                    code += '<img id="review_no_img" src="http://localhost:9000/images/walkingCat.gif"></div>';
+                    code += '<p>검색결과가 없습니다.</p>';
+                    code += '</div></td></tr>';
+                }
 
                 $('.reserve_table').remove();
                 $('.bookingChange').text("전체  보기");
