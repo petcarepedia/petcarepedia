@@ -7,8 +7,8 @@
 <mapper namespace="com.project.petcarepedia.repository.HospitalMapper">
 
 	<select id = "Hslist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,HRINK, ,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
-		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,  IMG, HRINK,gloc , HRINK, hsfile1, hsfile2, auth, htime
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY, IMG, HRINK,gloc , hsfile1, hsfile2, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,  IMG, HRINK,gloc , hsfile1, hsfile2, auth, htime
 			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY,gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime FROM PCP_HOSPITAL
 					where hname like '%'||#{hname}||'%'
 					ORDER BY HID))
@@ -16,9 +16,9 @@
 	</select>
 
 	<select id = "Hslist2" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.HospitalDto">
-		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,IMG, HRINK, gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
-		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,  gloc ,IMG, HRINK, hsfile1, hsfile2, auth, htime
-			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY ,  IMG, HRINK,gloc ,IMG, HRINK, hsfile1, hsfile2, auth , htime FROM PCP_HOSPITAL
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY,IMG, HRINK, gloc ,IMG, hsfile1, hsfile2, auth, htime
+		FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY, gloc,IMG, HRINK, hsfile1, hsfile2, auth, htime
+			  FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY , gloc ,IMG, HRINK, hsfile1, hsfile2, auth , htime FROM PCP_HOSPITAL
 					where gloc like '%'||#{gloc}||'%'
 					ORDER BY HID))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
@@ -124,7 +124,7 @@
 	</update>
 
 	<select id="selectMh" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
-		select hid, hname, loc, gloc, tel, htime, ntime, holiday, animal, intro, img, hrink, x, y, hfile1, hsfile1, hfile2, hsfile2, m.mid, auth
+		select hid, hname, loc, gloc, tel, htime, ntime, holiday, animal, intro, m.img, hrink, x, y, hfile1, hsfile1, hfile2, hsfile2, m.mid, auth
 		from pcp_hospital h, pcp_member m
 		where h.mid = m.mid and m.mid=#{mid}
 	</select>
