@@ -91,4 +91,11 @@ public class ReviewService {
         return reviewMapper.MRRlist(pageDto);
     }
 
+    public ReviewDto bookingReveiw(String bid) {
+        return reviewMapper.bookingReveiw(bid);
+    }
+
+    public int bookingReveiwCount(String bid) {
+        return reviewMapper.bookingReveiwCount(bid);
+    }
 }

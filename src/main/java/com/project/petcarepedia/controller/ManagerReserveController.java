@@ -1,10 +1,7 @@
 package com.project.petcarepedia.controller;
 
 import com.project.petcarepedia.dto.*;
-import com.project.petcarepedia.service.BookingService;
-import com.project.petcarepedia.service.HospitalService;
-import com.project.petcarepedia.service.MemberService;
-import com.project.petcarepedia.service.PageService;
+import com.project.petcarepedia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +21,8 @@ public class ManagerReserveController {
     HospitalService hospitalService;
     @Autowired
     MemberService memberService;
+    @Autowired
+    ReviewService reviewService;
 
     /* 병원 관리 예약 하기 - 회원 아이디 검색 */
     /*@GetMapping("manager_reserve_msearch/{page}/{mid}")
@@ -94,6 +93,14 @@ public class ManagerReserveController {
         List<BookingDto> list = bookingService.bookingList(pageDto);
 
 
+        /* string bid */
+        for(BookingDto bookingCount : list) {
+            String targetbid = bookingCount.getBid();
+            int state = reviewService.bookingReveiwCount(targetbid);
+            bookingCount.setCount(state);
+        }
+
+        model.addAttribute("paging", paging);
         model.addAttribute("page", page);
         model.addAttribute("member", member);
         model.addAttribute("booking", booking);
@@ -103,6 +110,15 @@ public class ManagerReserveController {
         return "manager/manager_reserve_content";
     }
 
+    /*예약상세보기 - 리뷰보기*/
+    @GetMapping("manager_reserve_review/{bid}")
+    public String manager_reserve_review(@PathVariable String bid, Model model){
+        ReviewDto reviewDto = reviewService.bookingReveiw(bid);
+        reviewDto.setRcontent(reviewDto.getRcontent().replace("\n", "<br>"));
 
+        model.addAttribute("rvo",reviewDto);
+
+        return "manager/manager_reserve_review";
+    }
 
 }

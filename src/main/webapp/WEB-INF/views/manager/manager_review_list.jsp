@@ -104,9 +104,9 @@
                                                 <c:when test="${reivew.likeresult == 0}">
                                                     <td></td>
                                                 </c:when>
-                                                <c:when test="${reivew.likeresult != 0}">
+                                                <c:otherwise>
                                                     <td class="state">신고 접수 중</td>
-                                                </c:when>
+                                                </c:otherwise>
                                             </c:choose>
                                         </tr>
                                     </c:forEach>
