@@ -33,4 +33,5 @@ public interface ReviewMapper {
     List<ReviewDto> Rlist(PageDto pageDto);
     List<ReviewDto> MRlist(PageDto pageDto);
     List<ReviewDto> MRRlist(PageDto pageDto);
+    ReviewDto bookingReveiw(String bid);
 }
