@@ -122,14 +122,16 @@
 						<th>예약일</th>
 						<th>예약시간</th>
 						<th>상태</th>
+						<th>리뷰여부</th>
 					</tr>
 
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td>${list.rno}</td>
-							<td>${list.vdate}</td>
+							<td><a href="/manager_reserve_review/${list.bid}">${list.vdate}</a></td>
 							<td>${list.vtime}</td>
 							<td class="state">${list.bstate}</td>
+							<td class="state">O</td>
 						</tr>
 					</c:forEach>
 
