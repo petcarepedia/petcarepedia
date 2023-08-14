@@ -57,6 +57,7 @@ public class ManagerReserveController {
         String hid = "";
         if(mh != null) { // 병원 등록 시
             hid = mh.getHid();
+            model.addAttribute("auth", mh.getAuth());
         } else { // 병원 미등록 시
             hid = "H_0000";
         }

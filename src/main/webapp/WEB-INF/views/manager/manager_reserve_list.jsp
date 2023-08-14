@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,22 +88,27 @@
 			<section id="section2">
 				<input type="hidden" name="hid" id="hid" value="${svo.hid}" >
 
-				<div class="d2" id = "d2">
-					<input type="text"  class="search_bar" id ="Hreserve_bar" placeholder="회원아이디 입력">
-					<button type="submit" class="button1" id="Hreserve_btn">
-						<img src="http://localhost:9000/images/foot_pink.png">
-					</button>
-				</div>
+				<c:choose>
+					<c:when test="${auth eq 'auth'}">
+						<c:if test="${fn:length(list) != 0}">
 
-				<button class="bookingChange">예약상태 새로고침</button>
+							<div class="d2" id = "d2">
+								<input type="text"  class="search_bar" id ="Hreserve_bar" placeholder="회원아이디 입력">
+								<button type="submit" class="button1" id="Hreserve_btn">
+									<img src="http://localhost:9000/images/foot_pink.png">
+								</button>
+							</div>
 
-				<select name="filter" id="filter" class="filter">
-					<option value="basic" selected>예약 상태</option>
-					<option value="all">전체보기</option>
-					<option value="booking">예약중</option>
-					<option value="cancel">예약취소</option>
-					<option value="completed">진료완료</option>
-				</select>
+							<button class="bookingChange">예약상태 새로고침</button>
+
+							<select name="filter" id="filter" class="filter">
+								<option value="basic" selected>예약 상태</option>
+								<option value="all">전체보기</option>
+								<option value="booking">예약중</option>
+								<option value="cancel">예약취소</option>
+								<option value="completed">진료완료</option>
+							</select>
+						</c:if>
 
 				<table class="reserve_table">
 					<tr>
@@ -114,24 +120,57 @@
 						<th>예약시간</th>
 						<th>상태</th>
 					</tr>
-					<c:forEach var="booking" items="${list}">
-						<tr>
-							<td>${booking.rno}</td>
-							<td>${booking.name}</td>
-							<td title="${booking.mid}"><a href="/manager_reserve_content/${page.reqPage}/${booking.bid}/${booking.mid}/1">${booking.mid}</a></td>
-							<td>${booking.phone}</td>
-							<td>${booking.vdate}</td>
-							<td>${booking.vtime}</td>
-							<td class="state">${booking.bstate}</td>
-					    </tr>
-					</c:forEach>
-					<tr>
-						<td colspan="7"><div id="ampaginationsm"></div></td>
-					</tr>
+
+					<c:choose>
+						<c:when test="${fn:length(list) != 0}">
+							<c:forEach var="booking" items="${list}">
+								<tr>
+									<td>${booking.rno}</td>
+									<td>${booking.name}</td>
+									<td title="${booking.mid}"><a href="/manager_reserve_content/${page.reqPage}/${booking.bid}/${booking.mid}/1">${booking.mid}</a></td>
+									<td>${booking.phone}</td>
+									<td>${booking.vdate}</td>
+									<td>${booking.vtime}</td>
+									<td class="state">${booking.bstate}</td>
+								</tr>
+							</c:forEach>
+							<tr>
+								<td colspan="7"><div id="ampaginationsm"></div></td>
+							</tr>
+						</c:when>
+
+						<c:otherwise>
+							<tr>
+								<td colspan="7">
+									<div class="review_no">
+										<div class="review_no_img">
+											<img id="review_no_img" src="http://localhost:9000/images/walkingCat.gif">
+										</div>
+										<p>등록된 예약이 없습니다.</p>
+									</div>
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
-			</section>
-		</section>
-	</div>
+			</c:when>
+
+			<c:otherwise>
+				<div id = "asideUnauth">
+					<section id = "sectionUnauth">
+						<div class="mhbox unauth">
+							<i class="fa-solid fa-circle-check fa-3x" style="color: #ffb3bd;"></i>
+							<p>병원 등록이 완료되지 않았습니다. <br>
+								병원 등록 후 이용 가능합니다.</p>
+						</div>
+					</section>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</section>
+</section>
+</div>
+
 	<!-- footer -->
 		<jsp:include page="../footer_manager.jsp"></jsp:include>
 </body>
