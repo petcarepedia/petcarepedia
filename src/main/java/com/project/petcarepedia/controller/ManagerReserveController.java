@@ -92,6 +92,14 @@ public class ManagerReserveController {
         BookingDto booking = bookingService.nowBooking(bid);
         List<BookingDto> list = bookingService.bookingList(pageDto);
 
+
+        /* string bid */
+        for(BookingDto bookingCount : list) {
+            String targetbid = bookingCount.getBid();
+            int state = reviewService.bookingReveiwCount(targetbid);
+            bookingCount.setCount(state);
+        }
+
         model.addAttribute("paging", paging);
         model.addAttribute("page", page);
         model.addAttribute("member", member);
@@ -112,7 +120,5 @@ public class ManagerReserveController {
 
         return "manager/manager_reserve_review";
     }
-
-
 
 }

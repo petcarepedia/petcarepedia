@@ -128,10 +128,26 @@
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td>${list.rno}</td>
-							<td><a href="/manager_reserve_review/${list.bid}">${list.vdate}</a></td>
+							<td>
+								<c:choose>
+									<c:when test="${list.count !=0}">
+										<a href="/manager_reserve_review/${list.bid}">${list.vdate}</a>
+									</c:when>
+									<c:otherwise>
+										${list.vdate}
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<td>${list.vtime}</td>
 							<td class="state">${list.bstate}</td>
-							<td class="state">O</td>
+							<c:choose>
+								<c:when test="${list.count !=0}">
+									<td class="state">O</td>
+								</c:when>
+								<c:otherwise>
+									<td></td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 
