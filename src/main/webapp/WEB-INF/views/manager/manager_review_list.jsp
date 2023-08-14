@@ -48,13 +48,11 @@
                 // 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
                 row.find('td, th').css({ "background": "", "color": "" });
             });
-
         });
     </script>
-
 </head>
 <body>
-<!-- header -->
+    <!-- header -->
     <jsp:include page="../header_manager.jsp"></jsp:include>
 
     <div id = "content">
@@ -77,19 +75,20 @@
             </section>
 
             <section id="section2">
-                    <c:choose>
-                        <c:when test="${auth eq 'auth'}">
-                            <c:if test="${fn:length(list) != 0}">
-                                <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
-                            </c:if>
-                            <table class="reviewTable">
-                                <tr>
-                                    <th>번호</th>
-                                    <th>아이디</th>
-                                    <th>내용</th>
-                                    <th>작성일</th>
-                                    <th>신고여부</th>
-                                </tr>
+                <c:choose>
+                    <c:when test="${auth eq 'auth'}">
+                        <c:if test="${fn:length(list) != 0}">
+                            <button type="button" class="stateBtn" data-hid="${hid}">신고접수 중</button>
+                        </c:if>
+
+                        <table class="reviewTable">
+                            <tr>
+                                <th>번호</th>
+                                <th>아이디</th>
+                                <th>내용</th>
+                                <th>작성일</th>
+                                <th>신고여부</th>
+                            </tr>
 
                             <c:choose>
                                 <c:when test="${fn:length(list) != 0}">
@@ -116,6 +115,7 @@
                                         </td>
                                     </tr>
                                 </c:when>
+
                                 <c:otherwise>
                                     <tr>
                                         <td colspan="5">
@@ -129,20 +129,21 @@
                                     </tr>
                                 </c:otherwise>
                             </c:choose>
-                        </c:when>
-                        <c:otherwise>
-                            <div id = "aside">
-                                <section id = "section3">
-                                    <div class="mhbox unauth">
-                                        <i class="fa-solid fa-circle-check fa-3x" style="color: #ffb3bd;"></i>
-                                        <p>병원 등록이 완료되지 않았습니다. <br>
-                                            병원 등록 후 이용 가능합니다.</p>
-                                    </div>
-                                </section>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
-                </table>
+                        </table>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div id = "aside">
+                            <section id = "section3">
+                                <div class="mhbox unauth">
+                                    <i class="fa-solid fa-circle-check fa-3x" style="color: #ffb3bd;"></i>
+                                    <p>병원 등록이 완료되지 않았습니다. <br>
+                                        병원 등록 후 이용 가능합니다.</p>
+                                </div>
+                            </section>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </section>
         </section>
     </div>
