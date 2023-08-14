@@ -47,6 +47,7 @@ public class ProjectRestController {
         }
     }
 
+
     @GetMapping("booking_update")
     public String booking_update() {
         bookingService.bookingUpdate();
@@ -54,11 +55,14 @@ public class ProjectRestController {
     }
 
     /* 병원 승인 완료 이벤트 처리 */
-    @PostMapping("auth_update/{auth}")
-    public Map auth_update(HospitalDto hospitalDto){
-        Map map = new HashMap();
-        map.put("auth_udpate", hospitalService.authUpdate(hospitalDto));
-        return map;
+    @PostMapping("auth_update")
+    public String auth_update(HospitalDto hospitalDto){
+        String viewName = "";
+        int result = hospitalService.authUpdate(hospitalDto);
+        if(result == 1) {
+            viewName = "redirect:/hospital_list/1/";
+        }
+        return viewName;
     }
 
     /* 병원 승인 여부 상세보기 */
@@ -73,66 +77,84 @@ public class ProjectRestController {
         return hospitalService.content(hid);
     }
 
-    /* 병원 기본 정렬 */
-    @GetMapping("list/{page}")
-    public Map list(@PathVariable String page) {
-        Map map = new HashMap();
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_list"));
 
-        map.put("list", hospitalService.Hlist(pageDto));
+    /*병원 정렬*/
+    @GetMapping("selectList/{page}/{selectVal}")
+    public Map selectList(@PathVariable String page, @PathVariable String selectVal) {
+        Map map = new HashMap();
+        List<HospitalDto> list = new ArrayList<>();
+        PageDto pageDto = new PageDto(page, null);
+
+        if(selectVal.equals("list")) {
+            pageDto = new PageDto(page, "hospital_list");
+            pageDto = pageService.getPageResult(pageDto);
+            list = hospitalService.Hlist(pageDto);
+        } else if(selectVal.equals("auth")) {
+            pageDto = new PageDto(page, "hospital_auth");
+            pageDto = pageService.getPageResult(pageDto);
+            list = hospitalService.AuthList(pageDto);
+        } else if(selectVal.equals("unauth")){
+            pageDto = new PageDto(page, "hospital_unAuth");
+            pageDto = pageService.getPageResult(pageDto);
+            list = hospitalService.unAuthList(pageDto);
+        }
+
+        map.put("list", list);
         map.put("page", pageDto);
+
         return map;
     }
 
-    /* 병원 미승인 정렬 */
-    @GetMapping("unauth/{page}")
-    public Map unauth(@PathVariable String page) {
-        Map map = new HashMap();
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital_unAuth"));
 
-        map.put("list", hospitalService.unAuthList(pageDto));
-        map.put("page", pageDto);
-        return map;
-    }
 
-    /* 병원 승인 정렬 */
-    @GetMapping("auth/{page}")
-    public Map auth(@PathVariable String page) {
-        Map map = new HashMap();
-        PageDto pageDto = pageService.getPageResult(new PageDto(page, "hospital"));
 
-        map.put("list", hospitalService.AuthList(pageDto));
-        map.put("page", pageDto);
-        return map;
-    }
 
     /* 승인 거부 사유 */
     /* 승인 거부 사유 중복 체크 */
-    @GetMapping("reject_reson/{hid}/{auth}")
-    public String reject_reson(HospitalDto hospitalDto){
-        // 신고 거부 중복 체크
-        int result = hospitalService.authCheck(hospitalDto.getHid());
-
-        if(result == 0 && hospitalService.unauthCheck(hospitalDto.getHid()) == 1){
-            if(hospitalDto.getAuth().equals("r1")){
-                hospitalService.r1(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth().equals("r2")) {
-                hospitalService.r2(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth().equals("r3")) {
-                hospitalService.r3(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth().equals("r4")){
-                hospitalService.r4(hospitalDto.getHid());
-            } else if (hospitalDto.getAuth().equals("r5")) {
-                hospitalService.r5(hospitalDto.getHid());
+    @GetMapping("reject_resson/{hid}/{auth}")
+    public String reject_reson(@PathVariable String hid, @PathVariable String auth){
+        HospitalDto hospitalDto = new HospitalDto();
+        hospitalDto.setHid(hid);
+        hospitalDto.setAuth(auth);
+        String check = "";
+        String authCheck = hospitalService.authCheck(hid).getAuth();
+        if(authCheck.equals("unauth")) { // 미승인 된 병원 일 때 거절 가능
+            int result = hospitalService.updateAuth(hospitalDto);
+            if(result ==1) { // update가 됐을 때
+                check = "success";
             } else {
-                System.out.println("오류");
+                check = "fail";
             }
-            return "success";
-
-        } else if ( result == 1) {
-            return "fail";
+        } else if (authCheck.equals("auth")){ //auth일 때 이미 승인된 병원입니다.
+            check = "auth";
+        } else { // auth 나 unauth가 아닐 때 이미 승인 거부 된 병원 입니다.
+            check = "unauth";
         }
-        return "error";
+        return check;
+
+        // 신고 거부 중복 체크
+
+//
+//        if(result == 0 && hospitalService.unauthCheck(hospitalDto.getHid()) == 1){
+//            if(hospitalDto.getAuth().equals("r1")){
+//                hospitalService.r1(hospitalDto.getHid());
+//            } else if (hospitalDto.getAuth().equals("r2")) {
+//                hospitalService.r2(hospitalDto.getHid());
+//            } else if (hospitalDto.getAuth().equals("r3")) {
+//                hospitalService.r3(hospitalDto.getHid());
+//            } else if (hospitalDto.getAuth().equals("r4")){
+//                hospitalService.r4(hospitalDto.getHid());
+//            } else if (hospitalDto.getAuth().equals("r5")) {
+//                hospitalService.r5(hospitalDto.getHid());
+//            } else {
+//                System.out.println("오류");
+//            }
+//            return "success";
+//
+//        } else if ( result == 1) {
+//            return "fail";
+//        }
+//        return "error";
     }
 
 

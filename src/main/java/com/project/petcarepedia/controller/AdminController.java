@@ -173,6 +173,7 @@ public class AdminController {
         String[] oldFileName = {hospitalDto.getHsfile1(), hospitalDto.getHsfile2()};
         hospitalDto = fileUploadService.hospitalMultiFileCheck(hospitalDto);
         int result = hospitalService.update(hospitalDto);
+
         if(result == 1){
             fileUploadService.hospitalMultiFileDelete(hospitalDto,oldFileName);
             fileUploadService.hospitalFileSave(hospitalDto);

@@ -373,7 +373,7 @@ hospital_list style sheet
 
 section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
 	border:1px solid white;
-	/*border-bottom: 1px solid #3D3D3D;*/
+	border-bottom: 1px solid #3D3D3D;
 	padding:0 0 20px 600px;
 }
 
@@ -401,9 +401,10 @@ section.hospital div#d5 {
 	margin-left:-40px;
 }
 section.hospital div#d5 #search{
-	margin:58px 0 0 20px;
+	float:left;
+	margin: 58px 0px 0px 10px;
 	width:75px;
-	height:40px;
+	height:42px;
 	border:1px solid #3D3D3D;
 	font-size:10pt;
 	border-radius:5px;
@@ -412,18 +413,20 @@ section.hospital div#d5 #search{
 
 section.hospital #authList{
 	/*margin:58px 0 0 20px;*/
+	display: inline-block;
 	width:85px;
 	height:30px;
 	border:1px solid #3D3D3D;
 	font-size:10pt;
 	border-radius:5px;
-	padding: 0 0 1px 22px;
-	margin-left: 620px;
-	margin-bottom: 10px;
+	padding: 0 0 1px 15px;
+	margin-left: 650px;
+	margin-bottom: -10px;
+	margin-top : 10px;
 }
 
 section.hospital .table tr:nth-child(2) td{
-	border: 1px solid white;
+	/*border: 1px solid white;*/
 	border-bottom: 1px solid #3D3D3D;
 }
 section#hospital_update table.table tr td input[type="file"]{
@@ -447,6 +450,7 @@ member_list style sheet
 section.member tr:first-child td, section.member_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
+	margin-top : -30px;
 	padding:0 0 20px 600px;
 }
 section.member tr td:first-child{
@@ -860,4 +864,12 @@ section#review_delete2 img{
 	float:left;
 	width:45px;
 	height:45px;
+}
+
+
+#btnInsertHos {
+	float : left;
+	display : inline-block;
+	margin-bottom: -38px;
+	margin-left : 0px;
 }

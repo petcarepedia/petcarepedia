@@ -72,7 +72,7 @@
 		UPDATE PCP_HOSPITAL SET HNAME=#{hname} , GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel}, 
 					  HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal}, 
 					  INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},
-					  hfile1=#{hfile1} , hsfile1=#{hsfile1}, hfile2=#{hfile2}, hsfile2=#{hsfile2}
+					  hfile1=#{hfile1, jdbcType=VARCHAR} , hsfile1=#{hsfile1, jdbcType=VARCHAR}, hfile2=#{hfile2, jdbcType=VARCHAR}, hsfile2=#{hsfile2, jdbcType=VARCHAR}
 					   WHERE HID = #{hid}
 	</update>
 
@@ -159,31 +159,38 @@
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
-	<update id="r1" parameterType="String">
-		update pcp_hospital set auth='r1' where hid = #{hid}
+	<update id = "updateAuth" parameterType="com.project.petcarepedia.dto.HospitalDto">
+		update pcp_hospital set auth = #{auth} where hid = #{hid}
 	</update>
 
-	<update id="r2" parameterType="String">
-		update pcp_hospital set auth='r2' where hid = #{hid}
-	</update>
-
-	<update id="r3" parameterType="String">
-		update pcp_hospital set auth='r3' where hid = #{hid}
-	</update>
-
-	<update id="r4" parameterType="String">
-		update pcp_hospital set auth='r4' where hid = #{hid}
-	</update>
-
-	<update id="r5" parameterType="String">
-		update pcp_hospital set auth='r5' where hid = #{hid}
-	</update>
-
-	<select id="authCheck" parameterType="String" resultType="int">
-		select count(*) from pcp_hospital where auth like #{auth}||'%' and hid=#{hid}
+	<select id = "authCheck" parameterType="String" resultType="com.project.petcarepedia.dto.HospitalDto">
+		select auth from pcp_hospital where hid = #{hid}
 	</select>
+<!--	<update id="r1" parameterType="String">-->
+<!--		update pcp_hospital set auth='r1' where hid = #{hid}-->
+<!--	</update>-->
 
-	<select id = "unauthCheck" parameterType="String" resultType="int">
-		select count(*) from pcp_hospital where auth = 'unauth' and hid=#{hid}
-	</select>
+<!--	<update id="r2" parameterType="String">-->
+<!--		update pcp_hospital set auth='r2' where hid = #{hid}-->
+<!--	</update>-->
+
+<!--	<update id="r3" parameterType="String">-->
+<!--		update pcp_hospital set auth='r3' where hid = #{hid}-->
+<!--	</update>-->
+
+<!--	<update id="r4" parameterType="String">-->
+<!--		update pcp_hospital set auth='r4' where hid = #{hid}-->
+<!--	</update>-->
+
+<!--	<update id="r5" parameterType="String">-->
+<!--		update pcp_hospital set auth='r5' where hid = #{hid}-->
+<!--	</update>-->
+
+<!--	<select id="authCheck" parameterType="String" resultType="int">-->
+<!--		select count(*) from pcp_hospital where auth like #{auth}||'%' and hid=#{hid}-->
+<!--	</select>-->
+
+<!--	<select id = "unauthCheck" parameterType="String" resultType="int">-->
+<!--		select count(*) from pcp_hospital where auth = 'unauth' and hid=#{hid}-->
+<!--	</select>-->
 </mapper>

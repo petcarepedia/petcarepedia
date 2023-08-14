@@ -71,7 +71,7 @@
 					</nav>
 				</div>
 			</section>
-			<section id="section2">
+			<section id="section2" style = "margin-top : 0px; margin-bottom : -50px">
 				<div id="d5">
 					<select id="search" name="search">
 						<option value="hname" selected>병원명</option>
@@ -90,14 +90,19 @@
 						</button>
 					</div>
 				</div>
+				<div class = "check">
+					<a href="http://localhost:9000/admin/hospital_detail">
+						<button type="button" class="button4" id = "btnInsertHos" style= "margin : 30px 0px 15px 0px">등록하기</button>
+					</a>
+				</div>
 				<table class="table">
-					<tr>
-						<td colspan="5" >
-							<a href="http://localhost:9000/admin/hospital_write">
-								<button type="button" class="button4">등록하기</button>
-							</a>
-						</td>
-					</tr>
+<%--					<tr>--%>
+<%--						<td colspan="5" >--%>
+<%--							<a href="http://localhost:9000/admin/hospital_detail">--%>
+<%--								<button type="button" class="button4">등록하기</button>--%>
+<%--							</a>--%>
+<%--						</td>--%>
+<%--					</tr>--%>
 					<!-- <tr>
 						<td colspan="5" >
 							<select>

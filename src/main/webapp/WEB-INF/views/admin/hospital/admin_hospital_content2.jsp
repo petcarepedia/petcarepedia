@@ -12,68 +12,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-<%--	<script>
-		$(document).ready(function(){
-			$("#btn_noAuth").click(function(){
-				Swal.fire({
-					icon: 'warning',
-					title: '승인을 거부하시겠습니까?',
-					html: '	 <input type="radio" name="reject" value="r1"/> <span>병원명 중복 또는 부적절<span><br> ' +
-							'<input type="radio" name="reject" value="r2"/> <span >부적절한 주소 및 지역구 불일치<span> <br> ' +
-							'<input type="radio" name="reject" value="r3"/> <span>병원 소개 부적절<span> <br>' +
-							'<input type="radio" name="reject" value="r4"/> <span>병원 이미지 부적절<span> <br>' +
-							'<input type="radio" name="reject" value="r5"/> <span>기타 사유, 문의 바람<span>',
-					showCancelButton: true,
-					confirmButtonColor: '#FFB3BD',
-					cancelButtonColor: '#98DFFF',
-					confirmButtonText: '확인',
-					cancelButtonText: '취소'
-				}).then((result) => {
-					if (result.isConfirmed) {
-						var auth = $("input[name='reject']:checked").val(); //라디오의 선택된 값을 가져옴
-						if(auth == null){
-							Swal.fire({
-								icon: 'error',
-								title: '승인 거부 사유를 선택해주세요',
-								showConfirmButton: true,
-								confirmButtonColor: '#98DFFF',
-								confirmButtonText: '확인'
-							});
-						}else{
-							$.ajax({
-								url: "/reject_reson/${hospital.hid}/"+ auth,
-								type: "GET",
-								success:function(result){
-									if (result == "fail") {
-										Swal.fire({
-											icon: 'error',
-											title: '승인 거부된 상태입니다',
-											showConfirmButton: true,
-											confirmButtonText: '확인',
-											confirmButtonColor: '#98dfff'
-										}).then(function() {
-											location.reload();
-										});
-									} else if (result == "success") {
-										Swal.fire({
-											icon: 'success',
-											title: '승인 거부가 완료되었습니다',
-											showConfirmButton: true,
-											confirmButtonText: '확인',
-											confirmButtonColor: '#98dfff'
-										}).then(function () {
-											location.reload();
-										});
-									}
-								}
-							});//ajax
-						}//else
-					}
-				});
-			});
-		});
-	</script>--%>
-
 </head>
 <body>
 <!-- header -->
@@ -99,7 +37,7 @@
 						<form name="authForm" action="/admin/auth_update" method="post">
 							<input type = "hidden" name = "hid" value = "${hospital.hid}">
 							<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
-							<input type = "hidden" name = "auth" value = "${hospital.auth}">
+<%--							<input type = "hidden" name = "auth" value = "${hospital.auth}">--%>
 
 							<table class="content_table">
 								<tr>
@@ -152,25 +90,28 @@
 									<td>
 										<c:choose>
 											<c:when test="${hospital.auth == 'auth'}">
-												<input type="text" name="auth" id="auth" value="승인">
+												<input type="text" name="auth" id="auth" value="승인" disabled>
 											</c:when>
-											<c:when test="${hospital.auth == 'r1'}">
-												<input type="text" name="auth" id="auth" value="승인거부">
+											<c:when test = "${hospital.auth == 'unauth'}">
+												<input type = "text" name = "auth" id = "auth" value = "미승인" disabled>
 											</c:when>
-											<c:when test="${hospital.auth == 'r2'}">
-												<input type="text" name="auth" id="auth" value="승인거부">
-											</c:when>
-											<c:when test="${hospital.auth == 'r3'}">
-												<input type="text" name="auth" id="auth" value="승인거부">
-											</c:when>
-											<c:when test="${hospital.auth == 'r4'}">
-												<input type="text" name="auth" id="auth" value="승인거부">
-											</c:when>
-											<c:when test="${hospital.auth == 'r5'}">
-												<input type="text" name="auth" id="auth" value="승인거부">
-											</c:when>
+<%--											<c:when test="${hospital.auth == 'r1'}">--%>
+<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
+<%--											</c:when>--%>
+<%--											<c:when test="${hospital.auth == 'r2'}">--%>
+<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
+<%--											</c:when>--%>
+<%--											<c:when test="${hospital.auth == 'r3'}">--%>
+<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
+<%--											</c:when>--%>
+<%--											<c:when test="${hospital.auth == 'r4'}">--%>
+<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
+<%--											</c:when>--%>
+<%--											<c:when test="${hospital.auth == 'r5'}">--%>
+<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
+<%--											</c:when>--%>
 											<c:otherwise>
-												<input type="text" name="auth" id="auth" value="미승인">
+												<input type="text" name="auth" id="auth" value="승인거부" disabled>
 											</c:otherwise>
 										</c:choose>
 									</td>
@@ -206,8 +147,8 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2"> 
-										<button type="submit" class="button5" id="btn_auth">승인 완료</button>
+									<td colspan="2">
+										<button type="button" class="button5" id="btn_auth">승인 완료</button>
 										<button type="button" class="button5" id="btn_noAuth" data-hid="${hospital.hid}">승인 거부</button>
 									</td>
 								</tr>
