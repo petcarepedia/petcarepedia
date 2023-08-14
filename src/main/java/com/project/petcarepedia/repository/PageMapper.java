@@ -10,6 +10,7 @@ public interface PageMapper {
     int MRcount(PageDto pageDto);
     int MRScount(PageDto pageDto);
     int HBscount(PageDto pageDto);
+    int HBscount2(PageDto pageDto);
     int HBcount(PageDto pageDto);
     int HBcount2(PageDto pageDto);
     int HBcount3(PageDto pageDto);

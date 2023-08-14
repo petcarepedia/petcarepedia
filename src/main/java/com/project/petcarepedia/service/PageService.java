@@ -75,9 +75,10 @@ public class PageService {
         }else if(serviceName.equals("manager_reserve")){
             dbCount = pageMapper.HBcount(pageDto);
             hid = pageDto.getHid();
-        }else if(serviceName.equals("manager_reserve_search")){
+        } else if(serviceName.equals("manager_reserve_search")){
             dbCount = pageMapper.HBscount(pageDto);
             hid = pageDto.getHid();
+            mid = pageDto.getMid();
         } else if(serviceName.equals("manager_reserve_booking")) {
             dbCount = pageMapper.HBcount2(pageDto);
             hid = pageDto.getHid();
@@ -88,13 +89,17 @@ public class PageService {
             dbCount = pageMapper.HBcount4(pageDto);
             hid = pageDto.getHid();
         } else if(serviceName.equals("manager_reserve_mid")) {
-            dbCount = pageMapper.Myscount(pageDto);
+            dbCount = pageMapper.HBscount2(pageDto);
             mid = pageDto.getMid();
+            hid = pageDto.getHid();
+        } else if (serviceName.equals("hospital_list")) {
+            dbCount = pageMapper.Hcount();
         } else if (serviceName.equals("hospital_auth")) {
             dbCount = pageMapper.Hcount();
         } else if (serviceName.equals("hospital_unAuth")) {
             dbCount = pageMapper.Hcount();
         }
+
 
 
         //총 페이지 수 계산

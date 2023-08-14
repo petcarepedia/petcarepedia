@@ -365,6 +365,32 @@ public class ProjectRestController {
         return map;
     }
 
+    /* 병원 관리 예약 하기 - 회원 아이디 검색 */
+    @GetMapping("manager_reserve_msearch/{page}/{mid}")
+    public Map manager_reserve_msearch(HttpSession session ,@PathVariable String page, @PathVariable String mid, Model model) {
+        Map map = new HashMap();
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+
+        HospitalDto mh = hospitalService.selectMh(svo.getMid());
+        String hid = "";
+        if (mh != null) { // 병원 등록 시
+            hid = mh.getHid();
+        } else { // 병원 미등록 시
+            hid = "H_0000";
+        }
+
+        PageDto pageDto = new PageDto(page, "manager_reserve_search");
+        pageDto.setHid(hid);
+        pageDto.setMid(mid);
+        pageDto = pageService.getPageResult(pageDto);
+
+        map.put("list", bookingService.HBslist(pageDto));
+        map.put("page", pageDto);
+
+        return map;
+    }
+
+
     /**
      * splist_data
      */

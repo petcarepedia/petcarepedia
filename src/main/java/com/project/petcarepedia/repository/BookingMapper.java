@@ -44,4 +44,7 @@ public interface BookingMapper {
     int cancel(String bid);
     int bookingUpdate();
 
+    /*관리자 - 예약 상세 페이지 추가*/
+    BookingDto content(String bid);
+
 }

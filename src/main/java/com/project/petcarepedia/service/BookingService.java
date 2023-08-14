@@ -111,4 +111,7 @@ public class BookingService {
         return bookingMapper.bookingUpdate();
     }
 
+    /*관리자 - 예약 상세 페이지 추가*/
+    public BookingDto content(String bid){return bookingMapper.content(bid);}
+
 }
