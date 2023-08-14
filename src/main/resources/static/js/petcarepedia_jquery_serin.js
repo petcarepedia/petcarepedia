@@ -31,27 +31,47 @@ $(document).ready(function(){
 					});
 				}else{
 					$.ajax({
-						url: "/reject_reson/"+hid+"/"+ auth,
+						url: "/reject_resson/"+hid+"/"+ auth,
 						type: "GET",
 						success:function(result){
-							if (result == "fail") {
-								Swal.fire({
-									icon: 'error',
-									title: '승인 거부된 상태입니다',
-									showConfirmButton: true,
-									confirmButtonText: '확인',
-									confirmButtonColor: '#98dfff'
-								}).then(function() {
-									location.reload();
-								});
-							} else if (result == "success") {
+							if(result == "success") {
 								Swal.fire({
 									icon: 'success',
 									title: '승인 거부가 완료되었습니다',
 									showConfirmButton: true,
 									confirmButtonText: '확인',
 									confirmButtonColor: '#98dfff'
-								}).then(function () {
+								}).then(function() {
+										location.href = "http://localhost:9000/admin/hospital_list/1/";
+									});
+							} else if(result == "fail") {
+								Swal.fire({
+									icon: 'error',
+									title: '승인 거부를 실패하였습니다.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							} else if(result == "auth") {
+								Swal.fire({
+									icon: 'error',
+									title: '이미 승인된 병원입니다.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							} else if(result == "unauth") {
+								Swal.fire({
+									icon: 'error',
+									title: '이미 승인 거부된 병원입니다.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
 									location.reload();
 								});
 							}
@@ -67,28 +87,35 @@ $(document).ready(function(){
 	 * 승인 완료 버튼
 	 **************************/
 	$("#btn_auth").click(function(){
-		event.preventDefault(); // 폼 전송을 막음
-		Swal.fire({
-			icon: 'warning',
-			title: '승인을 완료하시겠습니까?',
-			showCancelButton: true,
-			confirmButtonColor: '#FFB3BD',
-			cancelButtonColor: '#98DFFF',
-			confirmButtonText: '확인',
-			cancelButtonText: '취소'
-		}).then((result) => {
-			if (result.isConfirmed) {
-				// 확인 버튼을 눌렀을 경우 삭제 처리
-				Swal.fire({
-					icon: 'success',
-					title:'승인이 완료되었습니다.'
-				}).then(() => {
-					document.authForm.submit();
-				});
-				// 폼 전송
-				// 삭제 처리를 위한 코드 작성
-			}
-		});
+		var auth = $("input[name='auth']").val();
+		if(auth == "승인") {
+			Swal.fire({
+				icon: 'error',
+				title: '이미 승인된 병원입니다.',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		} else if(auth == "미승인" || auth == "승인거부") {
+			Swal.fire({
+				title: '승인을 완료하시겠습니까?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#FFB3BD',
+				cancelButtonColor: '#98DFFF',
+				confirmButtonText: '승인',
+				cancelButtonText: '취소'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						icon: 'success',
+						text:'승인이 완료되었습니다.'
+					}).then(() => {
+						authForm.submit();
+					});
+				}
+			});
+		}
 	});
 
 
@@ -262,6 +289,16 @@ $(document).ready(function(){
 				writeForm.submit();
 			}
 		});
+
+
+	/********************************
+	 * 병원 수정하기
+	 *****************************/
+	$("#btn_content").click(function(){
+
+	})
+
+
 
 	/*************************
 	 * 병원 관리자 예약 - 회원 아이디 검색창

@@ -70,13 +70,13 @@ public interface HospitalMapper {
     List<HospitalDto> AuthList(PageDto pageDto);
 
     List<HospitalDto> unAuthList(PageDto pageDto);
+    int updateAuth(HospitalDto hospitalDto);
+//    int r1(String hid);
+//    int r2(String hid);
+//    int r3(String hid);
+//    int r4(String hid);
+//    int r5(String hid);
 
-    int r1(String hid);
-    int r2(String hid);
-    int r3(String hid);
-    int r4(String hid);
-    int r5(String hid);
-
-    int authCheck(String hid);
+    HospitalDto authCheck(String hid);
     int unauthCheck(String hid);
 }

@@ -58,7 +58,6 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	
 	<div class="d1">
-
 			<section id = "section1">
 				<div>
 					<nav>
@@ -92,15 +91,16 @@
 							<img src="http://localhost:9000/images/foot_sky.png">
 						</button>
 					</div>
+				</div>
+				<div class = "check">
 					<a href="http://localhost:9000/admin/hospital_detail">
-						<button type="button" class="button4">등록하기</button>
+						<button type="button" class="button4" id = "btnInsertHos">등록하기</button>
 					</a>
 					<select id="authList" >
 						<option id="list" value="list" > 전체 </option>
 						<option id ="auth" value="auth"> 승인</option>
 						<option id="unauth" value="unauth"> 미승인</option>
 					</select>
-
 				</div>
 				<table class="table">
 <%--					<tr>--%>

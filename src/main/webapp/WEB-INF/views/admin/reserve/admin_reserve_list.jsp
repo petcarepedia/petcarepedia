@@ -74,8 +74,8 @@
 				<table class="table">
 					<tr>
 						<th>번호</th>
-						<th>아이디</th>
 						<th>병원명</th>
+						<th>아이디</th>
 						<th>예약일</th>
 						<th>상태</th>
 					</tr>
