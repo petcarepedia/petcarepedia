@@ -181,4 +181,8 @@
 		WHERE BID = #{bid}
 	</select>
 
+	<select id="bookingReveiwCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM PCP_REVIEW WHERE BID = #{bid}
+	</select>
+
 </mapper>

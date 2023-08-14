@@ -95,4 +95,7 @@ public class ReviewService {
         return reviewMapper.bookingReveiw(bid);
     }
 
+    public int bookingReveiwCount(String bid) {
+        return reviewMapper.bookingReveiwCount(bid);
+    }
 }
