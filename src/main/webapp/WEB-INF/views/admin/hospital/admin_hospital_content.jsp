@@ -31,7 +31,7 @@
 						</nav>
 					</div>
 				</section>
-				<section id="section4">
+				<section id="section4" style = "margin-top : 40px">
 					<div id="d3">
 						<form name="updateForm" action="/hospital_update" method="post">
 						<input type = "hidden" name = "hid" value = "${hospital.hid}">
