@@ -61,7 +61,8 @@
 						<ul>
 							<li>마이페이지</li>
 							<li><a href = "/mypage_member_information">회원 정보</a></li>
-							<li><a href = "/mypage_reservation">예약 내역</a></li>
+							<li><a href = "/mypage_pet_information" style="font-weight: normal">반려동물 정보</a></li>
+							<li><a href = "/mypage_reservation" style="font-weight: bold">예약 내역</a></li>
 							<li><a href = "/mypage_my_review/1/">내가 쓴 리뷰</a></li>
 							<li><a href = "/mypage_bookmark">즐겨찾기</a></li>
 							<li><a href = "/mypage_signout">회원 탈퇴</a></li>
