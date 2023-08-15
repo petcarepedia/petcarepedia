@@ -36,6 +36,8 @@ public class ProjectRestController {
     MailService mailService;
     @Autowired
     PageService pageService;
+    @Autowired
+    PetService petService;
 
     @GetMapping("cancel")
     public String cancelProc(@RequestParam("bid") String bid) {
@@ -552,5 +554,12 @@ public class ProjectRestController {
     @GetMapping("/hospital_check/{mid}")
     public String hospital_check(@PathVariable String mid) {
         return String.valueOf(hospitalService.hospitalCheck(mid));
+    }
+
+    @GetMapping("/pet_content/{pid}")
+    public Map pet_content(@PathVariable String pid) {
+        Map map = new HashMap();
+        map.put("content", petService.content(pid));
+        return map;
     }
 }
