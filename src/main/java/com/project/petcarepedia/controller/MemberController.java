@@ -1,9 +1,12 @@
 package com.project.petcarepedia.controller;
 
 import com.project.petcarepedia.dto.MemberDto;
+import com.project.petcarepedia.dto.PetDto;
 import com.project.petcarepedia.dto.SessionDto;
+import com.project.petcarepedia.service.FileUploadService;
 import com.project.petcarepedia.service.MailService;
 import com.project.petcarepedia.service.MemberService;
+import com.project.petcarepedia.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +25,12 @@ public class MemberController {
 
     @Autowired
     MailService mailService;
+
+    @Autowired
+    PetService petService;
+
+    @Autowired
+    FileUploadService fileService;
 
     /**
      * 로그인
@@ -131,6 +140,60 @@ public class MemberController {
             viewName = "error";
         }
 
+        return viewName;
+    }
+
+    @GetMapping("mypage_pet_information")
+    public String mypage_pet_information(HttpSession session, Model model) {
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+        model.addAttribute("list", petService.list(svo.getMid()));
+        return "mypage/mypage_pet_information";
+    }
+
+    @PostMapping("pet_write")
+    public String pet_write(PetDto petDto) throws Exception{
+        String viewName = "";
+        int result = petService.insert(fileService.pfileCheck(petDto));
+        if(result == 1) {
+            if(!petDto.getFile1().isEmpty()) {
+                fileService.pfileSave(petDto);
+            }
+            viewName = "redirect:/mypage_pet_information";
+        } else {
+            viewName = "error";
+        }
+        return viewName;
+    }
+
+    @PostMapping("pet_update")
+    public String pet_update(PetDto petDto) throws Exception {
+        String viewName = "";
+        String oldFileName = petDto.getPsfile();
+        int result = petService.update(fileService.pfileCheck(petDto));
+        if(result == 1) {
+            if(!petDto.getFile1().isEmpty()) {
+                fileService.pfileSave(petDto);
+                fileService.pfileDelete(petDto, oldFileName);
+            }
+            viewName = "redirect:/mypage_pet_information";
+        } else {
+            viewName = "error";
+        }
+        return viewName;
+    }
+
+    @GetMapping("pet_delete/{pid}/{psfile}")
+    public String pet_delete(@PathVariable String pid, @PathVariable String psfile) throws Exception {
+        String viewName = "";
+        int result = petService.delete(pid);
+        if(result == 1) {
+            if(!psfile.equals("") || psfile != null){
+                fileService.fileDelete(psfile);
+            }
+            viewName = "redirect:/mypage_pet_information";
+        } else {
+            viewName = "error";
+        }
         return viewName;
     }
 }
