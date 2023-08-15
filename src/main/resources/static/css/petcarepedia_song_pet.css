@@ -1,0 +1,137 @@
+#aside-pet {
+    float: left; width: 777px;
+    padding: 50px 0 100px 50px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    row-gap: 20px; column-gap: 20px;
+}
+.add-box {
+    height: 420px;
+    background: #F2F2F2; border-radius: 10px;
+    text-align: center;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #636363;
+    border: 4px solid #F2F2F2;
+    border-top: 10px dotted lightgray;
+}
+.add-box > p {
+    font-size: 14px;
+    line-height: 25px;
+}
+.add-box > p:nth-child(2) {
+    margin-top: 10px;
+    font-size: 20px; font-weight: bold;
+}
+.add-box:hover, .pet-box:hover {
+    opacity: 0.7; cursor: pointer;
+}
+
+.pet-box {
+    height: 420px;
+    background: #F7FCFE; border-radius: 10px;
+    display: flex; flex-direction: column;
+    align-items: center;
+    color: #636363;
+    border: 4px solid #C4EDFF;
+    border-top: 10px dotted #C4EDFF;
+}
+.proimg-box {
+    margin-top: 40px;
+}
+.proimg {
+    width: 140px;
+    border-radius: 50%; border: 2px solid #98DFFF;
+}
+.proimg-btn {
+    width: 30px; margin-left: -40px;
+    cursor: pointer;
+}
+
+.pet-info {
+    list-style: none;
+    width: 90%; padding: 0 5%;
+    margin-top: 20px;
+}
+.pet-info > li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    grid-column-gap: 10px;
+    margin-top: 5px;
+}
+.pet-info > li > label {
+    background: #98DFFF;
+    border: 2px solid #98DFFF;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px; font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+.pet-info > li > div, .pet-info > li > input, .pet-info > li > select {
+    background: white;
+    border: 2px solid #98DFFF;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold; font-size: 15px;
+}
+.pet-info > li > div.form-gender {
+    background: none;
+    border: none;
+}
+.pet-info > li > div.form-gender > input {
+    margin-right: 5px;
+    width: 15px; height: 15px;
+}
+.pet-info > li > div.form-gender > span {
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+.pet-write-modal, .pet-update-modal {
+    display:none;
+}
+.pet-write-box, .pet-update-box {
+    position:fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width:400px; height:530px;
+    background: #F7FCFE; border-radius: 10px;
+    color: #636363;
+    border: 4px solid #C4EDFF;
+    z-index: 3;
+    padding:30px;
+}
+.pet-write-box > .title, .pet-update-box > .title {
+    font-weight: bold; font-size: 20px;
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: 7px dotted #98DFFF;
+}
+
+form[name="petWriteForm"], form[name="petUpdateForm"]{
+    width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center;
+}
+
+.btn-close{
+    color: #989898;
+    position: absolute;
+    top:25px; right: 10px;
+    cursor: pointer;
+}
+.btn-pet {
+    width:100px; height:50px;
+    display:inline-block;
+    border:none;
+    border-radius: 5px;
+    background:#7AB2CC; color:white;
+    font-size:15px; font-weight:bold;
+    cursor:pointer;
+    margin-top:30px;
+}
+.btn-pet-delete {
+    background:#D9D9D9;
+    margin-left: 5px;
+}
