@@ -225,7 +225,6 @@
                   </c:choose>
                 </c:otherwise>
               </c:choose>
-              <img src = "http://localhost:9000/images/수정.png" class="proimg-btn">
             </div>
             <ul class="pet-info">
               <li>
