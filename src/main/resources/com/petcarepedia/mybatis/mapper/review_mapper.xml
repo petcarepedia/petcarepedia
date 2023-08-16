@@ -111,9 +111,9 @@
 
 	<!-- pageMapper 추가  -->
 	<select id = "Mylist" parameterType = "com.project.petcarepedia.dto.PageDto" resultType = "com.project.petcarepedia.dto.ReviewDto">
-		select rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2, msfile
-		from (select rownum rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile, rfile1, rsfile1, rfile2, rsfile2, msfile
-			  from (select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile  from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b
+		select rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile1, rfile1, rsfile1, rfile2, rsfile2, msfile
+		from (select rownum rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile1, rfile1, rsfile1, rfile2, rsfile2, msfile
+			  from (select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile1, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile  from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b
 					where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid} order by r.rid desc))
 		where rno between #{startCount} AND #{endCount}
 

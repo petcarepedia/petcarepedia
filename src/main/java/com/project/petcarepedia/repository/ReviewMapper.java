@@ -20,7 +20,6 @@ public interface ReviewMapper {
     ReviewDto enter_content(String rid);
     int insert(ReviewDto reviewDto);
     int update(ReviewDto reviewDto);
-    int report(String rid);
     int delete(String rid);
     List<ReviewDto> bestList(PageDto pageDto);
     int count();

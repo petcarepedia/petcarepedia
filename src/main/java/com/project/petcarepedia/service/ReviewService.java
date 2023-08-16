@@ -46,9 +46,6 @@ public class ReviewService {
     public int update(ReviewDto reviewDto) {
         return reviewMapper.update(reviewDto);
     }
-    public int report(String rid) {
-        return reviewMapper.report(rid);
-    }
     public int delete(String rid) {
         return reviewMapper.delete(rid);
     }
