@@ -68,24 +68,23 @@ div.d2 .search_bar{
 	margin-top:1px;
 	margin-left:-3px;
 }
-section#hospital_update #update_file1, section#hospital_update #update_file2 {
+ #update_file1, #update_file2 {
 	border:1px solid white;
 	position:relative;
 	right:110px;
 	top: 28px;
 	padding:2px;
-	/* backgruond:white;/* 글자가 겹치기 때문/ 파일 선택 버튼 옆에 생성 */
 	background:white;
 	display:inline-block;
 	width:100px; height:20px;
 	font-size:10pt;
 }
 
-.content_table #update_file1 {
+.content_table #update_file1, .content_table #update_file2 {
 	border:1px solid white;
 	position:relative;
 	right:110px;
-	top: -49px;
+	top: -30px;
 	padding:2px;
 	background:white;
 	display:inline-block;
@@ -93,17 +92,6 @@ section#hospital_update #update_file1, section#hospital_update #update_file2 {
 	font-size:10pt;
 }
 
-.content_table #update_file2 {
-	border:1px solid white;
-	position:relative;
-	right:110px;
-	top: -24px;
-	padding:2px;
-	background:white;
-	display:inline-block;
-	width:100px; height:20px;
-	font-size:10pt;
-}
 button{
 	background:#D9D9D9;
 	color:#3D3D3D;
@@ -141,7 +129,7 @@ th{
 
 button.button4{
 	padding:5px 15px;
-	margin-right:20px;
+	/*margin-right:20px;*/
 }
 button.button5{padding:10px 30px;
 	margin:25px 10px;
@@ -429,19 +417,22 @@ section.hospital .table tr:nth-child(2) td{
 	/*border: 1px solid white;*/
 	border-bottom: 1px solid #3D3D3D;
 }
-section#hospital_update table.table tr td input[type="file"]{
+section#hospital_update table.table tr td input[type="file"],
+section#hospital_data table.table tr td input[type="file"] {
 	padding-top: 20px;
 	margin-top:-20px;
 }
 
 table.content_table tr td input[type="file"]{
 	padding-top: 20px;
+	margin-bottom: -20px;
 }
-section#hospital_update table.table tr td input[id="files2"],
+
+/*section#hospital_update table.table tr td input[id="files2"],
 table.content_table tr td input[id="files2"]{
 	margin-top: -20px;
 	margin-bottom: -25px;
-}
+}*/
 
 
 /****************************
@@ -633,9 +624,6 @@ section.member_detail section#section2 div.d3 .table tr:nth-child(4) td{
 	height:300px;
 	background:#D9D9D9;
 }
-section.hospital .button4 {
-	margin-left:40px;
-}
 
 section#hospital_data table.table tr td input[id="x"],
 section#hospital_data table.table tr td input[id="y"],
@@ -648,7 +636,7 @@ section#hospital_update table.table tr td input[id="y"]{
 }
 section#hospital_data table.table tr td input[id="loc"],
 section#hospital_update table.table tr td input[id="loc"] {
-	width: 400px;
+	width: 420px;
 }
 
 section#hospital_data table.table tr td button#search_loc,
@@ -953,8 +941,7 @@ section#review_delete2 img{
 
 
 #btnInsertHos {
-	float : left;
+	float : right;
 	display : inline-block;
-	margin-bottom: -38px;
-	margin-left : 0px;
+	margin-right: -14px;
 }

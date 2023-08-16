@@ -11,6 +11,24 @@
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
+	<%--<script>
+		$(document).ready(function(){
+			$(document).ready(function(){
+				$("#file1").change(function(){
+					if(window.FileReader){
+						let fname = $(this)[0].files[0].name;
+						$("#update_file1").text(fname);
+					}
+				});
+				$("#file2").change(function(){
+					if(window.FileReader){
+						let fname = $(this)[0].files[0].name;
+						$("#update_file2").text(fname);
+					}
+				});
+			});
+		});
+	</script>--%>
 </head>
 <body>
 <!-- header -->
@@ -35,7 +53,6 @@
 					<div id="d3">
 						<form name="updateForm" action="/hospital_update" method="post">
 						<input type = "hidden" name = "hid" value = "${hospital.hid}">
-						<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
 							<table class="content_table">
 								<tr>
 									<th>병원명</th>
@@ -89,22 +106,23 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td colspan ="2">
-										<input type="hidden" name="hfile1" value="${hospital.hfile1}">
-										<input type="hidden" name="hfile2" value="${hospital.hfile2}">
 										<input type="file" name="files" id ="files" disabled>
 										<c:choose>
-											<c:when test="${hospital.hfile1 != null}">
+											<c:when test = "${hospital.hfile1 != null}">
 												<span id="update_file1">${hospital.hfile1}</span>
+												<input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
+												<input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
 											</c:when>
 											<c:otherwise>
-												<span id="update_file1">선택된 파일 없음</span>
+												<span id="update_file1"> 선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
-
-										<input type="file" name="files" id ="files2" disabled>
+										<input type="file" name="files" id ="files" disabled>
 										<c:choose>
-											<c:when test="${hospital.hfile2 != null}">
+											<c:when test = "${hospital.hfile2 != null}">
 												<span id="update_file2">${hospital.hfile2}</span>
+												<input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
+												<input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
 											</c:when>
 											<c:otherwise>
 												<span id="update_file2">선택된 파일 없음</span>

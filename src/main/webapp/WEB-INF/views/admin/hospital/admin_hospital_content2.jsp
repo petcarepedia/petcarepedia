@@ -95,21 +95,6 @@
 											<c:when test = "${hospital.auth == 'unauth'}">
 												<input type = "text" name = "auth" id = "auth" value = "미승인" disabled>
 											</c:when>
-<%--											<c:when test="${hospital.auth == 'r1'}">--%>
-<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
-<%--											</c:when>--%>
-<%--											<c:when test="${hospital.auth == 'r2'}">--%>
-<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
-<%--											</c:when>--%>
-<%--											<c:when test="${hospital.auth == 'r3'}">--%>
-<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
-<%--											</c:when>--%>
-<%--											<c:when test="${hospital.auth == 'r4'}">--%>
-<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
-<%--											</c:when>--%>
-<%--											<c:when test="${hospital.auth == 'r5'}">--%>
-<%--												<input type="text" name="auth" id="auth" value="승인거부">--%>
-<%--											</c:when>--%>
 											<c:otherwise>
 												<input type="text" name="auth" id="auth" value="승인거부" disabled>
 											</c:otherwise>
@@ -123,25 +108,26 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td colspan ="2">
-										<input type="hidden" name="hfile1" value="${hospital.hfile1}">
-										<input type="hidden" name="hfile2" value="${hospital.hfile2}">
 										<input type="file" name="files" id ="files" disabled>
 										<c:choose>
-											<c:when test="${hospital.hfile1 != null}">
+											<c:when test = "${hospital.hfile1 != null}">
 												<span id="update_file1">${hospital.hfile1}</span>
+												<input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
+												<input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
 											</c:when>
 											<c:otherwise>
-												<span id="update_file1"></span>
+												<span id="update_file1"> 선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
-
-										<input type="file" name="files" id ="files2" disabled>
+										<input type="file" name="files" id ="files" disabled>
 										<c:choose>
-											<c:when test="${hospital.hfile2 != null}">
+											<c:when test = "${hospital.hfile2 != null}">
 												<span id="update_file2">${hospital.hfile2}</span>
+												<input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
+												<input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
 											</c:when>
 											<c:otherwise>
-												<span id="update_file2"></span>
+												<span id="update_file2">선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
 									</td>
