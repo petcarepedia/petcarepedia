@@ -14,24 +14,6 @@
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2&submodules=geocoder"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-	<%--<script>
-	$(document).ready(function(){
-		$(document).ready(function(){
-			$("#file1").change(function(){
-				if(window.FileReader){
-					let fname = $(this)[0].files[0].name;
-					$("#update_file1").text(fname);
-				}
-			});
-			$("#file2").change(function(){
-				if(window.FileReader){
-					let fname = $(this)[0].files[0].name;
-					$("#update_file2").text(fname);
-				}
-			});
-		});
-	});
-	</script>--%>
 </head>
 <body>
 <!-- header -->

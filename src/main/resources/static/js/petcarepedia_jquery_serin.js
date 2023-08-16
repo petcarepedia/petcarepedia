@@ -3,7 +3,8 @@ $(document).ready(function(){
 
 
 	/*************************
-	 * 멀티 파일 업로드
+	 * 멀티 파일 업로드드
+
 	 **************************/
 	$("#file1").change(function(){
 		if(window.FileReader){
