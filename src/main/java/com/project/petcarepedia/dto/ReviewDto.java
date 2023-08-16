@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ReviewDto {
     // 리뷰에서 필요한 Vo
     private String page;
-    private String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc, rfile1, rsfile1, rfile2, rsfile2;
+    private String rid, rcontent, rdate, hid, mid, hname, animal, gloc, rfile1, rsfile1, rfile2, rsfile2;
     private int rlike, rno, likeresult;
     private float rstar;
     private MultipartFile[] files;

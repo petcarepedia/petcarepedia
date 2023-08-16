@@ -25,12 +25,6 @@ public class ReviewService {
     public List<ReviewDto> RM_select4(String hid) {
         return reviewMapper.RM_select4(hid);
     }
-    public List<ReviewDto> reportList() {
-        return reviewMapper.reportList();
-    }
-    public  List<ReviewDto> RH_select(String hid) {
-        return reviewMapper.RH_select(hid);
-    }
     public List<ReviewDto> list() {
         return reviewMapper.list();
     }
@@ -39,9 +33,6 @@ public class ReviewService {
     }
     public List<ReviewDto> searchListPage(PageDto pageDto) {
         return reviewMapper.searchListPage(pageDto);
-    }
-    public int searchCount(String gloc) {
-        return reviewMapper.searchCount(gloc);
     }
     public ReviewDto content(String rid) {
         return reviewMapper.content(rid);
@@ -55,9 +46,6 @@ public class ReviewService {
     public int update(ReviewDto reviewDto) {
         return reviewMapper.update(reviewDto);
     }
-    public int report(String rid) {
-        return reviewMapper.report(rid);
-    }
     public int delete(String rid) {
         return reviewMapper.delete(rid);
     }
@@ -67,20 +55,8 @@ public class ReviewService {
     public int count() {
         return reviewMapper.count();
     }
-    public List<ReviewDto> my_select(String mid) {
-        return reviewMapper.my_select(mid);
-    }
-    public int reportReview(String rid) {return reviewMapper.reportReview(rid);}
-    public int report2(String rid) {
-        return reviewMapper.report2(rid);
-    }
-
     public List<ReviewDto> Mylist(PageDto pageDto) {
         return reviewMapper.Mylist(pageDto);
-    }
-
-    public List<ReviewDto> Rlist(PageDto pageDto) {
-        return reviewMapper.Rlist(pageDto);
     }
 
     public List<ReviewDto> MRlist(PageDto pageDto) {
