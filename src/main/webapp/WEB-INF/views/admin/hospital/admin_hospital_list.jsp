@@ -103,22 +103,6 @@
 					</select>
 				</div>
 				<table class="table">
-<%--					<tr>--%>
-<%--						<td colspan="5" >--%>
-<%--							<a href="http://localhost:9000/admin/hospital_detail">--%>
-<%--								<button type="button" class="button4">등록하기</button>--%>
-<%--							</a>--%>
-<%--						</td>--%>
-<%--					</tr>--%>
-<%--					<tr>--%>
-<%--						<td colspan="5" >--%>
-<%--							<select id="authList" >--%>
-<%--								<option id="list" value="list" > 전체 </option>--%>
-<%--								<option id ="auth" value="auth"> 승인</option>--%>
-<%--								<option id="unauth" value="unauth"> 미승인</option>--%>
-<%--							</select>--%>
-<%--						</td>--%>
-<%--					</tr>--%>
 					<tr>
 						<th>번호</th>
 						<th>병원명</th>
