@@ -12,8 +12,6 @@ public interface ReviewMapper {
     List<ReviewDto> RM_select2(String hid);
     List<ReviewDto> RM_select3(String hid);
     List<ReviewDto> RM_select4(String hid);
-    List<ReviewDto> reportList();
-    List<ReviewDto> RH_select(String hid);
     List<ReviewDto> list();
     List<ReviewDto> listPage(PageDto pageDto);
     List<ReviewDto> searchListPage(PageDto pageDto);
@@ -26,11 +24,7 @@ public interface ReviewMapper {
     int delete(String rid);
     List<ReviewDto> bestList(PageDto pageDto);
     int count();
-    List<ReviewDto> my_select(String mid);
-    int reportReview(String rid);
-    int report2(String rid);
     List<ReviewDto> Mylist(PageDto pageDto);
-    List<ReviewDto> Rlist(PageDto pageDto);
     List<ReviewDto> MRlist(PageDto pageDto);
     List<ReviewDto> MRRlist(PageDto pageDto);
 }
