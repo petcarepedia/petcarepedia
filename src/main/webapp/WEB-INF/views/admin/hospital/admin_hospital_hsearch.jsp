@@ -71,7 +71,7 @@
 					</nav>
 				</div>
 			</section>
-			<section id="section2">
+			<section id="section2" style = "margin-top : 0px; margin-bottom : -50px">
 				<div id="d5">
 					<select id="search" name="search">
 						<option value="hname" selected>병원명</option>
@@ -90,37 +90,37 @@
 						</button>
 					</div>
 				</div>
+				<div class = "check">
+					<a href="http://localhost:9000/admin/hospital_detail">
+						<button type="button" class="button4" id = "btnInsertHos" style= "margin : 30px 0px 15px 0px">등록하기</button>
+					</a>
+				</div>
 				<table class="table">
-					<tr>
-						<td colspan="5" >
-							<a href="http://localhost:9000/admin/hospital_write">
-								<button type="button" class="button4">등록하기</button>
-							</a>
-						</td>
-					</tr>
-					<!-- <tr>
-						<td colspan="5" >
-							<select>
-								<option name="table" id="new"> 최신 순</option>
-								<option name="table"  id="old"> 오래된 순</option>
-							</select>
-						</td>
-					</tr> -->
 					<tr>
 						<th>번호</th>
 						<th>병원명</th>
-						<th>기타 동물 여부</th>
-						<th>야간 진료 여부</th>
-						<th>공휴일 진료 여부</th>
+						<th>지역구</th>
+						<th>영업 시간</th>
+						<th>승인 여부</th>
 					</tr>
 					<c:forEach var="hospital" items="${list}">
 						<tr>
 							<td>${hospital.rno}</td>
 							<td><a href="/admin/hospital_content/${page.reqPage}/${hospital.hid}/">${hospital.hname}</a></td>
-							<td>${hospital.animal}</td>
-							<td>${hospital.ntime}</td>
-							<td>${hospital.holiday}</td>
-
+							<td>${hospital.gloc}</td>
+							<td>${hospital.htime}</td>
+							<td><a href="/admin/hospital_content2/${page.reqPage}/${hospital.hid}/">
+								<c:choose>
+									<c:when test="${hospital.auth == 'auth'}">승인</c:when>
+									<c:when test="${hospital.auth == 'r1'}">승인거부</c:when>
+									<c:when test="${hospital.auth == 'r2'}">승인거부</c:when>
+									<c:when test="${hospital.auth == 'r3'}">승인거부</c:when>
+									<c:when test="${hospital.auth == 'r4'}">승인거부</c:when>
+									<c:when test="${hospital.auth == 'r5'}">승인거부</c:when>
+									<c:otherwise>미승인</c:otherwise>
+								</c:choose>
+							</a>
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>

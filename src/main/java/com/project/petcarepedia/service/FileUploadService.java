@@ -2,6 +2,7 @@ package com.project.petcarepedia.service;
 
 import com.project.petcarepedia.dto.HospitalDto;
 import com.project.petcarepedia.dto.MemberDto;
+import com.project.petcarepedia.dto.PetDto;
 import com.project.petcarepedia.dto.ReviewDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -315,7 +316,50 @@ public class FileUploadService {
     }
 
 
+    /***
+     * pet profile img save
+     */
+    public void pfileSave(PetDto petDto) throws Exception{
+        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
+        if(petDto.getFile1().getOriginalFilename() != null && !petDto.getFile1().getOriginalFilename().equals("")) {
+            File saveFile = new File(root_path + petDto.getPsfile());
 
+            petDto.getFile1().transferTo(saveFile);
+        }
+    }
+
+    /**
+     * pet profile img check
+     */
+    public PetDto pfileCheck(PetDto petDto) {
+        if(petDto.getFile1().getOriginalFilename() != null
+                && !petDto.getFile1().getOriginalFilename().contentEquals("")) {  //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙
+
+            UUID uuid = UUID.randomUUID();
+            String pfile = petDto.getFile1().getOriginalFilename();
+            String psfile = uuid + "_" + pfile;
+            petDto.setPfile(pfile);
+            petDto.setPsfile(psfile);
+        }
+
+        return petDto;
+    }
+
+    /**
+     * pet profile img delete for update
+     */
+    public void pfileDelete(PetDto petDto, String oldFileName)
+            throws Exception{
+
+        String root_path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
+
+        if(!petDto.getFile1().getOriginalFilename().equals("")) {
+            File deleteFile = new File(root_path + oldFileName);
+            if(deleteFile.exists()) {
+                deleteFile.delete();
+            }
+        }
+    }
 
 
 }

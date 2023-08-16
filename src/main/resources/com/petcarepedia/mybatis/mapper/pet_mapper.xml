@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.petcarepedia.repository.PetMapper">
+	<select id="list" parameterType="String" resultType="com.project.petcarepedia.dto.PetDto">
+		select pid, mid, pname, pkind, pbirth, pgender, pfile, psfile
+		from pcp_pet
+		where mid=#{mid}
+		order by pid
+	</select>
+
+	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.PetDto">
+		select pid, mid, pname, pkind, pbirth, pgender, pfile, psfile
+		from pcp_pet
+		where pid=#{pid}
+	</select>
+
+	<insert id="insert" parameterType="com.project.petcarepedia.dto.PetDto">
+		INSERT INTO PCP_PET (PID,MID,PNAME,PKIND,PBIRTH,PGENDER,PFILE,PSFILE)
+		VALUES ('P_'||LTRIM(TO_CHAR(SEQU_PCP_PET_PID.NEXTVAL,'0000')),
+		        #{mid},#{pname},#{pkind},#{pbirth},#{pgender},
+		        #{pfile, jdbcType=VARCHAR},
+		        #{psfile, jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.project.petcarepedia.dto.PetDto">
+		update pcp_pet
+		set pname=#{pname}, pkind=#{pkind}, pbirth=#{pbirth}, pgender=#{pgender},
+		    pfile=#{pfile, jdbcType=VARCHAR}, psfile=#{psfile, jdbcType=VARCHAR}
+		where pid=#{pid}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		delete from pcp_pet where pid=#{pid}
+	</delete>
+</mapper>

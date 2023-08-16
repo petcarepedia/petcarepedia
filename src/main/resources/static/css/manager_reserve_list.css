@@ -131,6 +131,20 @@ div.d2 .search_bar {
 }
 
 /*** table ***/
+button.bookingChange {
+    display: inline-block;
+    position: relative;
+    top: 18px;
+    left: 52px;
+    background: #FFB3BD;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
 select.filter {
     border: 1px solid #FFB3BD;
     border-radius: 5px;
@@ -158,7 +172,7 @@ select.filter option {
     width: 777px;
     height: 10px;
     margin-left: 200px;
-    margin-top: 30px;
+    margin-top: 50px;
     text-align: center;
     font-size: 14px;
 }
@@ -245,6 +259,31 @@ select.filter option {
 .reserve_table td:last-child {
     color: red;
     font-weight: bold;
+}
+
+div.review_no {
+    background: #FFF2F4;
+    border-radius: 5px;
+    text-align: center;
+}
+
+div.review_no_img {
+    height: 200px;
+    text-align: center;
+}
+
+div.review_no img#review_no_img {
+    width: 30%;
+    display: block;
+    margin: auto;
+    padding: 50px 0 10px 20px;
+}
+
+div.review_no p {
+    /* border: 1px solid #98DFFF; */
+    font-size: 18px;
+    padding: 0px 0px 30px 0px;
+    font-family: 'BMJua';
 }
 
 
@@ -340,20 +379,28 @@ select.filter option {
 }
 
 .visitDate span {
-    font-size: 16px;
+    height: 20px;
     font-weight: bold;
 }
 
 .reserveDate {
     display: flex;
     flex-direction: column;
-    margin-top: 12px;
-    margin-left: 50px;
+    padding-left: 40px;
+}
+
+.reserveDate span {
+    height: 20px;
 }
 
 .change {
     display: flex;
     flex-direction: column;
+    padding-left: 40px;
+}
+
+.change button:nth-child(1) {
+    margin-bottom: 10px;
 }
 
 .stateBtn {
@@ -361,12 +408,48 @@ select.filter option {
     border: none;
     border-radius: 5px;
     font-weight: bold;
-    width: 100px;
-    height: 35px;
+    width: 110px;
+    height: 45px;
     cursor: pointer;
-    margin-bottom: 5px;
     margin-left: 20px;
 }
+/****************************
+    reserveBtn
+*****************************/
+div.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+div.modal-content {
+    /* border: 1px solid red; */
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+    weight: 500px;
+}
+
+div.modal-content span.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+div.modal-content span.close:hover {
+    cursor: pointer;
+}
+
 
 /****************************
     section5
@@ -390,6 +473,13 @@ select.filter option {
     font-size: 14px;
 }
 
+.booking_table a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+
+
 .booking_table th, .booking_table td {
     border: 1px solid #FFB3BD;
     padding: 5px 0;
@@ -410,6 +500,42 @@ select.filter option {
 .booking_table td:last-child {
     color: red;
     font-weight: bold;
+}
+
+/****************************
+    sectionUnauth
+*****************************/
+#asideUnauth {
+    float: left;
+    margin-left: 50px;
+}
+
+#sectionUnauth {
+    width: 614px;
+    padding-top: 47px;
+}
+
+.mhbox {
+    background: #F2F2F2;
+    padding: 30px;
+    border-radius: 10px;
+    width: 717px; height: 90px;
+    display: flex; align-items: center;
+}
+
+.unauth {
+    background: #FFF4F6;
+}
+
+.mhbox > i {
+    margin-right: 30px;
+}
+
+.mhbox > p {
+    font-weight: bold; font-size: 20px;
+    color: #3D3D3D;
+    flex: 2;
+    line-height : 2;
 }
 
 /****************************

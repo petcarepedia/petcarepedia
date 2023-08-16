@@ -1,13 +1,18 @@
 $(document).ready(function(){
 
 	/*************************
-	 * 승인 완료 버튼
+	 * 승인 거부 버튼
 	 **************************/
-	$("#btn_auth").click(function(){
-		event.preventDefault(); // 폼 전송을 막음
+	$("#btn_noAuth").click(function(){
+		var hid = $(this).data("hid");
 		Swal.fire({
 			icon: 'warning',
-			title: '승인을 완료하시겠습니까?',
+			title: '승인을 거부하시겠습니까?',
+			html: '	 <input type="radio" name="reject" value="r1"/> <span>병원명 중복 또는 부적절<span><br> ' +
+				'<input type="radio" name="reject" value="r2"/> <span >부적절한 주소 및 지역구 불일치<span> <br> ' +
+				'<input type="radio" name="reject" value="r3"/> <span>병원 소개 부적절<span> <br>' +
+				'<input type="radio" name="reject" value="r4"/> <span>병원 이미지 부적절<span> <br>' +
+				'<input type="radio" name="reject" value="r5"/> <span>기타 사유, 문의 바람<span>',
 			showCancelButton: true,
 			confirmButtonColor: '#FFB3BD',
 			cancelButtonColor: '#98DFFF',
@@ -15,17 +20,102 @@ $(document).ready(function(){
 			cancelButtonText: '취소'
 		}).then((result) => {
 			if (result.isConfirmed) {
-				// 확인 버튼을 눌렀을 경우 삭제 처리
-				Swal.fire({
-					icon: 'success',
-					title:'승인이 완료되었습니다.'
-				}).then(() => {
-					document.authForm.submit();
-				});
-				// 폼 전송
-				// 삭제 처리를 위한 코드 작성
+				var auth = $("input[name='reject']:checked").val(); //라디오의 선택된 값을 가져옴
+				if(auth == null){
+					Swal.fire({
+						icon: 'error',
+						title: '승인 거부 사유를 선택해주세요',
+						showConfirmButton: true,
+						confirmButtonColor: '#98DFFF',
+						confirmButtonText: '확인'
+					});
+				}else{
+					$.ajax({
+						url: "/reject_resson/"+hid+"/"+ auth,
+						type: "GET",
+						success:function(result){
+							if(result == "success") {
+								Swal.fire({
+									icon: 'success',
+									title: '승인 거부가 완료되었습니다',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+										location.href = "http://localhost:9000/admin/hospital_list/1/";
+									});
+							} else if(result == "fail") {
+								Swal.fire({
+									icon: 'error',
+									title: '승인 거부를 실패하였습니다.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							} else if(result == "auth") {
+								Swal.fire({
+									icon: 'error',
+									title: '이미 승인된 병원입니다.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							} else if(result == "unauth") {
+								Swal.fire({
+									icon: 'error',
+									title: '이미 승인 거부된 병원입니다.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor: '#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							}
+						}
+					});//ajax
+				}//else
 			}
 		});
+	});
+
+
+	/*************************
+	 * 승인 완료 버튼
+	 **************************/
+	$("#btn_auth").click(function(){
+		var auth = $("input[name='auth']").val();
+		if(auth == "승인") {
+			Swal.fire({
+				icon: 'error',
+				title: '이미 승인된 병원입니다.',
+				confirmButtonColor: '#98dfff',
+				confirmButtonText: '확인'
+			})
+			return false;
+		} else if(auth == "미승인" || auth == "승인거부") {
+			Swal.fire({
+				title: '승인을 완료하시겠습니까?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#FFB3BD',
+				cancelButtonColor: '#98DFFF',
+				confirmButtonText: '승인',
+				cancelButtonText: '취소'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						icon: 'success',
+						text:'승인이 완료되었습니다.'
+					}).then(() => {
+						authForm.submit();
+					});
+				}
+			});
+		}
 	});
 
 
@@ -200,6 +290,16 @@ $(document).ready(function(){
 			}
 		});
 
+
+	/********************************
+	 * 병원 수정하기
+	 *****************************/
+	$("#btn_content").click(function(){
+
+	})
+
+
+
 	/*************************
 	 * 병원 관리자 예약 - 회원 아이디 검색창
 	 **************************/
@@ -220,6 +320,7 @@ $(document).ready(function(){
 		}//else
 
 	});//function
+
 	/*************************
 	 * 예약 - 회원 아이디 검색창
 	 **************************/
@@ -237,35 +338,9 @@ $(document).ready(function(){
 			return false;
 		}else{	
 			location.href = "http://localhost:9000/admin/reserve_msearch/1/"+$("#reserve_bar").val();
-				/*$.ajax({
-					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?mid="+$("#reserve_bar").val(), 
-					success:function(result){
-					let jdata = JSON.parse(result);
-					alert(result);
-					let output = "<table class='table'>";						
-						output += "<tr><th>번호</th><th>병원명</th><th>아이디</th><th>예약일</th><th>상태</th></tr>";						
-						for(obj of jdata.jlist){
-							output += "<tr>";
-							output += "<td>"+ obj.bid +"</td>";
-							output += "<td>"+ obj.hname +"</td>";
-							output += "<td>"+ obj.mid +"</td>";
-							output += "<td>"+ obj.vdate +"</td>";
-							output += "<td>"+ obj.bstate +"</td>";
-							output += "</tr>";						
-							}//for
-							
-						output +="<tr><td colspan='5'><div id='ampaginationsm'></div></</td></tr>";
-						output +="</table>";
-						
-						$("table.table").remove();
-						$("#d2").after(output);
-						
-					}//success
-					
-				});//ajax*/
 		}//else
-					
   	});//function
+
 	/*************************
 	 * 회원 - 회원 아이디 검색창
 	 **************************/
@@ -283,114 +358,9 @@ $(document).ready(function(){
 			return false;
 		}else{	
 			location.href = "http://localhost:9000/admin/member_msearch/1/"+$("#member_search_bar").val();
-				/*$.ajax({
-					url:"http://localhost:9000/petcarepedia/member_list_data.do?mid="+$("#member_search_bar").val(), 
-					success:function(result){
-					let jdata = JSON.parse(result);
-					//alert(result);
-					let output = "<table class='table'>";					
-						output += "<tr><th>아이디</th><th>성명</th><th>이메일</th><th>전화번호</th><th>가입일자</th></tr>";						
-						for(obj of jdata.jlist){
-							output += "<tr>";
-							output += "<td>"+ obj.mid +"</td>";
-							output += "<td>"+ obj.name +"</td>";
-							output += "<td>"+ obj.email +"</td>";
-							output += "<td>"+ obj.phone +"</td>";
-							output += "<td>"+ obj.mdate +"</td>"
-							output += "</tr>";						
-							}//for
-							
-						output +="<tr><td colspan='5'><div id='ampaginationsm'></div></tr>";
-						output +="</table>";
-						
-						$("table.table").remove();
-						$("#d2").after(output);
-						
-					}//success
-					
-				});//ajax*/
 		}//else
 					
   	});//function
-
-	/*************************
-	 * 병원 - 승인 정렬
-	 **************************/
-	$("#authList").change(function(){
-		var selectVal = $(this).val();
-
-		if (selectVal == "auth"){
-			$.ajax({
-				url:"auth/1/",
-				data_type:'json',
-				success:function (data){
-					alert(data);
-					let output = '<table class="table">';
-					output += '<tr><td colspan="5">';
-					output += '<a href="http://localhost:9000/admin/hospital_detail">';
-					output += '<button type="button" class="button4">등록하기</button>';
-					output += '</a></td></tr>';
-
-					output += '<tr><td colspan="5" >';
-					output += '<select id="authList">';
-					output += '<option id="list" value="list" selected> 전체 </option>';
-					output += '<option id ="auth" value="auth"> 승인</option>';
-					output += '<option id="unauth" value="unauth"> 미승인</option>';
-					output += '</select></td></tr>';
-
-					output += '<tr><th>번호</th>';
-					output += '<th>병원명</th>';
-					output += '<th>지역구</th>';
-					output += '<th>영업 시간</th>';
-					output += '<th>승인 여부</th></tr>';
-
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-					output += '';
-
-					output += '<tr><td colspan="5"><div id="ampaginationsm"></div></td></tr>';
-					output += '</table>';
-
-					$("table.table").remove();
-					$("#d5").after(output);
-				}
-			});
-		}
-
-	});
-	/*$("#auth").change(function() => {
-		.ajax({
-				url:"http://localhost:9000/petcarepedia/hospital_list/1/",
-				success:function(result){
-				let jdata = JSON.parse(result);
-				//alert(result);
-				let output = "<table class='table'>";
-					output += "<tr><th>아이디</th><th>성명</th><th>이메일</th><th>전화번호</th><th>가입일자</th></tr>";
-					for(obj of jdata.jlist){
-						output += "<tr>";
-						output += "<td>"+ obj.mid +"</td>";
-						output += "<td>"+ obj.name +"</td>";
-						output += "<td>"+ obj.email +"</td>";
-						output += "<td>"+ obj.phone +"</td>";
-						output += "<td>"+ obj.mdate +"</td>"
-						output += "</tr>";
-						}//for
-
-					output +="<tr><td colspan='5'><div id='ampaginationsm'></div></tr>";
-					output +="</table>";
-
-					$("table.table").remove();
-					$("#d2").after(output);
-
-				}//success
-
-			});//ajax
-	});*/
-
 
 	/*************************
 	 * 병원 - 검색창 변환

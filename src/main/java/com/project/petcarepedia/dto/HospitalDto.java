@@ -25,7 +25,7 @@ public class HospitalDto {
 
     public String getHtime() {
         if(htime1 != null) {
-            htime = htime1 + "~" + htime2;
+            htime = htime1 + " ~ " + htime2;
         }
         return htime;
     }

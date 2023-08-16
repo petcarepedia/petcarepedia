@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
@@ -31,12 +31,12 @@
 						</nav>
 					</div>
 				</section>
-				<section id="section2">
+				<section id="section4" style = "margin-top : 40px">
 					<div id="d3">
 						<form name="updateForm" action="/hospital_update" method="post">
 						<input type = "hidden" name = "hid" value = "${hospital.hid}">
 						<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
-							<table class="table">
+							<table class="content_table">
 								<tr>
 									<th>병원명</th>
 									<td><input type="text" name="hname" id = "hname" value="${hospital.hname}" disabled></td>
@@ -97,7 +97,7 @@
 												<span id="update_file1">${hospital.hfile1}</span>
 											</c:when>
 											<c:otherwise>
-												<span id="update_file1"></span>
+												<span id="update_file1">선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
 
@@ -107,7 +107,7 @@
 												<span id="update_file2">${hospital.hfile2}</span>
 											</c:when>
 											<c:otherwise>
-												<span id="update_file2"></span>
+												<span id="update_file2">선택된 파일 없음</span>
 											</c:otherwise>
 										</c:choose>
 									</td>

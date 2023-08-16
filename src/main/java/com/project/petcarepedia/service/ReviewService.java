@@ -55,6 +55,7 @@ public class ReviewService {
     public int count() {
         return reviewMapper.count();
     }
+
     public List<ReviewDto> Mylist(PageDto pageDto) {
         return reviewMapper.Mylist(pageDto);
     }
@@ -67,4 +68,11 @@ public class ReviewService {
         return reviewMapper.MRRlist(pageDto);
     }
 
+    public ReviewDto bookingReveiw(String bid) {
+        return reviewMapper.bookingReveiw(bid);
+    }
+
+    public int bookingReveiwCount(String bid) {
+        return reviewMapper.bookingReveiwCount(bid);
+    }
 }

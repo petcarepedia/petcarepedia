@@ -26,4 +26,6 @@ public interface ReviewMapper {
     List<ReviewDto> Mylist(PageDto pageDto);
     List<ReviewDto> MRlist(PageDto pageDto);
     List<ReviewDto> MRRlist(PageDto pageDto);
+    ReviewDto bookingReveiw(String bid);
+    int bookingReveiwCount(String bid);
 }

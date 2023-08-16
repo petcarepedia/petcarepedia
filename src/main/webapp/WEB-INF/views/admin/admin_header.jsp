@@ -21,7 +21,7 @@
 				<div class="header-nav">
 					<ul>
 						<li>
-							<a href="http://localhost:9000/logout">로그아웃</a>
+							<a id="logout">로그아웃</a>
 						</li>
 					</ul>
 				</div>
@@ -30,4 +30,40 @@
 		
 	</header>
 </body>
+<script>
+	$("#logout").click(function(){
+		Swal.fire({
+			title: '로그아웃하시겠습니까?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#FFB3BD',
+			cancelButtonColor: '#98dfff',
+			confirmButtonText: '로그아웃',
+			cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				$.ajax({
+					url : "/logout",
+					success : function(result){
+						if(result=="success"){
+							Swal.fire({
+								icon: 'success',
+								title: '로그아웃 성공',
+								text: '다음에 다시 만나요!',
+								confirmButtonColor:'#98dfff',
+								confirmButtonText:'확인'
+							}).then((result) => {
+								if (result.isConfirmed) {
+									location.href = "/";
+								}//if
+							});//swal
+						}
+					}//success
+				});//ajax
+			}
+		})
+	})
+</script>
+</script>
+
 </html>

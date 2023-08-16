@@ -6,10 +6,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="http://localhost:9000/css/admin1.css">
+	<link rel="stylesheet" href="/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="http://localhost:9000/js/petcarepedia_jquery_serin_auth.js"></script>
 	<script src="http://localhost:9000/js/am-pagination.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
@@ -57,7 +58,6 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	
 	<div class="d1">
-		<section class="hospital">
 			<section id = "section1">
 				<div>
 					<nav>
@@ -72,6 +72,7 @@
 					</nav>
 				</div>
 			</section>
+		<section class="hospital">
 			<section id="section2">
 				<div id="d5">
 					<select id="search" name="search">
@@ -91,23 +92,17 @@
 						</button>
 					</div>
 				</div>
+				<div class = "check">
+					<a href="http://localhost:9000/admin/hospital_detail">
+						<button type="button" class="button4" id = "btnInsertHos">등록하기</button>
+					</a>
+					<select id="authList" >
+						<option id="list" value="list" > 전체 </option>
+						<option id ="auth" value="auth"> 승인</option>
+						<option id="unauth" value="unauth"> 미승인</option>
+					</select>
+				</div>
 				<table class="table">
-					<tr>
-						<td colspan="5" >
-							<a href="http://localhost:9000/admin/hospital_detail">
-								<button type="button" class="button4">등록하기</button>
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="5" >
-							<select id="authList">
-								<option id="list" value="list" selected> 전체 </option>
-								<option id ="auth" value="auth"> 승인</option>
-								<option id="unauth" value="unauth"> 미승인</option>
-							</select>
-						</td>
-					</tr>
 					<tr>
 						<th>번호</th>
 						<th>병원명</th>

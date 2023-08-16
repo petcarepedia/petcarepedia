@@ -141,7 +141,7 @@
 		SELECT RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, HNAME, MID, NAME, PHONE
 		FROM (SELECT ROWNUM RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, HNAME, MID, NAME, PHONE
 			  FROM (SELECT B.BID, B.BDATE, B.BSTATE, B.VDATE, B.VTIME, H.HID, H.HNAME, M.MID, M.NAME, M.PHONE
-					FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_MEMBER M WHERE B.HID=H.HID AND M.MID = B.MID ORDER BY BDATE DESC)
+					FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_MEMBER M WHERE B.HID=H.HID AND M.MID = B.MID ORDER BY VDATE DESC, VTIME DESC)
 			  WHERE HID=#{hid})
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
@@ -180,20 +180,20 @@
 	</select>
 
 	<select id="HBslist" parameterType="com.project.petcarepedia.dto.PageDto" resultType="com.project.petcarepedia.dto.BookingDto">
-		SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM
-			(SELECT RNO, HID, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE FROM
-				(SELECT ROWNUM RNO, HID ,HNAME, MID, to_char(BDATE, 'yyyy-mm-dd') VDATE ,BSTATE, VTIME, BID, BDATE FROM
-					(SELECT H.HID, H.HNAME, M.MID , VDATE ,B.BSTATE, VTIME , BID, BDATE
-					 FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_MEMBER M where b.hid = h.hid AND M.MID = B.MID
-					 ORDER BY BDATE DESC)
-				 WHERE HID= #{hid})
-			 WHERE MID LIKE '%' || #{mid} || '%')
+		SELECT RNO, VDATE, BSTATE, VTIME, BID, BDATE, HID, HNAME, MID, NAME, PHONE
+		FROM (SELECT ROWNUM RNO, VDATE, BSTATE, VTIME, BID, BDATE, HID, HNAME, MID, NAME, PHONE
+			  FROM (SELECT VDATE, BSTATE, VTIME, BID, BDATE, HID, HNAME, MID, NAME, PHONE
+					FROM (SELECT to_char(TO_DATE(VDATE), 'yyyy-mm-dd') VDATE, B.BSTATE, B.VTIME, B.BID, B.BDATE, H.HID, H.HNAME, M.MID, M.NAME, M.PHONE
+						  FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_MEMBER M where b.hid = h.hid AND M.MID = B.MID AND H.HID=#{hid}
+						  ORDER BY BDATE DESC)
+					WHERE MID LIKE '%' || #{mid} || '%'))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
+
 	<!--예약검색-->
 	<select id="nowBooking" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
-		SELECT BID, MID, HID, TO_CHAR(BDATE, 'YYYY.MM.DD.HH24:MI:SS') AS BDATE, TO_CHAR(TO_DATE(VDATE), 'YYYY.MM.DD.') AS VDATE, VTIME
+		SELECT BID, MID, HID, TO_CHAR(BDATE, 'YYYY.MM.DD.HH24:MI:SS') AS BDATE, TO_CHAR(TO_DATE(VDATE), 'YYYY.MM.DD.') AS VDATE, VTIME, BSTATE
 		FROM PCP_BOOKING WHERE BID=#{bid}
 	</select>
 
@@ -201,9 +201,25 @@
 		SELECT RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
 		FROM (SELECT ROWNUM RNO, BID, BDATE, BSTATE, VDATE, VTIME, HID, MID, NAME, PHONE
 			  FROM (SELECT B.BID, B.BDATE, B.BSTATE, B.VDATE, B.VTIME, B.HID, M.MID, M.NAME, M.PHONE
-					FROM PCP_BOOKING B, PCP_MEMBER M WHERE M.MID = B.MID AND M.MID=#{mid}
+					FROM PCP_BOOKING B, PCP_MEMBER M WHERE M.MID = B.MID AND M.MID=#{mid} AND B.HID=#{hid}
 					ORDER BY VDATE DESC, VTIME DESC))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<!--예약취소-->
+	<update id="cancel" parameterType="String">
+		update PCP_BOOKING SET BSTATE='예약취소' WHERE BID=#{bid}
+	</update>
+
+	<!--예약상태 업데이트-->
+	<update id="bookingUpdate">
+		UPDATE PCP_BOOKING SET BSTATE='진료완료'
+		WHERE SYSDATE > TO_DATE(VDATE || ' ' || VTIME, 'YYYY-MM-DD HH24:MI:SS') AND BSTATE='예약중'
+	</update>
+
+	<!--관리자 - 예약 상세 페이지 추가-->
+	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.BookingDto">
+		select bid, b.mid, h.hid, h.hname, bdate, bstate, vdate, vtime from pcp_booking b, pcp_hospital h where h.hid = b.hid and bid=#{bid}
 	</select>
 
 </mapper>

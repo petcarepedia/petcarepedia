@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
     <script src="http://localhost:9000/js/manager_review_list.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#reserve").css('fontWeight','bold');
+            $("#reivew").css('fontWeight','normal');
+        });
+    </script>
 </head>
 <body>
 
@@ -27,9 +33,9 @@
                     <nav>
                         <ul>
                             <li>마이페이지</li>
-                            <li><a href = "/manager_hospital_list/1/">병원 관리</a></li>
-                            <li><a href = "/manager_reserve_list/1/">예약 관리</a></li>
-                            <li><a href = "/manager_review_list/1/">리뷰 보기</a></li>
+                            <li><a href =   "/manager_hospital_list/1/">병원 관리</a></li>
+                            <li><a href = "/manager_reserve_list/1/" id="reserve">예약 관리</a></li>
+                            <li><a href = "/manager_review_list/1/" id="reivew">리뷰 보기</a></li>
                             <li><a href = "/mypage_bookmark">정보 관리</a></li>
                             <li><a href = "/mypage_signout">회원 탈퇴</a></li>
                         </ul>
@@ -99,13 +105,13 @@
                         <table>
                             <tr>
                                 <td>작성일자</td>
-                                <td>${rvo.rdate }</td>
+                                <td>${rvo.rdate}</td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="rc_button_r">
-                    <a href="/manager_review_list/${rvo.page}/"><button type="button" class="button">이전으로</button></a>
+                    <a href="javascript:history.back();"><button type="button" class="button">이전으로</button></a>
                 </div>
             </section>
         </section>

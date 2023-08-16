@@ -83,7 +83,7 @@
 						<tr>
 					      <td>${booking.rno}</td>
 					      <td>${booking.hname}</td>
-					      <td>${booking.mid}</td>
+							<td><a href="/admin/reserve_detail/1/${booking.bid}/">${booking.mid}</a></td>
 					      <td class="date">${booking.vdate}</td>
 					      <td class="state">${booking.bstate}</td>
 					    </tr>

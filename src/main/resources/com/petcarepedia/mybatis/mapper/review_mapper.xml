@@ -90,7 +90,6 @@
 		update pcp_review set rcontent=#{rcontent}, rstar=#{rstar}, rfile1=#{rfile1,jdbcType=VARCHAR}, rfile2=#{rfile2,jdbcType=VARCHAR}, 
 			rsfile1=#{rsfile1,jdbcType=VARCHAR}, rsfile2=#{rsfile2,jdbcType=VARCHAR}  where rid=#{rid}
 	</update>
-
 	
 	<delete id="delete">
 		delete pcp_review where rid=#{rid}
@@ -109,8 +108,6 @@
 	<select id="count" resultType="int">
 		select count(*) from pcp_review
 	</select>
-
-
 
 	<!-- pageMapper 추가  -->
 	<select id = "Mylist" parameterType = "com.project.petcarepedia.dto.PageDto" resultType = "com.project.petcarepedia.dto.ReviewDto">
@@ -138,6 +135,19 @@
 			  GROUP BY R.RID, R.MID, R.HID, R.RCONTENT, TO_CHAR(R.RDATE, 'YYYY-MM-DD')
 			  ORDER BY R.RID DESC) R
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<!--예약상세 - 리뷰보기-->
+	<select id="bookingReveiw" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
+		SELECT ROWNUM RNO, BID, RID, RCONTENT, RDATE, RLIKE, RSTAR, RSTATE, MID, HID, HNAME, NICKNAME, RFILE1, RSFILE1, RFILE2,RSFILE2, MSFILE
+		FROM(SELECT R.BID, R.RID, R.RCONTENT, TO_CHAR(R.RDATE, 'YYYY-MM-DD') RDATE, R.RLIKE, R.RSTAR, R.RSTATE, R.MID, R.HID, H.HNAME, M.NICKNAME, R.RFILE1, R.RSFILE1, R.RFILE2, R.RSFILE2, M.MSFILE
+			 FROM PCP_REVIEW R, PCP_HOSPITAL H, PCP_MEMBER M
+			 WHERE R.HID = H.HID AND R.MID = M.MID)
+		WHERE BID = #{bid}
+	</select>
+
+	<select id="bookingReveiwCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM PCP_REVIEW WHERE BID = #{bid}
 	</select>
 
 </mapper>

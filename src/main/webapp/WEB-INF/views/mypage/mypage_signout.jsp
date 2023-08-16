@@ -45,7 +45,7 @@
 									<ul>
 										<li style = "color: #ffb3bd; border-color: #ffb3bd">마이페이지</li>
 										<li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
-										<li><a href = "/manager_reserve_list/1/${sessionScope.svo.hid}">예약 관리</a></li>
+										<li><a href = "/manager_reserve_list/1/">예약 관리</a></li>
 										<li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
 										<li><a href = "/manager_information">회원 정보</a></li>
 										<li><a href = "/mypage_signout">회원 탈퇴</a></li>
@@ -57,10 +57,11 @@
 									<ul>
 										<li>마이페이지</li>
 										<li><a href = "/mypage_member_information">회원 정보</a></li>
+										<li><a href = "/mypage_pet_information">반려동물 정보</a></li>
 										<li><a href = "/mypage_reservation">예약 내역</a></li>
 										<li><a href = "/mypage_my_review/1/">내가 쓴 리뷰</a></li>
-										<li><a href = "/mypage_bookmark">즐겨찾기</a></li>
-										<li><a href = "/mypage_signout">회원 탈퇴</a></li>
+										<li><a href = "/mypage_bookmark" style="font-weight: normal">즐겨찾기</a></li>
+										<li><a href = "/mypage_signout" style="font-weight: bold">회원 탈퇴</a></li>
 									</ul>
 								</nav>
 							</c:otherwise>
