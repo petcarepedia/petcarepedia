@@ -82,7 +82,7 @@
 	
 	<insert id="insert" parameterType="com.project.petcarepedia.dto.ReviewDto">
 		insert into pcp_review(rid, rcontent, rdate, rlike, rstar, mid, hid, bid, rfile1, rsfile1, rfile2, rsfile2 )
-		values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),#{rcontent},sysdate,0,#{rstar},'X',#{mid},#{hid},#{bid},#{rfile1,jdbcType=VARCHAR},#{rsfile1,jdbcType=VARCHAR},
+		values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),#{rcontent},sysdate,0,#{rstar},#{mid},#{hid},#{bid},#{rfile1,jdbcType=VARCHAR},#{rsfile1,jdbcType=VARCHAR},
 				#{rfile2,jdbcType=VARCHAR},#{rsfile2,jdbcType=VARCHAR})
 	</insert>
 	
