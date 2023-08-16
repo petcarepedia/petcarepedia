@@ -17,7 +17,7 @@ public class ReviewDto {
     private ArrayList<String> rsfiles = new ArrayList<String>();
 
     //병원과 조인 Vo
-    private String loc, tel, htime, ntime, holiday, intro, img, hrink;
+    private String loc, tel, htime, ntime, holiday, intro, hrink;
     // 내가 쓴 리뷰
     private String bid, nickname;
     private String hsfile1;
