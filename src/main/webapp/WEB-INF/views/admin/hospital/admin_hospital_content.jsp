@@ -11,24 +11,6 @@
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-	<%--<script>
-		$(document).ready(function(){
-			$(document).ready(function(){
-				$("#file1").change(function(){
-					if(window.FileReader){
-						let fname = $(this)[0].files[0].name;
-						$("#update_file1").text(fname);
-					}
-				});
-				$("#file2").change(function(){
-					if(window.FileReader){
-						let fname = $(this)[0].files[0].name;
-						$("#update_file2").text(fname);
-					}
-				});
-			});
-		});
-	</script>--%>
 </head>
 <body>
 <!-- header -->

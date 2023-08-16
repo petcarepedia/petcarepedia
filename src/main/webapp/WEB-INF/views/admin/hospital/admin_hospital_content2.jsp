@@ -36,9 +36,6 @@
 					<div id="d3">
 						<form name="authForm" action="/admin/auth_update" method="post">
 							<input type = "hidden" name = "hid" value = "${hospital.hid}">
-							<input type = "hidden" name = "hsfile" value = "${hospital.hsfile}">
-<%--							<input type = "hidden" name = "auth" value = "${hospital.auth}">--%>
-
 							<table class="content_table">
 								<tr>
 									<th>병원명</th>

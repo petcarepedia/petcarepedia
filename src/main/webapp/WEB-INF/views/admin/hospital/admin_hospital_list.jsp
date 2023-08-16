@@ -45,7 +45,6 @@
 			   }else {
 				   $(location).attr('href', "http://localhost:9000/admin/hospital_list/"+e.page+"/");
 			   }
-	                    
 	    });
 		
  	});
