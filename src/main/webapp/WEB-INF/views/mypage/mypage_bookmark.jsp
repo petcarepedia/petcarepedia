@@ -76,7 +76,7 @@ function bookmark(bmid) {
 								<div id = "aside1">
 									<span>${bookmark.hname}</span>
 									<span>${bookmark.gloc}</span>
-									<a href = "http://localhost:9000/search_result.do?hid=${bookmark.hid}">병원 상세보기 ></a>
+									<a href = "http://localhost:9000/search_result/${bookmark.hid}">병원 상세보기 ></a>
 									<button type = "button" id = "btnBookmarkDelete" onclick = "bookmark('${bookmark.bmid}')">
 										<img src = "http://localhost:9000/images/bookmark_yellow.png">
 									</button>

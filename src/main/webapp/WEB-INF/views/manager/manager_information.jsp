@@ -101,10 +101,10 @@ const autoHyphen = (target) => {
 							<div id = "hos_profileBox">
 								<c:choose>
 									<c:when test = "${member.hsfile1 != null}">
-										<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "hos_profile">
+										<img src = "http://localhost:9000/upload/${member.hsfile1}/" id = "hos_profile" style = "object-fit: cover">
 									</c:when>
 									<c:otherwise>
-										<img src = "images/hos.png" id = "hos_profile">
+										<img src = "images/hos.png" id = "hos_profile" style = "object-fit: cover">
 									</c:otherwise>
 								</c:choose>
 							</div>
