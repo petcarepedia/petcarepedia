@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 관리자 공지사항</title>
+<link rel="stylesheet" href="/css/admin.css">
 <link rel="stylesheet" href="http://localhost:9000/css/kang_style.css">
 <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/js/petcarepedia_jsp_jquery_kang.js"></script>
@@ -17,6 +18,20 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
+			<section id = "section1">
+				<div>
+					<nav>
+						<ul>
+							<li>공지사항 관리</li>
+							<li><a href = "/admin/hospital_list/1/">병원 관리</a></li>
+							<li><a href = "/admin/member_list/1/">회원 관리</a></li>
+							<li><a href = "/admin/reserve_list/1/">예약 관리</a></li>
+							<li><a href = "/admin/review_list/1/">신고 리뷰 관리</a></li>
+							<li><a href = "/admin/notice/1">공지사항 관리</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 			<div id="title_l">
 				<h1 class="title">공지사항 등록</h1>
 			</div>
@@ -34,8 +49,8 @@
 					</tr>					
 				</table>
 					<div class="nw_button_r">
-						<button type="button" class="ad_button" id="btnNTW">등록</button>
-						<a href="/admin/notice/1"><button type="button" class="ad_button">취소</button></a>
+						<button type="button" class="button4" id="btnNTW">등록</button>
+						<a href="/admin/notice/1"><button type="button" class="button4">취소</button></a>
 					</div>
 			</form>
 		</section>

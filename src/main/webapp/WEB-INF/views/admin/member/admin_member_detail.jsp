@@ -73,7 +73,7 @@
 		          </li>
 		        </ul>
 		        <div id="d4">
-		       	 <a href="http://localhost:9000/admin/member_list/1">
+		       	 <a href="http://localhost:9000/admin/member_list/1/">
 	       	 	 	<button type="button" class="button5">이전으로</button>
 	       	 	 </a>
 		        </div>

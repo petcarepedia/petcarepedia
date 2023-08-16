@@ -39,7 +39,7 @@ $(document).ready(function(){
 		else {
 			Swal.fire({
 				icon: 'success',
-				text:'공지사항이 등록되었습니다.',
+				title:'공지사항이 등록되었습니다.',
 				confirmButtonColor: '#98DFFF',
 				confirmButtonText:'확인',
 			}).then(() => {
@@ -86,7 +86,7 @@ $(document).ready(function(){
 		else {
 			Swal.fire({
 				icon: 'success',
-				text:'공지사항이 수정되었습니다.',
+				title:'공지사항이 수정되었습니다.',
 				confirmButtonColor: '#98DFFF',
 				confirmButtonText:'확인',
 			}).then(() => {
@@ -264,7 +264,7 @@ $(document).ready(function(){
 			if(result.isConfirmed) {
 				Swal.fire({
 					icon: 'success',
-					text:'삭제가 완료되었습니다.',
+					title:'삭제가 완료되었습니다.',
 					confirmButtonColor: '#98DFFF',
 					confirmButtonText:'확인',
 				}).then(() => {
@@ -292,7 +292,7 @@ $(document).ready(function(){
 			if(result.isConfirmed) {
 				Swal.fire({
 					icon: 'success',
-					text:'삭제가 완료되었습니다.',
+					title:'삭제가 완료되었습니다.',
 					confirmButtonColor: '#98DFFF',
 					confirmButtonText:'확인',
 				}).then(() => {

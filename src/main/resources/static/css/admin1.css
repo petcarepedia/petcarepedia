@@ -19,7 +19,6 @@
 .table{
 	width:750px;
 	margin:auto;
-	height:420px;
 	border-collapse:collapse;
 	border-radius:5px;
 	margin-top:20px;
@@ -131,11 +130,10 @@ button >a {
 th{
 	background:#D9D9D9;
 	text-align:center;
-	cursor: pointer;
 }
-tr td:nth-child(1) {
+/*tr td:nth-child(1) {
 	width:32px;
-}
+}*/
 #d4{
 	display: block;
 	float:right;
@@ -164,7 +162,9 @@ button.button5{padding:10px 30px;
 	float: left;
 	margin-top: -285px;
 }
-
+#btnNotice{
+	margin-left: -60px;
+}
 
 section.reserve tr td:nth-child(5),section.hospital_detail tr td:nth-child(4),
 section.hospital_detail tr td:nth-child(5){
@@ -524,11 +524,98 @@ section.review section#section2 .table {
 	margin-top:180px;
 }
 
+/* review_detail */
+section.review_content div.review_detail div.table_like {
+	position: relative;
+	left: 530px;
+	top: -370px;
+	height:400px;
+	width:250px;
+}
+
+section.review_content div.review_detail div.table_like table{
+	font-size: 15px;
+	margin-left: 32px;
+	margin-top: 190px;
+	width: 200px;
+	color: #3d3d3d;
+}
+
+ div.table_like table tr td{
+	border : 1px solid white;
+}
+
+section.review_content div.review_detail div.table_like button {
+	background: white;
+	/* border: 1px solid #98DFFF; */
+	border-radius: 5px;
+	margin-right: 105px;
+	border-radius: 5px;
+	height: 30px;
+	width: 70px;
+	vertical-align: middle;
+}
+section.review_content div.review_detail div.table_like button:disabled {
+	background:#D9D9D9;
+}
+section.review_content div.review_detail div.table_like button:disabled:hover {
+	cursor:default;
+}
+section.review_content div.review_detail div.table_like button:hover {
+	cursor:pointer;
+}
+section.review_content div.review_detail div.table_like div#right_top {
+	text-align:right;
+	margin-top:10px;
+	padding-right:5px;
+}
+section.review_content div.review_detail div.table_like div#right_top button img {
+	height:25px;
+}
+section.review_content div.review_detail div.table_like div#star {
+	margin-top:50px;
+	height:100px;
+	text-align:center;
+	color:#3d3d3d;
+}
+section.review_content div.review_detail div.table_like div#star div.score{
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+	width:170px;
+	height:30px;
+	margin-left: 20px;
+	padding:5px;
+	padding-top:10px;
+	font-size:14px;
+}
+section.review_content div.review_detail div.table_like div#star div#score_l {
+	border:none;
+	margin-bottom:0;
+}
+div#star {
+	font-size:12px;
+}
+section.review_content div.review_detail div.table_like div#imgArea {
+	margin-top:30px;
+	margin-left: 30px;
+}
+section.review_content div.review_detail div.table_like div#imgArea a img{
+	width:100px;
+	height:100px;
+}
+section.review_content div.review_detail div.table_like table td.td{
+	vertical-align:bottom;
+}
+section.review_content div.review_detail div.table_like table td#tdc {
+	width:40px;
+}
 
 
-/*************************************
-	hospital_list_detail style sheet
-**************************************/
+
+
+	/*************************************
+        hospital_list_detail style sheet
+    **************************************/
 
 section.hospital_detail section.section2 div.d3 .table tr th,
 section.hospital_detail section.section2 div.d3 .table tr td,
@@ -646,8 +733,6 @@ section.review_detail div#d3 {
 }
 div#dButton{
 	display:inline-flex;
-	margin-top: 120px;
-	/* padding:20px 50px; */
 	margin-left:-320px;
 }
 
