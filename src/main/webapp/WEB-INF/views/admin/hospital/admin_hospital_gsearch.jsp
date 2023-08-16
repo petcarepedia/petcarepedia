@@ -121,6 +121,7 @@
 						</a>
 						</td>
 					</tr>
+					</c:forEach>
 					<tr>
 						<td colspan="5"><div id="ampaginationsm"></div></td>
 					</tr>

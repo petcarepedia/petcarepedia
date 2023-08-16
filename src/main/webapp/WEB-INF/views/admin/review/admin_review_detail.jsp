@@ -86,7 +86,7 @@
 								</table>
 							</div>
 						</form>
-						<div class="table_right">
+						<div class="table_like">
 							<div id="right_top">
 								<button type="button" id="btnLike" disabled>
 										♥️${review_report.rlike }
@@ -101,7 +101,7 @@
 								</div>
 							</div>
 							<table>
-								<tr>
+								<tr >
 									<td>작성일자</td>
 									<td>${review_report.rdate}</td>
 								</tr>

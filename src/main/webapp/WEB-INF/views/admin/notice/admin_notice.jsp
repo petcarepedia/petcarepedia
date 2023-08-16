@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 관리자 공지 관리</title>
+<link rel="stylesheet" href="/css/admin1.css">
 <link rel="stylesheet" href="http://localhost:9000/css/kang_admin.css">
 <link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 <script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
@@ -66,7 +67,7 @@
 				<table class="table" id=ad_nt_list>
 					<tr>
 						<td colspan="5" >
-							<button type="button" class="button"><a href="/admin/notice_write">등록</a></button>
+							<button type="button" class="button4" id = "btnNotice"><a href="/admin/notice_write">등록하기</a></button>
 						</td>
 					</tr>
 					<tr>

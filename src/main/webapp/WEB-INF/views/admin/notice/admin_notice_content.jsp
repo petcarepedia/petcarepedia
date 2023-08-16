@@ -17,6 +17,21 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
+			<section id = "section1">
+				<div>
+					<nav>
+						<ul>
+							<li>공지사항 관리</li>
+							<li><a href = "/admin/hospital_list/1/">병원 관리</a></li>
+							<li><a href = "/admin/member_list/1/">회원 관리</a></li>
+							<li><a href = "/admin/reserve_list/1/">예약 관리</a></li>
+							<li><a href = "/admin/review_list/1/">신고 리뷰 관리</a></li>
+							<li><a href = "/admin/notice/1">공지사항 관리</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+		<section class="notice">
 			<div id="title_l">
 				<h1 class="title">공지사항 상세보기</h1>
 			</div>
@@ -32,13 +47,13 @@
 			</table>
 			<div id="date">${nvo.ndate }</div>
 			<div class="nc_button_r">
-				<a href="/admin/notice_update/${page}/${nvo.nid }"><button type="button" class="ad_button">수정</button></a>
+				<a href="/admin/notice_update/${page}/${nvo.nid }"><button type="button" class="button4">수정</button></a>
 					<form name="deleteForm" action="/admin_notice_delete" method="post">
 						<input type="hidden" name="nid" value="${nvo.nid }">
 						<input type="hidden" name="page" value="${page }">
-						<button type="button" class="ad_button" id="noticeDelBtn">삭제</button>
+						<button type="button" class="button4" id="noticeDelBtn">삭제</button>
 					</form>
-				<a href="/admin/notice/${page}"><button type="button" class="ad_button">목록</button></a>
+				<a href="/admin/notice/${page}"><button type="button" class="button4">목록</button></a>
 			</div>
 		</section>
 	</div>

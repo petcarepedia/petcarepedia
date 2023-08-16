@@ -17,6 +17,20 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
+			<section id = "section1">
+				<div>
+					<nav>
+						<ul>
+							<li>공지사항 관리</li>
+							<li><a href = "/admin/hospital_list/1/">병원 관리</a></li>
+							<li><a href = "/admin/member_list/1/">회원 관리</a></li>
+							<li><a href = "/admin/reserve_list/1/">예약 관리</a></li>
+							<li><a href = "/admin/review_list/1/">신고 리뷰 관리</a></li>
+							<li><a href = "/admin/notice/1">공지사항 관리</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 			<div id="title_l">
 				<h1 class="title">공지사항 수정</h1>
 			</div>
@@ -36,8 +50,8 @@
 					</tr>						
 				</table>
 				<div class="nw_button_r">
-					<button type="button" class="ad_button" id="BTN_update">수정</button>
-					<a href="/admin/notice_content/${page }/${nvo.nid }"><button type="button" class="ad_button">취소</button></a>
+					<button type="button" class="button4" id="BTN_update">수정</button>
+					<a href="/admin/notice_content/${page }/${nvo.nid }"><button type="button" class="button4">취소</button></a>
 				</div>
 			</form>
 		</section>

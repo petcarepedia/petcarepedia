@@ -86,9 +86,7 @@ th{
 tr td:nth-child(1) {
 	width:50px;
 }
-.button4{
-	padding:5px 15px;
-}
+
 section.reserve tr:last-child td,section.review tr:last-child td,
 section.member tr:last-child td
 {/* �������� */
@@ -199,7 +197,8 @@ section.notice tr td:nth-child(2) {
 }
 section.notice tr td:nth-child(2) a {
 	text-decoration:none;
-	color:#3D3D3D;
+	color: #9d9d9d;
+	font-weight: 600;
 }
 secton.notice tr:ntf-child(12) td{/* .number */
 	border-color:white;
