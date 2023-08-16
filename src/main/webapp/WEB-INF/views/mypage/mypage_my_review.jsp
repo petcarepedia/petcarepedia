@@ -93,7 +93,7 @@
 											<a style="display:none;" href="http://localhost:9000/upload/${review.rsfile2}/" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/upload/${review.rsfile2}/" alt=""></a>
 										</c:when>
 										<c:otherwise>
-											<img src = "http://localhost:9000/images/${review.hsfile}/">
+											<img src = "http://localhost:9000/upload/${review.hsfile1}/">
 										</c:otherwise>
 									</c:choose>
 								</div>

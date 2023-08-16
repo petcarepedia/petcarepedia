@@ -59,14 +59,7 @@
 						<c:otherwise>
 							<c:forEach var = "booking" items = "${list}">
 								<div id = "aside1">
-									<c:choose>
-										<c:when test = "${booking.hsfile1 != null}">
-											<img src = "http://localhost:9000/upload/${booking.hsfile1}">
-										</c:when>
-										<c:otherwise>
-											<img src = "http://localhost:9000/upload/${booking.hsfile}">
-										</c:otherwise>
-									</c:choose>
+										<img src = "http://localhost:9000/upload/${booking.hsfile1}">
 									<div>
 										<span>서울시 > ${booking.gloc}</span>
 										<a href = "http://localhost:9000/search_result/${booking.hid}"><span>${booking.hname}</span></a>
@@ -90,14 +83,7 @@
 							</c:forEach>
 							<c:forEach var = "booking" items = "${list2}">
 								<div id = "aside1">
-									<c:choose>
-										<c:when test = "${booking.hsfile1 != null}">
-											<img src = "http://localhost:9000/upload/${booking.hsfile1}">
-										</c:when>
-										<c:otherwise>
-											<img src = "http://localhost:9000/upload/${booking.hsfile}">
-										</c:otherwise>
-									</c:choose>
+										<img src = "http://localhost:9000/upload/${booking.hsfile1}">
 									<div>
 										<span>서울시 > ${booking.gloc}</span>
 										<a href = "http://localhost:9000/search_result/${booking.hid}"><span>${booking.hname}</span></a>
