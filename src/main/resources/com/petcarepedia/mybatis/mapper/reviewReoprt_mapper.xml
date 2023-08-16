@@ -25,7 +25,7 @@
 				(select rownum rno, rrid, mid, rid, hid, rrdate, rreson, rcontent, rdate, msfile, hname from
 					(select l.rrid, l.mid, l.rid, l.hid, to_char(l.rrdate, 'yyyy-mm-dd') rrdate, l.rreson, r.rcontent, to_char(r.rdate, 'yyyy-mm-dd') rdate, m.msfile, h.hname
 					 from pcp_review_report l, pcp_review r, pcp_hospital h, pcp_member m where l.rid = r.rid and l.hid = h.hid and m.mid = l.mid))
-			 order by rrid desc)
+			 order by rrid )
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
