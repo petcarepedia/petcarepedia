@@ -20,7 +20,7 @@ public class ReviewDto {
     private String loc, tel, htime, ntime, holiday, intro, img, hrink;
     // 내가 쓴 리뷰
     private String bid, nickname;
-    private String hsfile;
+    private String hsfile1;
     private String msfile;
 
 }
