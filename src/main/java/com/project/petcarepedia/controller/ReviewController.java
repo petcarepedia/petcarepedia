@@ -117,30 +117,6 @@ public class ReviewController {
         return ("redirect:/review_main/"+url+"/1");
     }
 
-    //review_report_check.do 리뷰 신고 체크 ----- restComtroller로 바꾸기
-    /*
-    @RequestMapping(value="/review_report_check.do", method=RequestMethod.GET)
-    @ResponseBody
-    public String review_report_check(String rid) {
-        int result = reviewService.reviewCheckResult(rid);
-        return String.valueOf(result);
-    }
-    */
-
-    //review_report_proc.do 리뷰 신고 처리
-    @PostMapping("/review_report")
-    public String review_report_proc(ReviewDto reviewDto) throws UnsupportedEncodingException {
-        int result = reviewService.report(reviewDto.getRid());
-        String view ="";
-        if(result == 1) {
-            // 리뷰로 돌아가게하기
-            String url = reviewDto.getGloc();
-            url = URLEncoder.encode(url, "UTF-8");
-            view = "redirect:/review_content/"+url+"/"+reviewDto.getPage()+"/"+reviewDto.getRid();
-        }
-        return view;
-    }
-
     //리뷰 좋아요
     @PostMapping("/review_like")
     public String review_like_proc(ReviewLikeDto reviewLikeDto, PageDto pageDto, HttpSession session, Model model) throws UnsupportedEncodingException {
