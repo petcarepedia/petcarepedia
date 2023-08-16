@@ -14,16 +14,24 @@
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2&submodules=geocoder"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-	<script>
+	<%--<script>
 	$(document).ready(function(){
-		$("#file1").change(function(){
-			if(window.FileReader){
-				let fname = $(this)[0].files[0].name;
-				$("#update_file").text(fname);
-			}
+		$(document).ready(function(){
+			$("#file1").change(function(){
+				if(window.FileReader){
+					let fname = $(this)[0].files[0].name;
+					$("#update_file1").text(fname);
+				}
+			});
+			$("#file2").change(function(){
+				if(window.FileReader){
+					let fname = $(this)[0].files[0].name;
+					$("#update_file2").text(fname);
+				}
+			});
 		});
-	})
-	</script>
+	});
+	</script>--%>
 </head>
 <body>
 <!-- header -->
@@ -104,13 +112,12 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td colspan ="2">
-
 										<c:choose>
-											<c:when test="${hospital.hfile1 != null}">
-												<input type="hidden" name="hfile1" value="${hospital.hfile1}">
-												<input type="hidden" name="hsfile1" value="${hospital.hsfile1}">
-												<span id="update_file1">${hospital.hfile1}</span>
-												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+											<c:when test = "${hospital.hfile1 != null}">
+													<span id="update_file1">${hospital.hfile1}</span>
+													<input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+													<input type = "hidden" name = "hfile1" value = "${hospital.hfile1}">
+													<input type = "hidden" name = "hsfile1" value = "${hospital.hsfile1}">
 											</c:when>
 											<c:otherwise>
 												<span id="update_file1"> 선택된 파일 없음</span>
@@ -118,15 +125,15 @@
 											</c:otherwise>
 										</c:choose>
 										<c:choose>
-											<c:when test="${hospital.hfile2 != null}">
-												<input type="hidden" name="hfile2" value="${hospital.hfile2}">
-												<input type="hidden" name="hsfile2" value="${hospital.hsfile2}">
-												<span id="update_file2">${hospital.hfile2}</span>
-												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*" >
+											<c:when test = "${hospital.hfile2 != null}">
+													<span id="update_file2">${hospital.hfile2}</span>
+													<input type="file" name="files" class = "file_first" id = "file2" accept="image/*">
+													<input type = "hidden" name = "hfile2" value = "${hospital.hfile2}">
+													<input type = "hidden" name = "hsfile2" value = "${hospital.hsfile2}">
 											</c:when>
 											<c:otherwise>
 												<span id="update_file2">선택된 파일 없음</span>
-												<input type="file" name="files" class = "file_first" id = "file1" accept="image/*">
+												<input type="file" name="files" class = "file_first" id = "file2" accept="image/*">
 											</c:otherwise>
 										</c:choose>
 									</td>

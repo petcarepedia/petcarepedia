@@ -1,5 +1,24 @@
 $(document).ready(function(){
 
+
+
+	/*************************
+	 * 멀티 파일 업로드
+	 **************************/
+	$("#file1").change(function(){
+		if(window.FileReader){
+			let fname = $(this)[0].files[0].name;
+			$("#update_file1").text(fname);
+		}
+	});
+	$("#file2").change(function(){
+		if(window.FileReader){
+			let fname = $(this)[0].files[0].name;
+			$("#update_file2").text(fname);
+		}
+	});
+
+
 	/*************************
 	 * 승인 거부 버튼
 	 **************************/
@@ -188,14 +207,14 @@ $(document).ready(function(){
 	/*************************
 	 * 병원 - 파일 수정
 	 **************************/
-		$("#file1").change(function(){
+		/*$("#file1").change(function(){
 			//alert("1111");
 			if(window. FileReader) { //window객체 사용 ->  window가 가지고 있는 fileReader을 사용 
 				let fname = $(this)[0].files[0].name;
 				//alert(fname);
 				$("#update_file").text(fname);
 			}
-		});
+		});*/
 	 
 	/*************************
 	 * 병원 - 수정
