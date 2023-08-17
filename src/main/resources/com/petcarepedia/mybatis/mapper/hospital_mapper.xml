@@ -119,7 +119,8 @@
 	<update id = "manager_update" parameterType="com.project.petcarepedia.dto.HospitalDto">
 		UPDATE PCP_HOSPITAL SET HNAME = #{hname}, GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel},
 								HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal},
-								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1, jdbcType=VARCHAR} , hsfile1=#{hsfile1, jdbcType=VARCHAR}, hfile2=#{hfile2, jdbcType=VARCHAR}, hsfile2=#{hsfile2, jdbcType=VARCHAR}
+								INTRO=#{intro} ,HRINK= #{hrink} , X=#{x}, Y=#{y},hfile1=#{hfile1, jdbcType=VARCHAR} , hsfile1=#{hsfile1, jdbcType=VARCHAR},
+								hfile2=#{hfile2, jdbcType=VARCHAR}, hsfile2=#{hsfile2, jdbcType=VARCHAR}, auth='unauth'
 		WHERE HID = #{hid}
 	</update>
 
