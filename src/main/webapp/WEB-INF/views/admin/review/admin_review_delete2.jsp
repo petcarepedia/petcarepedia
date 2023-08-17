@@ -66,6 +66,7 @@
 					<div id="d3">
 						<form name="deleteForm" action="/admin/review_delete" method="post">
 							<input type = "hidden" name = "rid" value = "${review.rid}">
+							<input type = "hidden" name = "rrid" value = "${review.rrid}">
 							<table class="table">
 								<tr>
 									<th>병원이름</th>
@@ -75,7 +76,14 @@
 								</tr>
 								<tr>
 									<th>작성자</th>
-									<td>${review.msfile}${review.mid}</td>
+									<td>
+										<input type = "hidden" id = "msfile" name = "msfile" value = "${review.msfile}">
+										<div id = profileBox>
+											<img src = "http://localhost:9000/upload/${review.msfile}/" id = "profile">
+										</div>
+										${review.mid}
+									</td>
+
 								</tr>
 								<tr>
 									<th>상세내용</th>
@@ -86,7 +94,7 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="submit" class="button5" id="btn_delete">삭제완료</button>
-										<a href="/admin/review_detail/${review.rid}">
+										<a href="/admin/review_detail/1/${review.rrid}/">
 											<button type="button" class="button5" id="btn_before">이전으로</button>
 										</a>
 									</td>

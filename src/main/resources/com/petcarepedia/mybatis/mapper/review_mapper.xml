@@ -67,10 +67,10 @@
 	</select>
 	
 	<select id="content" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
-		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2, msfile
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile
-		from pcp_review r, pcp_hospital h, pcp_member m 
-		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, mid, hid, rrid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2, msfile
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.mid, r.hid, rr.rrid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2, m.msfile
+			  from pcp_review r, pcp_hospital h, pcp_member m, pcp_review_report rr
+		where r.hid=h.hid and r.mid = m.mid and r.rid = rr.rid) where rid = #{rid}
 	</select>
 	
 	<select id="enter_content" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
