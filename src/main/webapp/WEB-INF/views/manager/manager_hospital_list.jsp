@@ -68,7 +68,7 @@
 						</c:when>
 						<c:when test="${hospital.auth == 'auth'}">
 							<div id = "aside1" style = "border: 1px solid #d8d8d8;">
-								<img src = "http://localhost:9000/upload/${hospital.hsfile1}">
+								<img src = "http://localhost:9000/upload/${hospital.hsfile1}" style="object-fit: cover;">
 								<div>
 									<span>서울시 > ${hospital.gloc}</span>
 									<a href = "http://localhost:9000/search_result/${hospital.hid}"><span>${hospital.hname}</span></a>
