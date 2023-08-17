@@ -105,7 +105,7 @@
 
 			<section id="section4">
 				<div class="reserveBox">
-					<div class="mhbox">
+					<div class="contentBox">
 						<i class="fa-solid fa-circle-check fa-3x" style="color: #ffb3bd;"></i>
 					</div>
 
