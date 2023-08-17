@@ -208,7 +208,7 @@
           <div class="pet-box" id="${pet.pid}">
             <div class="proimg-box">
               <c:choose>
-                <c:when test="${pet.psfile != null && pet.psfile != ''}">
+                <c:when test="${pet.psfile != null && pet.psfile != '' && pet.psfile != 'null'}">
                   <img src="http://localhost:9000/upload/${pet.psfile}/" class="proimg" id="proImg">
                 </c:when>
                 <c:otherwise>
