@@ -813,10 +813,10 @@ section.review_content div#table table.rv_detail_menu {
 	border-bottom:1px solid #3d3d3d;
 }
 section.review_content div#table table.rv_detail_menu tr:nth-child(2) td{
-	border:1px solid white;
-	border-right:1px solid #3D3D3D;
-	border-bottom:1px solid #3D3D3D;
-	padding: 16px 80px;
+	border: 1px solid white;
+	border-right: 1px solid #3D3D3D;
+	border-bottom: 1px solid #3D3D3D;
+	padding: 8px 133px 8px 13px;
 }
 section.review_content table.rv_detail_menu tr th {
 	width:80px;
@@ -930,11 +930,11 @@ section#review_delete2 table tr:nth-child(3) td {
 	height:200px;
 }
 section#review_delete2 img{
-	float:left;
-	width:45px;
-	height:45px;
+	float: left;
+	width: 40px;
+	height: 40px;
+	padding-right: 15px;
 }
-
 
 #btnInsertHos {
 	float : right;
