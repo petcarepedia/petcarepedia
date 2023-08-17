@@ -15,13 +15,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 <script>
 $(document).ready(function(){
-	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+	$('#loading').hide();
 })
 .ajaxStart(function(){
-	$('#loading').show(); //ajax실행시 로딩바를 보여준다.
+	$('#loading').show();
 })
 .ajaxStop(function(){
-	$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
+	$('#loading').hide();
 });
 </script>
 </head>
@@ -40,10 +40,8 @@ $(document).ready(function(){
 	</div>
 	<img src="http://localhost:9000/images/loading.gif" id="loading">
 	
-	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
-	<!-- content -->
 	<div class="content">
 		<div class="join-container">
 			<div class="content-logo">
@@ -136,8 +134,5 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	
-	<!-- footer -->
-	<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 </body>
 </html>

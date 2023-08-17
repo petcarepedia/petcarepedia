@@ -143,6 +143,9 @@ public class MemberController {
         return viewName;
     }
 
+    /***
+     * 마이페이지 반려동물 정보
+     */
     @GetMapping("mypage_pet_information")
     public String mypage_pet_information(HttpSession session, Model model) {
         SessionDto svo = (SessionDto) session.getAttribute("svo");

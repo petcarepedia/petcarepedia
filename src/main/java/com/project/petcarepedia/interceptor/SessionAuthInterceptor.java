@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class SessionAuthInterceptor extends HandlerInterceptorAdapter{
-	/**
-	 * preHandle : Controller
-	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 								HttpServletResponse response,

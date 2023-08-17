@@ -4,7 +4,6 @@ import com.project.petcarepedia.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Message;
@@ -20,21 +19,18 @@ public class MailService {
     private JavaMailSender mailSender;
 
     private int authNumber;
-    // 난수 발생(여러분들 맘대러)
 
     public void makeRandomNumber() {
-        // 난수의 범위 111111 ~ 999999 (6자리 난수)
         Random r = new Random();
         int checkNum = r.nextInt(888888) + 111111;
         authNumber = checkNum;
     }
 
-    //이메일 보낼 양식!
     public String joinEmail(String email) {
         makeRandomNumber();
-        String setFrom = "petcarepediaofficial@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+        String setFrom = "petcarepediaofficial@gmail.com";
         String toMail = email;
-        String title = "펫케어피디아 회원 가입 인증 이메일 입니다."; // 이메일 제목
+        String title = "펫케어피디아 회원 가입 인증 이메일 입니다.";
         String content =
                 "<div style='width:410px; margin:0 auto; padding:30px 0;  text-align: center; '>" +
                         "        <h1 style='display: inline-block; vertical-align: top; color:#636363; '><span style='color:#FFB3BD'>펫</span>캐어<span style='color:#98DFFF'>피디아 </span></h1>" +
@@ -56,15 +52,15 @@ public class MailService {
                         "                <br>Copyright <strong>PetCarePedia Inc.</strong> All rights reserved" +
                         "            </p>" +
                         "        </div>" +
-                        "    </div>"; //이메일 내용 삽입
+                        "    </div>";
         mailSend(setFrom, toMail, title, content);
         return Integer.toString(authNumber);
     }
 
     public String idFindEmail(MemberDto memberDto, String mid) {
-        String setFrom = "petcarepediaofficial@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+        String setFrom = "petcarepediaofficial@gmail.com";
         String toMail = memberDto.getEmail();
-        String title = "펫케어피디아 아이디 확인 이메일 입니다."; // 이메일 제목
+        String title = "펫케어피디아 아이디 확인 이메일 입니다.";
         String content =
                 "<div style='width:410px; margin:0 auto; padding:30px 0;  text-align: center; '>" +
                         "        <h1 style='display: inline-block; vertical-align: top; color:#636363; '><span style='color:#FFB3BD'>펫</span>캐어<span style='color:#98DFFF'>피디아 </span></h1>" +
@@ -86,12 +82,11 @@ public class MailService {
                         "                <br>Copyright <strong>PetCarePedia Inc.</strong> All rights reserved" +
                         "            </p>" +
                         "        </div>" +
-                        "    </div>"; //이메일 내용 삽입
+                        "    </div>";
         mailSend(setFrom, toMail, title, content);
         return Integer.toString(authNumber);
     }
 
-    //이메일 전송 메소드
     public void mailSend(String setFrom, String toMail, String title, String content){
         MimeMessage message = mailSender.createMimeMessage();
 

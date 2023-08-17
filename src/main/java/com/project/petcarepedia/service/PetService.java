@@ -1,10 +1,6 @@
 package com.project.petcarepedia.service;
 
-import com.project.petcarepedia.dto.MemberDto;
-import com.project.petcarepedia.dto.PageDto;
 import com.project.petcarepedia.dto.PetDto;
-import com.project.petcarepedia.dto.SessionDto;
-import com.project.petcarepedia.repository.MemberMapper;
 import com.project.petcarepedia.repository.PetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
