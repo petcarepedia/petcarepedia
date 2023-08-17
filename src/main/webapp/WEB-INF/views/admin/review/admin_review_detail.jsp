@@ -75,9 +75,16 @@
 									</tr>
 									<tr>
 										<th>작성자</th>
-										<td>${review_report.msfile}${review_report.mid}</td>
+										<td>
+											<input type = "hidden" id = "msfile" name = "msfile" value = "${review_report.msfile}">
+											<div id = profileBox>
+												<img src = "http://localhost:9000/upload/${review_report.msfile}/" id = "profile">
+											</div>
+											${review_report.mid}
+										</td>
+
 									</tr>
-									<tr>
+									<tr id="content">
 										<th>상세내용</th>
 										<td colspan='3'>
 											${review_report.rcontent }
