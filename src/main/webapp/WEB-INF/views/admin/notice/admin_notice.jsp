@@ -33,7 +33,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/admin_notice/"+e.page);
+	           $(location).attr('href', "http://localhost:9000/admin/notice/"+e.page);
 	    });
 		
  	});

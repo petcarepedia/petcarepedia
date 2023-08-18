@@ -197,8 +197,8 @@ section.notice tr td:nth-child(2) {
 }
 section.notice tr td:nth-child(2) a {
 	text-decoration:none;
-	color: #9d9d9d;
-	font-weight: 600;
+	color: #3D3D3D;
+	font-weight:normal;
 }
 secton.notice tr:ntf-child(12) td{/* .number */
 	border-color:white;

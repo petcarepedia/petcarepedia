@@ -125,16 +125,14 @@ section.notice .button:hover, section.review_content .button:hover, section.noti
 	cursor:pointer;
 }
 button.button4{
-	padding: 7px 25px;
 	background: #D9D9D9;
 	color: #3D3D3D;
 	border: 1px solid #3D3D3D;
-	font-size: 11pt;
-	font-weight: 700;
-	cursor: pointer;
-	text-decoration: none;
+	padding: 5px 10px;
 	border-radius: 5px;
-	margin-left: 10px;
+}
+button.button4:hover {
+	cursor: pointer;
 }
 
 .ad_button{
@@ -183,7 +181,7 @@ section.notice #date {
 }
 section.notice .nc_button_r {
 	text-align:right;
-	width: 95%;
+	width: 92%;
 	/* padding-right:150px; */
 }
 section.notice .nc_button:hover {
@@ -199,7 +197,7 @@ section.notice table.notice_content tr:last-child td {
 */
 section.notice .nw_button_r {
 	text-align:right;
-	width:85%;
+	width:92%;
 	/* margin-right:150px; */
 	padding-top:10px;
 }
@@ -777,4 +775,36 @@ section.notice .nc_button_r form {
 
 #NoImgArea {
 	height: 134px;
+}
+
+section.notice #notice_title{
+	margin-left: 0px;
+	font-size: 28px;
+	color: #3D3D3D;
+	border-bottom: 1px solid black;
+	padding-bottom: 10px;
+}
+
+section.notice .nc_button_r {
+	text-align: right;
+	width: 92%;
+	/* padding-right: 150px; */
+}
+
+section.notice table#nct {
+	width:80%;
+	margin: auto;
+}
+
+section.notice #notice_btn {
+	text-align:right;
+	width: 90%;
+	/* padding-right:150px; */
+}
+
+section.notice #notice_date {
+	text-align:right;
+	width: 90%;
+	/* padding-right:150px; */
+	padding-bottom:20px;
 }
