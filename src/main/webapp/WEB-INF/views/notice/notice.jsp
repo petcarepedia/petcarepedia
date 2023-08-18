@@ -44,7 +44,7 @@
 	<div class="content">
 		<section class="notice">
 			<div id=title_l>
-				<h1 class="title">공지사항</h1>
+				<h1 class="title" id="notice_title">공지사항</h1>
 			</div>
 			<table class="notice">
 				<tr>

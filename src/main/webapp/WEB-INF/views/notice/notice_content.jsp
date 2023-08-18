@@ -15,7 +15,7 @@
 	<div class="content">
 		<section class="notice">
 			<div id="title_l">
-				<h1 class="title">공지사항</h1>
+				<h1 class="title" id="notice_title">공지사항</h1>
 			</div>
 			<table class="notice_content" id="nct">
 				<tr>
@@ -27,8 +27,8 @@
 					</td>
 				</tr>
 			</table>
-			<div id="date">${nvo.ndate }</div>
-			<div class="nc_button_r">
+			<div id="notice_date">${nvo.ndate }</div>
+			<div class="nc_button_r" id="notice_btn">
 				<a href="/notice/${page}"><button type="button" class="button">목록</button></a>
 			</div>
 		</section>
