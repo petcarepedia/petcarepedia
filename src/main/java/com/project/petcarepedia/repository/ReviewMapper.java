@@ -28,4 +28,6 @@ public interface ReviewMapper {
     List<ReviewDto> MRRlist(PageDto pageDto);
     ReviewDto bookingReveiw(String bid);
     int bookingReveiwCount(String bid);
+
+    ReviewDto my_content(String rid);
 }

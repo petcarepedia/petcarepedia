@@ -90,6 +90,10 @@
 		update pcp_review set rcontent=#{rcontent}, rstar=#{rstar}, rfile1=#{rfile1,jdbcType=VARCHAR}, rfile2=#{rfile2,jdbcType=VARCHAR}, 
 			rsfile1=#{rsfile1,jdbcType=VARCHAR}, rsfile2=#{rsfile2,jdbcType=VARCHAR}  where rid=#{rid}
 	</update>
+	<select id = "my_content" parameterType="String" resultType="com.project.petcarepedia.dto.ReviewDto">
+		SELECT rid, rcontent, rstar, rfile1, rfile2, rsfile1, rsfile2, m.nickname, h.hname from pcp_review r, pcp_member m, pcp_hospital h
+		where r.mid = m.mid and r.hid = h.hid and rid = #{rid}
+	</select>
 	
 	<delete id="delete">
 		delete pcp_review where rid=#{rid}

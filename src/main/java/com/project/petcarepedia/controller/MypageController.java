@@ -157,7 +157,7 @@ public class MypageController {
     // 리뷰 수정하기 폼
     @GetMapping("mypage_review_revise/{rid}")
     public String mypage_review_revise(@PathVariable String rid, Model model) {
-        model.addAttribute("review", reviewService.content(rid));
+        model.addAttribute("review", reviewService.my_content(rid));
         return "/mypage/mypage_review_revise";
     }
 
@@ -180,7 +180,7 @@ public class MypageController {
     // 리뷰 삭제하기 폼
     @GetMapping("mypage_review_delete/{rid}")
     public String mypage_review_delete(@PathVariable String rid, Model model){
-        model.addAttribute("review", reviewService.content(rid));
+        model.addAttribute("review", reviewService.my_content(rid));
         return "/mypage/mypage_review_delete";
     }
 

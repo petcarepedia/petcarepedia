@@ -75,4 +75,8 @@ public class ReviewService {
     public int bookingReveiwCount(String bid) {
         return reviewMapper.bookingReveiwCount(bid);
     }
+
+    public ReviewDto my_content(String rid) {
+        return reviewMapper.my_content(rid);
+    }
 }
