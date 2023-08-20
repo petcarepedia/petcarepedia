@@ -23,6 +23,8 @@ public class ManagerReserveController {
     MemberService memberService;
     @Autowired
     ReviewService reviewService;
+    @Autowired
+    PetService petService;
 
     /* 병원 관리 예약 하기 - 회원 아이디 검색 */
     /*@GetMapping("manager_reserve_msearch/{page}/{mid}")
@@ -92,6 +94,8 @@ public class ManagerReserveController {
         MemberDto member = memberService.content(mid);
         BookingDto booking = bookingService.nowBooking(bid);
         List<BookingDto> list = bookingService.bookingList(pageDto);
+        List<PetDto> pet = petService.list(pageDto.getMid());
+        System.out.println(pet);
 
 
         /* string bid */
@@ -101,6 +105,7 @@ public class ManagerReserveController {
             bookingCount.setCount(state);
         }
 
+        model.addAttribute("pet", pet);
         model.addAttribute("paging", paging);
         model.addAttribute("page", page);
         model.addAttribute("member", member);

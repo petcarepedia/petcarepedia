@@ -290,9 +290,7 @@ div.review_no p {
 /****************************
     section3
 *****************************/
-#section3 div.infoBox {
-    display: flex;
-    align-items: center;
+#section3 div.box {
     border: none;
     border-radius: 5px;
     background: #FFF2F4;
@@ -302,6 +300,11 @@ div.review_no p {
     margin-bottom: 50px;
     padding: 5px 0px 10px 5px;
     font-size: 15px;
+}
+
+#section3 div.infoBox {
+    display: flex;
+    align-items: center;
 }
 
 #profileBox {
@@ -344,7 +347,13 @@ div.review_no p {
 }
 
 #info #infoProfile span:nth-child(2) {
-    margin-left: 68px;
+    margin-left: 76px;
+}
+
+hr.pet {
+    border-top: 7px dotted lightgray;
+    width: 750px;
+    margin: 15px auto;
 }
 
 /****************************
