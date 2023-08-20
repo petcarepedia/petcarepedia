@@ -87,13 +87,13 @@
 									<td>
 										<c:choose>
 											<c:when test="${hospital.auth == 'auth'}">
-												<input type="text" name="auth" id="auth" value="승인" disabled>
+												<input type="text" name="auth" id="auth" value="승인" >
 											</c:when>
 											<c:when test = "${hospital.auth == 'unauth'}">
-												<input type = "text" name = "auth" id = "auth" value = "미승인" disabled>
+												<input type = "text" name = "auth" id = "auth" value = "미승인" >
 											</c:when>
 											<c:otherwise>
-												<input type="text" name="auth" id="auth" value="승인거부" disabled>
+												<input type="text" name="auth" id="auth" value="승인거부" >
 											</c:otherwise>
 										</c:choose>
 									</td>

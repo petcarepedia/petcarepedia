@@ -49,7 +49,6 @@ public class ProjectRestController {
         }
     }
 
-
     @GetMapping("booking_update")
     public String booking_update() {
         bookingService.bookingUpdate();
@@ -65,18 +64,6 @@ public class ProjectRestController {
             viewName = "redirect:/hospital_list/1/";
         }
         return viewName;
-    }
-
-    /* 병원 승인 여부 상세보기 */
-    @GetMapping("content2/{hid}/")
-    public HospitalDto content2(@PathVariable String hid){
-        return hospitalService.content(hid);
-    }
-
-    /* 병원 상세보기 */
-    @GetMapping("content/{hid}")
-    public HospitalDto content(@PathVariable String hid){
-        return hospitalService.content(hid);
     }
 
 
@@ -120,9 +107,10 @@ public class ProjectRestController {
         hospitalDto.setAuth(auth);
         String check = "";
         String authCheck = hospitalService.authCheck(hid).getAuth();
+        System.out.println(authCheck);
         if(authCheck.equals("unauth")) { // 미승인 된 병원 일 때 거절 가능
             int result = hospitalService.updateAuth(hospitalDto);
-            if(result ==1) { // update가 됐을 때
+            if(result == 1) { // update가 됐을 때
                 check = "success";
             } else {
                 check = "fail";

@@ -65,7 +65,7 @@
 								<th>아이디</th>
 								<th>병원명</th>
 								<th>내용</th>
-								<th>작성일</th>
+								<th>신고사유</th>
 							</tr>
 						<c:forEach var="review_report" items="${list}">
 							<tr>
@@ -73,7 +73,7 @@
 								<td>${review_report.mid}</td>
 								<td>${review_report.hname}</td>
 								<td><a href="/admin/review_detail/1/${review_report.rrid}/">${review_report.rcontent}</a></td>
-								<td>${review_report.rdate}</td>
+								<td>${review_report.rreson}</td>
 							</tr>
 						</c:forEach>
 							<tr>

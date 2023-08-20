@@ -3,8 +3,7 @@ $(document).ready(function(){
 
 
 	/*************************
-	 * 멀티 파일 업로드드
-
+	 * 멀티 파일 업로드
 	 **************************/
 	$("#file1").change(function(){
 		if(window.FileReader){
@@ -129,7 +128,7 @@ $(document).ready(function(){
 				if (result.isConfirmed) {
 					Swal.fire({
 						icon: 'success',
-						text:'승인이 완료되었습니다.'
+						title:'승인이 완료되었습니다.'
 					}).then(() => {
 						authForm.submit();
 					});
@@ -262,7 +261,7 @@ $(document).ready(function(){
 			        confirmButtonText: '확인'
 			    }).then((result) => {
 			        if (result.isConfirmed) {
-			            updateForm.submit(); 
+			            updateForm.submit();
 			        }
 			    });
 			}
@@ -306,7 +305,16 @@ $(document).ready(function(){
 				$("#holiday").focus();
 				return false;
 			}else{
-				writeForm.submit();
+				Swal.fire({
+					icon: 'success',
+					title: '등록이 완료되었습니다.',
+					confirmButtonColor: '#7ab2cc',
+					confirmButtonText: '확인'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						writeForm.submit();
+					}
+				});
 			}
 		});
 
