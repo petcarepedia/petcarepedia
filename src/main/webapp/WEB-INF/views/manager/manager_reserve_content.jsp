@@ -79,24 +79,48 @@
 			</section>
 
 			<section id="section3">
-				<div class="infoBox">
-					<div id="profileBox">
-						<img src = "http://localhost:9000/upload/${member.msfile}/" id="profile">
-					</div>
-
-					<div id="info">
-						<p>${member.mid}</p>
-
-						<div id="infoName">
-							<span>이름 : ${member.name}</span>
-							<span>생년월일 : ${member.birth}</span>
+				<div class="box">
+					<div class="infoBox">
+						<div id="profileBox">
+							<img src = "http://localhost:9000/upload/${member.msfile}/" id="profile">
 						</div>
 
-						<div id="infoProfile">
-							<span>휴대폰 : ${member.phone}</span>
-							<span>이메일 : ${member.email}</span>
+						<div id="info">
+							<p>${member.mid}</p>
+
+							<div id="infoName">
+								<span>이름 : ${member.name}</span>
+								<span>생년월일 : ${member.birth}</span>
+							</div>
+
+							<div id="infoProfile">
+								<span>휴대폰 : ${member.phone}</span>
+								<span>이메일 : ${member.email}</span>
+							</div>
 						</div>
 					</div>
+
+					<c:forEach var="pet" items="${pet}">
+						<hr class="pet">
+						<div class="infoBox">
+							<div id="profileBox">
+								<img src = "http://localhost:9000/upload/${pet.psfile}/" id="profile">
+							</div>
+
+							<div id="info">
+								<p>${pet.pname}</p>
+
+								<div id="infoName">
+									<span>종류 : ${pet.pkind}</span>
+									<span>성별 : ${pet.pgender}</span>
+								</div>
+
+								<div id="infoProfile">
+									<span>생일 : ${pet.pbirth}</span>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
 			</section>
 
