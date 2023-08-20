@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="http://localhost:9000/css/am-pagination.css">
 	<script src="http://localhost:9000/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/js/petcarepedia_jquery_serin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2&submodules=geocoder"></script>
 	<link href="http://localhost:9000/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
@@ -16,7 +17,6 @@
 <body>
 	<!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
-	
 	<!-- content -->
 	<div class="d1">
 		<section id="hospital_data">
@@ -84,7 +84,7 @@
 									<td><input type="text" name="holiday" id="holiday" placeholder="O / X "> </td>
 								</tr>
 								<tr>
-									<th>홈페이지 링크</th>
+									<th>홈페이지 링크(선택)</th>
 									<td><input type="text" name="hrink" id="hrink" > </td>
 								</tr>
 								<tr>
