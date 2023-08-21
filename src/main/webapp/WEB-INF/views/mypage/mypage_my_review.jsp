@@ -40,7 +40,12 @@
 	    });
 		
  	});
-</script> 
+</script>
+	<script>
+		function abc() {
+
+		}
+	</script>
 </head>
 <body>
 	 <jsp:include page="../header.jsp"></jsp:include>

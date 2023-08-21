@@ -410,7 +410,7 @@ $("#btnReservationDelete").click(function(){
 			if($("#pass").val() == "") {
 				Swal.fire({
 					  icon: 'error',                         
-					  text: '비밀번호를 입력해주세요.',  
+					  title: '비밀번호를 입력해주세요.',
 					  confirmButtonColor:'#98dfff',
 					  confirmButtonText:'확인'
 					}).then((result) => {
@@ -434,14 +434,14 @@ $("#btnReservationDelete").click(function(){
 				            	if(result == 0) {
 				            		Swal.fire({
 									icon: 'error',                         
-									text: '비밀번호 오류',  
+									title: '비밀번호 오류',
 									confirmButtonColor:'#98dfff',
 									confirmButtonText:'확인'
 									})
 				            	} else {
 				            		Swal.fire({
 									icon: 'success',                         
-									text: '탈퇴가 완료되었습니다.',  
+									title: '탈퇴가 완료되었습니다.',
 									confirmButtonColor:'#98dfff',
 									confirmButtonText:'확인'
 									}).then(() => {
