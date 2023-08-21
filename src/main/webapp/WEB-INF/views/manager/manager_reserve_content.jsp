@@ -104,7 +104,24 @@
 						<hr class="pet">
 						<div class="infoBox">
 							<div id="profileBox">
-								<img src = "http://localhost:9000/upload/${pet.psfile}/" id="profile">
+								<c:choose>
+									<c:when test="${pet.psfile != null && pet.psfile != '' && pet.psfile != 'null'}">
+										<img src = "http://localhost:9000/upload/${pet.psfile}/" id="profile">
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${pet.pkind == '강아지'}">
+												<img src="http://localhost:9000/images/dog_profile.png/" class="proimg" id="profile">
+											</c:when>
+											<c:when test="${pet.pkind == '고양이'}">
+												<img src="http://localhost:9000/images/cat_profile.png/" class="proimg" id="profile">
+											</c:when>
+											<c:otherwise>
+												<img src="http://localhost:9000/images/etc_profile.png/" class="proimg" id="profile">
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
 							</div>
 
 							<div id="info">
