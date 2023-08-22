@@ -55,7 +55,7 @@
 <body>
 <!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
-	
+	<section class="hospital">
 	<div class="d1">
 			<section id = "section1">
 				<div>
@@ -71,7 +71,7 @@
 					</nav>
 				</div>
 			</section>
-		<section class="hospital">
+
 			<section id="section2">
 				<div id="d5">
 					<select id="search" name="search">

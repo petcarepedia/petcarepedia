@@ -49,7 +49,7 @@
 						<nav>
 							<ul>
 								<li>신고리뷰관리</li>
-								<li><a href = "http://localhost:9000/admin/hospital_list_list/1/">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/admin/hospital_list/1/">병원 관리</a></li>
 								<li><a href = "http://localhost:9000/admin/member_list/1/">회원 관리</a></li>
 								<li><a href = "http://localhost:9000/admin/reserve_list/1/">예약 관리</a></li>
 								<li><a href = "http://localhost:9000/admin/review_list/1/">신고 리뷰 관리</a></li>
