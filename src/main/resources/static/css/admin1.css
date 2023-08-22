@@ -265,46 +265,6 @@ section1 style sheet - 카테고리
 	color :#7ab2cc;
 	text-decoration : none;
 }
-
-/****************************
-section3 style sheet - 카테고리
-*****************************/
-#section3 {
-	width: 148px;
-	height: 300px;
-	float : left;
-	margin-top : 80px;
-}
-
-#section3 div nav ul{
-	list-style-type:none;
-
-}
-#section3 div nav ul li{
-	margin-bottom : 15px;
-}
-#section3 div nav ul li:first-child {
-	font-weight: 700;
-	font-size: 20px;
-	color: #ffb3bd;
-	border-left : 10px solid #ffb3bd;
-	margin-bottom : 25px;
-	padding-left:7px;
-}
-#section3 div nav ul >li > a {
-	font-size : 15px;
-	font-weight :500;
-	color : #3D3D3D;
-	text-decoration :none;
-}
-
-#section3 div nav ul li a:hover {
-	font-size : 16px;
-	font-weight:bold;
-	color :#ffb3bd;
-	text-decoration : none;
-}
-
 /*********************************
 manager/ reserve_list style sheet
 **********************************/
@@ -423,12 +383,6 @@ table.content_table tr td input[type="file"]{
 	padding-top: 20px;
 	margin-bottom: -20px;
 }
-
-/*section#hospital_update table.table tr td input[id="files2"],
-table.content_table tr td input[id="files2"]{
-	margin-top: -20px;
-	margin-bottom: -25px;
-}*/
 
 
 /****************************
