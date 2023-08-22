@@ -1,6 +1,7 @@
 $(document).ready(function() {
     // 0: 전체보기 // 1: 새로고침
     var bookingFlag = 1;
+
     /**********************************
      병원 관리자 예약 - 회원 아이디 검색창
      ***********************************/
@@ -11,7 +12,6 @@ $(document).ready(function() {
             hreserve();
         }
     });
-
 
     /**********************************
                 신고상태 filter
@@ -90,7 +90,6 @@ $(document).ready(function() {
         }
     });
 
-
     /**********************************
                     함수
      ***********************************/
@@ -131,8 +130,7 @@ $(document).ready(function() {
                         code += '<td>' + booking.vdate + '</td>';
                         code += '<td>' + booking.vtime + '</td>';
                         code += '<td class="state">' + booking.bstate + '</td></tr>';
-                    } // for
-
+                    }
 
                     code += '<tr><td colspan="7">';
                     code += '<div id="ampaginationsm"></div></td></tr></table>';
@@ -153,24 +151,22 @@ $(document).ready(function() {
                 /*호버 효과*/
                 var allCells = $("td:nth-child(3)");
 
-
                 allCells.on("mouseover", function() {
                     var el = $(this);
                     var row = el.closest('tr');
 
-
-                    // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
+                    /*해당 행의 모든 td 요소와 th 요소에 스타일 적용*/
                     row.find('td, th').css({ "background": "#FFF2F4"});
                 }).on("mouseout", function() {
                     var el = $(this);
                     var row = el.closest('tr');
 
 
-                // 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
+                    /*해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원*/
                     row.find('td, th').css({ "background": "", "color": "" });
                 });
 
-                // 페이징 처리 함수 호출
+                /*페이징 처리 함수 호출*/
                 pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
 
                 jQuery('#ampaginationsm').on('am.pagination.change',function(e){
@@ -179,12 +175,9 @@ $(document).ready(function() {
                         msearchAjax(e.page, mid);
                     }
                 });
-
-
-            } // success: function
-        }); // ajax
-    } // msearch
-
+            }
+        });
+    }
 
     /* 필터 함수 */
     function filterAjax(filter, page) {
@@ -193,7 +186,6 @@ $(document).ready(function() {
             url: "http://localhost:9000/manager_reserve_list/" + page + "/" + filter + "/",
             dataType : 'json',
             success: function(result) {
-
 
                 var code = "";
                 code += '<table class="reserve_table">';
@@ -207,7 +199,7 @@ $(document).ready(function() {
                     code += '<td>' + booking.vdate + '</td>';
                     code += '<td>' + booking.vtime + '</td>';
                     code += '<td class="state">' + booking.bstate + '</td></tr>';
-                } // for
+                }
 
                 code += '<tr><td colspan="7">';
                 code += '<div id="ampaginationsm"></div></td></tr></table>';
@@ -222,47 +214,44 @@ $(document).ready(function() {
                     var el = $(this);
                     var row = el.closest('tr');
 
-                    // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
+                    /*해당 행의 모든 td 요소와 th 요소에 스타일 적용*/
                     row.find('td, th').css({ "background": "#FFF2F4"});
                 }).on("mouseout", function() {
                     var el = $(this);
                     var row = el.closest('tr');
 
-                    // 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
+                    /*해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원*/
                     row.find('td, th').css({ "background": "", "color": "" });
                 });
 
-                // 페이징 처리 함수 호출
+                /*페이징 처리 함수 호출*/
                 pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
 
-                // 페이지 번호 클릭 이벤트 처리
+                /*페이지 번호 클릭 이벤트 처리*/
                 jQuery('#ampaginationsm').on('am.pagination.change',function(e) {
                     jQuery('.showlabelsm').text('The selected page no: ' + e.page);
                     filterAjax(filter, e.page);
                 });
-            } // success: function
-        }); // ajax
-    } // stateAjax
+            }
+        });
+    }
 
     /* 페이징 처리 함수 */
     function pager(totals, maxSize, pageSize, page) {
 
         jQuery('#ampaginationsm').pagination({
 
-            maxSize: maxSize,	    		// max page size
-            totals: totals,	// total pages
-            page: page,		// initial page
-            pageSize: pageSize,			// max number items per page
+            maxSize: maxSize,
+            totals: totals,
+            page: page,
+            pageSize: pageSize,
 
-            // custom labels
             lastText: '&raquo;&raquo;',
             firstText: '&laquo;&laquo;',
             prevText: '&laquo;',
             nextText: '&raquo;',
 
-            btnSize:'sm'	// 'sm'  or 'lg'
+            btnSize:'sm'
         });
-    } // pager
-
-
-}); // document
+    }
+});

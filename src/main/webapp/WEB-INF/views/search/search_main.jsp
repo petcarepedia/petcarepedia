@@ -28,19 +28,14 @@
 </head>
 
 <body>
-<!-- header -->
 <div class="header-wrapper">
 	<jsp:include page="../header.jsp"></jsp:include>
 </div>
 
-<!-- content -->
 <div class="search_main">
 
-	<!-- 필터 -->
 	<section class="filter">
 		<h1 class="title">동물병원</h1>
-
-		<!-- 지역 필터 -->
 		<div class="area">
 			<div class="text_area">
 				<span>지역구분</span>
@@ -78,7 +73,6 @@
 			</div>
 		</div>
 
-		<!-- 시간 필터 -->
 		<div class="time">
 			<div class="text_time">
 				<span>진료시간</span>
@@ -93,7 +87,6 @@
 			</div>
 		</div>
 
-		<!-- 특수동물 필터 -->
 		<div class="animal">
 			<div class="text_animal">
 				<span>특수 동물</span>
@@ -108,18 +101,15 @@
 	</section>
 
 	<div class="s2">
-		<!-- 검색리스트 -->
 		<section class="list">
 			<div class="hlist">
 
-				<!-- 병원 리스트 -->
 				<c:forEach var="list" items="${list}">
 					<c:if test="${list.auth eq 'auth'}">
 						<ul id="dataList">
 							<li data-filter="${list.gloc} * 휴${list.holiday} time 야${list.ntime} 동${list.animal}">
 
 								<div class="list1">
-									<!-- 병원 정보 -->
 									<div class="hinfo">
 										<span>${list.hname}</span>
 										<span>${list.tel}</span>
@@ -140,7 +130,6 @@
 										</a>
 									</div>
 
-									<!-- 병원 이미지 -->
 									<div class="himg">
 										<c:choose>
 											<c:when test="${list.hsfile1 != null}">
@@ -166,7 +155,6 @@
 			</div>
 		</section>
 
-		<!-- 지도API -->
 		<section class="api">
 			<div class="hapi">
 				<jsp:include page="search_main_map.jsp"></jsp:include>
@@ -176,7 +164,6 @@
 	</div>
 </div>
 
-<!-- footer -->
 <jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

@@ -15,7 +15,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
 	<script src="http://localhost:9000/js/search_reservation.js"></script>
 	<script>
-	/* 정보 표시 */
 	$(".hservation").click(function() {
 		$("#hmodal").css("display", "block");
 		$('input[name="hid"]').val($(this).val());
@@ -48,7 +47,6 @@
 		<hr>
 	    
     	<div class="rtime"></div>	
-	    <!-- 영업시간 db연동 -->
 	    <input type="hidden" id="now" name="now" value="">
 	    <input type="hidden" id="startTime" name="startTime" value="${time.start}">
 	    <input type="hidden" id="endTime" name="endTime" value="${time.end}">
@@ -61,7 +59,6 @@
 			<input type="hidden" id="vtime" name="vtime" value="">
 
 			<c:choose>
-				<%--본인 병원 예약 방지--%>
 				<c:when test="${svo.hid == hospital.hid}">
 					<td></td>
 				</c:when>
@@ -69,7 +66,6 @@
 					<button type="button" id="check">확인</button>
 				</c:otherwise>
 			</c:choose>
-
 		</form>
 	</div>
 </body>

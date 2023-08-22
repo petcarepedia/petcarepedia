@@ -112,13 +112,12 @@ $(document).ready(function(){
 	}
 
 	$('input[name="gloc"]').click(function() {
-		var gloc = "*"; // 기본설정
+		var gloc = "*";
 
 		if ($(this).prop('checked')) {
-			var gloc = $(this).val(); // 체크된 경우 실제 체크된 값으로 업데이트
+			var gloc = $(this).val();
 		}
 
 		initGlocMap(gloc);
 	});
-
 });
