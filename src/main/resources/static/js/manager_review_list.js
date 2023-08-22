@@ -6,7 +6,6 @@ $(document).ready(function() {
         stateAjax(hid, 1);
     });
 
-
     /* 신고상태 함수 */
     function stateAjax(hid, page) {
         $.ajax({
@@ -24,7 +23,7 @@ $(document).ready(function() {
                         code += '<td><a href="/manager_review_content/' + page + '/' + review.rid + '/">' + review.rcontent + '</a></td>';
                         code += '<td>' + review.rdate + '</td>';
                         code += '<td class="state">신고 접수 중</td></tr>';
-                } // for
+                }
 
                 code += '<tr><td colspan="5">';
                 code += '<div id="ampaginationsm"></div></td></tr></table>';
@@ -44,50 +43,47 @@ $(document).ready(function() {
                     var el = $(this);
                     var row = el.closest('tr');
 
-                    // 해당 행의 모든 td 요소와 th 요소에 스타일 적용
+                    /*해당 행의 모든 td 요소와 th 요소에 스타일 적용*/
                     row.find('td, th').css({ "background": "#FFF2F4"});
                 }).on("mouseout", function() {
                     var el = $(this);
                     var row = el.closest('tr');
 
-                    // 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
+                    /*해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원*/
                     row.find('td, th').css({ "background": "", "color": "" });
                 });
 
 
-                // 페이징 처리 함수 호출
+                /*페이징 처리 함수 호출*/
                 pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
 
-                // 페이지 번호 클릭 이벤트 처리
+                /*페이지 번호 클릭 이벤트 처리*/
                 jQuery('#ampaginationsm').on('am.pagination.change',function(e) {
                     jQuery('.showlabelsm').text('The selected page no: ' + e.page);
                     stateAjax(hid, e.page);
                 });
-            } // success: function
-        }); // ajax
-    } // stateAjax
-
+            }
+        });
+    }
 
     /* 페이징 처리 함수 */
     function pager(totals, maxSize, pageSize, page) {
 
         var pager = jQuery('#ampaginationsm').pagination({
 
-            maxSize: maxSize,	    		// max page size
-            totals: totals,	// total pages
-            page: page,		// initial page
-            pageSize: pageSize,			// max number items per page
+            maxSize: maxSize,
+            totals: totals,
+            page: page,
+            pageSize: pageSize,
 
-            // custom labels
             lastText: '&raquo;&raquo;',
             firstText: '&laquo;&laquo;',
             prevText: '&laquo;',
             nextText: '&raquo;',
 
-            btnSize:'sm'	// 'sm'  or 'lg'
+            btnSize:'sm'
         });
     }
-
 
     /* 리뷰관리 요청 */
     $("#review_manage").click(function () {
@@ -99,17 +95,17 @@ $(document).ready(function() {
 
     /* 신고하기 기능 함수 */
     function rstateButton(rid, hid, mid) {
-        if (mid == "" || mid == null) { // 미로그인시
+        if (mid == "" || mid == null) {
             Swal.fire({
                 icon: 'warning',
                 title: '로그인 확인',
                 text: '로그인을 먼저 해주세요.',
-                showConfirmButton: true, // 확인 버튼 표시
+                showConfirmButton: true,
                 confirmButtonColor: '#98dfff',
                 confirmButtonText: '확인'
             });
 
-        } else { // 로그인시
+        } else {
             Swal.fire({
                 icon: 'warning',
                 title: '신고 사유를 선택해주세요',
@@ -125,7 +121,7 @@ $(document).ready(function() {
                 cancelButtonText: '취소',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var rreson = $("input[name='rreson']:checked").val(); // 선택된 라디오 버튼의 값을 가져옴
+                    var rreson = $("input[name='rreson']:checked").val();
                     if (rreson == null) {
                         Swal.fire({
                             icon: 'error',
@@ -134,7 +130,7 @@ $(document).ready(function() {
                             confirmButtonText: '확인',
                             confirmButtonColor: '#98dfff'
                         }).then(() => {
-                            $(".rstate").click(); // 신고 사유 재선택 창 다시 띄우기
+                            $(".rstate").click();
                         });
                     } else {
                         $.ajax({
@@ -177,6 +173,4 @@ $(document).ready(function() {
             });
         }
     }
-
-
-}); // document
+});

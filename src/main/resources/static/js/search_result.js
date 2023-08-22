@@ -1,22 +1,22 @@
 $(document).ready(function(){
-	var mid = $("input[name='loginId']").val(); // 로그인 확인
-	var hid = $("input[name='hid']").val(); // 현재 병원
+	var mid = $("input[name='loginId']").val();
+	var hid = $("input[name='hid']").val();
 
 
 	/** 북마크 버튼 **/
-	$("#bookmark").click(function(event) { // 북마크
-		event.preventDefault(); // 페이지 바로넘어감 방지
+	$("#bookmark").click(function(event) {
+		event.preventDefault();
 
-		if(mid == "") { // 미로그인시
+		if(mid == "") {
 			Swal.fire({
 				icon: 'warning',
 				title: '로그인 확인',
 				text: '로그인을 먼저 해주세요.',
-				showConfirmButton: true, // 확인 버튼 표시
+				showConfirmButton: true,
 				confirmButtonColor:'#98dfff',
 				confirmButtonText: '확인'
 			});
-		} else { // 로그인시
+		} else {
 			$.ajax({
 				url: "http://localhost:9000/bookmark",
 				type: "GET",
@@ -25,27 +25,27 @@ $(document).ready(function(){
 					mid: mid
 				},
 				success: function(bookmark_result) {
-					if (bookmark_result === "fail") { // 이미 북마크 함	
+					if (bookmark_result === "fail") {
 						Swal.fire({
 							icon: 'error',
 							title: '즐겨찾기 해제',
 							text: '즐겨찾기에서 해제했습니다.',
-							showConfirmButton: true, // 확인 버튼 표시
+							showConfirmButton: true,
 							confirmButtonColor:'#98dfff',
 							confirmButtonText: '확인'
 						}).then(function() {
-							location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+							location.reload();
 						});
-					} else if (bookmark_result === "success") { // 북마크 처리
+					} else if (bookmark_result === "success") {
 						Swal.fire({
 							icon: 'success',
 							title: '즐겨찾기 추가',
 							text: '즐겨찾기에 추가했습니다.',
-							showConfirmButton: true, // 확인 버튼 표시
+							showConfirmButton: true,
 							confirmButtonColor:'#98dfff',
 							confirmButtonText: '확인'
 						}).then(function() {
-							location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+							location.reload();
 						});
 					}
 				}
@@ -53,24 +53,19 @@ $(document).ready(function(){
 		}
 	});
 
-
 	/** 예약 버튼 **/
-	$("#reservation").click(function() { // 예약 버튼
-		if(mid == "") { // 미로그인시
+	$("#reservation").click(function() {
+		if(mid == "") {
 			Swal.fire({
 				icon: 'warning',
 				title: '로그인 확인',
 				text: '로그인을 먼저 해주세요.',
-				showConfirmButton: true, // 확인 버튼 표시
+				showConfirmButton: true,
 				confirmButtonColor:'#98dfff',
 				confirmButtonText: '확인'
 			});
-		} else { // 로그인시
-			//var hid = $(this).val();
-			//var iframeSrc = "search_reservation.do?hid=" + hid;
+		} else {
 			var modal = $("#hmodal");
-			//var iframe = $("#reservation-iframe");
-			//iframe.attr("src", iframeSrc);
 			modal.css("display", "block");
 			$(".scrdiv *").css("display", "none");
 			$(".cchat-btn *").css("display", "none");
@@ -79,7 +74,6 @@ $(document).ready(function(){
 			$(".spword-box").css("box-shadow", "none");
 		}
 	});
-
 
 	/* 모달 닫기 */
 	$(".close").click(function() {
@@ -97,16 +91,16 @@ $(document).ready(function(){
 		var rid = button.data('rid');
 
 		/* 좋아요 처리 Ajax 호출 */
-		if (mid == "" || mid == null) { // 미로그인시
+		if (mid == "" || mid == null) {
 			Swal.fire({
 				icon: 'warning',
 				title: '로그인 확인',
 				text: '로그인을 먼저 해주세요.',
-				showConfirmButton: true, // 확인 버튼 표시
+				showConfirmButton: true,
 				confirmButtonColor: '#98dfff',
 				confirmButtonText: '확인'
 			});
-		} else { // 로그인시
+		} else {
 			$.ajax({
 				url: 'http://localhost:9000/like',
 				method: 'GET',
@@ -116,11 +110,11 @@ $(document).ready(function(){
 					mid: mid
 				},
 				success: function (like_result) {
-					if (like_result === "success") { // 좋아요 처리
+					if (like_result === "success") {
 						var count = parseInt(button.find('.like-count').text());
 						count++;
 						button.find('.like-count').text(count);
-					} else { // 좋아요 취소
+					} else {
 						var count = parseInt(button.find('.like-count').text());
 						count--;
 						button.find('.like-count').text(count);
@@ -133,24 +127,21 @@ $(document).ready(function(){
 	$('.like').click(function (e) {
 		e.preventDefault();
 		var button = $(this);
-		likeButton(button); // likeButton 함수 호출
+		likeButton(button);
 	});
-
-
 
 	/** 신고하기 버튼 **/
 	function rstateButton(rid, hid, mid) {
-		if (mid == "" || mid == null) { // 미로그인시
+		if (mid == "" || mid == null) {
 			Swal.fire({
 				icon: 'warning',
 				title: '로그인 확인',
 				text: '로그인을 먼저 해주세요.',
-				showConfirmButton: true, // 확인 버튼 표시
+				showConfirmButton: true,
 				confirmButtonColor: '#98dfff',
 				confirmButtonText: '확인'
 			});
-
-		} else { // 로그인시
+		} else {
 			Swal.fire({
 				icon: 'warning',
 				title: '신고 사유를 선택해주세요',
@@ -166,7 +157,7 @@ $(document).ready(function(){
 				cancelButtonText: '취소',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					var rreson = $("input[name='rreson']:checked").val(); // 선택된 라디오 버튼의 값을 가져옴
+					var rreson = $("input[name='rreson']:checked").val();
 					if (rreson == null) {
 						Swal.fire({
 							icon: 'error',
@@ -175,7 +166,7 @@ $(document).ready(function(){
 							confirmButtonText: '확인',
 							confirmButtonColor: '#98dfff'
 						}).then(() => {
-							$(".rstate").click(); // 신고 사유 재선택 창 다시 띄우기
+							$(".rstate").click();
 						});
 					} else {
 						$.ajax({
@@ -219,15 +210,13 @@ $(document).ready(function(){
 		}
 	}
 
-	$(".rstate").click(function() { // 신고하기
+	$(".rstate").click(function() {
 		var button = $(this);
 		var rid = button.data('rid');
 		var hid = $("input[name='hid']").val();
 		var mid = $("input[name='mid']").val();
 		rstateButton(rid, hid, mid);
 	});
-
-
 
 	/** 네비게이션 **/
 	$("#info_s").click(function() {
@@ -265,9 +254,8 @@ $(document).ready(function(){
 	}
 
 	$(function() {
-		heartE(); // 함수 호출하여 이벤트 핸들러 등록
+		heartE();
 	});
-
 
 
 	/** 공유 링크 클릭시 **/
@@ -286,8 +274,6 @@ $(document).ready(function(){
 			$("#shareLink2").css('display', 'none');
 		}
 	});
-
-
 
 	/** 공유하기 - 카카오 **/
 	$("#kakaoShare").click(function() {
@@ -313,9 +299,7 @@ $(document).ready(function(){
 		});
 	});
 
-
 	/** 공유하기 - 링크 복사 **/
-		//현재 url 변수로 가져오기
 	let nowUrl = window.location.href;
 
 	$("#linkCopy").click(function() {
@@ -331,9 +315,7 @@ $(document).ready(function(){
 	});
 
 
-	/*
-	리뷰 정렬
-	*/
+	/*	리뷰 정렬 */
 	$('#filter').on('change', function() {
 		var filter = $('#filter').val();
 		$.ajax({
@@ -343,15 +325,14 @@ $(document).ready(function(){
 		}).done(function(result){
 			$('.review_card').remove();
 
-			var reviewSet = new Set(); // 중복 리뷰 방지를 위한 Set 객체
-			var cards = []; // 리뷰 카드를 담을 배열
+			var reviewSet = new Set();
+			var cards = [];
 
 			for (var r of result.card) {
-				if (!reviewSet.has(r.rid)) { // 이미 추가된 리뷰인지 검사
-					reviewSet.add(r.rid); // Set에 추가
+				if (!reviewSet.has(r.rid)) {
+					reviewSet.add(r.rid);
 				}
 
-				// 각 리뷰마다 독립적인 카드를 생성
 				var reviewCard = '<div class="review_card"><div class="member"><div class="name">';
 
 				if (r.msfile != null) {
@@ -404,8 +385,8 @@ $(document).ready(function(){
 				reviewCard += '<input type="hidden" name="likeresult" value="' + r.likeresult + '">';
 
 
-				if (mid != null && mid != "") { //로그인시
-					if (mid == r.mid) { // 로그인=작성자
+				if (mid != null && mid != "") {
+					if (mid == r.mid) {
 						if (r.likeresult == 0) {
 							reviewCard += '<a href="javascript:;" class="icon heart">';
 							reviewCard += '<button type="button" id="like" class="like2 disabled check" data-rid="' + r.rid + '" disabled>';
@@ -421,7 +402,7 @@ $(document).ready(function(){
 							reviewCard += '<span class="like-count">' + r.rlike + '</span>';
 							reviewCard += '</button></a>';
 						}
-					} else {// 로그인!=작성자
+					} else {
 						if (r.likeresult == 0) {
 							reviewCard += '<a href="javascript:;" class="icon heart"><button type="button" id="like" class="like2 check" data-rid="' + r.rid + '">';
 							reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
@@ -437,7 +418,7 @@ $(document).ready(function(){
 							reviewCard += '</button></a>';
 						}
 					}
-				} else { //로그인시
+				} else {
 					reviewCard += '<a href="javascript:;" class="icon">';
 					reviewCard += '<button type="button" id="like" class="like2 non" data-rid="' + r.rid + '">';
 					reviewCard += '좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
@@ -457,38 +438,33 @@ $(document).ready(function(){
 					reviewCard += '<button type="button" class="rstate" name="rstate" hidden></button>';
 				}
 				reviewCard += '</form>';
-				reviewCard += '</div></div>'; // 이 부분에서 하나의 리뷰 카드가 끝남
+				reviewCard += '</div></div>';
 
 				cards.unshift(reviewCard);
-
-			} // for
+			}
 
 			for (var card of cards) {
 				$('#filter').after(card);
-			} //출력
+			}
 
-
-			// like
+			/* like */
 			$('.like2').click(function (e) {
 				e.preventDefault();
 				var button = $(this);
-				likeButton(button); // likeButton 함수 호출
+				likeButton(button);
 			});
 
 			$(function() {
 				heartE();
 			});
 
-			$(".rstate").click(function() { // 신고하기
+			$(".rstate").click(function() {
 				var button = $(this);
 				var rid = button.data('rid');
 				var hid = $("input[name='hid']").val();
 				var mid = $("input[name='mid']").val();
 				rstateButton(rid, hid, mid);
 			});
-
-		}); // ajax
-
+		});
 	});
-
 });

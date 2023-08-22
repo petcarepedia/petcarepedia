@@ -21,8 +21,6 @@
     </script>
 </head>
 <body>
-
-    <!-- header -->
     <jsp:include page="../header_manager.jsp"></jsp:include>
     <div id = "content">
         <section id = "information">
@@ -42,6 +40,7 @@
                     </nav>
                 </div>
             </section>
+
             <section id="section2">
                 <button type="button" id="review_manage">리뷰 관리 요청</button>
                 <input type="hidden" name="mid" value="${rvo.mid}">
@@ -73,7 +72,6 @@
                         <div id="right_top">
                             <button type="button" id="btnLike" disabled>
                             <span class="review_like">
-                                <!-- ♥️ -->
                                 <img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;">
                             </span>
                                     ${rvo.rlike }
@@ -117,7 +115,6 @@
         </section>
     </div>
 
-    <!-- footer -->
     <jsp:include page="../footer_manager.jsp"></jsp:include>
 </body>
 </html>

@@ -17,18 +17,17 @@
 		$(document).ready(function(){
 			var pager = jQuery('#ampaginationsm').pagination({
 
-				maxSize: '${page.pageCount}', // max page size
-				totals: '${page.dbCount}',	// total pages
-				page: '${page.reqPage}', // initial page
-				pageSize: '${page.pageSize}', // max number items per page
+				maxSize: '${page.pageCount}',
+				totals: '${page.dbCount}',
+				page: '${page.reqPage}',
+				pageSize: '${page.pageSize}',
 
-				// custom labels
 				lastText: '&raquo;&raquo;',
 				firstText: '&laquo;&laquo;',
 				prevText: '&laquo;',
 				nextText: '&raquo;',
 
-				btnSize:'sm'	// 'sm'  or 'lg'
+				btnSize:'sm'
 			});
 
 			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
@@ -36,27 +35,24 @@
 				$(location).attr('href', "http://localhost:9000/manager_reserve_content/${page}/${booking.bid}/${member.mid}/"+ e.page);
 			});
 
-			/*호버 효과*/
 			var allCells = $("td:nth-child(5)");
 
 			allCells.on("mouseover", function() {
 				var el = $(this);
 				var row = el.closest('tr');
 
-				// 해당 행의 모든 td 요소와 th 요소에 스타일 적용
 				row.find('td, th').css({ "background": "#FFF2F4"});
 			}).on("mouseout", function() {
 				var el = $(this);
 				var row = el.closest('tr');
 
-				// 해당 행의 모든 td 요소와 th 요소의 스타일을 원래대로 복원
 				row.find('td, th').css({ "background": "", "color": "" });
 			});
 		});
 	</script>
 </head>
+
 <body>
-<!-- header -->
 	<jsp:include page="../header_manager.jsp"></jsp:include>
 
 	<div class="d1">
@@ -163,7 +159,6 @@
 
 					<div class="change">
 						<c:if test="${booking.bstate eq '예약중'}">
-							<%--<button class="stateBtn" id="change"><a href="/search_reservation/${booking.hid}">예약 변경</a></button>--%>
 							<button class="stateBtn" id="cancel" value="${booking.bid}">예약 취소</button>
 						</c:if>
 					</div>
@@ -207,7 +202,6 @@
 			</section>
 		</section>
 	</div>
-	<!-- footer -->
 		<jsp:include page="../footer_manager.jsp"></jsp:include>
 </body>
 </html>
