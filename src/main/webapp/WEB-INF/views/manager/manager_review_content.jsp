@@ -27,10 +27,10 @@
                     <nav>
                         <ul>
                             <li>마이페이지</li>
-                            <li><a href = "/manager_hospital_list/1/">병원 관리</a></li>
+                            <li><a href = "/manager_hospital_list">병원 정보 관리</a></li>
                             <li><a href = "/manager_reserve_list/1/">예약 관리</a></li>
-                            <li><a href = "/manager_review_list/1/">리뷰 보기</a></li>
-                            <li><a href = "/mypage_bookmark">정보 관리</a></li>
+                            <li><a href = "/manager_review_list/1/">리뷰 관리</a></li>
+                            <li><a href = "/manager_information">회원 정보</a></li>
                             <li><a href = "/mypage_signout">회원 탈퇴</a></li>
                         </ul>
                     </nav>
