@@ -89,7 +89,7 @@ const autoHyphen = (target) => {
 				<form name="joinForm" action="/join" method="post">
 					<input type="hidden" name="grade" value="${grade}" id="grade">
 					<input type="hidden" name="email" value="${email}" id="email">
-					<input type="hidden" name="msfile" value="c1b63a5c-c728-4dd4-bee0-5a08232fd775_cat.png" id="msfile">
+					<input type="hidden" name="msfile" value="cat.png" id="msfile">
 					<ul>
 					<li class="id">
 						<label>아이디 <span class="ess">*</span></label>
