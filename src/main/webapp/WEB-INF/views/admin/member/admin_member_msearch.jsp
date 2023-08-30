@@ -83,7 +83,7 @@
 				<c:forEach var="member" items="${list}">
 					<tr>
 						<td>${member.rno}</td>
-						<td><a href="admin_member_detail/${member.mid}">${member.mid}</a></td>
+						<td><a href="/admin/member_detail/1/${member.mid}/">${member.mid}</a></td>
 						<td>${member.name}</td>
 						<td>${member.email}</td>
 						<td>${member.phone}</td>
